@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/ITD-React-project/static/css/main.009b2a74.css",
+    "main.js": "/ITD-React-project/static/js/main.d1c47dfa.js",
+    "index.html": "/ITD-React-project/index.html",
+    "main.009b2a74.css.map": "/ITD-React-project/static/css/main.009b2a74.css.map",
+    "main.d1c47dfa.js.map": "/ITD-React-project/static/js/main.d1c47dfa.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.009b2a74.css",
+    "static/js/main.d1c47dfa.js"
+  ]
+}
