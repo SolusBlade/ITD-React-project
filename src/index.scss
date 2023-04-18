@@ -1,0 +1,21 @@
+@import-normalize;
+
+@import "./sass/utils/base";
+@import "./sass/utils/mixin";
+@import "./sass/utils/variables";
+
+*{
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Lato', sans-serif;
+  font-style: normal;
+  background-color: $dark-blue;
+  color: $white;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
