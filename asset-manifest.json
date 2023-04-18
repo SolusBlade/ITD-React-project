@@ -1,13 +1,19 @@
 {
   "files": {
-    "main.css": "/ITD-React-project/static/css/main.009b2a74.css",
-    "main.js": "/ITD-React-project/static/js/main.d1c47dfa.js",
+    "main.css": "/ITD-React-project/static/css/main.b2c92c9e.css",
+    "main.js": "/ITD-React-project/static/js/main.e521c3cc.js",
+    "static/media/hero-tablet-2x.png": "/ITD-React-project/static/media/hero-tablet-2x.9561f9957fb59a762dd1.png",
+    "static/media/hero-desktop-2x.png": "/ITD-React-project/static/media/hero-desktop-2x.ea49bd27fb7a7f1ae969.png",
+    "static/media/hero-mobile-2x.png": "/ITD-React-project/static/media/hero-mobile-2x.0e5927b99db5f1055168.png",
+    "static/media/hero-desktop.png": "/ITD-React-project/static/media/hero-desktop.f5b5d4b49137bba77f97.png",
+    "static/media/hero-tablet.png": "/ITD-React-project/static/media/hero-tablet.d10d820f58e4c1c7ee12.png",
+    "static/media/hero-mobile.png": "/ITD-React-project/static/media/hero-mobile.c1bdb31313f92bd7cd50.png",
     "index.html": "/ITD-React-project/index.html",
-    "main.009b2a74.css.map": "/ITD-React-project/static/css/main.009b2a74.css.map",
-    "main.d1c47dfa.js.map": "/ITD-React-project/static/js/main.d1c47dfa.js.map"
+    "main.b2c92c9e.css.map": "/ITD-React-project/static/css/main.b2c92c9e.css.map",
+    "main.e521c3cc.js.map": "/ITD-React-project/static/js/main.e521c3cc.js.map"
   },
   "entrypoints": [
-    "static/css/main.009b2a74.css",
-    "static/js/main.d1c47dfa.js"
+    "static/css/main.b2c92c9e.css",
+    "static/js/main.e521c3cc.js"
   ]
 }
