@@ -10,26 +10,18 @@ import OwnPlanPage from 'pages/OwnPlanPage/OwnPlanPage';
 import StatisticsPage from 'pages/StatisticsPage/StatisticsPage';
 import ExpensesPage from 'pages/ExpensesPage/ExpensesPage';
 
-const PrivateRoute = ({
-  component,
-  redirectTo = '/login',
-}) => {
+const PrivateRoute = ({ component, redirectTo = '/login' }) => {
   const isLoggedIn = useSelector(selectorIsLoggedIn);
   return isLoggedIn ? component : <Navigate to={redirectTo} />;
 };
 
 // eslint-disable-next-line
-const PublicRoute = ({
-  component,
-  redirectTo = '/contacts',
-}) => {
+const PublicRoute = ({ component, redirectTo = '/contacts' }) => {
   const isLoggedIn = useSelector(selectorIsLoggedIn);
   return !isLoggedIn ? component : <Navigate to={redirectTo} />;
 };
 
 const App = () => {
-
-
   return (
     <>
       <Header />
@@ -51,7 +43,8 @@ const App = () => {
         />
         <Route
           path="/cash-flow"
-          element={<PrivateRoute component={<ExpensesPage />} />}
+          // element={<PrivateRoute component={<ExpensesPage />} />}
+          element={<ExpensesPage />}
         />
         <Route
           path="/dynamics"

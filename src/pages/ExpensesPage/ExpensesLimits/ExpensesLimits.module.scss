@@ -1,0 +1,110 @@
+@import '../../../sass/utils/variables';
+@import '../../../sass/utils/mixin';
+
+.expenses {
+  @include tablet_max {
+    padding-top: 66px;
+    padding-bottom: 66px;
+  }
+  @include tablet {
+    padding-bottom: 220px;
+  }
+  @include desktop {
+    padding-bottom: 148px;
+  }
+}
+
+.expensesWrapper {
+  @include tablet {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+  }
+  width: 100%;
+  @include desktop {
+    margin-left: auto;
+    margin-right: auto;
+    width: 770px;
+  }
+  background-color: $blue;
+  border-radius: 16px;
+}
+
+.list {
+  display: flex;
+  gap: 18px;
+  padding-top: 44px;
+  @include tablet_max {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    padding-top: 40px;
+  }
+}
+
+.item {
+  @include tablet_max {
+    width: 214px;
+  }
+  @include tablet {
+    width: 183px;
+  }
+}
+
+.sum {
+  @include font(400, 14px, 18px);
+
+  border: 1px solid rgba(243, 243, 243, 0.4);
+  border-radius: 28px;
+
+  padding: 14px 0 14px 24px;
+}
+
+.text {
+  @include font(400, 14px, 18px);
+
+  color: rgba(243, 243, 243, 0.4);
+}
+
+.buttonWrapper {
+  padding-top: 44px;
+
+  @include tablet_max {
+    padding-bottom: 40px;
+  }
+  @include tablet {
+    padding-bottom: 72px;
+  }
+  @include desktop {
+    padding-bottom: 44px;
+  }
+}
+
+.buttonReady {
+  display: block;
+
+  @include font(700, 14px, 20px);
+  color: $blue;
+  background-color: $white;
+  border-radius: 60px;
+  border: none;
+
+  padding: 14px 86px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.btnModal {
+  display: block;
+
+  @include font(700, 14px, 20px);
+
+  text-decoration: underline;
+  background-color: $blue;
+  color: $white;
+  border: none;
+
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 14px;
+}
