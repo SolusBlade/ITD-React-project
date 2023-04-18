@@ -1,0 +1,90 @@
+@import '../../sass/utils/mixin';
+@import '../../sass/utils/variables';
+
+.homeTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+
+  margin-top: 60px;
+  margin-bottom: 124px;
+
+  width: 314px;
+  height: 68px;
+
+  font-family: 'Unbounded';
+  font-style: normal;
+  @include font(500, 24px, 1.42);
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+
+  @include tablet {
+    margin-top: 72px;
+
+    width: 646px;
+    height: 190px;
+
+    @include font(500, 44px, 1.27);
+  }
+
+  @include desktop {
+    margin-top: 142px;
+  }
+}
+
+.homeTitleAccent {
+  display: flex;
+
+  padding: 10px 20px;
+  line-height: 28px;
+
+  background: $blue;
+  border-radius: 60px;
+
+  @include tablet {
+    display: inline-block;
+    padding: 10px 24px;
+    line-height: 48px;
+  }
+}
+
+.homeImg {
+  overflow: hidden;
+  margin-left: -16px;
+  width: 375px;
+  height: 432px;
+
+  background-image: url(../../assets/images/hero-mobile.png);
+  @include retina {
+    background-image: url(../../assets/images/hero-mobile-2x.png);
+  }
+  background-repeat: no-repeat;
+  background-position: center;
+
+  @include tablet {
+    margin: 0 auto;
+    width: 656px;
+    height: 566px;
+
+    background-image: url(../../assets/images/hero-tablet.png);
+    @include retina {
+      background-image: url(../../assets/images/hero-tablet-2x.png);
+    }
+  }
+
+  @include desktop {
+    position: absolute;
+    left: 52%;
+    top: 17%;
+
+    width: 616px;
+    height: 595px;
+
+    background-image: url(../../assets/images/hero-desktop.png);
+    @include retina {
+      background-image: url(../../assets/images/hero-desktop-2x.png);
+    }
+  }
+}
+
