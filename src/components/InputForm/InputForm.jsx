@@ -1,21 +1,8 @@
-import { useState } from 'react';
 import s from './InputForm.module.scss';
 
-const InputForm = ({ cbOnSubmit, options, initialValues }) => {
-  const [inputs, setInputs] = useState(initialValues);
-
-  const handleChange = e => {
-    const { name, value } = e.target;
-    setInputs(values => ({ ...values, [name]: value }));
-  };
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    cbOnSubmit(inputs);
-  };
-
+const InputForm = ({ onChange, options, values }) => {
   return (
-    <form className={s.form} onSubmit={handleSubmit}>
+    <>
       {options.map((el, index) => (
         <label className={s.label} key={el.name}>
           <span className={s.span}>
@@ -27,13 +14,13 @@ const InputForm = ({ cbOnSubmit, options, initialValues }) => {
             className={s.input}
             type={el.type}
             name={el.name}
-            value={inputs[el.name] || ''}
-            onChange={handleChange}
+            value={values[el.name] || ''}
+            onChange={onChange}
             placeholder={el.placeholder}
           />
         </label>
       ))}
-    </form>
+    </>
   );
 };
 

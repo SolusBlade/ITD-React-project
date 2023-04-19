@@ -1,5 +1,7 @@
 import InputForm from 'components/InputForm/InputForm';
+import { useState } from 'react';
 // import { useDispatch } from "react-redux";
+import s from './PlanInputsList.module.scss';
 
 const registerFormOptions = [
   {
@@ -49,14 +51,28 @@ const dataForm = {
 const PlanInputsList = () => {
   // const dispatch = useDispatch();
 
-  const handleSubmit = form => console.log(form);
+  const [inputs, setInputs] = useState(dataForm);
+
+  const handleChange = e => {
+    const { name, value } = e.target;
+    setInputs(values => ({ ...values, [name]: value }));
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    console.log(inputs);
+    //  dispatch(addContact(inputs));
+  };
 
   return (
-    <InputForm
-      cbOnSubmit={handleSubmit}
-      options={registerFormOptions}
-      initialValues={dataForm}
-    />
+    <form className={s.form} onSubmit={handleSubmit}>
+      <InputForm
+        onChange={handleChange}
+        options={registerFormOptions}
+        values={inputs}
+      />
+      <button type="submit">Submit</button>
+    </form>
   );
 };
 
