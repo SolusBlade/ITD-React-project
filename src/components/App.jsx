@@ -9,6 +9,8 @@ import DynamicsPage from 'pages/DynamicsPage/DynamicsPage';
 import OwnPlanPage from 'pages/OwnPlanPage/OwnPlanPage';
 import StatisticsPage from 'pages/StatisticsPage/StatisticsPage';
 import ExpensesPage from 'pages/ExpensesPage/ExpensesPage';
+import ModalRegister from './ModalRegister/ModalRegister';
+import ModalLogin from './ModalLogin/ModalLogin';
 import { getCurrentUserInfo } from 'redux/auth/authOperations';
 import { useEffect } from 'react';
 
@@ -37,6 +39,9 @@ const App = () => {
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />}>
+          <Route path="/register" element={<ModalRegister />} />
+          <Route path="/login" element={<ModalLogin />} />
+
           {/* <Route
             path="/login"
             element={<PublicRoute component={<ModalLogin />} />}
