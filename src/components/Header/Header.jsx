@@ -1,38 +1,27 @@
-import { NavLink } from 'react-router-dom';
-import Icon from '../Icon/Icon';
+import Container from '../Container/Container';
+import { Logo } from './Logo/Logo';
+import { Navigation } from './Navigation/Navigation';
+import { UserBar } from './UserBar/UserBar';
+import { useSelector } from 'react-redux';
+import { selectorIsLoggedIn } from '../../redux/auth/authSelectors';
+
 import d from './Header.module.scss';
 import clsx from 'clsx';
-import Container from '../Container/Container';
 
-const getActiveClass = ({ isActive }) => clsx(d.link, isActive && d.active);
+// const getActiveClass = ({ isActive }) => clsx(d.link, isActive && d.active);
 
 const Header = () => {
+  const isAuth = useSelector(selectorIsLoggedIn);
+
   return (
     <header className={d.header}>
       <Container>
-        <div className={d.divContainer}>
-          <span className={d.headerLogo}>
-            <Icon name={'logo'} width={'26'} height={'26'} className={'logo'} />
-            <p className={d.logoHeaderDes}>Finance</p>
-          </span>
-          <nav className={d.headerNav}>
-            <ul className={d.headerList}>
-              <li className={d.headerItem}>
-                <NavLink 
-                  className={getActiveClass}
-                >
-                  Log In
-                </NavLink>
-              </li>
-              <li className={d.headerItem}>
-                <NavLink 
-                  className={getActiveClass}
-                >
-                  Registration
-                </NavLink>
-              </li>
-            </ul>
-          </nav>
+        <div className={clsx(d.headerWrap, isAuth && d.isAuth)}>
+          <div className={clsx(d.headerNavWrap, isAuth && d.isAuth)}>
+            <Logo />
+            <Navigation />
+          </div>
+          {isAuth && <UserBar />}
         </div>
       </Container>
     </header>
