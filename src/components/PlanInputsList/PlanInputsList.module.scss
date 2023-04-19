@@ -3,13 +3,31 @@
   flex-direction: column;
   flex-wrap: wrap;
   gap: 18px;
+  justify-content: center;
+  align-content: center;
+  margin-bottom: 4px;
+  padding-top: 50px;
 
   @media screen and (min-width: 768px) {
     height: 286px;
     gap: 32px;
   }
+}
+
+.p {
+  margin-left: auto;
+  margin-bottom: 64px;
+
+  width: 329px;
+  height: 42px;
+
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+
+  color: rgba(243, 243, 243, 0.3);
 
   @media screen and (min-width: 1280px) {
-    width: 370px;
+    margin-right: 220px;
   }
 }
