@@ -3,7 +3,6 @@ import { Info } from "components/Dynamics/Info";
 
 const DynamicsPage = () => {
   return <section>
-    <h1>dynamics</h1>
     <Chart/>
     <Info/>
   </section>;

@@ -64,6 +64,7 @@ const App = () => {
         />
         <Route
           path="/dynamics"
+
           element={<DynamicsPage />}
           // element={<PublicRoute component={<DynamicsPage />} />}
         />

@@ -1,0 +1,102 @@
+.infoContainer{
+
+}
+
+.accumulated{
+
+}
+
+.title{
+    margin: 0;
+    margin-bottom: 32px;
+}
+
+.list{
+    padding: 0;
+    list-style: none;
+
+}
+
+.item{
+    margin-bottom: 28px;
+    display: flex;
+    justify-content: space-between;
+
+    &:not(:last-child){
+        margin-bottom: 7px;
+    }
+}
+
+.text{
+    margin: 0;
+}
+
+.num{
+    margin: 0;
+}
+
+.barTitle{
+    margin: 0;
+    margin-bottom: 8px;
+}
+
+.bar{
+    margin-bottom: 50px;
+    height: 8px;
+    width: 100%;
+
+    background-color: white;
+    border-radius: 4px;
+}
+
+.barFill{
+    height: 8px;
+    width: 28%;
+    border-radius: 4px;
+
+    background-color: #3A6AF5;
+}
+
+.image{
+    margin-bottom: 64px;
+    width: 343px;
+    height: 260px;
+    text-align: center;
+    
+    border-radius: 16px;
+    border: 1px solid white;
+}
+
+.accRemain{
+    margin-bottom: 100px;
+    width: 343px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+
+    border-radius: 16px;
+    border: 1px solid white;
+}
+
+.accTitle{
+    width: 263px;
+    margin-top: 40px;
+    margin-bottom: 28px;
+}
+
+.accNum{
+    margin-bottom: 40px;
+
+    font-size: 36;
+    line-height: calc(43/36);
+}
+
+.svgContainer{
+    width: 185px;
+    height: 165px;
+    margin-bottom: 40px;
+    
+    border: 1px solid white;
+}

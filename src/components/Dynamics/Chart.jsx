@@ -47,5 +47,33 @@ export const Chart = () => {
         <div className={style.barContainer}>
           <Bar ref={chartRef} options={options} data={data} height={'100%'}/>
         </div>
+
+        <div className={style.statContainer}>
+          <div className={style.select}>
+            <p>select month</p>
+          </div>
+          <ul className={style.statList}>
+            <li className={style.statListItem}>
+              <p className={style.itemTitle}>Income, &#8372;</p>
+              <p className={style.itemNum}>60 000</p>
+            </li>
+            <li className={style.statListItem}>
+              <p className={style.itemTitle}>Expenses, &#8372;</p>
+              <p className={style.itemNum}>30 000</p>
+            </li>
+            <li className={style.statListItem}>
+              <p className={style.itemTitle}>Accumulated, &#8372;</p>
+              <p className={style.itemNum}>30 000</p>
+            </li>
+            <li className={style.statListItem}>
+              <p className={style.itemTitle}>Plan, &#8372;</p>
+              <p className={style.itemNum}>45 000</p>
+            </li>
+            <li className={style.statListItem}>
+              <p className={style.itemTitle}>Plan, %</p>
+              <p className={style.itemNum}>45 000</p>
+            </li>
+          </ul>
+        </div>
     </div>
 }
