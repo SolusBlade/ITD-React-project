@@ -13,13 +13,13 @@ const initialValues = {
 };
 
 const TransactionDataList = () => {
-  const [modalData, setModalData] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
-    setModalData(true);
+    setIsModalOpen(true);
   };
 
-  const closeModal = () => setModalData(false);
+  const closeModal = () => setIsModalOpen(false);
 
   return (
     <section className={s.transaction}>
@@ -60,7 +60,9 @@ const TransactionDataList = () => {
           <ExpensesLimits openModal={openModal} />
         </Form>
       </Formik>
-      {modalData && <ModalAddIncome closeModal={closeModal} />}
+      {isModalOpen && (
+        <ModalAddIncome text="Enter income" closeModal={closeModal} />
+      )}
     </section>
   );
 };
