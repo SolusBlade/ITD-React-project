@@ -1,8 +1,54 @@
+@import '../../../sass/utils/variables';
+
+// .headerUserInfo {
+//     margin-left: auto;
+// }
+
 .btnBox {
     display: flex;
+    align-items: center;
+    gap: 24px;
     width: 80%;
 }
 
-.btnLogout {
+.btnStat {
     margin-left: auto;
+    padding: 14px 14px;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    background-color: $blue;
 }
+
+
+
+.btnUser {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 2px solid $blue;
+    background-color: $white;
+}
+
+.btnLogout {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    // margin-left: auto;
+    padding: 10px 0;
+    padding-left: 24px;
+    padding-right: 24px;
+    cursor: pointer;
+    border: none;
+    border-radius: 60px;
+    background-color: $white;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.4;
+    color: $dark-gray;
+}
+
+// .icon-log-out {
+//     padding-right: 10px;
+// }
