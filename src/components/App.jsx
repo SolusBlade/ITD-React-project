@@ -31,7 +31,9 @@ const App = () => {
   const token = useSelector(selectorToken);
 
   useEffect(() => {
-    if (token) dispatch(getCurrentUserInfo(token));
+    if (token) {
+      dispatch(getCurrentUserInfo(token));
+    };
   }, [token, dispatch]);
 
   return (
