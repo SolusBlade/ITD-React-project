@@ -1,8 +1,10 @@
 @import-normalize;
 
-@import './sass/utils/base';
-@import './sass/utils/mixin';
-@import './sass/utils/variables';
+@import "./assets/fonts/latoFontStyle.css";
+@import "./sass/utils/base";
+@import "./sass/utils/mixin";
+@import "./sass/utils/variables";
+
 
 * {
   box-sizing: border-box;

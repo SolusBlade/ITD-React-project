@@ -4,11 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import HomePage from 'pages/HomePage/HomePage';
 import Header from './Header/Header';
-import { selectorIsLoggedIn } from 'redux/auth/authSelectors';
+import { selectorIsLoggedIn, selectorToken } from 'redux/auth/authSelectors';
 import DynamicsPage from 'pages/DynamicsPage/DynamicsPage';
 import OwnPlanPage from 'pages/OwnPlanPage/OwnPlanPage';
 import StatisticsPage from 'pages/StatisticsPage/StatisticsPage';
 import ExpensesPage from 'pages/ExpensesPage/ExpensesPage';
+import { getCurrentUserInfo } from 'redux/auth/authOperations';
+import { useEffect } from 'react';
 
 const PrivateRoute = ({ component, redirectTo = '/login' }) => {
   const isLoggedIn = useSelector(selectorIsLoggedIn);
@@ -22,6 +24,13 @@ const PublicRoute = ({ component, redirectTo = '/contacts' }) => {
 };
 
 const App = () => {
+  const dispatch = useDispatch();
+  const token = useSelector(selectorToken);
+
+  useEffect(() => {
+    if (token) dispatch(getCurrentUserInfo(token));
+  }, [token, dispatch]);
+
   return (
     <>
       <Header />
