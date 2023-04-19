@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/ITD-React-project/static/css/main.dccc180f.css",
-    "main.js": "/ITD-React-project/static/js/main.ed2bab3c.js",
+    "main.js": "/ITD-React-project/static/js/main.a3cf12d8.js",
     "static/media/hero-tablet-2x.png": "/ITD-React-project/static/media/hero-tablet-2x.9561f9957fb59a762dd1.png",
     "static/media/hero-desktop-2x.png": "/ITD-React-project/static/media/hero-desktop-2x.ea49bd27fb7a7f1ae969.png",
     "static/media/Lato-Semibold.ttf": "/ITD-React-project/static/media/Lato-Semibold.dab63590f439194ec956.ttf",
@@ -26,10 +26,10 @@
     "static/media/icons.svg": "/ITD-React-project/static/media/icons.288f922450e200d810570369c51ee56f.svg",
     "index.html": "/ITD-React-project/index.html",
     "main.dccc180f.css.map": "/ITD-React-project/static/css/main.dccc180f.css.map",
-    "main.ed2bab3c.js.map": "/ITD-React-project/static/js/main.ed2bab3c.js.map"
+    "main.a3cf12d8.js.map": "/ITD-React-project/static/js/main.a3cf12d8.js.map"
   },
   "entrypoints": [
     "static/css/main.dccc180f.css",
-    "static/js/main.ed2bab3c.js"
+    "static/js/main.a3cf12d8.js"
   ]
 }
