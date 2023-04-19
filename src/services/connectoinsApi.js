@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://flat-backend.p.goit.global/';
+axios.defaults.baseURL = 'https://flat-backend.p.goit.global';
 
 // Запросы для работы с юзером
 
@@ -10,9 +10,7 @@ export const loginApi = user => {
 
 export const registerApi = user => {
   return axios
-  .post('/api/user/register', user)
-  .then(r => loginApi(r.data))
-  .then(r => r.data);
+  .post('/api/user/register', user).then(r => r.data);
 };
 
 export const logOutApi = () => {
