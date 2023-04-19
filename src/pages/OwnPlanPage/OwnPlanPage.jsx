@@ -1,11 +1,13 @@
 import Container from 'components/Container/Container';
 import PlanInputsList from 'components/PlanInputsList/PlanInputsList';
+import s from './OwnPlanPage.module.scss';
 
 const OwnPlanPage = () => {
   return (
     <Container>
-      <h1>OwnPlanPage</h1>
       <PlanInputsList />
+
+      <div className={s.vectorImg} />
     </Container>
   );
 };

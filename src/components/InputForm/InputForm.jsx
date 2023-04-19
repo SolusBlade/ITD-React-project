@@ -11,6 +11,7 @@ const InputForm = ({ onChange, options, values }) => {
           </span>
 
           <input
+            required
             className={s.input}
             type={el.type}
             name={el.name}

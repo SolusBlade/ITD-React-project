@@ -2,50 +2,16 @@ import InputForm from 'components/InputForm/InputForm';
 import { useState } from 'react';
 // import { useDispatch } from "react-redux";
 import s from './PlanInputsList.module.scss';
-
-const registerFormOptions = [
-  {
-    title: 'Name',
-    name: 'name',
-    type: 'text',
-    placeholder: 'Input name',
-  },
-  {
-    title: 'Email',
-    name: 'email',
-    type: 'text',
-    placeholder: 'Input email',
-  },
-  {
-    title: 'Password',
-    name: 'password',
-    type: 'text',
-    placeholder: 'Input password',
-  },
-  {
-    title: 'Name',
-    name: 'name',
-    type: 'text',
-    placeholder: 'Input name',
-  },
-  {
-    title: 'Email',
-    name: 'email',
-    type: 'text',
-    placeholder: 'Input email',
-  },
-  {
-    title: 'Password',
-    name: 'password',
-    type: 'text',
-    placeholder: 'Input password',
-  },
-];
+import optionsDefault from 'data/optionsDefault';
+import ResultForm from 'components/ResultForm/ResultForm';
 
 const dataForm = {
-  name: '',
-  email: '',
-  password: '',
+  salary: '',
+  passiveIncome: '',
+  savings: '',
+  cost: '',
+  footage: '',
+  procent: '',
 };
 
 const PlanInputsList = () => {
@@ -65,14 +31,23 @@ const PlanInputsList = () => {
   };
 
   return (
-    <form className={s.form} onSubmit={handleSubmit}>
-      <InputForm
-        onChange={handleChange}
-        options={registerFormOptions}
-        values={inputs}
-      />
-      <button type="submit">Submit</button>
-    </form>
+    <>
+      <form className={s.form} onSubmit={handleSubmit}>
+        <InputForm
+          onChange={handleChange}
+          options={optionsDefault}
+          values={inputs}
+        />
+      </form>
+
+      <p></p>
+      <p className={s.p}>
+        Specify the percentage that you would like to accumulate per month from
+        the total amount of income and you will see when you reach the goal
+      </p>
+
+      <ResultForm />
+    </>
   );
 };
 

@@ -1,0 +1,127 @@
+.box {
+  margin-bottom: 60px;
+  padding: 40px;
+  width: 343px;
+  height: 388px;
+  background: #3a6af5;
+  border-radius: 16px;
+
+  @media screen and (min-width: 768px) {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 44px 32px;
+    width: 672px;
+    height: 196px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 770px;
+    height: 156px;
+    padding: 24px 66px;
+  }
+}
+
+.title {
+  padding-bottom: 18px;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  color: #f3f3f3;
+
+  @media screen and (min-width: 768px) {
+    display: inline-block;
+    padding-bottom: 14px;
+    width: 245px;
+  }
+}
+
+.list {
+  @media screen and (min-width: 768px) {
+    display: flex;
+  }
+}
+
+.item {
+  @media screen and (min-width: 768px) {
+    margin-right: 18px;
+    width: 183px;
+    height: 70px;
+  }
+}
+
+.item:last-child {
+  @media screen and (min-width: 768px) {
+    position: absolute;
+    right: 33px;
+    bottom: 44px;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    height: 90px;
+  }
+  @media screen and (min-width: 1280px) {
+    right: 63px;
+    bottom: 24px;
+  }
+}
+
+.text {
+  display: flex;
+  align-items: center;
+  padding-bottom: 6px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: rgba(243, 243, 243, 0.4);
+}
+
+.res {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 18px;
+  padding: 14px 0px 14px 24px;
+  gap: 10px;
+  width: 100%;
+  height: 46px;
+  border: 1px solid rgba(243, 243, 243, 0.4);
+  border-radius: 28px;
+}
+
+.buttonFits {
+  cursor: pointer;
+  width: 247px;
+  height: 46px;
+  color: #4770e4;
+  background: #f3f3f3;
+  border-radius: 60px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  border: none;
+  text-align: center;
+
+  @media screen and (min-width: 768px) {
+    width: 200px;
+  }
+}
+
+.buttonBalance {
+  width: 247px;
+  height: 46px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  text-decoration-line: underline;
+  color: #f3f3f3;
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+
+  @media screen and (min-width: 768px) {
+    width: 200px;
+  }
+}
