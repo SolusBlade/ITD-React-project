@@ -53,10 +53,10 @@ const App = () => {
           path="/cash-flow"
           element={<PrivateRoute component={<ExpensesPage />} />}
         />
-        <Route
+        {/* <Route
           path="/dynamics"
-          element={<PrivateRoute component={<DynamicsPage />} />}
-        />
+          element={<PublicRoute component={<DynamicsPage />} />}
+        /> */}
         <Route path="/statistics" element={<StatisticsPage />}>
           {/* <Route
             path="/transactions"
