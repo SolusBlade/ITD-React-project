@@ -1,8 +1,8 @@
 import { useState, memo } from 'react';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import s from './UserForm.module.scss';
 
-const UserForm = ({ btnSubmit }) => {
+const UserForm = ({onSubmit, btnSubmit }) => {
   const initialForm = {
     name: '',
     email: '',
@@ -11,7 +11,7 @@ const UserForm = ({ btnSubmit }) => {
   const [form, setForm] = useState(initialForm);
   const { name, email, password } = form;
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const handleInputChange = evt => {
     const { name, value } = evt.target;
@@ -25,7 +25,7 @@ const UserForm = ({ btnSubmit }) => {
 
   const handleSubmitForm = evt => {
     evt.preventDefault();
-    // dispatch(onSubmit(form));
+    dispatch(onSubmit(form));
     resetForm();
   };
 
