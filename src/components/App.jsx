@@ -52,7 +52,8 @@ const App = () => {
         />
         <Route
           path="/cash-flow"
-          element={<PrivateRoute component={<ExpensesPage />} />}
+          // element={<PrivateRoute component={<ExpensesPage />} />}
+          element={<ExpensesPage />}
         />
         <Route
           path="/dynamics"
