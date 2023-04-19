@@ -12,6 +12,7 @@ import ExpensesPage from 'pages/ExpensesPage/ExpensesPage';
 import { getCurrentUserInfo } from 'redux/auth/authOperations';
 import { useEffect } from 'react';
 
+// eslint-disable-next-line
 const PrivateRoute = ({ component, redirectTo = '/login' }) => {
   const isLoggedIn = useSelector(selectorIsLoggedIn);
   return isLoggedIn ? component : <Navigate to={redirectTo} />;
@@ -56,10 +57,11 @@ const App = () => {
           // element={<PrivateRoute component={<ExpensesPage />} />}
           element={<ExpensesPage />}
         />
-        {/* <Route
+        <Route
           path="/dynamics"
-          element={<PublicRoute component={<DynamicsPage />} />}
-        /> */}
+          element={<DynamicsPage />}
+          // element={<PublicRoute component={<DynamicsPage />} />}
+        />
         <Route path="/statistics" element={<StatisticsPage />}>
           {/* <Route
             path="/transactions"
