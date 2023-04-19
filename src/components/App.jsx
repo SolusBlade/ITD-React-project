@@ -9,32 +9,29 @@ import DynamicsPage from 'pages/DynamicsPage/DynamicsPage';
 import OwnPlanPage from 'pages/OwnPlanPage/OwnPlanPage';
 import StatisticsPage from 'pages/StatisticsPage/StatisticsPage';
 import ExpensesPage from 'pages/ExpensesPage/ExpensesPage';
+import ModalRegister from './ModalRegister/ModalRegister';
+import ModalLogin from './ModalLogin/ModalLogin';
 
-const PrivateRoute = ({
-  component,
-  redirectTo = '/login',
-}) => {
+const PrivateRoute = ({ component, redirectTo = '/login' }) => {
   const isLoggedIn = useSelector(selectorIsLoggedIn);
   return isLoggedIn ? component : <Navigate to={redirectTo} />;
 };
 
 // eslint-disable-next-line
-const PublicRoute = ({
-  component,
-  redirectTo = '/contacts',
-}) => {
+const PublicRoute = ({ component, redirectTo = '/contacts' }) => {
   const isLoggedIn = useSelector(selectorIsLoggedIn);
   return !isLoggedIn ? component : <Navigate to={redirectTo} />;
 };
 
 const App = () => {
-
-
   return (
     <>
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />}>
+          <Route path="/register" element={<ModalRegister />} />
+          <Route path="/login" element={<ModalLogin />} />
+
           {/* <Route
             path="/login"
             element={<PublicRoute component={<ModalLogin />} />}

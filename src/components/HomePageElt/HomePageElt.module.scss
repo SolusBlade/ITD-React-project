@@ -75,8 +75,10 @@
 
   @include desktop {
     position: absolute;
-    left: 52%;
-    top: 17%;
+    // left: 52%;
+    // top: 17%;
+    right: 0;
+    bottom:0;
 
     width: 616px;
     height: 595px;
