@@ -1,19 +1,20 @@
 {
   "files": {
-    "main.css": "/ITD-React-project/static/css/main.b2c92c9e.css",
-    "main.js": "/ITD-React-project/static/js/main.e521c3cc.js",
+    "main.css": "/ITD-React-project/static/css/main.a8441b7b.css",
+    "main.js": "/ITD-React-project/static/js/main.08d82e3d.js",
     "static/media/hero-tablet-2x.png": "/ITD-React-project/static/media/hero-tablet-2x.9561f9957fb59a762dd1.png",
     "static/media/hero-desktop-2x.png": "/ITD-React-project/static/media/hero-desktop-2x.ea49bd27fb7a7f1ae969.png",
     "static/media/hero-mobile-2x.png": "/ITD-React-project/static/media/hero-mobile-2x.0e5927b99db5f1055168.png",
     "static/media/hero-desktop.png": "/ITD-React-project/static/media/hero-desktop.f5b5d4b49137bba77f97.png",
     "static/media/hero-tablet.png": "/ITD-React-project/static/media/hero-tablet.d10d820f58e4c1c7ee12.png",
     "static/media/hero-mobile.png": "/ITD-React-project/static/media/hero-mobile.c1bdb31313f92bd7cd50.png",
+    "static/media/icons.svg": "/ITD-React-project/static/media/icons.288f922450e200d810570369c51ee56f.svg",
     "index.html": "/ITD-React-project/index.html",
-    "main.b2c92c9e.css.map": "/ITD-React-project/static/css/main.b2c92c9e.css.map",
-    "main.e521c3cc.js.map": "/ITD-React-project/static/js/main.e521c3cc.js.map"
+    "main.a8441b7b.css.map": "/ITD-React-project/static/css/main.a8441b7b.css.map",
+    "main.08d82e3d.js.map": "/ITD-React-project/static/js/main.08d82e3d.js.map"
   },
   "entrypoints": [
-    "static/css/main.b2c92c9e.css",
-    "static/js/main.e521c3cc.js"
+    "static/css/main.a8441b7b.css",
+    "static/js/main.08d82e3d.js"
   ]
 }
