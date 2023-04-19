@@ -7,9 +7,11 @@
     padding-bottom: 66px;
   }
   @include tablet {
+    padding-top: 250px;
     padding-bottom: 220px;
   }
   @include desktop {
+    padding-top: 90px;
     padding-bottom: 148px;
   }
 }
@@ -19,13 +21,15 @@
     display: flex;
     justify-content: center;
     gap: 24px;
+    width: 704px;
   }
-  width: 100%;
+
   @include desktop {
     margin-left: auto;
     margin-right: auto;
     width: 770px;
   }
+  width: 100%;
   background-color: $blue;
   border-radius: 16px;
 }
@@ -96,7 +100,7 @@
 }
 .btnModal {
   display: block;
-
+  cursor: pointer;
   @include font(700, 14px, 20px);
 
   text-decoration: underline;

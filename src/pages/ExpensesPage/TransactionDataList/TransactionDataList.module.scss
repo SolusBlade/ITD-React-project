@@ -7,13 +7,12 @@
   }
   @include tablet {
     padding-top: 100px;
-    padding-bottom: 250px;
   }
   @include desktop {
     padding-top: 66px;
-    padding-bottom: 90px;
   }
 }
+
 .form {
   display: flex;
   width: 100%;

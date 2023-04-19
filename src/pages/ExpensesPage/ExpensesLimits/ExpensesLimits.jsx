@@ -1,7 +1,7 @@
 import s from './ExpensesLimits.module.scss';
 const ExpensesLimits = ({ openModal }) => {
   return (
-    <section className={s.expenses}>
+    <div className={s.expenses}>
       <div className={s.expensesWrapper}>
         <ul className={s.list}>
           <li className={s.item}>
@@ -22,7 +22,7 @@ const ExpensesLimits = ({ openModal }) => {
           </button>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
