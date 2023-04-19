@@ -6,10 +6,10 @@
   justify-content: center;
   align-content: center;
   margin-bottom: 4px;
-  padding-top: 50px;
+  margin-top: 50px;
 
   @media screen and (min-width: 768px) {
-    height: 286px;
+    height: 314px;
     gap: 32px;
   }
 }
@@ -26,6 +26,13 @@
   line-height: 14px;
 
   color: rgba(243, 243, 243, 0.3);
+
+  @media screen and (max-width: 767px) {
+  }
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 100px;
+  }
 
   @media screen and (min-width: 1280px) {
     margin-right: 220px;
