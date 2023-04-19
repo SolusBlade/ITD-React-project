@@ -1,0 +1,47 @@
+
+
+.label {
+  padding: 14px 18px 18px 18px;
+  width: 343px;
+  height: 74px;
+  background: rgba(37, 44, 65, 0.5);
+  border-radius: 16px;
+
+  &:focus-within {
+    box-sizing: border-box;
+    border: 1px solid #3a6af5;
+
+    & .span {
+      color: #3a6af5;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 336px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 370px;
+  }
+}
+
+.span {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: rgba(243, 243, 243, 0.4);
+}
+
+.input {
+  padding-top: 4px;
+
+  background: transparent;
+  border: none;
+  outline: none;
+
+  font-size: 16px;
+  line-height: 19px;
+  color: #f3f3f3;
+
+  width: 100%;
+}

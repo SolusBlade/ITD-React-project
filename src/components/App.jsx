@@ -4,14 +4,17 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import HomePage from 'pages/HomePage/HomePage';
 import Header from './Header/Header';
-import { selectorIsLoggedIn } from 'redux/auth/authSelectors';
+import { selectorIsLoggedIn, selectorToken } from 'redux/auth/authSelectors';
 import DynamicsPage from 'pages/DynamicsPage/DynamicsPage';
 import OwnPlanPage from 'pages/OwnPlanPage/OwnPlanPage';
 import StatisticsPage from 'pages/StatisticsPage/StatisticsPage';
 import ExpensesPage from 'pages/ExpensesPage/ExpensesPage';
 import ModalRegister from './ModalRegister/ModalRegister';
 import ModalLogin from './ModalLogin/ModalLogin';
+import { getCurrentUserInfo } from 'redux/auth/authOperations';
+import { useEffect } from 'react';
 
+// eslint-disable-next-line
 const PrivateRoute = ({ component, redirectTo = '/login' }) => {
   const isLoggedIn = useSelector(selectorIsLoggedIn);
   return isLoggedIn ? component : <Navigate to={redirectTo} />;
@@ -24,6 +27,13 @@ const PublicRoute = ({ component, redirectTo = '/contacts' }) => {
 };
 
 const App = () => {
+  const dispatch = useDispatch();
+  const token = useSelector(selectorToken);
+
+  useEffect(() => {
+    if (token) dispatch(getCurrentUserInfo(token));
+  }, [token, dispatch]);
+
   return (
     <>
       <Header />
@@ -44,15 +54,18 @@ const App = () => {
 
         <Route
           path="/plan"
-          element={<PrivateRoute component={<OwnPlanPage />} />}
+          element={<OwnPlanPage />}
+          // element={<PrivateRoute component={<OwnPlanPage />} />}
         />
         <Route
           path="/cash-flow"
-          element={<PrivateRoute component={<ExpensesPage />} />}
+          // element={<PrivateRoute component={<ExpensesPage />} />}
+          element={<ExpensesPage />}
         />
         <Route
           path="/dynamics"
-          element={<PrivateRoute component={<DynamicsPage />} />}
+          element={<DynamicsPage />}
+          // element={<PublicRoute component={<DynamicsPage />} />}
         />
         <Route path="/statistics" element={<StatisticsPage />}>
           {/* <Route

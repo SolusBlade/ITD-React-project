@@ -1,0 +1,26 @@
+@import '../../sass/utils/variables';
+
+.header {
+    border-bottom: 1px solid $light-gray;
+}
+
+.headerWrap {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.headerWrap.isAuth {
+    justify-content: space-between;
+}
+
+.headerNavWrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.headerNavWrap.isAuth {
+    flex-direction: row-reverse;
+}

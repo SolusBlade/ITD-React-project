@@ -1,0 +1,79 @@
+@import '../../../sass/utils/variables';
+@import '../../../sass/utils/mixin';
+
+.transaction {
+  @include tablet_max {
+    padding-top: 50px;
+  }
+  @include tablet {
+    padding-top: 100px;
+  }
+  @include desktop {
+    padding-top: 66px;
+  }
+}
+
+.form {
+  display: flex;
+  width: 100%;
+  @include tablet_max {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  @include tablet {
+    flex-wrap: wrap;
+    gap: 32px;
+  }
+  @include desktop {
+    margin-left: auto;
+    margin-right: auto;
+    width: 770px;
+    gap: 30px;
+  }
+}
+
+.lable {
+  border-radius: 16px;
+  background-color: rgba(37, 44, 65, 0.5);
+  color: rgba(243, 243, 243, 0.4);
+}
+
+.input {
+  @include tablet_max {
+    width: 100%;
+  }
+  @include tablet {
+    width: 336px;
+  }
+  @include desktop {
+    width: 370px;
+  }
+  background-color: transparent;
+
+  border: none;
+  border-radius: 16px;
+
+  &[placeholder] {
+    @include font(400, 16px, 19px);
+
+    padding: 4px 18px 18px 18px;
+
+    color: #fff;
+  }
+  &:focus {
+    border: none;
+    outline: none;
+  }
+}
+
+.inputTitle {
+  @include font(400, 12px, 14px);
+  padding: 14px 18px 0 18px;
+}
+
+.option {
+  @include font(400, 16px, 19px);
+  background-color: $white;
+  color: #242424;
+}
