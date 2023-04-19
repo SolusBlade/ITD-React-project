@@ -9,9 +9,12 @@ import DynamicsPage from 'pages/DynamicsPage/DynamicsPage';
 import OwnPlanPage from 'pages/OwnPlanPage/OwnPlanPage';
 import StatisticsPage from 'pages/StatisticsPage/StatisticsPage';
 import ExpensesPage from 'pages/ExpensesPage/ExpensesPage';
+import ModalRegister from './ModalRegister/ModalRegister';
+import ModalLogin from './ModalLogin/ModalLogin';
 import { getCurrentUserInfo } from 'redux/auth/authOperations';
 import { useEffect } from 'react';
 
+// eslint-disable-next-line
 const PrivateRoute = ({ component, redirectTo = '/login' }) => {
   const isLoggedIn = useSelector(selectorIsLoggedIn);
   return isLoggedIn ? component : <Navigate to={redirectTo} />;
@@ -36,6 +39,9 @@ const App = () => {
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />}>
+          <Route path="/register" element={<ModalRegister />} />
+          <Route path="/login" element={<ModalLogin />} />
+
           {/* <Route
             path="/login"
             element={<PublicRoute component={<ModalLogin />} />}
@@ -58,7 +64,9 @@ const App = () => {
         />
         <Route
           path="/dynamics"
-          element={<PublicRoute component={<DynamicsPage />} />}
+
+          element={<DynamicsPage />}
+          // element={<PublicRoute component={<DynamicsPage />} />}
         />
         <Route path="/statistics" element={<StatisticsPage />}>
           {/* <Route

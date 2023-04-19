@@ -1,34 +1,34 @@
 export const options = [
   {
     name: 'Product',
-    value: 'Product',
+    title: 'Product',
   },
   {
     name: 'Clothing and footwear',
-    value: 'Clothing and footwear',
+    title: 'Clothing and footwear',
   },
   {
     name: 'Cafes and restaurants',
-    value: 'Cafes and restaurants',
+    title: 'Cafes and restaurants',
   },
   {
     name: 'Beauty and medicine',
-    value: 'Beauty and medicine',
+    title: 'Beauty and medicine',
   },
   {
     name: 'Health',
-    value: 'Health',
+    title: 'Health',
   },
   {
     name: 'Transport',
-    value: 'Transport',
+    title: 'Transport',
   },
   {
     name: 'House',
-    value: 'House',
+    title: 'House',
   },
   {
     name: 'Other',
-    value: 'Other',
+    title: 'Other',
   },
 ];
