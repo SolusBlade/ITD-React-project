@@ -4,6 +4,7 @@ import { useState } from 'react';
 import s from './PlanInputsList.module.scss';
 import optionsDefault from 'data/optionsDefault';
 import ResultForm from 'components/ResultForm/ResultForm';
+import ModalAddBalance from 'components/ModalAddBalance/ModalAddBalance';
 
 const dataForm = {
   salary: '',
@@ -16,8 +17,8 @@ const dataForm = {
 
 const PlanInputsList = () => {
   // const dispatch = useDispatch();
-
   const [inputs, setInputs] = useState(dataForm);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -29,6 +30,12 @@ const PlanInputsList = () => {
     console.log(inputs);
     //  dispatch(addContact(inputs));
   };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => setIsModalOpen(false);
 
   return (
     <>
@@ -46,7 +53,11 @@ const PlanInputsList = () => {
         the total amount of income and you will see when you reach the goal
       </p>
 
-      <ResultForm />
+      <ResultForm openModal={openModal} />
+
+      {isModalOpen && (
+        <ModalAddBalance text="Enter balance" closeModal={closeModal} />
+      )}
     </>
   );
 };
