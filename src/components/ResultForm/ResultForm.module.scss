@@ -94,17 +94,23 @@
   cursor: pointer;
   width: 247px;
   height: 46px;
-  color: #4770e4;
-  background: #f3f3f3;
-  border-radius: 60px;
   font-weight: 700;
   font-size: 14px;
   line-height: 20px;
-  border: none;
   text-align: center;
+  color: #4770e4;
+  background: #f3f3f3;
+  border-radius: 60px;
+  border: none;
+  outline: none;
 
   @media screen and (min-width: 768px) {
     width: 200px;
+  }
+
+  &:hover,
+  &:focus {
+    color: #000;
   }
 }
 
@@ -118,10 +124,17 @@
   text-decoration-line: underline;
   color: #f3f3f3;
   background-color: inherit;
+  border-radius: 60px;
   border: none;
+  outline: none;
   cursor: pointer;
 
   @media screen and (min-width: 768px) {
     width: 200px;
+  }
+
+  &:hover,
+  &:focus {
+    color: #000;
   }
 }
