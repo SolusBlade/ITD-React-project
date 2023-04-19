@@ -1,4 +1,3 @@
-import { useMediaQuery } from 'react-responsive';
 import { Outlet } from 'react-router-dom';
 // import UserForm from 'components/UserForm/UserForm';
 // import ModalRegister from 'components/ModalRegister/ModalRegister';
