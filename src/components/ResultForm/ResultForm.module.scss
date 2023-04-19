@@ -1,0 +1,91 @@
+.box {
+  margin-bottom: 60px;
+  padding: 40px;
+
+  width: 343px;
+  height: 388px;
+
+  background: #3a6af5;
+  border-radius: 16px;
+}
+
+.title {
+  padding-bottom: 18px;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+
+  color: #f3f3f3;
+}
+
+.list {
+}
+
+.item {
+}
+
+.text {
+  padding-bottom: 6px;
+
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+
+  display: flex;
+  align-items: center;
+
+  color: rgba(243, 243, 243, 0.4);
+}
+
+.res {
+  margin-bottom: 18px;
+
+  width: 247px;
+  height: 46px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 14px 0px 14px 24px;
+  gap: 10px;
+
+  width: 247px;
+  height: 46px;
+
+  border: 1px solid rgba(243, 243, 243, 0.4);
+  border-radius: 28px;
+}
+
+.buttonFits {
+  cursor: pointer;
+  width: 247px;
+  height: 46px;
+
+  color: #4770e4;
+  background: #f3f3f3;
+  border-radius: 60px;
+
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  border: none;
+
+  text-align: center;
+}
+
+.buttonBalance {
+  width: 247px;
+  height: 46px;
+
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  text-decoration-line: underline;
+
+  color: #f3f3f3;
+  background-color: inherit;
+  border: none;
+}
