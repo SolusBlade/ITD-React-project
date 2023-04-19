@@ -56,10 +56,10 @@ const App = () => {
           // element={<PrivateRoute component={<ExpensesPage />} />}
           element={<ExpensesPage />}
         />
-        {/* <Route
+        <Route
           path="/dynamics"
           element={<PublicRoute component={<DynamicsPage />} />}
-        /> */}
+        />
         <Route path="/statistics" element={<StatisticsPage />}>
           {/* <Route
             path="/transactions"
