@@ -3,9 +3,14 @@
 
 $black: #242424;
 $gray: #6c6c6c;
+$transition: 300ms linear;
+
 
 .form {
-  padding: 64px 38px 198px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 64px 38px 270px;
   background: $blue;
   border-radius: 40px 40px 0px 0px;
 
@@ -48,7 +53,6 @@ $gray: #6c6c6c;
 }
 
 .inputLabel {
-  display: flex;
   align-items: flex-start;
 
   margin-bottom: 6px;
@@ -72,12 +76,14 @@ $gray: #6c6c6c;
   margin-bottom: 4px;
 
   @include font(400, 14px, 1.3);
-  background-color: $dark-blue;
+  background-color: $blue;
   color: rgba(243, 243, 243, 0.8);
 
   @include tablet {
     color: $white;
     border: 1px solid rgba(108, 108, 108, 0.4);
+    background-color: $dark-blue;
+
   }
 
   &:focus-visible {
@@ -101,6 +107,9 @@ $gray: #6c6c6c;
   color: $blue;
   border-radius: 60px;
   border: 1px solid rgba(243, 243, 243, 0.4);
+  transform: scale(1);
+  transition: background-color $transition, color $transition,
+  transform $transition;
 
   @include tablet {
     margin-top: 16px;
@@ -109,18 +118,20 @@ $gray: #6c6c6c;
     border: 1px solid $blue;
 
     &:hover {
-      color: $black;
       background-color: $white;
     }
   }
 
   &:hover {
     color: $black;
+    transform: scale(1.02);
   }
-  // :active {
-  //   transform: scale(0.95);
-  // }
+  &:active {
+    transform: scale(0.98);
+    background-color: $blue;
+  }
 }
+
 .error {
   position: absolute;
   left: 0;
