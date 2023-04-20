@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './auth/authSlice';
-import { dynamicsReducer } from './dynamics/slice';
+import { dynamicsReducer } from './dynamics/DynamicsSlice';
 
 import {
   persistStore,
@@ -17,7 +17,7 @@ import storage from 'redux-persist/lib/storage';
 const persistContactsConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token'],
+  whitelist: [`token`],
 };
 
 const persistedAuthReducer = persistReducer(

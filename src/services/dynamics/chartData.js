@@ -1,5 +1,5 @@
 // eslint-disable-next-line
-import { selectDynamics } from 'redux/dynamics/variables';
+import { selectDynamics } from 'redux/dynamics/dynamicsVariables';
 // eslint-disable-next-line
 import { useSelector } from 'react-redux';
 
