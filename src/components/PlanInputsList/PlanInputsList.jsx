@@ -1,40 +1,46 @@
 import InputForm from 'components/InputForm/InputForm';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 // import { useDispatch } from "react-redux";
 import s from './PlanInputsList.module.scss';
 import optionsDefault from 'data/optionsDefault';
 import ResultForm from 'components/ResultForm/ResultForm';
 import ModalAddBalance from 'components/ModalAddBalance/ModalAddBalance';
-
-const dataForm = {
-  salary: '',
-  passiveIncome: '',
-  savings: '',
-  cost: '',
-  footage: '',
-  procent: '',
-};
+import { selectStatePlan } from 'redux/plan/planSelectors';
+import { useSelector } from 'react-redux';
 
 const PlanInputsList = () => {
-  // const dispatch = useDispatch();
-  const [inputs, setInputs] = useState(dataForm);
+  const formData = useSelector(selectStatePlan);
+  const [inputs, setInputs] = useState(formData);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isFormComplete, setIsFormComplete] = useState(false);
+  // const dispatch = useDispatch();
+
+  console.log('splan', formData);
 
   const handleChange = e => {
+    // console.log('event', e);
     const { name, value } = e.target;
     setInputs(values => ({ ...values, [name]: value }));
   };
 
+  console.log('inputs', inputs);
+
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(inputs);
-    //  dispatch(addContact(inputs));
+    console.log('submit-inputs', inputs);
+    // dispatch(prePlan(inputs));
   };
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
+  useEffect(() => {
+    const isComplete = Object.values(inputs).every(
+      value => value.trim() !== ''
+    );
+    setIsFormComplete(isComplete);
+  }, [inputs]);
 
+  console.log('isFormComplete', isFormComplete);
+
+  const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
   return (

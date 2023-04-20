@@ -12,6 +12,7 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import { ownPlanReducer } from './plan/planSlice';
 
 const persistContactsConfig = {
   key: 'auth',
@@ -28,6 +29,7 @@ const persistedAuthReducer = persistReducer(
 export const store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
+    ownPlan: ownPlanReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
