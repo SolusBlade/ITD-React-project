@@ -3,7 +3,7 @@ import { Logo } from './Logo/Logo';
 import { Navigation } from './Navigation/Navigation';
 import { UserBar } from './UserBar/UserBar';
 import { useSelector } from 'react-redux';
-import { selectorIsLoggedIn } from '../../redux/auth/authSelectors';
+import { selectorIsLoggedIn, selectorName } from '../../redux/auth/authSelectors';
 
 import d from './Header.module.scss';
 import clsx from 'clsx';
@@ -12,6 +12,7 @@ import clsx from 'clsx';
 
 const Header = () => {
   const isAuth = useSelector(selectorIsLoggedIn);
+  const name = useSelector(selectorName);
 
   return (
     <header className={d.header}>
@@ -21,7 +22,7 @@ const Header = () => {
             <Logo />
             <Navigation />
           </div>
-          {isAuth && <UserBar />}
+          {isAuth && name && <UserBar />}
         </div>
       </Container>
     </header>
