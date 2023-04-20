@@ -16,8 +16,8 @@ import style from "./Chart.module.scss";
 import { options } from "services/dynamics/chartOptions";
 import { data } from 'services/dynamics/chartData';
 import { useSelector, useDispatch } from "react-redux";
-import { getDynamics } from "redux/dynamics/operations";
-import { selectDynamics } from "redux/dynamics/variables";
+import { getDynamics, setToken } from "redux/dynamics/dynamicsOperations";
+import { selectDynamics } from "redux/dynamics/dynamicsVariables";
 
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale,
   LinearScale,
@@ -32,11 +32,15 @@ export const Chart = () => {
   const dynamics = useSelector(selectDynamics);
   const chartRef = useRef(null);
 
+  // setToken();
+
   useEffect(() => {
     const chart = chartRef.current;
-
+    // console.log('localStorage', localStorage)
     if (chart) {
-      console.log('ChartJS', chart);
+      setToken();
+      // console.log('ChartJS', chart);
+      // console.log('useEffect', setToken())
       dispatch(getDynamics());
     }
     // console.log()

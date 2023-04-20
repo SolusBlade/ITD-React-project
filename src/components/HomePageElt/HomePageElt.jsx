@@ -6,29 +6,39 @@ import { useMediaQuery } from 'react-responsive';
 const HomePageElt = () => {
   const isTablet = useMediaQuery({ query: '(min-width: 768px)' });
   // const location = useLocation();
- 
+
   return (
-         <Container>
-        {/* <NavLink to='/register'state={location}>REGISTER</NavLink>
+    <Container>
+      {/* <NavLink to='/register'state={location}>REGISTER</NavLink>
         <NavLink to='/login' state={location}>LOGIN</NavLink> */}
-      
-        {!isTablet && (
-          <h1 className={s.homeTitle}>
+
+      {!isTablet && (
+        <h1 className={s.homeTitle}>
+          <span className={s.homeTitleAccent}> Planner</span> for joint savings
+          for an apartment
+        </h1>
+      )}
+      {isTablet && (
+        <h1 className={s.homeTitle}>
+          <span>
+            {' '}
             <span className={s.homeTitleAccent}> Planner</span> for joint
-            savings for an apartment
-          </h1>
-        )}
-        {isTablet && (
-          <h1 className={s.homeTitle}>
-            <span>
-              {' '}
-              <span className={s.homeTitleAccent}> Planner</span> for joint
-            </span>
-            savings for an apartment
-          </h1>
-        )}
+          </span>
+          savings for an apartment
+        </h1>
+      )}
+      <div className={s.imgWrap}>
+        <div className={s.imgRoundWhite} />
+        <div className={s.imgRoundGrad} />
 
+        <div className={s.imgOuterRound}>
+          <div className={s.imgInnerRound} />
+        </div>
         <div className={s.homeImg} />
-      </Container>)}
 
-      export default HomePageElt
+      </div>
+    </Container>
+  );
+};
+
+export default HomePageElt;

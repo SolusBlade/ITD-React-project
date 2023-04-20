@@ -26,6 +26,11 @@
 
 .headerLogoAuth {
 
+    @media screen and (max-width: 1279px) {
+        display: flex;
+        align-items: center;
+    }
+
     @media screen and (min-width: 1280px) {
         display: flex;
         justify-content: center;

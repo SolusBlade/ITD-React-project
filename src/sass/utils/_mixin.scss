@@ -10,6 +10,12 @@
     }
 }
 
+@mixin desktop_max {
+    @media screen and (max-width: 1279px) {
+        @content;
+    }
+}
+
 @mixin desktop {
     @media screen and (min-width: 1280px) {
         @content;
