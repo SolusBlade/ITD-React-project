@@ -9,7 +9,7 @@ import {
   registerApi,
 } from 'services/connectoinsApi';
 
-const token = {
+export const token = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
