@@ -4,31 +4,56 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectorName } from 'redux/auth/authSelectors';
 import { logOutUser } from 'redux/auth/authOperations';
+import { useEffect } from 'react';
+import { useMediaQuery } from 'react-responsive';
 
-export const UserBar = () => {
+export const UserBar = ({setIsOpen, isOpen}) => {
     const name = useSelector(selectorName);
     const location = useLocation();
     const dispatch = useDispatch();
+    
+    const isTablMob = useMediaQuery({ query: '(max-width: 1279px)' });
+
+    const handleToggleMenu = () => {
+        setIsOpen((p) => !p)
+    }
+
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = 'hidden';
+        }
+        return () => {
+          document.body.style.overflow = '';
+        };
+    }, [isOpen]);
 
     return (
-        // <div className={d.headerUserInfo}>
             <div className={d.btnBox}>
                 <button className={d.btnStat}>
                     <NavLink
                         state={location}
                         to='/statistics'
+                        className={d.linkStat}
                     >
                         <Icon name={'icon-diagram'} width={'12'} height={'12'} className={'icon-diagram'} />
                     </NavLink>
                 </button>
-                <button className={d.btnUser}>
+                <span className={d.avatarUser}>
                     {name[0].toUpperCase()}
+                </span>
+                <button className={d.btnBurger} onClick={() => handleToggleMenu()}>
+                    {!isOpen ? (
+                            <Icon name={'icon-menu'} width={'32'} height={'32'} className={'icon-menu'} />
+                    ) : (
+                            <Icon name={'icon-close'} width={'32'} height={'32'} className={'icon-close'} />
+                    )}
                 </button>
-                <button onClick={() => {dispatch(logOutUser())}} className={d.btnLogout}>
-                    Log out
-                    <Icon name={'icon-log-out'} width={'17'} height={'17'} className={'icon-log-out'} />
-                </button>
+                {(isOpen || !isTablMob) && (
+                    <button onClick={() => {dispatch(logOutUser())}} className={d.btnLogout}>
+                        Log out
+                        <Icon name={'icon-log-out'} width={'17'} height={'17'} className={'icon-log-out'} />
+                    </button>
+                )}
             </div>
-        // </div>
     )
 }

@@ -15,12 +15,29 @@
 }
 
 .headerNavWrap {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
+
+    @media screen and (max-width: 1279px) {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+    @media screen and (min-width: 1280px) {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
 }
 
 .headerNavWrap.isAuth {
-    flex-direction: row-reverse;
+    @media screen and (max-width: 1279px) {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+    @media screen and (min-width: 1280px) {
+        flex-direction: row-reverse;
+    }
 }

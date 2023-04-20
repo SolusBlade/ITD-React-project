@@ -1,54 +1,98 @@
 @import '../../../sass/utils/variables';
 
-// .headerUserInfo {
-//     margin-left: auto;
-// }
-
 .btnBox {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    width: 80%;
+
+    @media screen and (max-width: 1279px) {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+    }
+    @media screen and (min-width: 1280px) {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        width: 80%;
+    }
 }
 
 .btnStat {
     margin-left: auto;
-    padding: 14px 14px;
+    padding: 0;
     cursor: pointer;
     border: none;
     border-radius: 8px;
     background-color: $blue;
 }
 
-
-
-.btnUser {
+.avatarUser {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 40px;
     height: 40px;
-    cursor: pointer;
+    font-weight: 700;
+    font-size: 20px;
     border-radius: 50%;
     border: 2px solid $blue;
+    color: $dark-gray;
     background-color: $white;
 }
 
 .btnLogout {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    // margin-left: auto;
-    padding: 10px 0;
-    padding-left: 24px;
-    padding-right: 24px;
-    cursor: pointer;
-    border: none;
-    border-radius: 60px;
-    background-color: $white;
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 1.4;
-    color: $dark-gray;
+    @media screen and (max-width: 1279px) {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        bottom: 50px;
+        left: 6%;
+        z-index: 11;
+        gap: 10px;
+        padding: 10px 0;
+        padding-left: 24px;
+        padding-right: 20px;
+        cursor: pointer;
+        border: none;
+        border-radius: 60px;
+        background-color: $white;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 1.4;
+        color: $dark-gray;
+    }
+
+    @media screen and (min-width: 1280px) {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 0;
+        padding-left: 24px;
+        padding-right: 20px;
+        cursor: pointer;
+        border: none;
+        border-radius: 60px;
+        background-color: $white;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 1.4;
+        color: $dark-gray;
+    }
 }
 
-// .icon-log-out {
-//     padding-right: 10px;
-// }
+.btnBurger {
+
+    @media screen and (max-width: 1279px) {
+        border: none;
+        fill: $white;
+        background-color: transparent;
+        cursor: pointer;
+    }
+
+    @media screen and (min-width: 1280px) {
+        display: none;
+    }
+}
+
+.linkStat {
+    display: block;
+    padding: 12px 14px;
+}
