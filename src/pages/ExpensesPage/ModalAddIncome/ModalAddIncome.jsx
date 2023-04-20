@@ -3,17 +3,18 @@ import s from './MoadlAddIncome.module.scss';
 import { createPortal } from 'react-dom';
 import { Field, Form, Formik } from 'formik';
 import { useDispatch } from 'react-redux';
-import { addUserBalance } from 'redux/auth/authOperations';
+import { getTransaction } from 'redux/Expenses/expensesOperations';
 
 const modalRoot = document.querySelector('#modal-root');
 
 const MoadlAddIncome = ({ closeModal, text }) => {
   const dispatch = useDispatch();
   const initialValue = {
-    addSum: '',
+    sum: '',
   };
   const handleSubmit = (values, actions) => {
-    dispatch(addUserBalance(values));
+    dispatch(getTransaction({ ...values, type: 'income' }));
+    console.log(values);
     actions.resetForm();
     closeModal();
   };
@@ -25,7 +26,7 @@ const MoadlAddIncome = ({ closeModal, text }) => {
             <Field
               className={s.modalInput}
               type="text"
-              name="addSum"
+              name="sum"
               placeholder={text}
             />
 

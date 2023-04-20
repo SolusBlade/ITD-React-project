@@ -9,9 +9,9 @@ const initialState = {
   category: [],
   presaving: { monthLimit: 0, dailyLimit: 0, totalByMounth: 0, totalByDay: 0 },
   transaction: {
-    type: '',
-    category: '',
-    comment: '',
+    type: null,
+    category: null,
+    comment: null,
     sum: 0,
     date: null,
   },
@@ -36,8 +36,7 @@ const expensesSlice = createSlice({
         state.error = payload;
       })
       .addCase(getTransaction.fulfilled, (state, { payload }) => {
-        // state.presaving.dailyLimit -= payload.sum;
-        state.transaction = payload;
+        state.presaving.dailyLimit -= payload.sum;
       })
       .addCase(getTransaction.rejected, (state, { payload }) => {
         state.error = payload;

@@ -1,17 +1,20 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const getCategory = createAsyncThunk('category', async (_, thunkAPI) => {
-  try {
-    const { data } = await axios.get('/api/cashflow/category');
-    return data;
-  } catch (e) {
-    return thunkAPI.rejectWithValue(e.message);
+export const getCategory = createAsyncThunk(
+  'get/category',
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await axios.get('/api/cashflow/category');
+      return data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
   }
-});
+);
 
 export const getPresaving = createAsyncThunk(
-  'presaving',
+  'get/presaving',
   async (_, thunkAPI) => {
     try {
       const { data } = await axios.get('/api/cashflow/presaving');
@@ -23,7 +26,7 @@ export const getPresaving = createAsyncThunk(
 );
 
 export const getTransaction = createAsyncThunk(
-  'transaction',
+  'get/transaction',
   async (transactionData, thunkAPI) => {
     try {
       const { data } = await axios.post('/api/cashflow', transactionData);
