@@ -17,7 +17,6 @@ export const options = {
         // width: 1000
       },
     },
-    
     responsive: true,
     plugins: {
       legend: {
@@ -81,12 +80,11 @@ export const options = {
           // padding: 10
         },
         position: 'top',
-        tickBorderDashOffset: 1
+        // tickBorderDashOffset: 1
 
       }
-      
     },
     labels: {
       fontColor: '#F3F3F3'
-    }
+    },
   };

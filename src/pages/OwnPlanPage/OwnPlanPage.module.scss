@@ -1,0 +1,27 @@
+@import '../../sass/utils/mixin';
+@import '../../sass/utils/variables';
+
+.vectorImg {
+  @include tablet {
+    position: absolute;
+    left: -1%;
+    top: 55%;
+    z-index: -1;
+    width: 100%;
+    height: 469px;
+    background-image: url(../../assets/images/vector-tablet.png);
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  @include desktop {
+    position: absolute;
+    top: 60%;
+    z-index: -1;
+    width: 100%;
+    height: 289px;
+    background-image: url(../../assets/images/vector-desktop.png);
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}

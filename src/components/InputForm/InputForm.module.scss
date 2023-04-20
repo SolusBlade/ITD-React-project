@@ -1,5 +1,3 @@
-
-
 .label {
   padding: 14px 18px 18px 18px;
   width: 343px;
@@ -9,7 +7,7 @@
 
   &:focus-within {
     box-sizing: border-box;
-    border: 1px solid #3a6af5;
+    outline: 1px solid #3a6af5;
 
     & .span {
       color: #3a6af5;
@@ -34,14 +32,11 @@
 
 .input {
   padding-top: 4px;
-
-  background: transparent;
-  border: none;
-  outline: none;
-
+  width: 100%;
   font-size: 16px;
   line-height: 19px;
   color: #f3f3f3;
-
-  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
 }

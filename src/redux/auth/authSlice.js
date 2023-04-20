@@ -42,7 +42,7 @@ const authSlice = createSlice({
         state.user.email = payload.user.email;
       })
       .addCase(logOutUser.fulfilled, (state, _) => {
-        state = initialState;
+        return initialState;
       })
       .addCase(addUserBalance.fulfilled, (state, { payload }) => {
         state.balance = payload.balance;
