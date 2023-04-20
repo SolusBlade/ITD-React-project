@@ -1,37 +1,37 @@
 {
   "files": {
-    "main.css": "/ITD-React-project/static/css/main.580f5a9a.css",
-    "main.js": "/ITD-React-project/static/js/main.93a3f7a0.js",
-    "static/media/hero-tablet-2x.png": "/ITD-React-project/static/media/hero-tablet-2x.9561f9957fb59a762dd1.png",
-    "static/media/hero-desktop-2x.png": "/ITD-React-project/static/media/hero-desktop-2x.ea49bd27fb7a7f1ae969.png",
+    "main.css": "/ITD-React-project/static/css/main.888bd1fb.css",
+    "main.js": "/ITD-React-project/static/js/main.8f8674c9.js",
     "static/media/Lato-Semibold.ttf": "/ITD-React-project/static/media/Lato-Semibold.dab63590f439194ec956.ttf",
     "static/media/Lato-Bold.ttf": "/ITD-React-project/static/media/Lato-Bold.9cfae71062337c38b44f.ttf",
     "static/media/Lato-Regular.ttf": "/ITD-React-project/static/media/Lato-Regular.cbcf73593dd54516d4b3.ttf",
     "static/media/Lato-Medium.ttf": "/ITD-React-project/static/media/Lato-Medium.70b0923d7cb977f41dd4.ttf",
     "static/media/Lato-Black.ttf": "/ITD-React-project/static/media/Lato-Black.2678bc5be691402b8993.ttf",
-    "static/media/hero-mobile-2x.png": "/ITD-React-project/static/media/hero-mobile-2x.0e5927b99db5f1055168.png",
+    "static/media/hero-desktop-2x.png": "/ITD-React-project/static/media/hero-desktop-2x.bb7e49dc7d9e2ad53de2.png",
+    "static/media/hero-tablet-2x.png": "/ITD-React-project/static/media/hero-tablet-2x.ad2756cacd26db2cdf64.png",
+    "static/media/hero-mobile-2x.png": "/ITD-React-project/static/media/hero-mobile-2x.fd627f3e882b1e0360cf.png",
     "static/media/Lato-Semibold.woff": "/ITD-React-project/static/media/Lato-Semibold.5c35c76aceac2a741d12.woff",
     "static/media/Lato-Bold.woff": "/ITD-React-project/static/media/Lato-Bold.4b35a8ac65a69832ec09.woff",
     "static/media/Lato-Regular.woff": "/ITD-React-project/static/media/Lato-Regular.39517281aedab52a4e3d.woff",
     "static/media/Lato-Medium.woff": "/ITD-React-project/static/media/Lato-Medium.169c947555233ab44d95.woff",
-    "static/media/hero-desktop.png": "/ITD-React-project/static/media/hero-desktop.f5b5d4b49137bba77f97.png",
-    "static/media/hero-tablet.png": "/ITD-React-project/static/media/hero-tablet.d10d820f58e4c1c7ee12.png",
     "static/media/Lato-Black.woff": "/ITD-React-project/static/media/Lato-Black.c8d9cbaf8b1206f34838.woff",
     "static/media/Lato-Semibold.woff2": "/ITD-React-project/static/media/Lato-Semibold.2a87df9ba418ee6903d4.woff2",
     "static/media/Lato-Bold.woff2": "/ITD-React-project/static/media/Lato-Bold.39775d377afbc753c1d1.woff2",
     "static/media/Lato-Regular.woff2": "/ITD-React-project/static/media/Lato-Regular.bb882f4771ef3a86e3a1.woff2",
     "static/media/Lato-Medium.woff2": "/ITD-React-project/static/media/Lato-Medium.37b61c5e598ef53aaec1.woff2",
     "static/media/Lato-Black.woff2": "/ITD-React-project/static/media/Lato-Black.cef0afb7ac2be63b0024.woff2",
-    "static/media/hero-mobile.png": "/ITD-React-project/static/media/hero-mobile.c1bdb31313f92bd7cd50.png",
+    "static/media/hero-desktop.png": "/ITD-React-project/static/media/hero-desktop.f95132735b320280a831.png",
+    "static/media/hero-tablet.png": "/ITD-React-project/static/media/hero-tablet.9695adfcfd0f1a920f50.png",
+    "static/media/hero-mobile.png": "/ITD-React-project/static/media/hero-mobile.ffbaf0e0dc4dedb5ae1c.png",
     "static/media/vector-desktop.png": "/ITD-React-project/static/media/vector-desktop.e1e259a6a82e821f7164.png",
     "static/media/vector-tablet.png": "/ITD-React-project/static/media/vector-tablet.3fc6c1c515420d40ec4b.png",
     "static/media/icons.svg": "/ITD-React-project/static/media/icons.f35596948f25e2b843db8ddd53299718.svg",
     "index.html": "/ITD-React-project/index.html",
-    "main.580f5a9a.css.map": "/ITD-React-project/static/css/main.580f5a9a.css.map",
-    "main.93a3f7a0.js.map": "/ITD-React-project/static/js/main.93a3f7a0.js.map"
+    "main.888bd1fb.css.map": "/ITD-React-project/static/css/main.888bd1fb.css.map",
+    "main.8f8674c9.js.map": "/ITD-React-project/static/js/main.8f8674c9.js.map"
   },
   "entrypoints": [
-    "static/css/main.580f5a9a.css",
-    "static/js/main.93a3f7a0.js"
+    "static/css/main.888bd1fb.css",
+    "static/js/main.8f8674c9.js"
   ]
 }
