@@ -5,7 +5,7 @@ import ExpensesLimits from '../ExpensesLimits/ExpensesLimits';
 import { useState } from 'react';
 import ModalAddIncome from '../ModalAddIncome/ModalAddIncome';
 import { useDispatch, useSelector } from 'react-redux';
-import { balanceSelect } from 'redux/auth/authSelectors';
+import { selectorBalance } from 'redux/auth/authSelectors';
 import { categorySelect } from 'redux/Expenses/expensesSelectors';
 import { getTransaction } from 'redux/Expenses/expensesOperations';
 import TransactionSelect from '../TransactionSelect/TransactionSelect';
@@ -13,7 +13,7 @@ import TransactionSelect from '../TransactionSelect/TransactionSelect';
 const TransactionDataList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const category = useSelector(categorySelect);
-  const balance = useSelector(balanceSelect);
+  const balance = useSelector(selectorBalance);
   const dispatch = useDispatch();
 
   const transformCategory = category.map(({ name: value, title: label }) => ({
