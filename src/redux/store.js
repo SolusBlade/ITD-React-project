@@ -13,6 +13,7 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import { expensesReducer } from './Expenses/expensesSlice';
 
 const persistContactsConfig = {
   key: 'auth',
@@ -20,16 +21,13 @@ const persistContactsConfig = {
   whitelist: ['token'],
 };
 
-const persistedAuthReducer = persistReducer(
-  persistContactsConfig,
-  authReducer
-);
-
+const persistedAuthReducer = persistReducer(persistContactsConfig, authReducer);
 
 export const store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
-    dynamics: dynamicsReducer
+    expenses: expensesReducer,
+    dynamics: dynamicsReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
@@ -40,4 +38,3 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
-
