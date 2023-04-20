@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './auth/authSlice';
+import { dynamicsReducer } from './dynamics/DynamicsSlice';
 
 import {
   persistStore,
@@ -13,23 +14,22 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { ownPlanReducer } from './plan/planSlice';
+import { expensesReducer } from './Expenses/expensesSlice';
 
 const persistContactsConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token'],
+  whitelist: [`token`],
 };
 
-const persistedAuthReducer = persistReducer(
-  persistContactsConfig,
-  authReducer
-);
-
+const persistedAuthReducer = persistReducer(persistContactsConfig, authReducer);
 
 export const store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
     ownPlan: ownPlanReducer,
+    expenses: expensesReducer,
+    dynamics: dynamicsReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
@@ -40,4 +40,3 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
-

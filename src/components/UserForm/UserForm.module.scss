@@ -39,9 +39,17 @@ $gray: #6c6c6c;
   }
 }
 
+.inputWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  padding-bottom: 24px;
+}
+
 .inputLabel {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 
   margin-bottom: 6px;
 
@@ -55,19 +63,16 @@ $gray: #6c6c6c;
 }
 
 .inputField {
- 
   padding: 11px 24px;
   width: 299px;
   height: 40px;
 
   border: 1px solid rgba(243, 243, 243, 0.4);
   border-radius: 28px;
-  &:not(:last-of-type){
-    margin-bottom: 18px;
-  }
+  margin-bottom: 4px;
 
   @include font(400, 14px, 1.3);
-  background-color: inherit;
+  background-color: $dark-blue;
   color: rgba(243, 243, 243, 0.8);
 
   @include tablet {
@@ -77,6 +82,10 @@ $gray: #6c6c6c;
 
   &:focus-visible {
     outline: 1px solid $white;
+  }
+  &:-webkit-autofill,
+  &:-webkit-autofill:focus {
+    transition: background-color 600000s 0s, color 600000s 0s;
   }
 }
 
@@ -94,7 +103,7 @@ $gray: #6c6c6c;
   border: 1px solid rgba(243, 243, 243, 0.4);
 
   @include tablet {
-    margin-top: 40px;
+    margin-top: 16px;
     background-color: $blue;
     color: $white;
     border: 1px solid $blue;
@@ -111,4 +120,14 @@ $gray: #6c6c6c;
   // :active {
   //   transform: scale(0.95);
   // }
+}
+.error {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  margin-top: 3px;
+  margin-bottom: 3px;
+
+  color: #ff2e00;
 }
