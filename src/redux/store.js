@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './auth/authSlice';
+import { dynamicsReducer } from './dynamics/slice';
 
 import {
   persistStore,
@@ -28,6 +29,7 @@ const persistedAuthReducer = persistReducer(
 export const store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
+    dynamics: dynamicsReducer
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
