@@ -3,25 +3,25 @@ import style from "./Info.module.scss";
 import {useDropzone} from "react-dropzone";
 import { postImage } from "redux/dynamics/dynamicsOperations";
 import { useDispatch } from "react-redux";
-import { useMemo } from "react";
+// import { useMemo } from "react";
 
-const baseStyle = {
-    width: '90%',
-    height: '90%',
-    // flex: 1,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: '20px',
-    borderWidth: 2,
-    borderRadius: 2,
-    borderColor: '#eeeeee',
-    borderStyle: 'dashed',
-    backgroundColor: 'grey',
-    color: '#bdbdbd',
-    outline: 'none',
-    transition: 'border .24s ease-in-out'
-};
+// const baseStyle = {
+//     width: '90%',
+//     height: '90%',
+//     // flex: 1,
+//     // display: 'flex',
+//     // flexDirection: 'column',
+//     alignItems: 'center',
+//     padding: '20px',
+//     borderWidth: 2,
+//     borderRadius: 2,
+//     borderColor: '#eeeeee',
+//     borderStyle: 'dashed',
+//     backgroundColor: 'grey',
+//     color: '#bdbdbd',
+//     outline: 'none',
+//     transition: 'border .24s ease-in-out'
+// };
 
 export const Info = (props) => {
     const {
@@ -71,12 +71,12 @@ export const Info = (props) => {
       ));
 
 
-    const dropzoneStyle = useMemo(() => ({
-      ...baseStyle,
+    // const dropzoneStyle = useMemo(() => ({
+    //   ...baseStyle,
     //   ...(isFocused ? focusedStyle : {}),
     //   ...(isDragAccept ? acceptStyle : {}),
     //   ...(isDragReject ? rejectStyle : {})
-    }),[])
+    // }),[])
     //  [
     //   isFocused,
     //   isDragAccept,
@@ -108,7 +108,7 @@ export const Info = (props) => {
         </div>
 
         <div className={style.image}>
-            <div {...getRootProps(dropzoneStyle)}>
+            <div {...getRootProps({className:'dropzone'})}>
                 <input {...getInputProps()} />
                 <p>Drag 'n' drop some files here, or click to select files</p>
                 <em>(Only *.jpeg and *.png images will be accepted)</em>
