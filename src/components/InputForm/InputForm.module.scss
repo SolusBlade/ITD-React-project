@@ -7,7 +7,7 @@
 
   &:focus-within {
     box-sizing: border-box;
-    border: 1px solid #3a6af5;
+    outline: 1px solid #3a6af5;
 
     & .span {
       color: #3a6af5;

@@ -1,0 +1,1 @@
+export const selectDynamics = state => state.dynamics.statByYear;
