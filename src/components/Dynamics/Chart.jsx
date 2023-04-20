@@ -15,6 +15,9 @@ import { useRef, useEffect } from "react";
 import style from "./Chart.module.scss";
 import { options } from "services/dynamics/chartOptions";
 import { data } from 'services/dynamics/chartData';
+import { useSelector, useDispatch } from "react-redux";
+import { getDynamics } from "redux/dynamics/operations";
+import { selectDynamics } from "redux/dynamics/variables";
 
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale,
   LinearScale,
@@ -24,7 +27,8 @@ ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale,
 // const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'];
 
 export const Chart = () => {
-
+  const dispatch = useDispatch();
+  const dynamics = useSelector(selectDynamics);
   const chartRef = useRef(null);
 
   useEffect(() => {
@@ -32,8 +36,10 @@ export const Chart = () => {
 
     if (chart) {
       console.log('ChartJS', chart);
+      dispatch(getDynamics())
     }
-  }, []);
+    // console.log()
+  }, [getDynamics]);
 
     return <div>
         <h1 className={style.title}>Dynamics of expenses and savings</h1>

@@ -1,5 +1,11 @@
-const labels = ['Oct', 'Nov', 'Dec','Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'];
-  
+import { selectDynamics } from "redux/dynamics/variables";
+import { useSelector } from "react-redux";
+
+const labels = ['Oct', 'Nov', 'Dec','Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul']; 
+// const dynamics = useSelector(selectDynamics);
+
+// console.log('Chart dynamics', dynamics)
+
 export const data = {
   labels,
   datasets: [
