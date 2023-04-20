@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getDynamics } from "./operations";
+import { getDynamics } from "./dynamicsOperations";
 
 export const dynamicsSlice = createSlice({
     name: 'dynamics',
