@@ -1,3 +1,13 @@
+@import "../../sass/utils/mixin";
+@import "../../sass/utils/variables";
+// $dark-blue: #191D28;
+// $blue: #3A6AF5;
+// $purple: #6359E9;
+// $white: #F3F3F3;
+// $transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+// $dark-gray: #242424;
+// $light-gray: rgba(255, 255, 255, 0.2);
+
 .infoContainer{
 
 }
@@ -9,12 +19,18 @@
 .title{
     margin: 0;
     margin-bottom: 32px;
+
+    @include font (400, 12px, 12px);
+    color: $white;
+    opacity: 0.87;
 }
 
 .list{
     padding: 0;
     list-style: none;
-
+    @include tablet-max {
+        width: 263px;
+    }
 }
 
 .item{
@@ -29,15 +45,30 @@
 
 .text{
     margin: 0;
+
+    @include font (400, 14px, 17px);
+    letter-spacing: 0.02em;
+
+    color: rgba(243, 243, 243, 0.4);
 }
 
 .num{
     margin: 0;
+
+    @include font (700, 14px, 17px);
+    letter-spacing: 0.02em;
+
+    color: $white;
 }
 
 .barTitle{
     margin: 0;
     margin-bottom: 8px;
+
+    @include font (400, 16px, 19px);
+    letter-spacing: -0.125714px;
+
+    color: $white;
 }
 
 .bar{
@@ -45,7 +76,7 @@
     height: 8px;
     width: 100%;
 
-    background-color: white;
+    background-color: $white;
     border-radius: 4px;
 }
 
@@ -54,17 +85,22 @@
     width: 28%;
     border-radius: 4px;
 
-    background-color: #3A6AF5;
+    background-color: $blue;
 }
 
-.image{
+.imageContainer{
     margin-bottom: 64px;
     width: 343px;
     height: 260px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #1F2534;
+
     text-align: center;
-    
     border-radius: 16px;
-    border: 1px solid white;
+    // border: 1px solid white;
 }
 // .imageDrop{
 //     width: 90%;
@@ -84,15 +120,24 @@
     align-items: center;
 
     text-align: center;
+    
+    background-color: #1F2534;
 
     border-radius: 16px;
-    border: 1px solid white;
+    // border: 1px solid white;
 }
 
 .accTitle{
     width: 263px;
     margin-top: 40px;
     margin-bottom: 28px;
+
+    @include font (600, 20px, 24px);
+    letter-spacing: 0.02em;
+}
+
+.accSpan{
+    color: $blue;
 }
 
 .accNum{
@@ -100,6 +145,9 @@
 
     font-size: 36;
     line-height: calc(43/36);
+
+    @include font (700, 36px, 43px);
+    letter-spacing: 0.02em;
 }
 
 .svgContainer{

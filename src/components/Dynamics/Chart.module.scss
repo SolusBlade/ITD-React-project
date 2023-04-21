@@ -1,36 +1,72 @@
-.barContainer{
-    margin-bottom: 50px;
-    width: 250px;
-    height: 420px;
-}
+@import "../../sass/utils/mixin";
+@import "../../sass/utils/variables";
+// $dark-blue: #191D28;
+// $blue: #3A6AF5;
+// $purple: #6359E9;
+// $white: #F3F3F3;
+// $transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+// $dark-gray: #242424;
+// $light-gray: rgba(255, 255, 255, 0.2);
 
-@media screen and (max-width: 768px) {
-    .barContainer{
+.dynamicsChartContainer{
+    @include tablet-max {
         margin-bottom: 50px;
     }
 }
 
-.title{
-    font-size: 24px;
+.barContainer{
+    // margin-bottom: 50px;
+    width: 250px;
+    height: 420px;
+
+    @include tablet-max {
+        margin-bottom: 50px;
+    }
 }
+
+// @media screen and (max-width: 768px) {
+//     .barContainer{
+//         margin-bottom: 50px;
+//     }
+// }
+
+.title{
+    // font-size: 24px;
+    @include font(600, 20px, 20px);
+    
+    // text-align: center;
+    color: $white;
+    
+    @include tablet-max {
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+}
+
 .list{
-    list-style: none;
-    padding-left: 30px;
+    // list-style: none;
+    padding-left: 20px;
     display: flex;
     flex-direction: column;
+
+    @include tablet-max {
+        margin-bottom: 50px;
+    }
 }
 
 .listItem{
     position: relative;
     
+    @include font (400, 12px, 14.4px);
+
     &:not(:last-child){
-        margin-bottom: 10px;
+        margin-bottom: 4px;
     }
 
     &:before{
         content:"";
-        height: 14px;
-        width: 14px;
+        height: 11px;
+        width: 11px;
         position: absolute;
         // outline: 1px solid red;
         border-radius: 50%;
@@ -40,35 +76,45 @@
 
     &:nth-child(1):before{
     
-        background-color: #6359E9;
+        // background-color: #6359E9;
+        background-color: $purple;
 
     }
     &:nth-child(2):before{
         
-        background-color: #3A6AF5;
+        // background-color: #3A6AF5;
+        background-color: $blue;
 
     }
     &:nth-child(3):before{
         
-        background-color: #F3F3F3;
+        background-color: $white;
 
     }
 }
 
-.statContainer{
-    margin-bottom: 50px;
+.barContainer{
+    width: 200px;
+    height: 430px;
 }
 
+// .statContainer{
+//     margin-bottom: 50px;
+// }
+
 .select{
-    margin-bottom: 28px;
-    width: 343px;
+    // width: 343px;
     height: 62px;
     
     text-align: center;
     
-    background-color: #3A6AF5;
+    background-color: $blue;
 
     border-radius: 16px;
+
+    @include tablet-max {
+        margin-bottom: 28px;
+    }
 }
 
 .statList{
@@ -78,11 +124,13 @@
     flex-wrap: wrap;
     gap: 16px;
 }
-@media screen and (max-width: 365px) {
+
+@media screen and (max-width: 374px) {
     .statList{
         justify-content: center;
     }
 }
+
 .statListItem{
     height: 60px;
     width: 163px;
@@ -92,8 +140,8 @@
     justify-content: center;
     align-items: center;
     
-    border: 1px solid white;
     border-radius: 16px;
+    background-color: rgba(31, 37, 52, 0.5);
     /* text-align: center; */
     
 }
@@ -101,8 +149,18 @@
 .itemTitle{
     margin: 0;
     margin-bottom: 4px;
+
+    @include font (400, 12px, 18px);
+
+    color: rgba(243, 243, 243, 0.6);
+
 }
 
 .itemNum{
     margin: 0;
+
+    @include font (500, 16px, 18px);
+    letter-spacing: 0.16px;
+
+    color: $white;
 }

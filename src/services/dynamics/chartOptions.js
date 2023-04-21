@@ -21,7 +21,7 @@ export const options = {
     plugins: {
       legend: {
         display: false,
-        position: 'top',
+        // position: 'top',
         labels: {
           // This more specific font property overrides the global property
           font: {
@@ -34,7 +34,9 @@ export const options = {
       },
     },
     layout:{
-      padding: 10
+      padding: {
+        left: 40
+      }
     },
     scales: {
       y: {
@@ -43,7 +45,6 @@ export const options = {
           display: false,
           // drawBorder: false,
           borderColor: 'white',
-  
           borderWidth: 2,
           // color: 'rgba(243, 243, 243, 0.2)'
         },
@@ -51,8 +52,19 @@ export const options = {
           display: false,
         },
         ticks: {
-          color: '#F3F3F3'
-        }
+          color: '#F3F3F3',
+          padding: 0,
+          backdropPadding: 0,
+          font: {
+            size: 12,
+          },
+        },
+        gridLines: {
+          tickMarkLength: 10
+       },
+       position:{
+        y: -0.75
+       }
       },
       x: {
         grid: {
