@@ -13,7 +13,6 @@ import ModalRegister from './ModalRegister/ModalRegister';
 import ModalLogin from './ModalLogin/ModalLogin';
 import { getCurrentUserInfo } from 'redux/auth/authOperations';
 import { useEffect } from 'react';
-import axios from 'axios';
 
 // eslint-disable-next-line
 const PrivateRoute = ({ component, redirectTo = '/login' }) => {

@@ -53,7 +53,7 @@ const authSlice = createSlice({
         return initialState;
       })
       .addCase(addUserBalance.fulfilled, (state, { payload }) => {
-        state.balance = payload;
+        state.balance = payload.balance;
       })
       .addCase(postTransaction.fulfilled, (state, { payload }) => {
         state.balance = payload.newBalance;
