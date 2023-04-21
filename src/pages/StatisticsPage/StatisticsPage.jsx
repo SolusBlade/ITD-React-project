@@ -1,5 +1,5 @@
 import Container from 'components/Container/Container';
-// import DateComp from 'components/DateComp/DateComp';
+import DateComp from 'components/DateComp/DateComp';
 
 import s from './StatisticsPage.module.scss';
 import { NavLink, Outlet } from 'react-router-dom';
@@ -7,7 +7,6 @@ import { NavLink, Outlet } from 'react-router-dom';
 const StatisticsPage = () => {
   return (
     <>
-
       <section className={s.vectorImg}>
       <Container>
         <div className={s.statWrapp}>
@@ -34,10 +33,9 @@ const StatisticsPage = () => {
                </ul>
             </nav>
             <div className={s.calendarWrapper}>
-              {/* <DateComp /> */}
+              <DateComp />
             </div>
           </div>
-          <Outlet />
         </div>
       </Container>
       </section>
