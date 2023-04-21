@@ -155,5 +155,9 @@
     height: 165px;
     margin-bottom: 40px;
     
-    border: 1px solid white;
+    background-image: url(../../assets/images/dynamics-planer.png);
+    @include retina {
+        background-image: url(../../assets/images/dynamics-planer.png);
+    }
+    
 }

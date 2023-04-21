@@ -4,6 +4,8 @@ import {useDropzone} from "react-dropzone";
 import { postImage } from "redux/dynamics/dynamicsOperations";
 import { useDispatch } from "react-redux";
 import { useMemo } from "react";
+import icon from "../../assets/icons/icons.svg";
+import favicon from "../../assets/icons/favicon.svg";
 // $dark-blue: #191D28;
 // $blue: #3A6AF5;
 // $purple: #6359E9;
@@ -131,7 +133,9 @@ export const Info = (props) => {
             <p className={styles.accNum}>14 000 &#8372;</p>
 
             <div className={styles.svgContainer}>
-                <p>svg</p>
+                {/* <svg className={style.svg} >
+                    <use xlinkHref={`${icon}`}/>
+                </svg> */}
             </div>
         </div>
 
