@@ -15,7 +15,7 @@ const Header = () => {
   const isAuth = useSelector(selectorIsLoggedIn);
   const name = useSelector(selectorName);
 
-  const [isOpen, setIsOpen]  = useState(true);
+  const [isOpen, setIsOpen]  = useState(false);
 
   return (
     <header className={d.header}>
