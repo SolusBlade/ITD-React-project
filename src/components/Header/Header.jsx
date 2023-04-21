@@ -16,6 +16,10 @@ const Header = () => {
   const name = useSelector(selectorName);
 
   const [isOpen, setIsOpen]  = useState(false);
+  
+  const handleToggleMenu = () => {
+    setIsOpen((p) => !p)
+  }
 
   return (
     <header className={d.header}>
@@ -23,9 +27,9 @@ const Header = () => {
         <div className={clsx(d.headerWrap, isAuth && d.isAuth)}>
           <div className={clsx(d.headerNavWrap, isAuth && d.isAuth)}>
             <Logo />
-            <Navigation isOpen={isOpen}/>
+            <Navigation isOpen={isOpen} handleToggleMenu={handleToggleMenu}/>
           </div>
-          {isAuth && name && <UserBar setIsOpen={setIsOpen} isOpen={isOpen}/>}
+          {isAuth && name && <UserBar handleToggleMenu={handleToggleMenu} isOpen={isOpen} />}
         </div>
       </Container>
     </header>

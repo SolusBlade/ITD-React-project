@@ -1,7 +1,8 @@
+import Container from 'components/Container/Container';
 import DateComp from 'components/DateComp/DateComp';
+
 import s from './StatisticsPage.module.scss';
 import { NavLink, Outlet } from 'react-router-dom';
-import Container from 'components/Container/Container';
 
 const StatisticsPage = () => {
   return (
@@ -33,7 +34,6 @@ const StatisticsPage = () => {
             <DateComp />
           </div>
         </div>
-
         <Outlet />
       </Container>
     </>

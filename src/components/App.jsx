@@ -13,6 +13,7 @@ import ModalRegister from './ModalRegister/ModalRegister';
 import ModalLogin from './ModalLogin/ModalLogin';
 import { getCurrentUserInfo } from 'redux/auth/authOperations';
 import { useEffect } from 'react';
+import Categories from 'pages/StatisticsPage/Categories/Categories';
 
 // eslint-disable-next-line
 const PrivateRoute = ({ component, redirectTo = '/login' }) => {
@@ -71,14 +72,16 @@ const App = () => {
           // element={<PublicRoute component={<DynamicsPage />} />}
         />
         <Route path="/statistics" element={<StatisticsPage />}>
-          {/* <Route
+         {/* <Route
             path="/transactions"
-            element={<PublicRoute component={<ModalLogin />} />}
-          />
-          <Route
-            path="/categories"
-            element={<PublicRoute component={<ModalRegister />} />}
+            element={</>}
+            // element={<PublicRoute component={<ModalLogin />} />}
           /> */}
+          <Route
+            path="categories"
+            element={<Categories/>}
+            // element={<PublicRoute component={<ModalRegister />} />}
+          />
         </Route>
 
         <Route path="*" element={<Navigate to="/" />} />
