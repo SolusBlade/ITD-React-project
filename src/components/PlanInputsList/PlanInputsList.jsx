@@ -1,7 +1,10 @@
 import { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectStatePlan } from 'redux/plan/planSelectors';
-import { preCalcPersonalPlan } from 'redux/plan/planOperations';
+import {
+  calcPersonalPlan,
+  preCalcPersonalPlan,
+} from 'redux/plan/planOperations';
 import optionsDefault from 'data/optionsDefault';
 import InputForm from 'components/InputForm/InputForm';
 import ResultForm from 'components/ResultForm/ResultForm';
@@ -18,7 +21,6 @@ const PlanInputsList = () => {
 
   const handleChange = e => {
     const { name, value } = e.target;
-    console.log("handleChange  handleChange:", value)
     setInputs(values => ({ ...values, [name]: value }));
     inputsRef.current = inputs;
   };
@@ -38,6 +40,10 @@ const PlanInputsList = () => {
     const pBalance = { balance: Number(dataForm.balance) };
     // console.log('dataForm', { balance: Number(dataForm.balance) });
     dispatch(addUserBalance(pBalance));
+  };
+
+  const handleFits = () => {
+    dispatch(calcPersonalPlan(inputs));
   };
 
   const openModal = () => setIsModalOpen(true);
@@ -60,7 +66,7 @@ const PlanInputsList = () => {
         the total amount of income and you will see when you reach the goal
       </p>
 
-      <ResultForm openModal={openModal} />
+      <ResultForm openModal={openModal} onClick={handleFits} />
 
       {isModalOpen && (
         <ModalAddBalance
