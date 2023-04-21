@@ -16,7 +16,7 @@ import style from "./Chart.module.scss";
 import { options } from "services/dynamics/chartOptions";
 import { data } from 'services/dynamics/chartData';
 import { useSelector, useDispatch } from "react-redux";
-import { getDynamics, setToken } from "redux/dynamics/dynamicsOperations";
+import { getDynamics } from "redux/dynamics/dynamicsOperations";
 import { selectDynamics } from "redux/dynamics/dynamicsVariables";
 
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale,

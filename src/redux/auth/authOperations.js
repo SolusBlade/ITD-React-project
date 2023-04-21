@@ -26,6 +26,7 @@ export const registerUser = createAsyncThunk(
       await registerApi(newUser);
       const userToken = await loginApi({ email, password });
       token.set(userToken);
+      addUserBalanceApi(0);
       return { newUser, ...userToken };
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);

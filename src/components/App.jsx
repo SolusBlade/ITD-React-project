@@ -27,6 +27,7 @@ const PublicRoute = ({ component, redirectTo = '/contacts' }) => {
   return !isLoggedIn ? component : <Navigate to={redirectTo} />;
 };
 
+
 const App = () => {
   const dispatch = useDispatch();
   const token = useSelector(selectorToken);
@@ -34,7 +35,7 @@ const App = () => {
   useEffect(() => {
     if (token) {
       dispatch(getCurrentUserInfo(token));
-    };
+    }
   }, [token, dispatch]);
 
   return (
@@ -67,7 +68,6 @@ const App = () => {
         />
         <Route
           path="/dynamics"
-
           element={<DynamicsPage />}
           // element={<PublicRoute component={<DynamicsPage />} />}
         />
