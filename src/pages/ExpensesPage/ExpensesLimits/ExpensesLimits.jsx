@@ -10,11 +10,11 @@ const ExpensesLimits = ({ openModal }) => {
       <div className={s.expensesWrapper}>
         <ul className={s.list}>
           <li className={s.item}>
-            <p className={s.sum}>-{dailyLimit} $</p>
+            <p className={s.sum}>{dailyLimit} $</p>
             <p className={s.text}>Daily limit</p>
           </li>
           <li className={s.item}>
-            <p className={s.sum}>-{monthLimit} $</p>
+            <p className={s.sum}>{monthLimit} $</p>
             <p className={s.text}>Monthly limit</p>
           </li>
         </ul>
