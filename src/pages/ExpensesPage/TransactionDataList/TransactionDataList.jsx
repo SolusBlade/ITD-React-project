@@ -11,6 +11,7 @@ import { getTransaction } from 'redux/Expenses/expensesOperations';
 import TransactionSelect from '../TransactionSelect/TransactionSelect';
 
 const TransactionDataList = () => {
+  const [currentCategory, setCurrentCategory] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const category = useSelector(categorySelect);
   const balance = useSelector(selectorBalance);
@@ -34,9 +35,21 @@ const TransactionDataList = () => {
   const closeModal = () => setIsModalOpen(false);
 
   const handleSubmit = (values, actions) => {
-    dispatch(getTransaction({ ...values, type: 'expense' }));
-    console.log(values);
+    dispatch(
+      getTransaction({ ...values, category: currentCategory, type: 'expense' })
+    );
+
     actions.resetForm();
+  };
+
+  const getValue = () => {
+    return currentCategory
+      ? transformCategory.find(c => c.value === currentCategory)
+      : '';
+  };
+
+  const onChange = newValue => {
+    setCurrentCategory(newValue.value);
   };
 
   return (
@@ -50,22 +63,12 @@ const TransactionDataList = () => {
               placeholder={`Account balance: UAH ${balance}`}
               disabled={true}
             />
-            {/* <label htmlFor="category" className={s.lable}>
-              <p className={s.inputTitle}>Per category</p>
-              <Field
-                className={s.input}
-                as="select"
-                children={category.map(({ name, title }, i) => (
-                  <option key={i} className={s.option} value={title}>
-                    <Icon /> {name}
-                  </option>
-                ))}
-                name="category"
-                placeholder="Per Category"
-              ></Field>
-            </label> */}
 
-            <TransactionSelect transformCategory={transformCategory} />
+            <TransactionSelect
+              onChange={onChange}
+              value={getValue()}
+              transformCategory={transformCategory}
+            />
 
             <Input
               name="comment"

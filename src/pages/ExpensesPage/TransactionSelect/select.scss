@@ -18,78 +18,53 @@
 }
 
 .select-container {
-  .select__control {
-    border: none;
-    box-shadow: none;
-    background-color: transparent;
-  }
-  .select__indicator {
-    margin-top: -20px;
-    margin-right: 20px;
-  }
-  .select__indicator-separator {
-    background-color: transparent;
-  }
-  .select__control {
-    margin-left: 8px;
-  }
-  .select__input {
-    color: $white !important;
-  }
-  .select__menu {
-    background: $white;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.19),
-      0px 6px 6px rgba(0, 0, 0, 0.26);
-    border-radius: 16px !important;
-  }
-  .select__option {
-    border-radius: 16px;
-    border: none;
-    color: $dark-gray !important;
-    @include font(400, 16px, 16px);
+  .select {
+    &__control {
+      border: none;
+      box-shadow: none;
+      background-color: transparent;
+    }
+    &__indicator {
+      margin-top: -20px;
+      margin-right: 20px;
+      cursor: pointer !important;
+    }
+    &__indicator-separator {
+      background-color: transparent;
+    }
+    &__control {
+      margin-left: 16px;
+    }
+    &__single-value {
+      color: $white !important;
+      margin-top: -3px;
+    }
+    &__placeholder {
+      color: $white !important;
+    }
+    &__value-container {
+      padding: 0;
+    }
+
+    &__menu {
+      background-color: $white !important;
+      box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.19),
+        0px 6px 6px rgba(0, 0, 0, 0.26);
+      border-radius: 16px !important;
+    }
+
+    &__option {
+      cursor: pointer;
+      border-radius: 10px;
+      border: none;
+      color: $dark-gray !important;
+      &--is-focused {
+        background-color: $white !important;
+      }
+      &--is-selected {
+        background-color: rgba(37, 44, 65, 0.5) !important;
+      }
+      @include font(400, 16px, 16px);
+    }
   }
 }
-
-// .select {
-//   &-container {
-//     background-color: rgba(37, 44, 65, 0.5);
-
-//     border-radius: 16px;
-//     display: flex;
-//     align-items: center;
-//     @include tablet {
-//       width: 336px;
-//     }
-//     @include desktop {
-//       width: 370px;
-//     }
-//   }
-//   &__value-container {
-//     background: rgba(37, 44, 65, 0.5);
-//   }
-//   &__control {
-//     background: transparent !important;
-
-//     border: none !important;
-//     box-shadow: none !important;
-
-//     margin: 0;
-//     padding: 0;
-//     width: 100%;
-//   }
-
-//   &__indicators {
-//     background-color: transparent !important;
-//   }
-//   &__menu {
-//     border-radius: 16px;
-//   }
-//   &__menu-list {
-//     background-color: $white !important;
-//   }
-//   &__option {
-//     border-radius: 16px;
-//     border: none;
-//     color: $dark-gray !important;
-//   }
-// }
