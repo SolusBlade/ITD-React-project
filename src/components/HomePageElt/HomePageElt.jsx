@@ -8,7 +8,8 @@ const HomePageElt = () => {
   // const location = useLocation();
 
   return (
-    <Container>
+    <Container style={{position: "relative",}}>
+      {/* <div className={s.section}> */}
       {/* <NavLink to='/register'state={location}>REGISTER</NavLink>
         <NavLink to='/login' state={location}>LOGIN</NavLink> */}
 
@@ -28,15 +29,22 @@ const HomePageElt = () => {
         </h1>
       )}
       <div className={s.imgWrap}>
-        <div className={s.imgRoundWhite} />
-        <div className={s.imgRoundGrad} />
-
         <div className={s.imgOuterRound}>
+          <div className={s.imgRoundWhite} />
+          <div className={s.imgRoundGrad} />
           <div className={s.imgInnerRound} />
+          <div className={s.homeImg}></div>
+          <div className={s.textPaiments}>
+            Payments that work  
+            <span className={s.textPaimentsAccent}> for you</span>
+          </div>
+          <div className={s.textAppartments}>
+          <span className={s.textPaimentsAccent}> Apartments</span> of your dreams
+            
+          </div>
         </div>
-        <div className={s.homeImg} />
-
       </div>
+      {/* </div> */}
     </Container>
   );
 };

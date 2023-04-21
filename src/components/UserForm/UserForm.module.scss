@@ -5,7 +5,6 @@ $black: #242424;
 $gray: #6c6c6c;
 $transition: 300ms linear;
 
-
 .form {
   display: flex;
   flex-direction: column;
@@ -83,7 +82,6 @@ $transition: 300ms linear;
     color: $white;
     border: 1px solid rgba(108, 108, 108, 0.4);
     background-color: $dark-blue;
-
   }
 
   &:focus-visible {
@@ -109,7 +107,7 @@ $transition: 300ms linear;
   border: 1px solid rgba(243, 243, 243, 0.4);
   transform: scale(1);
   transition: background-color $transition, color $transition,
-  transform $transition;
+    transform $transition;
 
   @include tablet {
     margin-top: 16px;
@@ -141,4 +139,25 @@ $transition: 300ms linear;
   margin-bottom: 3px;
 
   color: #ff2e00;
+}
+
+.checkboxLabel {
+  position: relative;
+}
+
+.eyeCheckbox {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+  display: none;
+}
+.eyeSpan {
+  position: absolute;
+  right: 16px;
+  bottom: 34px;
+  height: 25px;
+  width: 25px;
+  color: $white;
 }
