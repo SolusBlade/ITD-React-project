@@ -42,9 +42,12 @@ export const Info = (props) => {
 
     useEffect(()=>{
         if(file.length > 0) {
-            console.log('useEffect', file)
+            console.log('useEffect', acceptedFiles)
             // postImage()
-            dispatch(postImage(file));
+            const formData = new FormData();
+            formData.append('image', acceptedFiles[0]);
+            console.log(formData);
+            dispatch(postImage(formData));
         }
     })  
     //   function testFiles (event) {
@@ -52,7 +55,7 @@ export const Info = (props) => {
     //     // console.log('files',files)
     //   }
 
-    console.log('accepted file ', file)
+    // console.log('accepted file ', file)
       const acceptedFileItems = acceptedFiles.map(file => (
         <li key={file.path}>
           {file.path} - {file.size} bytes
