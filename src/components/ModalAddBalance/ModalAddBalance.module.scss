@@ -89,6 +89,7 @@
 }
 
 .btnSvg {
+  display: flex;
   top: 19px;
   right: 19px;
   position: absolute;
@@ -96,14 +97,15 @@
   padding: 0;
   background-color: $dark-blue;
   border: none;
-}
-
-.iconClose {
+  cursor: pointer;
   fill: $white;
 
   &:hover,
   &:focus {
-    cursor: pointer;
     fill: $blue;
   }
+}
+
+.iconClose {
+  fill: $white;
 }
