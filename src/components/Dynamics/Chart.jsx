@@ -38,7 +38,7 @@ export const Chart = () => {
     const chart = chartRef.current;
     // console.log('localStorage', localStorage)
     if (chart) {
-      setToken();
+      // setToken();
       // console.log('ChartJS', chart);
       // console.log('useEffect', setToken())
       dispatch(getDynamics());
