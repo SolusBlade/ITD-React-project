@@ -1,4 +1,4 @@
-@import '../../../sass/utils/variables';
+@import "../../../sass/utils/variables";
 
 .headerLogo {
     display: flex;
@@ -25,7 +25,6 @@
 }
 
 .headerLogoAuth {
-
     @media screen and (max-width: 1279px) {
         display: flex;
         align-items: center;

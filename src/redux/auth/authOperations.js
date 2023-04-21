@@ -26,7 +26,6 @@ export const registerUser = createAsyncThunk(
       await registerApi(newUser);
       const userToken = await loginApi({ email, password });
       token.set(userToken);
-      addUserBalanceApi(0);
       return { newUser, ...userToken };
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -82,6 +81,7 @@ export const addUserBalance = createAsyncThunk(
       const newBalance = await addUserBalanceApi(balance);
       return newBalance;
     } catch (error) {
+      // console.log('newBalance - error:', error.response.data)
       return thunkApi.rejectWithValue(error.message);
     }
   }

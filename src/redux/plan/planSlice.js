@@ -1,4 +1,4 @@
-import { preCalcPersonalPlan } from './planOperations';
+import { calcPersonalPlan, preCalcPersonalPlan } from './planOperations';
 
 const { createSlice } = require('@reduxjs/toolkit');
 
@@ -25,6 +25,12 @@ const ownPlanSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(preCalcPersonalPlan.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        state.plan = payload.plan;
+        state.result = payload.result;
+      })
+      .addCase(calcPersonalPlan.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
         state.plan = payload.plan;

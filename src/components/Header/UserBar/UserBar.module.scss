@@ -1,7 +1,6 @@
-@import '../../../sass/utils/variables';
+@import "../../../sass/utils/variables";
 
 .btnBox {
-
     @media screen and (max-width: 1279px) {
         display: flex;
         align-items: center;
@@ -79,7 +78,6 @@
 }
 
 .btnBurger {
-
     @media screen and (max-width: 1279px) {
         border: none;
         fill: $white;
