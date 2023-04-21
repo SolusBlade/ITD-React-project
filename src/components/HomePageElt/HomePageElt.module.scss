@@ -52,7 +52,7 @@
 .imgWrap {
   position: absolute;
   overflow: hidden;
-  width: 481px;
+  width: 370px;
   height: 433px;
   right: 50%;
   bottom: 0;
@@ -76,6 +76,7 @@
   width: 481px;
   height: 481px;
   bottom: -135px;
+  right: -53px;
 
   border-radius: 50%;
   z-index: 1;
@@ -114,7 +115,7 @@
   position: absolute;
   width: 20px;
   height: 20px;
-  right: 31%;
+  right: 106px;
   top: 0px;
   border-radius: 50%;
 
@@ -123,6 +124,7 @@
   @include tablet {
     width: 26px;
     height: 26px;
+    right: 31%;
   }
 }
 
@@ -130,8 +132,8 @@
   position: absolute;
   width: 56px;
   height: 56px;
-  right: 11%;
-  top: 10%;
+  right: 0;
+  top: 44px;
   border-radius: 50%;
   background: linear-gradient(
     214.51deg,
@@ -150,10 +152,13 @@
   position: absolute;
   width: 349px;
   height: 454px;
-  right: 13%;
+  right: 13px;
   top: 4%;
   z-index: 5;
   background-image: url(../../assets/images/hero-mobile.png);
+  background-repeat: no-repeat;
+    background-position: center;
+    object-fit: contain;
   @include retina {
     background-image: url(../../assets/images/hero-mobile-2x.png);
   }
