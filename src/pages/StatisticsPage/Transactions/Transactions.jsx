@@ -13,7 +13,11 @@ const Transactions = () => {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    isLoggedIn && dispatch(statisticsOperations.expenseStatistic(0));
+    const date = {
+      year: new Date().getFullYear(),
+      month: new Date().getMonth()+1,
+    }
+    isLoggedIn && dispatch(statisticsOperations.expenseStatistic(date));
   }, [dispatch, isLoggedIn]);
   
   const removeTransaction = id => {
