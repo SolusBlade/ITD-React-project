@@ -4,11 +4,12 @@ import s from './OwnPlanPage.module.scss';
 
 const OwnPlanPage = () => {
   return (
-    <Container>
-      <PlanInputsList />
-
-      <div className={s.vectorImg} />
-    </Container>
+    <section className={s.vectorImg}>
+      <Container>
+        <PlanInputsList />
+      </Container>
+      {/* <div className={s.vectorImg} /> */}
+    </section>
   );
 };
 

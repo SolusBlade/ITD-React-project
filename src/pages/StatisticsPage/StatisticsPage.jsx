@@ -1,5 +1,14 @@
+import DateComp from 'components/DateComp/DateComp';
+
+const { Outlet } = require("react-router-dom")
+
 const StatisticsPage = () => {
-  return <h1>Statistics</h1>;
+  return (
+    <>
+      <DateComp />
+      <Outlet />
+    </>
+  );
 };
 
 export default StatisticsPage;

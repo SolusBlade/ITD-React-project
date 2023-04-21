@@ -10,6 +10,12 @@
     }
 }
 
+@mixin desktop_max {
+    @media screen and (max-width: 1279px) {
+        @content;
+    }
+}
+
 @mixin desktop {
     @media screen and (min-width: 1280px) {
         @content;
@@ -23,7 +29,7 @@
 }
 
 @mixin retina {
-
+    background-size: contain;
     @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {

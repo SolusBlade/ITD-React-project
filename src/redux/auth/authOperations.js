@@ -9,7 +9,7 @@ import {
   registerApi,
 } from 'services/connectoinsApi';
 
-const token = {
+export const token = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
@@ -38,7 +38,7 @@ export const loginUser = createAsyncThunk(
   async (newUser, thunkApi) => {
     const { email, password } = newUser;
     try {
-      const userToken = await loginApi({email, password}) ;
+      const userToken = await loginApi({ email, password });
       token.set(userToken);
       return userToken;
     } catch (error) {
@@ -53,6 +53,7 @@ export const getCurrentUserInfo = createAsyncThunk(
     try {
       token.set(userToken);
       const user = await getCurrentUserInfoApi();
+      console.log(user);
       return user;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);

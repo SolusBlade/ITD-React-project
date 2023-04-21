@@ -49,24 +49,124 @@
   }
 }
 
+.imgWrap {
+  position: absolute;
+  overflow: hidden;
+  width: 370px;
+  height: 433px;
+  right: 50%;
+  bottom: 0;
+
+  @include tablet {
+    width: 656px;
+    height: 566px;
+  }
+  @include desktop_max {
+    transform: translateX(50%);
+  }
+  @include desktop {
+    width: 630px;
+    height: 595px;
+    left: 50%;
+  }
+}
+
+.imgOuterRound {
+  position: absolute;
+  width: 481px;
+  height: 481px;
+  bottom: -135px;
+  right: -53px;
+
+  border-radius: 50%;
+  z-index: 1;
+  background: linear-gradient(
+    212.28deg,
+    rgba(58, 106, 245, 0.7) 9.2%,
+    rgba(0, 0, 0, 0.7) 97.4%
+  );
+
+  @include tablet {
+    width: 630px;
+    height: 630px;
+    right: 0;
+    bottom: -164px;
+  }
+}
+
+.imgInnerRound {
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+
+  background: radial-gradient(
+    63.33% 63.33% at 34.17% 36.67%,
+    #6c92f3 0%,
+    #1d03bd 100%
+  );
+  border-radius: 50%;
+}
+
+.imgRoundWhite {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 106px;
+  top: 0px;
+  border-radius: 50%;
+
+  background: $white;
+
+  @include tablet {
+    width: 26px;
+    height: 26px;
+    right: 31%;
+  }
+}
+
+.imgRoundGrad {
+  position: absolute;
+  width: 56px;
+  height: 56px;
+  right: 0;
+  top: 44px;
+  border-radius: 50%;
+  background: linear-gradient(
+    214.51deg,
+    rgba(88, 104, 223, 0.5) 9.68%,
+    rgba(0, 0, 0, 0.5) 132.56%
+  );
+
+  @include tablet {
+    width: 74px;
+    height: 74px;
+  }
+}
+
 .homeImg {
   overflow: hidden;
-  margin-left: -16px;
-  width: 375px;
-  height: 432px;
-
+  position: absolute;
+  width: 349px;
+  height: 454px;
+  right: 13px;
+  top: 4%;
+  z-index: 5;
   background-image: url(../../assets/images/hero-mobile.png);
+  background-repeat: no-repeat;
+    background-position: center;
+    object-fit: contain;
   @include retina {
     background-image: url(../../assets/images/hero-mobile-2x.png);
   }
-  background-repeat: no-repeat;
-  background-position: center;
 
   @include tablet {
-    margin: 0 auto;
-    width: 656px;
-    height: 566px;
-
+    width: 438px;
+    height: 569px;
+    right: 18%;
     background-image: url(../../assets/images/hero-tablet.png);
     @include retina {
       background-image: url(../../assets/images/hero-tablet-2x.png);
@@ -74,19 +174,11 @@
   }
 
   @include desktop {
-    position: absolute;
-    // left: 52%;
-    // top: 17%;
-    right: 0;
-    bottom:0;
-
-    width: 616px;
-    height: 595px;
-
+    width: 438px;
+    height: 569px;
     background-image: url(../../assets/images/hero-desktop.png);
     @include retina {
       background-image: url(../../assets/images/hero-desktop-2x.png);
     }
   }
 }
-

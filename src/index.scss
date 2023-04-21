@@ -1,11 +1,10 @@
 @import-normalize;
 
-@import "./assets/fonts/latoFontStyle.css";
-@import "./sass/utils/base";
-@import "./sass/utils/mixin";
-@import "./sass/utils/variables";
-
-
+@import './assets/fonts/latoFontStyle.css';
+@import './sass/utils/base';
+@import './sass/utils/mixin';
+@import './sass/utils/variables';
+@import './pages/ExpensesPage/TransactionSelect/select.scss';
 * {
   box-sizing: border-box;
 }

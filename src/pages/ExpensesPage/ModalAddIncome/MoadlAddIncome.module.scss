@@ -59,6 +59,7 @@
   color: $white;
   border-radius: 60px;
   border: none;
+  cursor: pointer;
 }
 .btnClose {
   padding: 8px 41px;
@@ -66,6 +67,7 @@
   color: $blue;
   border-radius: 60px;
   border: none;
+  cursor: pointer;
 }
 .btnSvg {
   top: 19px;
@@ -75,7 +77,13 @@
   padding: 0;
   background-color: $dark-blue;
   border: none;
+  cursor: pointer;
 }
 .iconClose {
   fill: $white;
+}
+.categoryIcon {
+  fill: blue;
+  margin-left: 5px;
+  padding-left: 10px;
 }

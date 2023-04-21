@@ -37,7 +37,9 @@ const authSlice = createSlice({
       })
       .addCase(getCurrentUserInfo.fulfilled, (state, { payload }) => {
         fulfilledOperation(state);
-        state.balance = payload.user?.balance;
+        if (payload.user?.balance) {
+          state.balance = payload.user?.balance;
+        }
         state.user.name = payload.user.name;
         state.user.email = payload.user.email;
       })
@@ -52,6 +54,7 @@ const authSlice = createSlice({
           action.type.startsWith('auth') && action.type.endsWith('/pending'),
         state => {
           state.isLoading = true;
+          state.error = null;
         }
       )
       .addMatcher(
