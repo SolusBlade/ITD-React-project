@@ -2,6 +2,7 @@ import {
   calcPersonalPlan,
   getPersonalPlan,
   preCalcPersonalPlan,
+  updatePersonalPlan,
 } from './planOperations';
 
 const { createSlice } = require('@reduxjs/toolkit');
@@ -41,6 +42,12 @@ const ownPlanSlice = createSlice({
         state.result = payload.result;
       })
       .addCase(getPersonalPlan.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        state.plan = payload.plan;
+        state.result = payload.result;
+      })
+      .addCase(updatePersonalPlan.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
         state.plan = payload.plan;

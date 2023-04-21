@@ -3,6 +3,7 @@ import {
   calcPersonalPlanApi,
   getPersonalPlanApi,
   preCalcPersonalPlanApi,
+  updatePersonalPlanApi,
 } from 'services/connectoinsApi';
 
 async function destructureFunc(data) {
@@ -22,7 +23,7 @@ async function destructureFunc(data) {
 }
 
 export const preCalcPersonalPlan = createAsyncThunk(
-  'ownPlan/preCalc',
+  'ownPlan/preCalcPlan',
   async (inputs, { rejectWithValue }) => {
     try {
       const response = destructureFunc(preCalcPersonalPlanApi(inputs));
@@ -50,6 +51,18 @@ export const getPersonalPlan = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = destructureFunc(getPersonalPlanApi());
+      return response;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updatePersonalPlan = createAsyncThunk(
+  'ownPlan/updatePlan',
+  async (planData, { rejectWithValue }) => {
+    try {
+      const response = destructureFunc(updatePersonalPlanApi(planData));
       return response;
     } catch (error) {
       return rejectWithValue(error.message);

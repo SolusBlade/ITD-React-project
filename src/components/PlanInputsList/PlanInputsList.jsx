@@ -5,6 +5,7 @@ import {
   calcPersonalPlan,
   getPersonalPlan,
   preCalcPersonalPlan,
+  updatePersonalPlan,
 } from 'redux/plan/planOperations';
 import optionsDefault from 'data/optionsDefault';
 import InputForm from 'components/InputForm/InputForm';
@@ -56,7 +57,9 @@ const PlanInputsList = () => {
   };
 
   const handleFits = () => {
-    !isPlan ? dispatch(calcPersonalPlan(inputs)) : console.log('isplan-2');
+    !isPlan
+      ? dispatch(calcPersonalPlan(inputs))
+      : dispatch(updatePersonalPlan(inputs));
   };
 
   const openModal = () => setIsModalOpen(true);
