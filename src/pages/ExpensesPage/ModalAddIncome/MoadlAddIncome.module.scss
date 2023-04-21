@@ -83,7 +83,8 @@
   fill: $white;
 }
 .categoryIcon {
-  fill: blue;
-  margin-left: 5px;
-  padding-left: 10px;
+  fill: $blue;
+  margin-right: 8px;
+  transform: translateX(-2px);
+  transform: translateY(3px);
 }

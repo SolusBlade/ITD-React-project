@@ -7,11 +7,11 @@ import ModalAddIncome from '../ModalAddIncome/ModalAddIncome';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectorBalance } from 'redux/auth/authSelectors';
 import { categorySelect } from 'redux/Expenses/expensesSelectors';
-import { getTransaction } from 'redux/Expenses/expensesOperations';
+import { postTransaction } from 'redux/Expenses/expensesOperations';
 import TransactionSelect from '../TransactionSelect/TransactionSelect';
 
 const TransactionDataList = () => {
-  const [currentCategory, setCurrentCategory] = useState('');
+  const [currentCategory, setCurrentCategory] = useState('other');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const category = useSelector(categorySelect);
   const balance = useSelector(selectorBalance);
@@ -36,7 +36,12 @@ const TransactionDataList = () => {
 
   const handleSubmit = (values, actions) => {
     dispatch(
-      getTransaction({ ...values, category: currentCategory, type: 'expense' })
+      postTransaction({
+        ...values,
+        sum: Number(values.sum),
+        category: currentCategory,
+        type: 'expense',
+      })
     );
 
     actions.resetForm();
@@ -73,7 +78,7 @@ const TransactionDataList = () => {
             <Input
               name="comment"
               title="Expense comment"
-              placeholder="Comment"
+              placeholder="Enter comment"
             />
 
             <Input name="sum" title="Sum" placeholder="00.00" />

@@ -54,16 +54,19 @@
   border: none;
   border-radius: 16px;
 
-  &[placeholder] {
-    @include font(400, 16px, 19px);
+  @include font(400, 16px, 19px);
 
-    padding: 9px 18px 18px 18px;
+  padding: 9px 18px 18px 18px;
 
-    color: $white !important;
-  }
+  color: $white;
+
   &:focus {
     border: none;
     outline: none;
+  }
+  &::placeholder {
+    color: $white;
+    opacity: 1;
   }
 }
 
