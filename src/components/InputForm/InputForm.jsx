@@ -16,7 +16,7 @@ const InputForm = ({ onChange, options, values, onBlur }) => {
             className={s.input}
             type={el.type}
             name={el.name}
-            value={values[el.name] || ''}
+            value={values[el?.name] || ''}
             onChange={onChange}
             onBlur={onBlur}
             placeholder={el.placeholder}
