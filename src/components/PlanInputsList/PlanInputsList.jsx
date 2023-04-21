@@ -1,8 +1,9 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectStatePlan } from 'redux/plan/planSelectors';
 import {
   calcPersonalPlan,
+  getPersonalPlan,
   preCalcPersonalPlan,
 } from 'redux/plan/planOperations';
 import optionsDefault from 'data/optionsDefault';
@@ -11,13 +12,23 @@ import ResultForm from 'components/ResultForm/ResultForm';
 import ModalAddBalance from 'components/ModalAddBalance/ModalAddBalance';
 import { addUserBalance } from 'redux/auth/authOperations';
 import s from './PlanInputsList.module.scss';
+import { selectorIsLoggedIn } from 'redux/auth/authSelectors';
 
 const PlanInputsList = () => {
   const dispatch = useDispatch();
   const formData = useSelector(selectStatePlan);
+  const isLoggedIn = useSelector(selectorIsLoggedIn);
   const [inputs, setInputs] = useState(formData);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isPlan, setIsPlan] = useState(false);
   const inputsRef = useRef(inputs);
+
+  useEffect(() => {
+    isLoggedIn &&
+      dispatch(getPersonalPlan())
+        .then(({ payload }) => setInputs(payload.plan))
+        .then(setIsPlan(true));
+  }, [dispatch, isLoggedIn]);
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -30,7 +41,9 @@ const PlanInputsList = () => {
 
     if (isComplete && inputsRef.current !== inputs) {
       for (let key in inputs) {
-        inputs[key] = parseInt(inputs[key]);
+        if (typeof inputs[key] === 'string') {
+          inputs[key] = Number(inputs[key]);
+        }
       }
       dispatch(preCalcPersonalPlan(inputs));
     }
@@ -43,7 +56,7 @@ const PlanInputsList = () => {
   };
 
   const handleFits = () => {
-    dispatch(calcPersonalPlan(inputs));
+    !isPlan ? dispatch(calcPersonalPlan(inputs)) : console.log('isplan-2');
   };
 
   const openModal = () => setIsModalOpen(true);
