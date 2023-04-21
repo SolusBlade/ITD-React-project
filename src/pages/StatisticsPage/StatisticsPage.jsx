@@ -7,6 +7,8 @@ import { NavLink, Outlet } from 'react-router-dom';
 const StatisticsPage = () => {
   return (
     <>
+
+      <section className={s.vectorImg}>
       <Container>
         <div className={s.statWrapp}>
           <div className={s.navWrapper}>
@@ -29,7 +31,7 @@ const StatisticsPage = () => {
                     Categories
                   </NavLink>
                 </li>
-              </ul>
+               </ul>
             </nav>
             <div className={s.calendarWrapper}>
               {/* <DateComp /> */}
@@ -38,6 +40,7 @@ const StatisticsPage = () => {
           <Outlet />
         </div>
       </Container>
+      </section>
     </>
   );
 };
