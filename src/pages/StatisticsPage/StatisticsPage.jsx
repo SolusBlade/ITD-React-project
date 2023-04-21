@@ -7,35 +7,38 @@ import { NavLink, Outlet } from 'react-router-dom';
 const StatisticsPage = () => {
   return (
     <>
-      <Container>
-        <div className={s.navWrapper}>
-          <nav>
-            <div className={s.navThumb}>
-              <li>
-                <NavLink
-                  to="transactions"
-                  end
-                  className={({ isActive }) => (isActive ? s.active : s.link)}
-                >
-                  Expenses
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  className={({ isActive }) => (isActive ? s.active : s.link)}
-                  to="categories"
-                >
-                  Categories
-                </NavLink>
-              </li>
+      <section className={s.vectorImg}>
+        <Container>
+          <div className={s.navWrapper}>
+            <nav>
+              <div className={s.navThumb}>
+                <li>
+                  <NavLink
+                    to="transactions"
+                    end
+                    className={({ isActive }) => (isActive ? s.active : s.link)}
+                  >
+                    Expenses
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className={({ isActive }) => (isActive ? s.active : s.link)}
+                    to="categories"
+                  >
+                    Categories
+                  </NavLink>
+                </li>
+              </div>
+            </nav>
+            <div className={s.calendarWrapper}>
+              <DateComp />
             </div>
-          </nav>
-          <div className={s.calendarWrapper}>
-            <DateComp />
           </div>
-        </div>
-        <Outlet />
-      </Container>
+
+          <Outlet />
+        </Container>
+      </section>
     </>
   );
 };
