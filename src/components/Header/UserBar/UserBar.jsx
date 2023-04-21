@@ -26,7 +26,7 @@ export const UserBar = ({ handleToggleMenu, isOpen }) => {
   return (
     <div className={d.btnBox}>
       <button className={d.btnStat}>
-        <NavLink state={location} to="/statistics" className={d.linkStat}>
+        <NavLink state={location} to="/statistics/transactions" className={d.linkStat}>
           <Icon
             name={'icon-diagram'}
             width={'12'}
