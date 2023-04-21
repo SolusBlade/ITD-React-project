@@ -52,7 +52,8 @@
 .imgWrap {
   position: absolute;
   overflow: hidden;
-  width: 370px;
+  width: 481px;
+  width: 100%;
   height: 433px;
   right: 50%;
   bottom: 0;
@@ -65,9 +66,9 @@
     transform: translateX(50%);
   }
   @include desktop {
-    width: 630px;
+    width: 690px;
     height: 595px;
-    left: 50%;
+    left: 46%;
   }
 }
 
@@ -75,8 +76,9 @@
   position: absolute;
   width: 481px;
   height: 481px;
-  bottom: -135px;
-  right: -53px;
+  bottom: -124px;
+  right: 50%;
+  transform: translateX(50%);
 
   border-radius: 50%;
   z-index: 1;
@@ -85,12 +87,15 @@
     rgba(58, 106, 245, 0.7) 9.2%,
     rgba(0, 0, 0, 0.7) 97.4%
   );
-
   @include tablet {
     width: 630px;
     height: 630px;
-    right: 0;
     bottom: -164px;
+    right: 48%;
+  }
+  @include desktop {
+    bottom: -135px;
+    right: 47%;
   }
 }
 
@@ -115,8 +120,8 @@
   position: absolute;
   width: 20px;
   height: 20px;
-  right: 106px;
-  top: 0px;
+  right: 159px;
+  top: -56px;
   border-radius: 50%;
 
   background: $white;
@@ -125,6 +130,7 @@
     width: 26px;
     height: 26px;
     right: 31%;
+    top: -12%;
   }
 }
 
@@ -132,8 +138,8 @@
   position: absolute;
   width: 56px;
   height: 56px;
-  right: 0;
-  top: 44px;
+  right: 53px;
+  top: -32px;
   border-radius: 50%;
   background: linear-gradient(
     214.51deg,
@@ -144,6 +150,8 @@
   @include tablet {
     width: 74px;
     height: 74px;
+    right: 69px;
+    top: -43px;
   }
 }
 
@@ -152,13 +160,16 @@
   position: absolute;
   width: 349px;
   height: 454px;
-  right: 13px;
-  top: 4%;
+  // right: 13px;
+  right: 66px;
+  // top: 4%;
+  bottom: 110px;
+
   z-index: 5;
   background-image: url(../../assets/images/hero-mobile.png);
   background-repeat: no-repeat;
-    background-position: center;
-    object-fit: contain;
+  background-position: center;
+  object-fit: contain;
   @include retina {
     background-image: url(../../assets/images/hero-mobile-2x.png);
   }
@@ -166,7 +177,9 @@
   @include tablet {
     width: 438px;
     height: 569px;
-    right: 18%;
+    right: 19%;
+    bottom: 135px;
+
     background-image: url(../../assets/images/hero-tablet.png);
     @include retina {
       background-image: url(../../assets/images/hero-tablet-2x.png);
@@ -181,4 +194,86 @@
       background-image: url(../../assets/images/hero-desktop-2x.png);
     }
   }
+}
+
+.textPaiments {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // width: 283px;
+  // height: 56px;
+  width: 197px;
+  height: 34px;
+  // left: -9px;
+  // top: 201px;
+  left: 66px;
+  top: 151px;
+  color: $white;
+  font-style: normal;
+  @include font(600, 14px, 1.3);
+
+  text-align: center;
+  letter-spacing: -0.02em;
+
+  background: rgba(243, 243, 243, 0.053);
+  backdrop-filter: blur(21.47px);
+  border-radius: 31px;
+  z-index: 10;
+
+  @include tablet {
+    width: 283px;
+    height: 56px;
+    left: -9px;
+    top: 201px;
+
+    @include font(600, 20px, 1.2);
+  }
+
+  @include desktop {
+    left: -49px;
+    top: 212px;
+  }
+}
+.textAppartments {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // width: 283px;
+  // height: 56px;
+  width: 197px;
+  height: 34px;
+  right: 88px;
+  bottom: 189px;
+
+  color: $white;
+  @include font(600, 14px, 1.3);
+
+  text-align: center;
+  letter-spacing: -0.02em;
+
+  background: rgba(243, 243, 243, 0.053);
+  backdrop-filter: blur(21.47px);
+  border-radius: 31px;
+  z-index: 10;
+
+  @include tablet {
+    width: 283px;
+    height: 56px;
+    right: 73px;
+    bottom: 240px;
+
+    @include font(600, 20px, 1.2);
+  }
+
+  @include desktop {
+    right: 90px;
+    bottom: 241px;
+  }
+}
+
+.textPaimentsAccent {
+  color: $blue;
+  padding: 0 10px;
 }
