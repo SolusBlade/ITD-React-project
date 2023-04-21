@@ -81,6 +81,7 @@ export const addUserBalance = createAsyncThunk(
       const newBalance = await addUserBalanceApi(balance);
       return newBalance;
     } catch (error) {
+      // console.log('newBalance - error:', error.response.data)
       return thunkApi.rejectWithValue(error.message);
     }
   }
