@@ -40,8 +40,10 @@ const Categories = () => {
       <ul className={d.categoriesList}>
         {categories.map(({ category, amount, percentage }) => (
           <li key={category} className={d.categoriesItem}>
-            <p className={d.categoriesDes}>{category}</p>
-            <p className={d.categoriesAmount}>-{amount} UAH</p>
+            <span className={d.categoriesItemEl}>
+              <p className={d.categoriesDes}>{category}</p>
+              <p className={d.categoriesAmount}>-{amount} UAH</p>
+            </span>
             <p className={d.categoriesPerc}>{percentage}</p>
           </li>
         ))}
