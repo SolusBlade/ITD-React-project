@@ -63,15 +63,11 @@ li {
   color: rgba(243, 243, 243, 1);
 }
 
-@media screen and (min-width: 375px) {
-  .calendarWrapper {
-    width: 217px;
-  }
+.calendarWrapper {
+  position: relative;
+  width: 217px;
+  @media screen and (min-width: 375px) {}
+  
+    @media screen and (min-width: 768px) {}
 }
 
-@media screen and (min-width: 768px) {
-  .calendarWrapper {
-    padding-top: 10px;
-    width: 222px;
-  }
-}
