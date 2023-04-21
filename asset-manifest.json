@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/ITD-React-project/static/css/main.c87b1c01.css",
-    "main.js": "/ITD-React-project/static/js/main.11375006.js",
+    "main.js": "/ITD-React-project/static/js/main.f52457c7.js",
     "static/media/Lato-Semibold.ttf": "/ITD-React-project/static/media/Lato-Semibold.dab63590f439194ec956.ttf",
     "static/media/Lato-Bold.ttf": "/ITD-React-project/static/media/Lato-Bold.9cfae71062337c38b44f.ttf",
     "static/media/Lato-Regular.ttf": "/ITD-React-project/static/media/Lato-Regular.cbcf73593dd54516d4b3.ttf",
@@ -29,10 +29,10 @@
     "static/media/icons.svg": "/ITD-React-project/static/media/icons.d7f34c3f13ea3c1dd21414645c107dcb.svg",
     "index.html": "/ITD-React-project/index.html",
     "main.c87b1c01.css.map": "/ITD-React-project/static/css/main.c87b1c01.css.map",
-    "main.11375006.js.map": "/ITD-React-project/static/js/main.11375006.js.map"
+    "main.f52457c7.js.map": "/ITD-React-project/static/js/main.f52457c7.js.map"
   },
   "entrypoints": [
     "static/css/main.c87b1c01.css",
-    "static/js/main.11375006.js"
+    "static/js/main.f52457c7.js"
   ]
 }
