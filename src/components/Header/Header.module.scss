@@ -1,4 +1,4 @@
-@import '../../sass/utils/variables';
+@import "../../sass/utils/variables";
 
 .header {
     border-bottom: 1px solid $light-gray;
@@ -15,7 +15,6 @@
 }
 
 .headerNavWrap {
-
     @media screen and (max-width: 1279px) {
         display: flex;
         justify-content: space-between;
