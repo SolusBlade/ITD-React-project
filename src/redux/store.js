@@ -13,6 +13,7 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import { ownPlanReducer } from './plan/planSlice';
 import { expensesReducer } from './Expenses/expensesSlice';
 
 const persistContactsConfig = {
@@ -26,6 +27,7 @@ const persistedAuthReducer = persistReducer(persistContactsConfig, authReducer);
 export const store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
+    ownPlan: ownPlanReducer,
     expenses: expensesReducer,
     dynamics: dynamicsReducer,
   },

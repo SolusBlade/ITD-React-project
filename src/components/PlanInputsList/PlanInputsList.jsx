@@ -1,45 +1,40 @@
-import InputForm from 'components/InputForm/InputForm';
-import { useState } from 'react';
-// import { useDispatch } from "react-redux";
-import s from './PlanInputsList.module.scss';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectStatePlan } from 'redux/plan/planSelectors';
+import { preCalcPersonalPlan } from 'redux/plan/planOperations';
 import optionsDefault from 'data/optionsDefault';
+import InputForm from 'components/InputForm/InputForm';
 import ResultForm from 'components/ResultForm/ResultForm';
 import ModalAddBalance from 'components/ModalAddBalance/ModalAddBalance';
-
-const dataForm = {
-  salary: '',
-  passiveIncome: '',
-  savings: '',
-  cost: '',
-  footage: '',
-  procent: '',
-};
+import s from './PlanInputsList.module.scss';
 
 const PlanInputsList = () => {
-  // const dispatch = useDispatch();
-  const [inputs, setInputs] = useState(dataForm);
+  const formData = useSelector(selectStatePlan);
+  const [inputs, setInputs] = useState(formData);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const dispatch = useDispatch();
 
   const handleChange = e => {
     const { name, value } = e.target;
     setInputs(values => ({ ...values, [name]: value }));
   };
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    console.log(inputs);
-    //  dispatch(addContact(inputs));
-  };
+  useEffect(() => {
+    const isComplete = Object.values(inputs).every(
+      value => value.trim() !== ''
+    );
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
+    if (isComplete) {
+      dispatch(preCalcPersonalPlan(inputs));
+    }
+  }, [dispatch, inputs]);
 
+  const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
   return (
     <>
-      <form className={s.form} onSubmit={handleSubmit}>
+      <form className={s.form}>
         <InputForm
           onChange={handleChange}
           options={optionsDefault}
