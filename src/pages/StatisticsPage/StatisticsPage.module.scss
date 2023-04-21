@@ -1,6 +1,6 @@
-li {
-  list-style: none;
-}
+@import '../../sass/utils/variables';
+
+
 .navWrapper {
   display: flex;
   flex-direction: row;
@@ -70,4 +70,3 @@ li {
   
     @media screen and (min-width: 768px) {}
 }
-

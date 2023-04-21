@@ -1,0 +1,55 @@
+@import '../../../sass/utils/variables';
+
+.categoriesList {
+    margin-top: 122px;
+}
+
+.categoriesItem {
+    display: flex;
+    
+    align-items: center;
+    background-color: $dark-blue-tabl;
+
+    @media screen and (min-width: 1280px) {
+        padding: 32px 0;
+        padding-left: 32px;
+    }
+}
+
+.categoriesItem:not(:last-child) {
+    border-bottom: 1px solid $light-gray;
+}
+
+.categoriesItem:last-child {
+    border-radius: 0px 0px 16px 16px;
+}
+
+
+.categoriesDes {
+
+    @media screen and (min-width: 1280px) {
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 1.2;
+        color: $white;
+    }
+}
+
+.categoriesAmount {
+    @media screen and (min-width: 1280px) {
+
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 1.2;
+        color: $white;
+    }
+}
+
+.categoriesPerc {
+    @media screen and (min-width: 1280px) {
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 1.2;
+        color: $light-gray-tabl;
+    }
+}
