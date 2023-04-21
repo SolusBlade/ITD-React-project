@@ -9,7 +9,6 @@ const TransactionsItem = ({
   date,
   category,
   comment,
-  updateTransaction,
   removeTransaction,
 }) => {
   return (
