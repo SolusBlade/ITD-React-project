@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/ITD-React-project/static/css/main.c87b1c01.css",
-    "main.js": "/ITD-React-project/static/js/main.f52457c7.js",
+    "main.css": "/ITD-React-project/static/css/main.510b9f9e.css",
+    "main.js": "/ITD-React-project/static/js/main.a1a9cea5.js",
     "static/media/Lato-Semibold.ttf": "/ITD-React-project/static/media/Lato-Semibold.dab63590f439194ec956.ttf",
     "static/media/Lato-Bold.ttf": "/ITD-React-project/static/media/Lato-Bold.9cfae71062337c38b44f.ttf",
     "static/media/Lato-Regular.ttf": "/ITD-React-project/static/media/Lato-Regular.cbcf73593dd54516d4b3.ttf",
@@ -26,13 +26,13 @@
     "static/media/vector-tablet-2x.png": "/ITD-React-project/static/media/vector-tablet-2x.ff4ce0156ba0229e43a1.png",
     "static/media/vector-desktop.png": "/ITD-React-project/static/media/vector-desktop.e1e259a6a82e821f7164.png",
     "static/media/vector-tablet.png": "/ITD-React-project/static/media/vector-tablet.3fc6c1c515420d40ec4b.png",
-    "static/media/icons.svg": "/ITD-React-project/static/media/icons.d7f34c3f13ea3c1dd21414645c107dcb.svg",
+    "static/media/icons.svg": "/ITD-React-project/static/media/icons.a4fc8e2b51b79c066bc4e8f03bd6b2e0.svg",
     "index.html": "/ITD-React-project/index.html",
-    "main.c87b1c01.css.map": "/ITD-React-project/static/css/main.c87b1c01.css.map",
-    "main.f52457c7.js.map": "/ITD-React-project/static/js/main.f52457c7.js.map"
+    "main.510b9f9e.css.map": "/ITD-React-project/static/css/main.510b9f9e.css.map",
+    "main.a1a9cea5.js.map": "/ITD-React-project/static/js/main.a1a9cea5.js.map"
   },
   "entrypoints": [
-    "static/css/main.c87b1c01.css",
-    "static/js/main.f52457c7.js"
+    "static/css/main.510b9f9e.css",
+    "static/js/main.a1a9cea5.js"
   ]
 }
