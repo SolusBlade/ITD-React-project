@@ -1,0 +1,262 @@
+.transactionList {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid rgba(243, 243, 243, 0.06);
+  border-radius: 0px 0px 16px 16px;
+  background-color: rgb(37, 44, 65);
+}
+
+@media screen and (min-width: 375px) {
+  .transactionList {
+    width: 343px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .transactionList {
+    width: 100%;
+  }
+}
+
+.formWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: #191d28;
+  box-shadow: 0px 24px 38px rgba(0, 0, 0, 0.14),
+    0px 9px 46px rgba(0, 0, 0, 0.12), 0px 11px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+}
+
+@media screen and (min-width: 375px) {
+  .formWrapper {
+    padding: 50px 20px;
+    width: 315px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .formWrapper {
+    padding: 68px 34px;
+    width: 438px;
+  }
+}
+
+.formLabel {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+  padding: 14px 18px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  line-height: 1.17;
+  color: rgba(243, 243, 243, 0.4);
+  background-color: rgba(37, 44, 65, 0.5);
+  border-radius: 16px;
+  width: 100%;
+}
+
+@media screen and (min-width: 375px) {
+  .formLabel {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .formLabel {
+    font-size: 12px;
+  }
+}
+
+.formInput {
+  margin-top: 5px;
+  padding-left: 2px;
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.19;
+  color: rgb(243, 243, 243);
+  background-color: transparent;
+  border: none;
+}
+
+.formInput:focus {
+  outline: transparent;
+}
+
+.formInput > option {
+  display: block;
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.19;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.19), 0px 6px 6px rgba(0, 0, 0, 0.26);
+  border-radius: 16px;
+  color: rgba(36, 36, 36, 1);
+  background-color: rgb(243, 243, 243);
+}
+
+.buttonEdit {
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.43;
+  background-color: rgb(58, 106, 245);
+  color: rgb(242, 242, 242);
+  border-radius: 60px;
+  border: none;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 375px) {
+  .buttonEdit {
+    padding: 8px 56px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .buttonEdit {
+    padding: 10px 62px;
+  }
+}
+
+.buttonCloseModal {
+  position: absolute;
+  top: 10px;
+  right: 18px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.noTransactionWrapper {
+  padding: 12px;
+  color: white;
+}
+
+@media screen and (min-width: 375px) {
+  .noTransactionWrapper {
+    width: 343px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .noTransactionWrapper {
+    width: 769px;
+  }
+}
+
+.noTransactionText {
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.43;
+  text-align: center;
+}
+
+.dropdown {
+  position: relative;
+  height: 19px;
+  display: flex;
+  justify-content: center;
+}
+
+.dropdown::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 6px;
+  width: 9px;
+  height: 9px;
+  border: 2px solid rgba(0, 0, 0, 0);
+  border-top: 2px solid #fff;
+  border-right: 2px solid #fff;
+  transform: rotate(-45deg);
+  transition: 0.5s;
+  pointer-events: none;
+}
+
+.dropdownActive::before {
+  top: -3px;
+  transform: rotate(-225deg);
+}
+
+.dropdown input {
+  color: #f3f3f3;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  line-height: 1.19;
+  background-color: rgba(0, 0, 0, 0);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  width: 100%;
+}
+
+.dropdown .options {
+  position: absolute;
+  top: 38px;
+  left: -15px;
+  width: 340px;
+  background: #fff;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.19;
+  color: rgb(36, 36, 36);
+  overflow: hidden;
+  display: none;
+  animation: growDown 300ms ease-in-out forwards;
+  transform-origin: top center;
+  width: 370px;
+}
+
+@keyframes growDown {
+  0% {
+    transform: scaleY(0);
+  }
+  80% {
+    transform: scaleY(1.1);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+.dropdownActive .options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+  z-index: 100;
+  perspective: 1000px;
+}
+
+.dropdown .options div {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  cursor: pointer;
+  color: black;
+  border-radius: 5px;
+}
+
+.dropdown .options div:hover {
+  background: #eff;
+  color: #62baea;
+}
+
+.dropdown .options div {
+  position: relative;
+  top: 4px;
+  font-size: 1.2em;
+  font-size: 16px;
+  line-height: 19px;
+}
