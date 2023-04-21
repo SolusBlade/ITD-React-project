@@ -1,3 +1,4 @@
+import debounce from 'lodash.debounce';
 import s from './InputForm.module.scss';
 
 const InputForm = ({ onChange, options, values }) => {
@@ -15,8 +16,8 @@ const InputForm = ({ onChange, options, values }) => {
             className={s.input}
             type={el.type}
             name={el.name}
-            value={values[el.name] || ''}
-            onChange={onChange}
+            value={values[el.name]}
+            onChange={debounce(onChange, 300)}
             placeholder={el.placeholder}
           />
         </label>

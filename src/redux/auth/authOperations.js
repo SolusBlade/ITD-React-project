@@ -53,6 +53,7 @@ export const getCurrentUserInfo = createAsyncThunk(
     try {
       token.set(userToken);
       const user = await getCurrentUserInfoApi();
+      console.log(user);
       return user;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
