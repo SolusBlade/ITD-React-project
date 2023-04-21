@@ -6,16 +6,16 @@ import statisticsOperations from 'redux/transactions/transactions-operations';
 import { selectTransactions } from 'redux/transactions/transactions-selector';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import { selectorIsLoggedIn } from 'redux/auth/authSelectors';
 const Transactions = () => {
   const transaction = useSelector(selectTransactions);
+  const isLoggedIn = useSelector(selectorIsLoggedIn);
 
   const dispatch = useDispatch();
   useEffect(() => {
-    // setTransactions(selectTransactions);
-    const period = JSON.parse(localStorage.getItem('selectedPeriod'));
-    const data = { ...period };
-    dispatch(statisticsOperations.expenseStatistic(data));
-  }, [dispatch]);
+    isLoggedIn && dispatch(statisticsOperations.expenseStatistic(0));
+  }, [dispatch, isLoggedIn]);
+  
   const removeTransaction = id => {
     dispatch(statisticsOperations.removeExpense(id));
   };
@@ -26,7 +26,7 @@ const Transactions = () => {
   const closeModal = () => setIsModalOpen(false);
   return (
     <>
-      {transaction === 0 && (
+      {transaction === null && (
         <div className={css.noTransactionWrapper}>
           <p className={css.noTransactionText}>You have no transactions</p>
         </div>

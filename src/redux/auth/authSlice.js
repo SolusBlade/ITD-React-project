@@ -18,7 +18,7 @@ const fulfilledOperation = state => {
 const initialState = {
   user: { name: null, email: null },
   token: null,
-  balance: 0,
+  balance: null,
   isLoggedIn: false,
   isLoading: false,
   error: null,
@@ -53,7 +53,7 @@ const authSlice = createSlice({
         return initialState;
       })
       .addCase(addUserBalance.fulfilled, (state, { payload }) => {
-        state.balance = payload.balance;
+        state.balance = payload;
       })
       .addCase(postTransaction.fulfilled, (state, { payload }) => {
         state.balance = payload.newBalance;

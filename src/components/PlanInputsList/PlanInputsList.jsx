@@ -21,45 +21,58 @@ const PlanInputsList = () => {
   const isLoggedIn = useSelector(selectorIsLoggedIn);
   const [inputs, setInputs] = useState(formData);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isPlan, setIsPlan] = useState(false);
-  const inputsRef = useRef(inputs);
+  const [isDirty, setIsDirty] = useState(false);
+  const isPlan = useRef(false);
 
   useEffect(() => {
     isLoggedIn &&
       dispatch(getPersonalPlan())
-        .then(({ payload }) => setInputs(payload.plan))
-        .then(setIsPlan(true));
+        .then(({ payload }) => {
+          setInputs(payload.plan);
+          isPlan.current = true;
+        })
+        .catch(error => {
+          console.error(error);
+          isPlan.current = false;
+        });
   }, [dispatch, isLoggedIn]);
 
   const handleChange = e => {
     const { name, value } = e.target;
-    setInputs(values => ({ ...values, [name]: value }));
-    inputsRef.current = inputs;
+    setInputs(values => {
+      const newInputs = { ...values, [name]: value };
+      setIsDirty(true);
+      return newInputs;
+    });
   };
 
   const handlerBlur = () => {
     const isComplete = Object.values(inputs).every(value => value !== '');
 
-    if (isComplete && inputsRef.current !== inputs) {
+    if (isComplete && isDirty) {
       for (let key in inputs) {
         if (typeof inputs[key] === 'string') {
           inputs[key] = Number(inputs[key]);
         }
       }
       dispatch(preCalcPersonalPlan(inputs));
+      setIsDirty(false);
     }
   };
 
   const handleAddBalance = dataForm => {
     const pBalance = { balance: Number(dataForm.balance) };
-    // console.log('dataForm', { balance: Number(dataForm.balance) });
     dispatch(addUserBalance(pBalance));
   };
 
   const handleFits = () => {
-    !isPlan
-      ? dispatch(calcPersonalPlan(inputs))
-      : dispatch(updatePersonalPlan(inputs));
+    if (!isPlan.current) {
+      dispatch(calcPersonalPlan(inputs)).then(() => {
+        isPlan.current = true;
+      });
+    } else {
+      dispatch(updatePersonalPlan(inputs));
+    }
   };
 
   const openModal = () => setIsModalOpen(true);
