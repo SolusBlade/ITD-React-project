@@ -1,20 +1,22 @@
+@import '../../../sass/utils/variables';
+@import '../../../sass/utils/mixin';
 .transactionList {
   display: flex;
   flex-direction: column;
   border-top: 1px solid rgba(243, 243, 243, 0.06);
   border-radius: 0px 0px 16px 16px;
   background-color: rgb(37, 44, 65);
-}
+  margin: 0 auto;
 
-@media screen and (min-width: 375px) {
-  .transactionList {
+  @media screen and (min-width: 375px) {
     width: 343px;
   }
-}
 
-@media screen and (min-width: 768px) {
-  .transactionList {
-    width: 100%;
+  @media screen and (min-width: 768px) {
+    width: 704px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 769px;
   }
 }
 
@@ -26,17 +28,13 @@
   box-shadow: 0px 24px 38px rgba(0, 0, 0, 0.14),
     0px 9px 46px rgba(0, 0, 0, 0.12), 0px 11px 15px rgba(0, 0, 0, 0.2);
   border-radius: 16px;
-}
 
-@media screen and (min-width: 375px) {
-  .formWrapper {
+  @media screen and (min-width: 375px) {
     padding: 50px 20px;
     width: 315px;
   }
-}
 
-@media screen and (min-width: 768px) {
-  .formWrapper {
+  @media screen and (min-width: 768px) {
     padding: 68px 34px;
     width: 438px;
   }
@@ -54,16 +52,12 @@
   background-color: rgba(37, 44, 65, 0.5);
   border-radius: 16px;
   width: 100%;
-}
 
-@media screen and (min-width: 375px) {
-  .formLabel {
+  @media screen and (min-width: 375px) {
     font-size: 14px;
   }
-}
 
-@media screen and (min-width: 768px) {
-  .formLabel {
+  @media screen and (min-width: 768px) {
     font-size: 12px;
   }
 }
@@ -106,16 +100,12 @@
   border-radius: 60px;
   border: none;
   cursor: pointer;
-}
 
-@media screen and (min-width: 375px) {
-  .buttonEdit {
+  @media screen and (min-width: 375px) {
     padding: 8px 56px;
   }
-}
 
-@media screen and (min-width: 768px) {
-  .buttonEdit {
+  @media screen and (min-width: 768px) {
     padding: 10px 62px;
   }
 }
@@ -132,16 +122,12 @@
 .noTransactionWrapper {
   padding: 12px;
   color: white;
-}
 
-@media screen and (min-width: 375px) {
-  .noTransactionWrapper {
+  @media screen and (min-width: 375px) {
     width: 343px;
   }
-}
 
-@media screen and (min-width: 768px) {
-  .noTransactionWrapper {
+  @media screen and (min-width: 768px) {
     width: 769px;
   }
 }
@@ -171,7 +157,7 @@
   border: 2px solid rgba(0, 0, 0, 0);
   border-top: 2px solid #fff;
   border-right: 2px solid #fff;
-  transform: rotate(-45deg);
+  transform: rotate(133deg);
   transition: 0.5s;
   pointer-events: none;
 }
@@ -214,20 +200,6 @@
   overflow: hidden;
   display: none;
   animation: growDown 300ms ease-in-out forwards;
-  transform-origin: top center;
-  width: 370px;
-}
-
-@keyframes growDown {
-  0% {
-    transform: scaleY(0);
-  }
-  80% {
-    transform: scaleY(1.1);
-  }
-  100% {
-    transform: scaleY(1);
-  }
 }
 
 .dropdownActive .options {
@@ -259,4 +231,97 @@
   font-size: 1.2em;
   font-size: 16px;
   line-height: 19px;
+}
+.overlayAddIncome {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modalWrapper {
+  width: 315px;
+  @include tablet {
+    width: 370px;
+  }
+  position: relative;
+
+  background-color: $dark-blue;
+  box-shadow: 0px 24px 38px rgba(0, 0, 0, 0.14),
+    0px 9px 46px rgba(0, 0, 0, 0.12), 0px 11px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+}
+.select-container {
+  .select {
+    &__control {
+      border: none;
+      box-shadow: none;
+      background-color: transparent;
+    }
+    &__indicator {
+      margin-top: -20px;
+      margin-right: 20px;
+      cursor: pointer !important;
+    }
+    &__indicator-separator {
+      background-color: transparent;
+    }
+    &__control {
+      margin-left: 16px;
+    }
+    &__single-value {
+      color: $white !important;
+      margin-top: -3px;
+    }
+    &__placeholder {
+      color: $white !important;
+    }
+    &__value-container {
+      padding: 0;
+    }
+
+    &__menu {
+      background-color: $white !important;
+      box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.19),
+        0px 6px 6px rgba(0, 0, 0, 0.26);
+      border-radius: 16px !important;
+    }
+
+    &__option {
+      cursor: pointer;
+      border-radius: 10px;
+      border: none;
+      color: $dark-gray !important;
+      &--is-focused {
+        background-color: $white !important;
+      }
+      &--is-selected {
+        background-color: rgba(37, 44, 65, 0.5) !important;
+      }
+      @include font(400, 16px, 16px);
+    }
+  }
+}
+.labelForSelector {
+  background-color: rgba(37, 44, 65, 0.5);
+  border-radius: 16px;
+  margin-bottom: 18px;
+  @include tablet {
+    width: 336px;
+  }
+  @include desktop {
+    width: 370px;
+    height: 74px;
+    margin-bottom: 18px;
+  }
+}
+.labelText {
+  color: rgba(243, 243, 243, 0.4);
+  @include font(400, 12px, 14px);
+  padding: 14px 18px 0 18px;
 }

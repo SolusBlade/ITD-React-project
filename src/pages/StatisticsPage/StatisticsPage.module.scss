@@ -1,32 +1,29 @@
 @import '../../sass/utils/variables';
-
-
+@import '../../sass/utils/mixin';
+li {
+  list-style: none;
+}
 .navWrapper {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   width: 769px;
   margin: 0 auto;
-}
 
-@media screen and (min-width: 375px) {
-  .navWrapper {
+  @include tablet_max {
     flex-direction: column-reverse;
     width: 343px;
   }
-}
 
-@media screen and (min-width: 768px) {
-  .navWrapper {
+  @include tablet {
     flex-direction: row;
     width: 704px;
     align-items: flex-end;
   }
-}
 
-@media screen and (min-width: 1280px) {
-  .navWrapper {
+  @include desktop {
     width: 769px;
+    padding-top: 50px;
   }
 }
 
@@ -63,10 +60,15 @@
   color: rgba(243, 243, 243, 1);
 }
 
-.calendarWrapper {
-  position: relative;
-  width: 217px;
-  @media screen and (min-width: 375px) {}
-  
-    @media screen and (min-width: 768px) {}
+@include tablet_max {
+  .calendarWrapper {
+    width: 217px;
+  }
+}
+
+@include tablet {
+  .calendarWrapper {
+    padding-top: 10px;
+    width: 222px;
+  }
 }
