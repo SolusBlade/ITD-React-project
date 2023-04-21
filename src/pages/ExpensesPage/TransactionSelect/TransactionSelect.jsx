@@ -9,7 +9,7 @@ const TransactionSelect = ({ transformCategory, onChange, value }) => {
         name={props.data.value}
         width={18}
         height={18}
-        className={s.categoryIcon}
+        secondaryClassName={s.categoryIcon}
       />
       {props.data.label}
     </Option>

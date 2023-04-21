@@ -13,6 +13,7 @@ import ModalRegister from './ModalRegister/ModalRegister';
 import ModalLogin from './ModalLogin/ModalLogin';
 import { getCurrentUserInfo } from 'redux/auth/authOperations';
 import { useEffect } from 'react';
+import axios from 'axios';
 
 // eslint-disable-next-line
 const PrivateRoute = ({ component, redirectTo = '/login' }) => {
@@ -26,6 +27,7 @@ const PublicRoute = ({ component, redirectTo = '/contacts' }) => {
   return !isLoggedIn ? component : <Navigate to={redirectTo} />;
 };
 
+
 const App = () => {
   const dispatch = useDispatch();
   const token = useSelector(selectorToken);
@@ -33,7 +35,7 @@ const App = () => {
   useEffect(() => {
     if (token) {
       dispatch(getCurrentUserInfo(token));
-    };
+    }
   }, [token, dispatch]);
 
   return (
@@ -66,7 +68,6 @@ const App = () => {
         />
         <Route
           path="/dynamics"
-
           element={<DynamicsPage />}
           // element={<PublicRoute component={<DynamicsPage />} />}
         />

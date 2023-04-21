@@ -18,6 +18,7 @@ const PlanInputsList = () => {
 
   const handleChange = e => {
     const { name, value } = e.target;
+    console.log("handleChange  handleChange:", value)
     setInputs(values => ({ ...values, [name]: value }));
     inputsRef.current = inputs;
   };

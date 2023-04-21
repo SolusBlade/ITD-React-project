@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   getCategory,
   getPresaving,
-  getTransaction,
+  postTransaction,
 } from './expensesOperations';
 
 const initialState = {
@@ -35,10 +35,14 @@ const expensesSlice = createSlice({
       .addCase(getPresaving.rejected, (state, { payload }) => {
         state.error = payload;
       })
-      .addCase(getTransaction.fulfilled, (state, { payload }) => {
-        state.presaving.dailyLimit -= payload.sum;
+      .addCase(postTransaction.fulfilled, (state, { payload }) => {
+        if (payload.type === 'expense') {
+          state.presaving.dailyLimit -= payload.sum;
+        } else {
+          return state;
+        }
       })
-      .addCase(getTransaction.rejected, (state, { payload }) => {
+      .addCase(postTransaction.rejected, (state, { payload }) => {
         state.error = payload;
       });
   },

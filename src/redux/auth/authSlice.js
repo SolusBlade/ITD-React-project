@@ -1,22 +1,28 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import {
+  addUserBalance,
+  getCurrentUserInfo,
+  logOutUser,
+  loginUser,
+  registerUser,
+} from './authOperations';
+import { postTransaction } from 'redux/Expenses/expensesOperations';
 
-import { addUserBalance, getCurrentUserInfo, logOutUser, loginUser, registerUser } from './authOperations';
-
-const fulfilledOperation = (state) => {
+const fulfilledOperation = state => {
   state.isLoading = false;
   state.isLoggedIn = true;
   state.error = null;
-}
+};
 
 const initialState = {
-    user: { name: null, email: null },
-    token: null,
-    balance: 0,
-    isLoggedIn: false,
-    isLoading: false,
-    error: null,
-  }
+  user: { name: null, email: null },
+  token: null,
+  balance: 0,
+  isLoggedIn: false,
+  isLoading: false,
+  error: null,
+};
 
 const authSlice = createSlice({
   name: 'auth',
@@ -37,7 +43,9 @@ const authSlice = createSlice({
       })
       .addCase(getCurrentUserInfo.fulfilled, (state, { payload }) => {
         fulfilledOperation(state);
-        state.balance = payload.user?.balance;
+        if (payload.user?.balance) {
+          state.balance = payload.user?.balance;
+        }
         state.user.name = payload.user.name;
         state.user.email = payload.user.email;
       })
@@ -46,6 +54,9 @@ const authSlice = createSlice({
       })
       .addCase(addUserBalance.fulfilled, (state, { payload }) => {
         state.balance = payload;
+      })
+      .addCase(postTransaction.fulfilled, (state, { payload }) => {
+        state.balance = payload.newBalance;
       })
       .addMatcher(
         action =>
