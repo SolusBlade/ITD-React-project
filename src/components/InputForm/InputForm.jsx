@@ -9,7 +9,6 @@ const InputForm = ({ onChange, options, values, onBlur }) => {
             {index + 1 + '. '}
             {el.title}
           </span>
-
           <input
             required
             autoComplete="off"
@@ -20,7 +19,11 @@ const InputForm = ({ onChange, options, values, onBlur }) => {
             onChange={onChange}
             onBlur={onBlur}
             placeholder={el.placeholder}
+            disabled={
+              el.name === 'savings' && values[el.name] !== 0 ? true : false
+            }
           />
+          {/* <span>error</span> */}
         </label>
       ))}
     </>

@@ -39,4 +39,8 @@
   background: transparent;
   border: none;
   outline: none;
+
+  &:disabled {
+    color: rgba(243, 243, 243, 0.4);
+  }
 }
