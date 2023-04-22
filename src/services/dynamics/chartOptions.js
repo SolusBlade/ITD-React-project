@@ -142,7 +142,7 @@ export const optionsPhone = {
     },
     layout:{
       padding: {
-        // left: 40
+        left: 0
       }
     },
     scales: {
@@ -155,8 +155,8 @@ export const optionsPhone = {
           // borderColor: 'white',
           // borderWidth: 2,
           color: 'rgba(243, 243, 243, 0.2)',
-          // tickLength: 13,
-          tickBorderDash: [0, 10],
+          tickLength: 10,
+          tickBorderDash: [3, 10],
         },
         border: {
           display: true,
@@ -164,7 +164,7 @@ export const optionsPhone = {
         },
         ticks: {
           color: '#F3F3F3',
-          padding: 0,
+          // padding: 3,
           backdropPadding: 0,
           font: {
             size: 12,

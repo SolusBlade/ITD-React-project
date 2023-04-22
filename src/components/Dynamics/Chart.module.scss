@@ -12,17 +12,45 @@
     @include tablet-max {
         margin-bottom: 50px;
     }
-}
-
-.barContainer{
-    // margin-bottom: 50px;
-    width: 250px;
-    height: 420px;
-
-    @include tablet-max {
-        margin-bottom: 50px;
+    @include desktop {
+        margin-bottom: 66px;
+        order: 1;
+    }
+    @include desktop {
+        width: 524px;
     }
 }
+
+// .chartContainer{
+//     // margin-bottom: 50px;
+//     width: 250px;
+//     height: 420px;
+
+//     @include tablet-max {
+//         width: 422px;
+//         height: 219px;  
+//         margin-bottom: 50px;
+//     }
+
+//     @include desktop {
+//         width: 440px;
+//         height: 208px;
+//     }
+// }
+
+
+// .barContainer{
+//     width: 200px;
+//     height: 430px;
+    
+//     @include tablet {
+//         width: 422px;
+//         height: 219px;   
+
+//         margin-bottom: 50px;
+//     }
+
+// }
 
 // @media screen and (max-width: 768px) {
 //     .barContainer{
@@ -45,6 +73,10 @@
     @include tablet {
         margin-top: 65px;
         margin-bottom: 50px;
+    }
+
+    @include desktop {
+        margin-bottom: 55px;
     }
 }
 
@@ -117,17 +149,30 @@
     }
 }
 
-.barContainer{
+.chartContainer{
+    // margin-bottom: 50px;
     width: 200px;
     height: 430px;
-    
+    margin-bottom: 50px;
+
+    // @include tablet-max {
+    //     width: 422px;
+    //     height: 219px; 
+    //     // width: 422px;
+    //     // height: 219px; 
+    //     // margin-bottom: 50px;
+    // }
+
     @include tablet {
         width: 422px;
-        height: 219px;   
-
-        margin-bottom: 50px;
+        height: 219px; 
     }
 
+    @include desktop {
+        width: 440px;
+        height: 208px;
+        margin-bottom: 50px;
+    }
 }
 
 // .statContainer{
@@ -135,7 +180,7 @@
 // }
 
 .select{
-    width: 343px;
+    max-width: 343px;
     height: 62px;
     
     text-align: center;
@@ -152,6 +197,10 @@
         width: 223px;
         height: 52px;
         margin-bottom: 24px;
+    }
+
+    @include desktop {
+        margin-bottom: 15px;
     }
 }
 
@@ -194,7 +243,7 @@
 .itemTitle{
     margin: 0;
     margin-bottom: 4px;
-
+    letter-spacing: 0.16px;
     @include font (400, 12px, 18px);
 
     color: rgba(243, 243, 243, 0.6);
@@ -214,6 +263,10 @@
     color: $white;
 
     @include tablet {
-        @include font (500, 12px, 16px)
+        @include font (500, 12px, 16px);
+    }
+
+    @include desktop {
+        @include font (500, 14px, 18px);
     }
 }

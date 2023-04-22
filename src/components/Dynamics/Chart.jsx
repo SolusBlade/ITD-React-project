@@ -64,13 +64,13 @@ export const Chart = () => {
       </ul>
 
       {matchesTablet ? (
-        <div className={style.barContainer}>
+        <div className={style.chartContainer}>
           <Bar ref={chartRef} options={optionsTablet} data={data} height={'100%'} width={'100%'} />
         </div>
       ) : (
         <>
           <p>false</p>
-          <div className={style.barContainer}>
+          <div className={style.chartContainer}>
           <Bar ref={chartRef} options={optionsPhone} data={data} height={'100%'} width={'100%'} />
           </div>
         </>

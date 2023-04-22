@@ -13,6 +13,20 @@
         width: 225px;
         margin-top: 66px;
     }
+
+    @include desktop {
+        width: 500px;
+        display: flex;
+        flex-direction: row;
+    }
+
+    @include desktop {
+        height: 209px;
+        width: 570px;
+        order: 2;
+        position: relative;
+        justify-content: space-between;
+    }
 }
 
 .accumulated{
@@ -35,9 +49,14 @@
 .list{
     padding: 0;
     list-style: none;
+    
     @include tablet-max {
         min-width: 250px;
         max-width: 263px;
+    }
+
+    @include desktop {
+        width: 250px;
     }
 }
 
@@ -128,9 +147,15 @@
         padding: 15px;
         width: 225px;
     }
+    
+    @include desktop {
+        width: 254px;
+        height: 209px;
+    }
 }
 
 .accRemain{
+    margin: auto;
     margin-bottom: 100px;
     // width: 343px;
     display: flex;
@@ -152,10 +177,22 @@
     @include tablet {
         width: 672px;
         height: 226px;
+        margin-bottom: 75px;
+        
         display: flex;
         flex-direction: row;
         justify-content: center;
         gap: 59px;
+    }
+
+    @include desktop {
+        margin: 0;
+        width: 570px;
+        height: 257px;
+        order: 3;
+        position: absolute;
+        transform: translate(104.5%, 130%);
+        // flex-basis:content;
     }
 }
 
@@ -213,6 +250,6 @@
     }
     
     @include tablet {
-        margin: 0
+        margin: 0;
     }
 }
