@@ -36,7 +36,7 @@ export const data = {
     },
     {
       //   label: 'label3',
-      data: labels.map(() => 450),
+      data: labels.map(() => 600),
       // borderColor: 'rgb(150, 162, 150)',
       backgroundColor: '#F3F3F3',
     },
