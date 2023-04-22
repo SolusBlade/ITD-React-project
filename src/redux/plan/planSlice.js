@@ -20,7 +20,7 @@ const ownPlanInitialState = {
     year: 0,
     month: 0,
   },
-  isLoading: false,
+  isLoading: true,
   error: null,
 };
 

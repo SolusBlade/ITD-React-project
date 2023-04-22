@@ -1,4 +1,5 @@
 .label {
+  position: relative;
   padding: 14px 18px 18px 18px;
   width: 343px;
   height: 74px;
@@ -39,4 +40,15 @@
   background: transparent;
   border: none;
   outline: none;
+
+  &:disabled {
+    color: rgba(243, 243, 243, 0.4);
+  }
+}
+
+.error {
+  position: absolute;
+  left: 25px;
+  top: 75px;
+  color: red;
 }

@@ -1,10 +1,10 @@
 import { useSelector } from 'react-redux';
-import { selectStateResult } from 'redux/plan/planSelectors';
-import s from './ResultForm.module.scss';
+import { selectorStateResult } from 'redux/plan/planSelectors';
 import { selectorIsBalance } from 'redux/auth/authSelectors';
+import s from './ResultForm.module.scss';
 
 const ResultForm = ({ openModal, onClick }) => {
-  const result = useSelector(selectStateResult);
+  const result = useSelector(selectorStateResult);
   const isBalance = useSelector(selectorIsBalance);
 
   return (
