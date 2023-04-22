@@ -8,7 +8,7 @@ const StatisticsPage = () => {
   return (
     <>
       <section className={s.vectorImg}>
-      <Container>
+        <Container>
         <div className={s.statWrapp}>
           <div className={s.navWrapper}>
             <nav>
@@ -30,7 +30,7 @@ const StatisticsPage = () => {
                     Categories
                   </NavLink>
                 </li>
-               </ul>
+              </ul>
             </nav>
             <div className={s.calendarWrapper}>
               <DateComp />

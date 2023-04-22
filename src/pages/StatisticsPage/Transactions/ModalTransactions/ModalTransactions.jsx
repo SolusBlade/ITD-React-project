@@ -4,9 +4,12 @@ import Icon from 'components/Icon/Icon';
 import Select, { components } from 'react-select';
 import { useSelector } from 'react-redux';
 import { categorySelect } from 'redux/expenses/expensesSelectors';
+import { useState } from 'react';
+
 const modalRoot = document.querySelector('#modal-root');
 
-const ModalTransaction = ({ closeModal, onChange, value }) => {
+const ModalTransaction = ({ closeModal, value }) => {
+  const [currentCategory, setCurrentCategory] = useState('other');
   const { Option } = components;
   const IconOption = props => (
     <Option {...props}>
@@ -24,6 +27,9 @@ const ModalTransaction = ({ closeModal, onChange, value }) => {
     value,
     label,
   }));
+  const onChange = newValue => {
+    setCurrentCategory(newValue.value);
+  };
 
   return createPortal(
     <div className={s.overlayAddIncome}>
@@ -63,7 +69,6 @@ const ModalTransaction = ({ closeModal, onChange, value }) => {
 
           <div>
             <button className={s.buttonEdit} type="submit">
-              {' '}
               Edit
             </button>
           </div>

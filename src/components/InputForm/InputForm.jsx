@@ -1,6 +1,13 @@
 import s from './InputForm.module.scss';
 
-const InputForm = ({ onChange, options, values, onBlur }) => {
+const InputForm = ({
+  onChange,
+  options,
+  values,
+  onBlur,
+  isPlan,
+  errors = [],
+}) => {
   return (
     <>
       {options.map((el, index) => (
@@ -20,7 +27,11 @@ const InputForm = ({ onChange, options, values, onBlur }) => {
             onChange={onChange}
             onBlur={onBlur}
             placeholder={el.placeholder}
+            disabled={el.name === 'savings' && isPlan ? true : false}
           />
+          {errors.includes(el.name) && (
+            <span className={s.error}> invalid value </span>
+          )}
         </label>
       ))}
     </>

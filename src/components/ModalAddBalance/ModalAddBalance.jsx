@@ -18,6 +18,7 @@ const ModalAddBalance = ({ closeModal, text, onSubmit }) => {
   const handleSubmit = e => {
     e.preventDefault();
     onSubmit(form);
+    closeModal();
   };
 
   return createPortal(
@@ -25,6 +26,7 @@ const ModalAddBalance = ({ closeModal, text, onSubmit }) => {
       <div className={s.modalWrapper}>
         <form className={s.modalAddIncome} onSubmit={handleSubmit}>
           <input
+            required
             className={s.modalInput}
             autoComplete="off"
             type="text"
@@ -32,6 +34,7 @@ const ModalAddBalance = ({ closeModal, text, onSubmit }) => {
             placeholder={text}
             value={form.balance}
             onChange={handleChange}
+            pattern="[0-9]*"
           />
 
           <div className={s.btnContainer}>

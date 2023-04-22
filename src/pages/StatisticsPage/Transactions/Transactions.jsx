@@ -1,53 +1,62 @@
 import TransactionsItem from './TransactionsItem/TransactionsItem';
 import css from './Transactions.module.scss';
 import ModalTransaction from './ModalTransactions/ModalTransactions';
-import { useState } from 'react';
-import statisticsOperations from 'redux/transactions/transactions-operations';
-import { selectTransactions } from 'redux/transactions/transactions-selector';
+import {
+  getTransaction,
+  updateTransaction,
+  removeTransaction,
+} from 'redux/transactions/transactionsOperations';
+import { selectedTransactions } from 'redux/transactions/transactionsSelector';
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { selectorIsLoggedIn } from 'redux/auth/authSelectors';
 const Transactions = () => {
-  const transaction = useSelector(selectTransactions);
+  const transaction = useSelector(selectedTransactions);
   const isLoggedIn = useSelector(selectorIsLoggedIn);
 
   const dispatch = useDispatch();
   useEffect(() => {
     const date = {
       year: new Date().getFullYear(),
-      month: new Date().getMonth()+1,
-    }
-    isLoggedIn && dispatch(statisticsOperations.expenseStatistic(date));
+      month: new Date().getMonth() + 1,
+    };
+    isLoggedIn && dispatch(getTransaction(date));
   }, [dispatch, isLoggedIn]);
-  
-  const removeTransaction = id => {
-    dispatch(statisticsOperations.removeExpense(id));
+
+  const removeTrans = id => {
+    dispatch(removeTransaction(id));
+  };
+  const updateTrans = id => {
+    dispatch(updateTransaction(id));
   };
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => {
     setIsModalOpen(true);
   };
   const closeModal = () => setIsModalOpen(false);
+  console.log(transaction);
   return (
     <>
-      {transaction === null && (
+      {/* {transaction?.length === 0 && (
         <div className={css.noTransactionWrapper}>
           <p className={css.noTransactionText}>You have no transactions</p>
-        </div>
-      )}
+        </div> */}
+      {/* )}  */}
       <ul className={css.transactionList}>
-        {transaction &&
-          transaction.map(({ _id: id, sum, comment, category, date }) => (
-            <TransactionsItem
-              openModal={openModal}
-              key={id}
-              sum={sum}
-              comment={comment}
-              category={category}
-              date={date}
-              removeTransaction={() => removeTransaction('id')}
-            />
-          ))}
+        {/* {transaction &&
+          transaction.map(({ _id: id, sum, comment, category, date }) => ( */}
+        <TransactionsItem
+          openModal={openModal}
+          // key={id}
+          // id={id}
+          // sum={sum}
+          // comment={comment}
+          // category={category}
+          // date={date}
+          // removeTrans={removeTrans}
+          // updateTrans={updateTrans}
+        />
+        {/* // ))} */}
       </ul>
 
       {isModalOpen && <ModalTransaction closeModal={closeModal} />}

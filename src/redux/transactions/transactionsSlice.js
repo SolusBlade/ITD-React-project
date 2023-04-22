@@ -1,13 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
-import statisticsOperations, {
-  expenseStatistic,
-} from './transactions-operations';
+import {
+  getTransaction,
+  updateTransaction,
+  removeTransaction,
+} from './transactionsOperations';
 
 const initialState = {
-  transactions: null,
+  transactions: [],
   isLoading: false,
   error: null,
-  categories: null,
 };
 
 const transactionsSlice = createSlice({
@@ -16,32 +17,17 @@ const transactionsSlice = createSlice({
 
   extraReducers: builder => {
     builder
-      .addCase(expenseStatistic.fulfilled, (state, { payload }) => {
+      .addCase(getTransaction.fulfilled, (state, { payload }) => {
         state.transactions = payload;
         state.isLoading = false;
       })
-      .addCase(
-        statisticsOperations.categoryStatistic.fulfilled,
-        (state, action) => {
-          state.categories = action.payload.result;
-          state.isLoading = false;
-        }
-      )
-      .addCase(
-        statisticsOperations.removeExpense.fulfilled,
-        (state, action) => {
-          state.isLoading = false;
-        }
-      )
-      .addCase(
-        statisticsOperations.updateTransaction.fulfilled,
-        (state, action) => {
-          state.isLoading = false;
-        }
-      )
-      .addCase(statisticsOperations.categoryTypeStatistic.fulfilled, state => {
+      .addCase(removeTransaction.fulfilled, (state, action) => {
         state.isLoading = false;
       })
+      .addCase(updateTransaction.fulfilled, (state, action) => {
+        state.isLoading = false;
+      })
+
       .addMatcher(
         action =>
           action.type.startsWith('statistic') &&
@@ -63,4 +49,4 @@ const transactionsSlice = createSlice({
   },
 });
 
-export default transactionsSlice.reducer;
+export const transactionsReducer = transactionsSlice.reducer;
