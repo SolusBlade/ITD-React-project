@@ -1,5 +1,5 @@
-@import '../../../sass/utils/variables';
-@import '../../../sass/utils/mixin';
+@import '../../sass/utils/variables';
+@import '../../sass/utils/mixin';
 
 .transaction {
   @include tablet_max {
@@ -81,21 +81,6 @@
   color: #242424;
 }
 
-.vectorImg {
-  padding-top: 50px;
-  padding-bottom: 66px;
-  height: calc(100vh - 70px);
-  background-repeat: no-repeat;
-  background-position: bottom;
-  background-size: contain;
-  @include tablet {
-    background-image: url(../../../assets/images/vector-tablet.png);
-  }
-
-  @include desktop {
-    background-image: url(../../../assets/images/vector-desktop.png);
-  }
-}
 .inputWrapper {
   display: flex;
   position: relative;

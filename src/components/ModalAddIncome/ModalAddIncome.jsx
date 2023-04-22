@@ -3,7 +3,7 @@ import s from './MoadlAddIncome.module.scss';
 import { createPortal } from 'react-dom';
 import { Field, Form, Formik } from 'formik';
 import { useDispatch } from 'react-redux';
-import { postTransaction } from 'redux/Expenses/expensesOperations';
+import { postTransaction } from 'redux/expenses/expensesOperations';
 
 const modalRoot = document.querySelector('#modal-root');
 

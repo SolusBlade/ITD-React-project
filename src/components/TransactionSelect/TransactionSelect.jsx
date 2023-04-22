@@ -1,6 +1,7 @@
 import Icon from 'components/Icon/Icon';
 import Select, { components } from 'react-select';
 import s from '../ModalAddIncome/MoadlAddIncome.module.scss';
+
 const TransactionSelect = ({ transformCategory, onChange, value }) => {
   const { Option } = components;
   const IconOption = props => (

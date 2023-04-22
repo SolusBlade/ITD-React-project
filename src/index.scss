@@ -4,7 +4,7 @@
 @import './sass/utils/base';
 @import './sass/utils/mixin';
 @import './sass/utils/variables';
-@import './pages/ExpensesPage/TransactionSelect/select.scss';
+@import './components/TransactionSelect/select.scss';
 * {
   box-sizing: border-box;
 }
