@@ -17,7 +17,7 @@ export const getPresaving = createAsyncThunk(
   'get/presaving',
   async (_, thunkAPI) => {
     try {
-      const { data } = await axios.get('/api/personal-plan/daily-limit');
+      const { data } = await axios.get('/api/cashflow/presaving');
       return data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

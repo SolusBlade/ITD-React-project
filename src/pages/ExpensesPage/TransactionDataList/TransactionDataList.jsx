@@ -25,7 +25,10 @@ const TransactionDataList = () => {
 
   const schema = yup.object().shape({
     comment: yup.string().max(80),
-    sum: yup.number().positive(0).required(),
+    sum: yup
+      .number()
+      .positive('enter only a positive number')
+      .required('This field is required'),
     category: yup.string(),
   });
 
@@ -73,27 +76,40 @@ const TransactionDataList = () => {
       >
         <Form autoComplete="off">
           <div className={s.form}>
-            <Input
-              name="balance"
-              title="From account"
-              placeholder={`Account balance: UAH ${balance}`}
-              disabled={true}
-            />
-            <ErrorMessage name="balance" />
-            <TransactionSelect
-              onChange={onChange}
-              value={getValue()}
-              transformCategory={transformCategory}
-            />
+            <div className={s.inputWrapper}>
+              <Input
+                name="balance"
+                title="From account"
+                placeholder={`Account balance: ₴ ${Math.round(balance)} `}
+                disabled={true}
+              />
+            </div>
 
-            <Input
-              name="comment"
-              title="Expense comment"
-              placeholder="Enter comment"
-            />
-            <ErrorMessage name="comment" />
+            <div className={s.inputWrapper}>
+              <TransactionSelect
+                onChange={onChange}
+                value={getValue()}
+                transformCategory={transformCategory}
+              />
+            </div>
 
-            <Input name="sum" title="Sum" placeholder="00.00" />
+            <div className={s.inputWrapper}>
+              <Input
+                name="comment"
+                title="Expense comment"
+                placeholder="Enter comment"
+              />
+              <ErrorMessage name="comment">
+                {msg => <span className={s.errorSpan}>{msg}</span>}
+              </ErrorMessage>
+            </div>
+
+            <div className={s.inputWrapper}>
+              <Input name="sum" title="Sum" placeholder="00.00" />
+              <ErrorMessage name="sum">
+                {msg => <span className={s.errorSpan}>{msg}</span>}
+              </ErrorMessage>
+            </div>
           </div>
 
           <ExpensesLimits openModal={openModal} />

@@ -96,3 +96,20 @@
     background-image: url(../../../assets/images/vector-desktop.png);
   }
 }
+.inputWrapper {
+  display: flex;
+  position: relative;
+
+  @include tablet_max {
+    flex-direction: column;
+  }
+  @include tablet {
+    flex-wrap: wrap;
+  }
+}
+.errorSpan {
+  position: absolute;
+  color: red;
+  bottom: -20px;
+  left: 18px;
+}
