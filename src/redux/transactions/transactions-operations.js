@@ -1,9 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { statisticsAPI } from '../../services/connectoinsApi';
+import { getCashflowTransactionsApi, statisticsAPI } from '../../services/connectoinsApi';
 const period = JSON.parse(localStorage.getItem('selectedPeriod'));
 
 export const categoryTypeStatistic = createAsyncThunk(
-  '/statistic/category',
+  'statistic/category',
   async (_, thunkAPI) => {
     try {
       const { data } = await statisticsAPI.categoryTypeStatistic();
@@ -15,11 +15,13 @@ export const categoryTypeStatistic = createAsyncThunk(
 );
 
 export const expenseStatistic = createAsyncThunk(
-  '/statistic/expense',
+  'statistic/getExpense',
   async (period, thunkAPI) => {
     try {
-      const { data } = await statisticsAPI.expenseStatistic(period);
-      return data.result;
+      console.log(period)
+      const data = await getCashflowTransactionsApi(period);
+      console.log("data:", data)
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -27,7 +29,7 @@ export const expenseStatistic = createAsyncThunk(
 );
 
 export const categoryStatistic = createAsyncThunk(
-  '/statistic/categories',
+  'statistic/categories',
   async (period, thunkAPI) => {
     try {
       const { data } = await statisticsAPI.categoriesStatistic(period);
@@ -40,7 +42,7 @@ export const categoryStatistic = createAsyncThunk(
 );
 
 export const updateTransaction = createAsyncThunk(
-  '/statistic/update',
+  'statistic/update',
   async (credention, thunkAPI) => {
     try {
       const response = await statisticsAPI.updateTransaction(
@@ -56,7 +58,7 @@ export const updateTransaction = createAsyncThunk(
 );
 
 export const removeExpense = createAsyncThunk(
-  '/statistic/delete',
+  'statistic/delete',
   async (transactionId, thunkAPI) => {
     try {
       await statisticsAPI.removeExpense(transactionId);

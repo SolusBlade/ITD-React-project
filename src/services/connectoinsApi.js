@@ -61,9 +61,9 @@ export const addCashflowTransactionApi = transaction => {
   return axios.post('/api/cashflow/', transaction).then(r => r.data);
 };
 
-export const getCashflowTransactionsApi = (year, month) => {
+export const getCashflowTransactionsApi = ({year, month}) => {
   return axios
-    .get('/api/cashflow/', {
+    .get('/api/cashflow', {
       params: {
         year,
         month,

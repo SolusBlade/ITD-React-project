@@ -1,19 +1,26 @@
-import {  memo } from 'react';
-import { useDispatch} from 'react-redux';
+import { memo } from 'react';
+import { useDispatch } from 'react-redux';
 import s from './UserForm.module.scss';
 import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
 import YupPassword from 'yup-password';
+import icon from '../../assets/icons/icons.svg';
 
 YupPassword(Yup);
 
 const UserForm = ({ onSubmit, btnSubmit }) => {
-
   const dispatch = useDispatch();
 
   return (
     <Formik
-      initialValues={{ name: '', email: '', password: '' }}
+      initialValues={{
+        name: '',
+        email: '',
+        password: '',
+        toggle: true,
+        eye: true,
+        type: 'password',
+      }}
       validationSchema={Yup.object({
         name: Yup.string()
           .min(4, 'Must be 4 characters or more')
@@ -32,30 +39,35 @@ const UserForm = ({ onSubmit, btnSubmit }) => {
         setSubmitting(false);
       }}
     >
-      {({ errors, touched }) => (
+      {({ errors, touched, values }) => (
         <Form className={s.form}>
           <h3 className={s.title}>{btnSubmit}</h3>
           {btnSubmit === 'Register' && (
             <>
               {' '}
               <div className={s.inputWrap}>
-
-              <label className={s.inputLabel} htmlFor="nameInput">
-                Name
-              </label>
-              <Field
-                style={touched.name && errors.name? {
-                  outline: '1px solid red',}: {
-                    outline: '1px solid white'}}
-                className={s.inputField}
-                type="text"
-                name="name"
-                id="namelInput"
-                placeholder="Enter your name"
-              />
+                <label className={s.inputLabel} htmlFor="nameInput">
+                  Name
+                </label>
+                <Field
+                  style={
+                    touched.name && errors.name
+                      ? {
+                          outline: '1px solid red',
+                        }
+                      : {
+                          outline: '1px solid white',
+                        }
+                  }
+                  className={s.inputField}
+                  type="text"
+                  name="name"
+                  id="namelInput"
+                  placeholder="Enter your name"
+                />
                 {touched.name && errors.name && (
-              <div className={s.error}>{errors.name}</div>
-            )}
+                  <div className={s.error}>{errors.name}</div>
+                )}
               </div>
             </>
           )}
@@ -65,9 +77,15 @@ const UserForm = ({ onSubmit, btnSubmit }) => {
               Email
             </label>
             <Field
-              style={touched.email && errors.email? {
-                outline: '1px solid red',}: {
-                  outline: '1px solid white'}}
+              style={
+                touched.email && errors.email
+                  ? {
+                      outline: '1px solid red',
+                    }
+                  : {
+                      outline: '1px solid white',
+                    }
+              }
               className={s.inputField}
               type="email"
               name="email"
@@ -84,15 +102,40 @@ const UserForm = ({ onSubmit, btnSubmit }) => {
               Password
             </label>
             <Field
-              style={touched.password && errors.password? {
-                outline: '1px solid red',}: {
-                  outline: '1px solid white'}}
+              style={
+                touched.password && errors.password
+                  ? {
+                      outline: '1px solid red',
+                    }
+                  : {
+                      outline: '1px solid white',
+                    }
+              }
               className={s.inputField}
-              type="password"
+              type={values.toggle ? 'password' : 'text'}
               id="passwordInput"
               placeholder="Enter Password"
               name="password"
             />
+            <label className={s.checkboxtLabel} htmlFor="toggle">
+              <Field
+                className={s.eyeCheckbox}
+                type="checkbox"
+                id="toggle"
+                name="toggle"
+              />
+              <span className={s.eyeSpan}>
+                {values.toggle ? (
+                  <svg width="24" height="24" fill={touched.password && errors.password? 'red': 'white' } >
+                    <use xlinkHref={`${icon}#icon-eye-blocked`} />
+                  </svg>
+                ) : (
+                  <svg width="24" height="24" fill={touched.password && errors.password? 'red': 'white' } >
+                    <use xlinkHref={`${icon}#icon-eye`} />
+                  </svg>
+                )}
+              </span>
+            </label>
             {touched.password && errors.password && (
               <div className={s.error}>{errors.password}</div>
             )}
