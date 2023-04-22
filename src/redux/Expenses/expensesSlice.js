@@ -41,11 +41,10 @@ const expensesSlice = createSlice({
       })
       .addCase(postTransaction.fulfilled, (state, { payload }) => {
         if (payload.type === 'expense') {
-          state.presaving.totalByDay += payload.sum;
-          state.presaving.totalByMounth += payload.sum;
+          state.presaving.dailyLimit -= payload.sum;
+          state.presaving.monthLimit -= payload.sum;
         } else {
-          state.presaving.totalByDay -= payload.sum;
-          state.presaving.totalByMounth -= payload.sum;
+          return state;
         }
       })
       .addCase(postTransaction.rejected, (state, { payload }) => {

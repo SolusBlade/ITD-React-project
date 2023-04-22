@@ -3,19 +3,20 @@ import s from './ExpensesLimits.module.scss';
 import { presavingSelect } from 'redux/Expenses/expensesSelectors';
 
 const ExpensesLimits = ({ openModal }) => {
-  const { dailyLimit, monthLimit, totalByDay, totalByMounth } =
-    useSelector(presavingSelect);
+  const { dailyLimit, monthLimit } = useSelector(presavingSelect);
 
   return (
     <div className={s.expenses}>
       <div className={s.expensesWrapper}>
         <ul className={s.list}>
           <li className={s.item}>
-            <p className={s.sum}>{Math.round(dailyLimit - totalByDay)} ₴</p>
+            <p className={s.sum}>{Math.round(dailyLimit)} ₴</p>
+
             <p className={s.text}>Daily limit</p>
           </li>
           <li className={s.item}>
-            <p className={s.sum}>{Math.round(monthLimit - totalByMounth)} ₴</p>
+            <p className={s.sum}>{Math.round(monthLimit)} ₴</p>
+
             <p className={s.text}>Monthly limit</p>
           </li>
         </ul>

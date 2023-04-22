@@ -11,6 +11,18 @@ import { postTransaction } from 'redux/Expenses/expensesOperations';
 import TransactionSelect from '../TransactionSelect/TransactionSelect';
 import * as yup from 'yup';
 
+const schema = yup.object().shape({
+  comment: yup.string().max(80),
+  sum: yup.number().positive('enter only a positive number').required(),
+  category: yup.string(),
+});
+
+const initialValues = {
+  comment: '',
+  sum: '',
+  category: '',
+};
+
 const TransactionDataList = () => {
   const [currentCategory, setCurrentCategory] = useState('other');
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,23 +35,8 @@ const TransactionDataList = () => {
     label,
   }));
 
-  const schema = yup.object().shape({
-    comment: yup.string().max(80),
-    sum: yup
-      .number()
-      .positive('enter only a positive number')
-      .required('This field is required'),
-    category: yup.string(),
-  });
-
   const openModal = () => {
     setIsModalOpen(true);
-  };
-
-  const initialValues = {
-    comment: '',
-    sum: '',
-    category: '',
   };
 
   const closeModal = () => setIsModalOpen(false);
@@ -48,12 +45,12 @@ const TransactionDataList = () => {
     dispatch(
       postTransaction({
         ...values,
+        comment: !values.comment ? 'no comment' : values.comment,
         sum: Number(values.sum),
         category: currentCategory,
         type: 'expense',
       })
     );
-
     actions.resetForm();
   };
 
