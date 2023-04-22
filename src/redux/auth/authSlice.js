@@ -56,7 +56,7 @@ const authSlice = createSlice({
         state.balance = payload;
       })
       .addCase(postTransaction.fulfilled, (state, { payload }) => {
-        state.balance = payload.newBalance;
+        state.balance += -payload.sum;
       })
       .addMatcher(
         action =>
