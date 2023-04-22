@@ -4,15 +4,6 @@ import {useDropzone} from "react-dropzone";
 import { postImage } from "redux/dynamics/dynamicsOperations";
 import { useDispatch } from "react-redux";
 import { useMemo } from "react";
-// import icon from "../../assets/icons/icons.svg";
-// import favicon from "../../assets/icons/favicon.svg";
-// $dark-blue: #191D28;
-// $blue: #3A6AF5;
-// $purple: #6359E9;
-// $white: #F3F3F3;
-// $transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-// $dark-gray: #242424;
-// $light-gray: rgba(255, 255, 255, 0.2);
 
 const baseStyle = {
     width: '100%',
@@ -35,7 +26,6 @@ const baseStyle = {
 export const Info = (props) => {
     const {
         acceptedFiles,
-        fileRejections,
         getRootProps,
         getInputProps
     } = useDropzone({
@@ -61,26 +51,7 @@ export const Info = (props) => {
             console.log('form data',formData);
             dispatch(postImage(formData));
         }
-    },[acceptedFiles])  
-
-    // console.log('accepted file ', file)
-    //   const acceptedFileItems = acceptedFiles.map(file => (
-    //     <li key={file.path}>
-    //       {file.path} - {file.size} bytes
-    //     </li>
-    //   ));
-    
-    //   const fileRejectionItems = fileRejections.map(({ file, errors }) => (
-    //     <li key={file.path}>
-    //       {file.path} - {file.size} bytes
-    //       <ul>
-    //         {errors.map(e => (
-    //           <li key={e.code}>{e.message}</li>
-    //         ))}
-    //       </ul>
-    //     </li>
-    //   ));
-
+    },[acceptedFiles, file.length, dispatch])  
 
     const style = useMemo(() => ({
         ...baseStyle,

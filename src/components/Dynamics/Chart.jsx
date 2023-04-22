@@ -40,7 +40,7 @@ export const Chart = () => {
   // console.log('isLoggedIn ', isLoggedIn)
 
   useEffect(() => {
-    const chart = chartRef.current;
+    // const chart = chartRef.current;
     // console.log('useEffect isLoggedIn ', isLoggedIn)
     // console.log('localStorage', localStorage)
     if (isLoggedIn) {

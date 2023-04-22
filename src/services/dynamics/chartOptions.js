@@ -1,7 +1,3 @@
-function changeIndexAxis() {
-  return window.screen.width > 767 ? 'x' : 'y';
-}
-
 export const optionsPhone = {
     chartArea:{
       bottom: 5
