@@ -1,8 +1,26 @@
-@import '../../../sass/utils/variables';
+@import "../../../sass/utils/mixin";
+@import "../../../sass/utils/variables";
 
-// .headerNav {
-//     margin-left: auto;
-// }
+.MobMenuOpen {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    top: 73px;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    height: calc(100% - 71px);
+    background-color: $dark-blue;
+    @media screen and (min-width: 768px) and (max-width: 1279px) {
+        background-image: url(../../../assets/images/vector-tablet.png);
+        @include retina {
+            background-image: url(../../../assets/images/vector-tablet-2x.png);
+        }
+        background-repeat: no-repeat;
+        background-position: center bottom;
+        background-size: contain;
+    }
+}
 
 .headerList {
     display: flex;
@@ -13,6 +31,43 @@
 
     @media screen and (min-width: 768px) {
         gap: 12px;
+    }
+}
+
+.headerListAuth {
+    @media screen and (max-width: 1279px) {
+        display: none;
+    }
+
+    @media screen and (min-width: 1280px) {
+        display: flex;
+        gap: 32px;
+    }
+}
+
+.headerListAuth.MobMenuListOpen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 32px;
+    align-items: center;
+}
+
+.headerNavOpen {
+    margin-top: 24%;
+}
+
+.headerItemAuth {
+    text-align: center;
+    font-weight: 700;
+    line-height: 1.1;
+
+    @media screen and (max-width: 767px) {
+        font-size: 18px;
+    }
+
+    @media screen and (min-width: 768px) {
+        font-size: 24px;
     }
 }
 
@@ -42,25 +97,17 @@
     }
 }
 
-.headerListAuth {
-    
-    @media screen and (min-width: 1280px) {
-        display: flex;
-        gap: 32px;
-    }
-}
-
 .authLink {
-
     @media screen and (min-width: 1280px) {
         font-weight: 700;
         font-size: 14px;
         line-height: 1.4;
         color: $white;
-        &:hover,
-        &:focus {
-            color: $blue;
-        }
+    }
+
+    &:hover,
+    &:focus {
+        color: $blue;
     }
 }
 

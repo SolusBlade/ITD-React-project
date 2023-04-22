@@ -15,7 +15,6 @@ import { optionsPhone, optionsTablet } from "services/dynamics/chartOptions";
 import { data } from 'services/dynamics/chartData';
 import { useSelector, useDispatch } from "react-redux";
 import { getDynamics } from "redux/dynamics/dynamicsOperations";
-// import { useState } from "react";
 import { selectDynamics } from "redux/dynamics/dynamicsVariables";
 import { selectorIsLoggedIn } from "redux/auth/authSelectors";
 import { useMediaQuery } from "react-responsive";

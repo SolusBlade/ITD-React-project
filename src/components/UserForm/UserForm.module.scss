@@ -3,9 +3,13 @@
 
 $black: #242424;
 $gray: #6c6c6c;
+$transition: 300ms linear;
 
 .form {
-  padding: 64px 38px 198px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 64px 38px 270px;
   background: $blue;
   border-radius: 40px 40px 0px 0px;
 
@@ -39,9 +43,16 @@ $gray: #6c6c6c;
   }
 }
 
-.inputLabel {
+.inputWrap {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  padding-bottom: 24px;
+}
+
+.inputLabel {
+  align-items: flex-start;
 
   margin-bottom: 6px;
 
@@ -55,28 +66,30 @@ $gray: #6c6c6c;
 }
 
 .inputField {
- 
   padding: 11px 24px;
   width: 299px;
   height: 40px;
 
   border: 1px solid rgba(243, 243, 243, 0.4);
   border-radius: 28px;
-  &:not(:last-of-type){
-    margin-bottom: 18px;
-  }
+  margin-bottom: 4px;
 
   @include font(400, 14px, 1.3);
-  background-color: inherit;
+  background-color: $blue;
   color: rgba(243, 243, 243, 0.8);
 
   @include tablet {
     color: $white;
     border: 1px solid rgba(108, 108, 108, 0.4);
+    background-color: $dark-blue;
   }
 
   &:focus-visible {
     outline: 1px solid $white;
+  }
+  &:-webkit-autofill,
+  &:-webkit-autofill:focus {
+    transition: background-color 600000s 0s, color 600000s 0s;
   }
 }
 
@@ -92,23 +105,59 @@ $gray: #6c6c6c;
   color: $blue;
   border-radius: 60px;
   border: 1px solid rgba(243, 243, 243, 0.4);
+  transform: scale(1);
+  transition: background-color $transition, color $transition,
+    transform $transition;
 
   @include tablet {
-    margin-top: 40px;
+    margin-top: 16px;
     background-color: $blue;
     color: $white;
     border: 1px solid $blue;
 
     &:hover {
-      color: $black;
       background-color: $white;
     }
   }
 
   &:hover {
     color: $black;
+    transform: scale(1.02);
   }
-  // :active {
-  //   transform: scale(0.95);
-  // }
+  &:active {
+    transform: scale(0.98);
+    background-color: $blue;
+  }
+}
+
+.error {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  margin-top: 3px;
+  margin-bottom: 3px;
+
+  color: #ff2e00;
+}
+
+.checkboxLabel {
+  position: relative;
+}
+
+.eyeCheckbox {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+  display: none;
+}
+.eyeSpan {
+  position: absolute;
+  right: 16px;
+  bottom: 34px;
+  height: 25px;
+  width: 25px;
+  color: $white;
 }

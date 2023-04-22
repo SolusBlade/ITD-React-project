@@ -4,73 +4,96 @@ import { useSelector } from 'react-redux';
 
 import { selectorIsLoggedIn } from 'redux/auth/authSelectors';
 import d from './Navigation.module.scss';
+import { useMediaQuery } from 'react-responsive';
 
-export const Navigation = () => {
-
+export const Navigation = ({ isOpen, handleToggleMenu }) => {
   const isAuth = useSelector(selectorIsLoggedIn);
   const location = useLocation();
 
-  const getActiveClass = ({ isActive }) => clsx(
-    !isAuth && d.link, !isAuth && isActive && d.active, 
-    isAuth && isActive && d.authLinkActive, isAuth && d.authLink
+  const isTablMob = useMediaQuery({ query: '(max-width: 1279px)' });
+
+  const getActiveClass = ({ isActive }) =>
+    clsx(
+      !isAuth && d.link,
+      !isAuth && isActive && d.active,
+      isAuth && isActive && d.authLinkActive,
+      isAuth && d.authLink
     );
 
   return (
-    <nav className={d.headerNav}>
-      <ul className={d.headerList}>
-        {!isAuth ? (
-          <>
+    <>
+      {!isAuth ? (
+        <nav className={d.headerNav}>
+          <ul className={clsx(d.headerList)}>
             <li className={d.headerItem}>
-              <NavLink 
-                className={getActiveClass} 
-                state={location} 
-                to="/login"
-              >
+              <NavLink className={getActiveClass} state={location} to="/login">
                 Log In
               </NavLink>
             </li>
             <li className={d.headerItem}>
-              <NavLink 
-                className={getActiveClass} 
-                state={location} 
+              <NavLink
+                className={getActiveClass}
+                state={location}
                 to="/register"
               >
                 Registration
               </NavLink>
             </li>
-          </>
-        ) : (
-          <>
-            <li className={d.headerItemAuth}>
-              <NavLink
-                state={location}
-                to="/plan"
-                className={getActiveClass}
-              >
-                Personal plan
-              </NavLink>
-            </li>
-            <li className={d.headerItemAuth}>
-              <NavLink
-                state={location}
-                to="/cash-flow"
-                className={getActiveClass}
-              >
-                Cashflow
-              </NavLink>
-            </li>
-            <li className={d.headerItemAuth}>
-              <NavLink
-                state={location}
-                to="/dynamics"
-                className={getActiveClass}
-              >
-                Dynamics
-              </NavLink>
-            </li>
-          </>
-        )}
-      </ul>
-    </nav>
+          </ul>
+        </nav>
+      ) : (
+        <div
+          className={clsx(
+            isOpen && isTablMob && d.MobMenuOpen,
+            isOpen && !isTablMob && d.MobMenu
+          )}
+        >
+          <nav
+            className={clsx(
+              !isTablMob && d.headerNav,
+              isOpen && isTablMob && d.headerNavOpen
+            )}
+          >
+            <ul
+              className={clsx(
+                d.headerListAuth,
+                isOpen && isTablMob && d.MobMenuListOpen
+              )}
+            >
+              <li className={d.headerItemAuth}>
+                <NavLink
+                  state={location}
+                  to="/plan"
+                  className={getActiveClass}
+                  onClick={handleToggleMenu}
+                >
+                  Personal plan
+                </NavLink>
+              </li>
+              <li className={d.headerItemAuth}>
+                <NavLink
+                  state={location}
+                  to="/cash-flow"
+                  className={getActiveClass}
+                  onClick={handleToggleMenu}
+                >
+                  Cashflow
+                </NavLink>
+              </li>
+              <li className={d.headerItemAuth}>
+                <NavLink
+                  state={location}
+                  to="/dynamics"
+                  className={getActiveClass}
+                  onClick={handleToggleMenu}
+                >
+                  Dynamics
+                </NavLink>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      )}
+    </>
   );
 };

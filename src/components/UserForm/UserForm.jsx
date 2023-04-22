@@ -1,87 +1,152 @@
-import { useState, memo } from 'react';
+import { memo } from 'react';
 import { useDispatch } from 'react-redux';
 import s from './UserForm.module.scss';
+import { Formik, Field, Form } from 'formik';
+import * as Yup from 'yup';
+import YupPassword from 'yup-password';
+import icon from '../../assets/icons/icons.svg';
 
-const UserForm = ({onSubmit, btnSubmit }) => {
-  const initialForm = {
-    name: '',
-    email: '',
-    password: '',
-  };
-  const [form, setForm] = useState(initialForm);
-  const { name, email, password } = form;
+YupPassword(Yup);
 
+const UserForm = ({ onSubmit, btnSubmit }) => {
   const dispatch = useDispatch();
 
-  const handleInputChange = evt => {
-    const { name, value } = evt.target;
-
-    setForm(data => ({ ...data, [name]: value }));
-  };
-
-  const resetForm = () => {
-    setForm(initialForm);
-  };
-
-  const handleSubmitForm = evt => {
-    evt.preventDefault();
-    dispatch(onSubmit(form));
-    resetForm();
-  };
-
   return (
-    <form className={s.form} onSubmit={handleSubmitForm}>
-      <h3 className={s.title}>{btnSubmit}</h3>
-      {btnSubmit === 'Register' && (
-        <>
-          {' '}
-          <label className={s.inputLabel} htmlFor="nameInput">
-            Name
-          </label>
-          <input className={s.inputField}
-            type="text"
-            name="name"
-            id="namelInput"
-            placeholder="Enter your name"
-            value={name}
-            onChange={handleInputChange}
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            required
-          />
-        </>
-      )}
-      <label className={s.inputLabel} htmlFor="emailInput">
-        Email
-      </label>
-      <input className={s.inputField}
-        type="email"
-        name="email"
-        id="emailInput"
-        placeholder="Enter Email"
-        value={email}
-        onChange={handleInputChange}
-        pattern="^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$"
-        title="Email may contain only letters and numbers. For example user99@mail.com"
-        required
-      />
+    <Formik
+      initialValues={{
+        name: '',
+        email: '',
+        password: '',
+        toggle: true,
+        eye: true,
+        type: 'password',
+      }}
+      validationSchema={Yup.object({
+        name: Yup.string()
+          .min(4, 'Must be 4 characters or more')
+          .max(25, 'Must be 25 characters or less'),
+        email: Yup.string().email('Invalid email address').required('Required'),
+        password: Yup.string()
+          .required('Required')
+          .min(7, 'Must contain at least 7 characters')
+          .minLowercase(1, 'Must contain at least 1 lower case letter')
+          .minUppercase(1, 'Must contain at least 1 UPPER case letter')
+          .minNumbers(1, 'Must contain at least 1 number'),
+      })}
+      onSubmit={(values, { setSubmitting }) => {
+        console.log(values);
+        dispatch(onSubmit(values));
+        setSubmitting(false);
+      }}
+    >
+      {({ errors, touched, values }) => (
+        <Form className={s.form}>
+          <h3 className={s.title}>{btnSubmit}</h3>
+          {btnSubmit === 'Register' && (
+            <>
+              {' '}
+              <div className={s.inputWrap}>
+                <label className={s.inputLabel} htmlFor="nameInput">
+                  Name
+                </label>
+                <Field
+                  style={
+                    touched.name && errors.name
+                      ? {
+                          outline: '1px solid red',
+                        }
+                      : {
+                          outline: '1px solid white',
+                        }
+                  }
+                  className={s.inputField}
+                  type="text"
+                  name="name"
+                  id="namelInput"
+                  placeholder="Enter your name"
+                />
+                {touched.name && errors.name && (
+                  <div className={s.error}>{errors.name}</div>
+                )}
+              </div>
+            </>
+          )}
 
-      <label className={s.inputLabel} htmlFor="passwordInput">
-        Password
-      </label>
-      <input className={s.inputField}
-        type="password"
-        id="passwordInput"
-        placeholder="Enter Password"
-        name="password"
-        pattern="^[a-z0-9_-]{6,18}$"
-        title="Password must be 6 to 18 letters, digits and can contain - or _ "
-        required
-        value={password}
-        onChange={handleInputChange}
-      />
-      <button className={s.button} type="submit">{btnSubmit}</button>
-    </form>
+          <div className={s.inputWrap}>
+            <label className={s.inputLabel} htmlFor="emailInput">
+              Email
+            </label>
+            <Field
+              style={
+                touched.email && errors.email
+                  ? {
+                      outline: '1px solid red',
+                    }
+                  : {
+                      outline: '1px solid white',
+                    }
+              }
+              className={s.inputField}
+              type="email"
+              name="email"
+              id="emailInput"
+              placeholder="Enter Email"
+            />
+            {touched.email && errors.email && (
+              <div className={s.error}>{errors.email}</div>
+            )}
+          </div>
+
+          <div className={s.inputWrap}>
+            <label className={s.inputLabel} htmlFor="passwordInput">
+              Password
+            </label>
+            <Field
+              style={
+                touched.password && errors.password
+                  ? {
+                      outline: '1px solid red',
+                    }
+                  : {
+                      outline: '1px solid white',
+                    }
+              }
+              className={s.inputField}
+              type={values.toggle ? 'password' : 'text'}
+              id="passwordInput"
+              placeholder="Enter Password"
+              name="password"
+            />
+            <label className={s.checkboxtLabel} htmlFor="toggle">
+              <Field
+                className={s.eyeCheckbox}
+                type="checkbox"
+                id="toggle"
+                name="toggle"
+              />
+              <span className={s.eyeSpan}>
+                {values.toggle ? (
+                  <svg width="24" height="24" fill={touched.password && errors.password? 'red': 'white' } >
+                    <use xlinkHref={`${icon}#icon-eye-blocked`} />
+                  </svg>
+                ) : (
+                  <svg width="24" height="24" fill={touched.password && errors.password? 'red': 'white' } >
+                    <use xlinkHref={`${icon}#icon-eye`} />
+                  </svg>
+                )}
+              </span>
+            </label>
+            {touched.password && errors.password && (
+              <div className={s.error}>{errors.password}</div>
+            )}
+          </div>
+
+          <button className={s.button} type="submit">
+            {btnSubmit}
+          </button>
+        </Form>
+      )}
+    </Formik>
   );
 };
 

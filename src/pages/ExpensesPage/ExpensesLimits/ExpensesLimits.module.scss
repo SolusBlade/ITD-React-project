@@ -87,7 +87,7 @@
 
 .buttonReady {
   display: block;
-
+  cursor: pointer;
   @include font(700, 14px, 20px);
   color: $blue;
   background-color: $white;

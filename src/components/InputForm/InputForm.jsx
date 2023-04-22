@@ -1,6 +1,6 @@
 import s from './InputForm.module.scss';
 
-const InputForm = ({ onChange, options, values }) => {
+const InputForm = ({ onChange, options, values, onBlur }) => {
   return (
     <>
       {options.map((el, index) => (
@@ -12,11 +12,13 @@ const InputForm = ({ onChange, options, values }) => {
 
           <input
             required
+            autoComplete="off"
             className={s.input}
             type={el.type}
             name={el.name}
-            value={values[el.name] || ''}
+            value={values[el?.name] || ''}
             onChange={onChange}
+            onBlur={onBlur}
             placeholder={el.placeholder}
           />
         </label>

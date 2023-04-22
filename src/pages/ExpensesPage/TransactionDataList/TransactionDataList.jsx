@@ -1,60 +1,87 @@
-import { Formik, Form, Field } from 'formik';
-import { options } from '../options';
+import { Formik, Form } from 'formik';
 import s from './TransactionDataList.module.scss';
 import Input from '../Input';
 import ExpensesLimits from '../ExpensesLimits/ExpensesLimits';
 import { useState } from 'react';
 import ModalAddIncome from '../ModalAddIncome/ModalAddIncome';
-
-const initialValues = {
-  balance: `Account balance: UAH 80,000`,
-  comment: '',
-  summ: '',
-};
+import { useDispatch, useSelector } from 'react-redux';
+import { selectorBalance } from 'redux/auth/authSelectors';
+import { categorySelect } from 'redux/Expenses/expensesSelectors';
+import { postTransaction } from 'redux/Expenses/expensesOperations';
+import TransactionSelect from '../TransactionSelect/TransactionSelect';
 
 const TransactionDataList = () => {
+  const [currentCategory, setCurrentCategory] = useState('other');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const category = useSelector(categorySelect);
+  const balance = useSelector(selectorBalance);
+  const dispatch = useDispatch();
+
+  const transformCategory = category.map(({ name: value, title: label }) => ({
+    value,
+    label,
+  }));
 
   const openModal = () => {
     setIsModalOpen(true);
   };
 
+  const initialValues = {
+    comment: '',
+    sum: '',
+    category: '',
+  };
+
   const closeModal = () => setIsModalOpen(false);
+
+  const handleSubmit = (values, actions) => {
+    dispatch(
+      postTransaction({
+        ...values,
+        sum: Number(values.sum),
+        category: currentCategory,
+        type: 'expense',
+      })
+    );
+
+    actions.resetForm();
+  };
+
+  const getValue = () => {
+    return currentCategory
+      ? transformCategory.find(c => c.value === currentCategory)
+      : '';
+  };
+
+  const onChange = newValue => {
+    setCurrentCategory(newValue.value);
+  };
 
   return (
     <section className={s.transaction}>
-      <Formik initialValues={initialValues}>
+      <Formik onSubmit={handleSubmit} initialValues={initialValues}>
         <Form autoComplete="off">
           <div className={s.form}>
             <Input
               name="balance"
               title="From account"
-              placeholder=""
+              placeholder={`Account balance: UAH ${balance}`}
               disabled={true}
             />
 
-            <label htmlFor="category" className={s.lable}>
-              <p className={s.inputTitle}>Per category</p>
-              <Field
-                className={s.input}
-                as="select"
-                children={options.map(({ name, value }, i) => (
-                  <option key={i} className={s.option} value={value}>
-                    {name}
-                  </option>
-                ))}
-                name="category"
-                placeholder="Per Category"
-              ></Field>
-            </label>
+            <TransactionSelect
+              onChange={onChange}
+              value={getValue()}
+              transformCategory={transformCategory}
+            />
 
             <Input
               name="comment"
               title="Expense comment"
-              placeholder="Concert tickets"
+              placeholder="Enter comment"
             />
 
-            <Input name="summ" title="Summ" placeholder="00.00" />
+            <Input name="sum" title="Sum" placeholder="00.00" />
           </div>
 
           <ExpensesLimits openModal={openModal} />

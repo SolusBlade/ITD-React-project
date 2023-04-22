@@ -1,0 +1,101 @@
+@import '../../sass/utils/variables';
+@import '../../sass/utils/mixin';
+.statWrapp {
+  filter: drop-shadow(0px 11px 20px rgba(0, 0, 0, 0.5));
+
+  @media screen and (min-width: 768px) {
+    width: 704px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 769px;
+  }
+  margin: auto;
+  margin-top: 66px; // прибрати, коли буде секція
+  margin-bottom: 106px; // прибрати, коли буде секція
+}
+.navWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 769px;
+  margin: 0 auto;
+
+  @include tablet_max {
+    flex-direction: column-reverse;
+    width: 343px;
+  }
+
+  @include tablet {
+    flex-direction: row;
+    width: 704px;
+    align-items: flex-end;
+  }
+
+  @include desktop {
+    width: 769px;
+    padding-top: 20px;
+  }
+}
+
+.navThumb {
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  // box-shadow: 0px 11px 38px rgba(0, 0, 0, 0.2);
+}
+
+.link {
+  display: block;
+  padding: 18px 19px 18px 20px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.19;
+  border-top-right-radius: 16px;
+  border-top-left-radius: 16px;
+  background-color: rgba(31, 37, 52, 0.4);
+  color: rgba(243, 243, 243, 0.4);
+}
+
+.active {
+  display: block;
+  padding: 18px 19px 18px 20px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.19;
+  border-top-right-radius: 16px;
+  border-top-left-radius: 16px;
+  border-top: 1px solid rgb(58, 106, 245);
+  background-color: rgba(37, 44, 65, 1);
+  color: rgba(243, 243, 243, 1);
+}
+
+@include tablet_max {
+  .calendarWrapper {
+    width: 217px;
+  }
+}
+
+@include tablet {
+  .calendarWrapper {
+    padding-top: 10px;
+    width: 222px;
+  }
+}
+.vectorImg {
+  padding-top: 50px;
+  padding-bottom: 66px;
+  height: calc(100vh - 70px);
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: contain;
+  @include tablet {
+    background-image: url(../../assets/images/vector-tablet.png);
+  }
+
+  @include desktop {
+    background-image: url(../../assets/images/vector-desktop.png);
+  }
+}

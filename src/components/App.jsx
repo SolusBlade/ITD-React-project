@@ -14,6 +14,8 @@ import ModalLogin from './ModalLogin/ModalLogin';
 import { getCurrentUserInfo } from 'redux/auth/authOperations';
 import { useEffect } from 'react';
 
+import Transactions from 'pages/StatisticsPage/Transactions/Transactions';
+import Categories from 'pages/StatisticsPage/Categories/Categories';
 // eslint-disable-next-line
 const PrivateRoute = ({ component, redirectTo = '/login' }) => {
   const isLoggedIn = useSelector(selectorIsLoggedIn);
@@ -33,7 +35,7 @@ const App = () => {
   useEffect(() => {
     if (token) {
       dispatch(getCurrentUserInfo(token));
-    };
+    }
   }, [token, dispatch]);
 
   return (
@@ -66,19 +68,16 @@ const App = () => {
         />
         <Route
           path="/dynamics"
-
           element={<DynamicsPage />}
           // element={<PublicRoute component={<DynamicsPage />} />}
         />
         <Route path="/statistics" element={<StatisticsPage />}>
-          {/* <Route
-            path="/transactions"
-            element={<PublicRoute component={<ModalLogin />} />}
-          />
+          <Route path="transactions" element={<Transactions />} />
           <Route
-            path="/categories"
-            element={<PublicRoute component={<ModalRegister />} />}
-          /> */}
+            path="categories"
+            element={<Categories />}
+            // element={<PublicRoute component={<ModalRegister />} />}
+          />
         </Route>
 
         <Route path="*" element={<Navigate to="/" />} />
