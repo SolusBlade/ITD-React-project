@@ -34,6 +34,7 @@ const Transactions = () => {
     setIsModalOpen(true);
   };
   const closeModal = () => setIsModalOpen(false);
+  console.log(transaction);
   return (
     <>
       {/* {transaction?.length === 0 && (
