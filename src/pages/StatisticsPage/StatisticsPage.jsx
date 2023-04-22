@@ -36,8 +36,8 @@ const StatisticsPage = () => {
               <DateComp />
             </div>
           </div>
-          </div>
           <Outlet/>
+          </div>
       </Container>
       </section>
     </>
