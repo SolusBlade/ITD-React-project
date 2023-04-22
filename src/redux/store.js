@@ -15,6 +15,7 @@ import {
 import storage from 'redux-persist/lib/storage';
 import { ownPlanReducer } from './plan/planSlice';
 import { expensesReducer } from './Expenses/expensesSlice';
+import transactionsReducer  from './transactions/transactions-slice';
 
 const persistContactsConfig = {
   key: 'auth',
@@ -30,6 +31,7 @@ export const store = configureStore({
     ownPlan: ownPlanReducer,
     expenses: expensesReducer,
     dynamics: dynamicsReducer,
+    statistics: transactionsReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

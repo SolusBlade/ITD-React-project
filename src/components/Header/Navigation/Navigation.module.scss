@@ -1,7 +1,5 @@
-@import '../../../sass/utils/variables';
-
-@import '../../../sass/utils/mixin';
-@import '../../../sass/utils/variables';
+@import "../../../sass/utils/mixin";
+@import "../../../sass/utils/variables";
 
 .MobMenuOpen {
     position: absolute;
@@ -37,7 +35,6 @@
 }
 
 .headerListAuth {
-    
     @media screen and (max-width: 1279px) {
         display: none;
     }
@@ -101,16 +98,16 @@
 }
 
 .authLink {
-
     @media screen and (min-width: 1280px) {
         font-weight: 700;
         font-size: 14px;
         line-height: 1.4;
         color: $white;
-        &:hover,
-        &:focus {
-            color: $blue;
-        }
+    }
+
+    &:hover,
+    &:focus {
+        color: $blue;
     }
 }
 
