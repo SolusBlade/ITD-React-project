@@ -112,6 +112,12 @@ export const getDynamicsByMonthApi = (year, month) => {
 };
 
 // Тут нужно будет подумать, пока не готово
-export const addDynamicsImageApi = () => {
-  return axios.patch('/api/dynamics/flatImage').then(r => r.data);
+export const addDynamicsImageApi = (data) => {
+  return axios({
+    method: 'patch',
+    url: '/api/dynamics/flatImage',
+    // headers: {},
+    data: data
+  });
+  // return axios.patch('/api/dynamics/flatImage').then(r => r.data);
 };

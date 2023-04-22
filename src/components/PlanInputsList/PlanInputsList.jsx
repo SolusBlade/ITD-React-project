@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectStatePlan } from 'redux/plan/planSelectors';
+import {
+  selectorPlanIsLoading,
+  selectorStatePlan,
+} from 'redux/plan/planSelectors';
 import {
   calcPersonalPlan,
   getPersonalPlan,
@@ -12,16 +15,19 @@ import InputForm from 'components/InputForm/InputForm';
 import ResultForm from 'components/ResultForm/ResultForm';
 import ModalAddBalance from 'components/ModalAddBalance/ModalAddBalance';
 import { addUserBalance } from 'redux/auth/authOperations';
-import s from './PlanInputsList.module.scss';
 import { selectorIsLoggedIn } from 'redux/auth/authSelectors';
+import validateObject from 'services/validateObject';
+import s from './PlanInputsList.module.scss';
 
 const PlanInputsList = () => {
   const dispatch = useDispatch();
-  const formData = useSelector(selectStatePlan);
+  const formData = useSelector(selectorStatePlan);
   const isLoggedIn = useSelector(selectorIsLoggedIn);
+  const isLoading = useSelector(selectorPlanIsLoading);
   const [inputs, setInputs] = useState(formData);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDirty, setIsDirty] = useState(false);
+  const [error, setError] = useState([]);
   const isPlan = useRef(false);
 
   useEffect(() => {
@@ -48,13 +54,16 @@ const PlanInputsList = () => {
 
   const handlerBlur = () => {
     const isComplete = Object.values(inputs).every(value => value !== '');
+    const { isValid, errors } = validateObject(inputs);
+    isComplete && setError(errors);
 
-    if (isComplete && isDirty) {
+    if (isComplete && isValid && isDirty) {
       for (let key in inputs) {
         if (typeof inputs[key] === 'string') {
           inputs[key] = Number(inputs[key]);
         }
       }
+
       dispatch(preCalcPersonalPlan(inputs));
       setIsDirty(false);
     }
@@ -80,29 +89,37 @@ const PlanInputsList = () => {
 
   return (
     <>
-      <form className={s.form}>
-        <InputForm
-          onChange={handleChange}
-          options={optionsDefault}
-          values={inputs}
-          onBlur={handlerBlur}
-        />
-      </form>
+      {isLoading ? (
+        <h2>Loading...</h2>
+      ) : (
+        <>
+          <form className={s.form}>
+            <InputForm
+              onChange={handleChange}
+              options={optionsDefault}
+              values={inputs}
+              onBlur={handlerBlur}
+              isPlan={isPlan.current}
+              errors={error}
+            />
+          </form>
 
-      <p></p>
-      <p className={s.p}>
-        Specify the percentage that you would like to accumulate per month from
-        the total amount of income and you will see when you reach the goal
-      </p>
+          <p className={s.p}>
+            Specify the percentage that you would like to accumulate per month
+            from the total amount of income and you will see when you reach the
+            goal
+          </p>
 
-      <ResultForm openModal={openModal} onClick={handleFits} />
+          <ResultForm openModal={openModal} onClick={handleFits} />
 
-      {isModalOpen && (
-        <ModalAddBalance
-          text="Enter balance"
-          closeModal={closeModal}
-          onSubmit={handleAddBalance}
-        />
+          {isModalOpen && (
+            <ModalAddBalance
+              text="Enter balance"
+              closeModal={closeModal}
+              onSubmit={handleAddBalance}
+            />
+          )}
+        </>
       )}
     </>
   );

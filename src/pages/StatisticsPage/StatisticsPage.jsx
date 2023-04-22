@@ -9,6 +9,7 @@ const StatisticsPage = () => {
     <>
       <section className={s.vectorImg}>
         <Container>
+        <div className={s.statWrapp}>
           <div className={s.navWrapper}>
             <nav>
               <ul className={s.navThumb}>
@@ -35,9 +36,9 @@ const StatisticsPage = () => {
               <DateComp />
             </div>
           </div>
-
-          <Outlet />
-        </Container>
+          <Outlet/>
+          </div>
+      </Container>
       </section>
     </>
   );

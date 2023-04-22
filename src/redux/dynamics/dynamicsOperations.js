@@ -1,15 +1,6 @@
-import axios from "axios";
+// import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getDynamicsApi, getDynamicsByMonthApi } from "services/connectoinsApi";
-
-// const token = {
-//     set(token) {
-//       axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-//     },
-//     unset() {
-//       axios.defaults.headers.common.Authorization = ``;
-//     },
-// };
+import { addDynamicsImageApi, getDynamicsApi, getDynamicsByMonthApi } from "services/connectoinsApi";
 
 // export const setToken = () => {
 //     const storage = JSON.parse(localStorage.getItem("persist:auth"));
@@ -22,7 +13,7 @@ import { getDynamicsApi, getDynamicsByMonthApi } from "services/connectoinsApi";
 //     // }).join('')
 //     // console.log(filterTest);
 //     // axios.defaults.headers.common.Authorization = ``;
-//      axios.defaults.headers.common['Authorization'] = `Bearer ${filteredToken}`;
+//     axios.defaults.headers.common['Authorization'] = `Bearer ${filteredToken}`;
 //     // return storage.token;
 // }
 
@@ -33,9 +24,6 @@ export const getDynamics = createAsyncThunk(
         try{
             const response = await getDynamicsApi();
 
-            // const data = await axios.get('https://flat-backend.p.goit.global/api/dynamics')
-            // console.log("New data", data);
-            // console.log("response data", response);
            return response.data;
         } catch (error) {
             console.log('getDynamics error')
@@ -63,12 +51,14 @@ export const postImage = createAsyncThunk(
     async (data, thunkAPI) => {
         // https://flat-backend.p.goit.global
         try{
-            const response = await axios({
-                method: 'patch',
-                url: '/api/dynamics/flatImage',
-                // headers: {},
-                data: data
-            });
+
+            const response = await addDynamicsImageApi(data);
+            // const response = await axios({
+            //     method: 'patch',
+            //     url: '/api/dynamics/flatImage',
+            //     // headers: {},
+            //     data: data
+            // });
             console.log('PostImage data', data)
             // const response = await axios.post('/api/dynamics/flatImage/', file)
 

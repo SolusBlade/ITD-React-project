@@ -1,20 +1,63 @@
+@import "../../sass/utils/mixin";
+@import "../../sass/utils/variables";
+// $dark-blue: #191D28;
+// $blue: #3A6AF5;
+// $purple: #6359E9;
+// $white: #F3F3F3;
+// $transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+// $dark-gray: #242424;
+// $light-gray: rgba(255, 255, 255, 0.2);
+
 .infoContainer{
+    @include tablet {
+        width: 225px;
+        margin-top: 66px;
+    }
 
+    @include desktop {
+        width: 500px;
+        display: flex;
+        flex-direction: row;
+    }
+
+    @include desktop {
+        height: 209px;
+        width: 570px;
+        order: 2;
+        position: relative;
+        justify-content: space-between;
+    }
 }
 
-.accumulated{
+// .accumulated{
 
-}
+// }
 
 .title{
     margin: 0;
     margin-bottom: 32px;
+
+    @include font (400, 12px, 12px);
+    color: $white;
+    opacity: 0.87;
+
+    @include tablet {
+        margin-bottom: 50px;
+    }
 }
 
 .list{
     padding: 0;
     list-style: none;
+    
+    @include tablet-max {
+        min-width: 250px;
+        max-width: 263px;
+    }
 
+    @include desktop {
+        width: 250px;
+    }
 }
 
 .item{
@@ -29,15 +72,30 @@
 
 .text{
     margin: 0;
+
+    @include font (400, 14px, 16.8px);
+    letter-spacing: 0.02em;
+
+    color: rgba(243, 243, 243, 0.4);
 }
 
 .num{
     margin: 0;
+
+    @include font (700, 14px, 16.8px);
+    letter-spacing: 0.02em;
+
+    color: $white;
 }
 
 .barTitle{
     margin: 0;
     margin-bottom: 8px;
+
+    @include font (400, 16px, 19px);
+    letter-spacing: -0.125714px;
+
+    color: $white;
 }
 
 .bar{
@@ -45,8 +103,12 @@
     height: 8px;
     width: 100%;
 
-    background-color: white;
+    background-color: $white;
     border-radius: 4px;
+
+    @include tablet {
+        height: 5px;
+    }
 }
 
 .barFill{
@@ -54,52 +116,122 @@
     width: 28%;
     border-radius: 4px;
 
-    background-color: #3A6AF5;
+    background-color: $blue;
+
+    @include tablet {
+        height: 5px;
+    }
 }
 
-.image{
+.imageContainer{
     margin-bottom: 64px;
-    width: 343px;
-    height: 260px;
+    // width: 343px;
+    // height: 260px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #1F2534;
+
     text-align: center;
-    
     border-radius: 16px;
-    border: 1px solid white;
+    // border: 1px solid white;
+    @include tablet-max {
+        padding: 15px;
+        height: 260px;
+        min-width: 250px;
+        max-width: 343px;
+    }
+
+    @include tablet {
+        padding: 15px;
+        width: 225px;
+    }
+    
+    @include desktop {
+        width: 254px;
+        height: 209px;
+    }
 }
-// .imageDrop{
-//     width: 90%;
-//     height: 90%;
-//     border: 1px solid white;
-// }
-// .dropzone{
-//     width: 150px;
-//     height: 150px;
-//     background-color: red;
-// }
+
 .accRemain{
+    margin: auto;
     margin-bottom: 100px;
-    width: 343px;
+    // width: 343px;
     display: flex;
     flex-direction: column;
     align-items: center;
 
     text-align: center;
+    
+    background-color: #1F2534;
 
     border-radius: 16px;
-    border: 1px solid white;
+    // border: 1px solid white;
+
+    @include tablet-max {
+        min-width: 250px;
+        max-width: 343px;
+    }
+
+    @include tablet {
+        width: 672px;
+        height: 226px;
+        margin-bottom: 75px;
+        
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 59px;
+    }
+
+    @include desktop {
+        margin: 0;
+        width: 570px;
+        height: 257px;
+        order: 3;
+        position: absolute;
+        transform: translate(104.5%, 130%);
+        // flex-basis:content;
+    }
+}
+
+.accTitleContainer{
+    margin-top: 40px;
+    margin-bottom: 40px;
+
+    @include tablet {
+        margin-top: 0px;
+        margin-bottom: 0px;
+        // margin-right: 40px;
+        // justify-content: space-between;
+        // align-content: space-around;
+    }
 }
 
 .accTitle{
     width: 263px;
-    margin-top: 40px;
     margin-bottom: 28px;
+
+    @include font (600, 20px, 24px);
+    letter-spacing: 0.02em;
+}
+
+.accSpan{
+    color: $blue;
 }
 
 .accNum{
-    margin-bottom: 40px;
 
     font-size: 36;
     line-height: calc(43/36);
+
+    @include font (700, 36px, 43px);
+    letter-spacing: 0.02em;
+
+    @include tablet {
+        @include font (700, 50px, 60px)
+    }
 }
 
 .svgContainer{
@@ -107,5 +239,17 @@
     height: 165px;
     margin-bottom: 40px;
     
-    border: 1px solid white;
+    background-image: url(../../assets/images/dynamics-planer.png);
+    background-repeat: no-repeat;
+    // background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+
+    @include retina {
+        background-image: url(../../assets/images/dynamics-planer-2x.png);
+    }
+    
+    @include tablet {
+        margin: 0;
+    }
 }
