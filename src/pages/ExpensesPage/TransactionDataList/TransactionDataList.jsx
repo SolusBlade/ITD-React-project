@@ -1,4 +1,4 @@
-import { Formik, Form } from 'formik';
+import { Formik, Form, ErrorMessage } from 'formik';
 import s from './TransactionDataList.module.scss';
 import Input from '../Input';
 import ExpensesLimits from '../ExpensesLimits/ExpensesLimits';
@@ -9,6 +9,7 @@ import { selectorBalance } from 'redux/auth/authSelectors';
 import { categorySelect } from 'redux/Expenses/expensesSelectors';
 import { postTransaction } from 'redux/Expenses/expensesOperations';
 import TransactionSelect from '../TransactionSelect/TransactionSelect';
+import * as yup from 'yup';
 
 const TransactionDataList = () => {
   const [currentCategory, setCurrentCategory] = useState('other');
@@ -21,6 +22,12 @@ const TransactionDataList = () => {
     value,
     label,
   }));
+
+  const schema = yup.object().shape({
+    comment: yup.string().max(80),
+    sum: yup.number().positive(0).required(),
+    category: yup.string(),
+  });
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -59,7 +66,11 @@ const TransactionDataList = () => {
 
   return (
     <section className={s.transaction}>
-      <Formik onSubmit={handleSubmit} initialValues={initialValues}>
+      <Formik
+        onSubmit={handleSubmit}
+        validationSchema={schema}
+        initialValues={initialValues}
+      >
         <Form autoComplete="off">
           <div className={s.form}>
             <Input
@@ -68,7 +79,7 @@ const TransactionDataList = () => {
               placeholder={`Account balance: UAH ${balance}`}
               disabled={true}
             />
-
+            <ErrorMessage name="balance" />
             <TransactionSelect
               onChange={onChange}
               value={getValue()}
@@ -80,6 +91,7 @@ const TransactionDataList = () => {
               title="Expense comment"
               placeholder="Enter comment"
             />
+            <ErrorMessage name="comment" />
 
             <Input name="sum" title="Sum" placeholder="00.00" />
           </div>

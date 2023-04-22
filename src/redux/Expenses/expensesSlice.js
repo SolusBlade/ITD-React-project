@@ -4,7 +4,8 @@ import {
   getPresaving,
   postTransaction,
 } from './expensesOperations';
-
+import storage from 'redux-persist/lib/storage';
+import { persistReducer } from 'redux-persist';
 const initialState = {
   category: [],
   presaving: { monthLimit: 0, dailyLimit: 0, totalByMounth: 0, totalByDay: 0 },
@@ -48,4 +49,15 @@ const expensesSlice = createSlice({
   },
 });
 
-export const expensesReducer = expensesSlice.reducer;
+const persistExpensesConfig = {
+  key: 'limits',
+  storage,
+  whitelist: ['dailyLimit', 'monthLimit'],
+};
+
+export const persistedExpensesReduser = persistReducer(
+  persistExpensesConfig,
+  expensesSlice.reducer
+);
+
+// export const expensesReducer = expensesSlice.reducer;
