@@ -48,6 +48,7 @@ const TransactionDataList = () => {
     dispatch(
       postTransaction({
         ...values,
+        comment: !values.comment ? 'no comment' : values.comment,
         sum: Number(values.sum),
         category: currentCategory,
         type: 'expense',
