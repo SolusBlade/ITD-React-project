@@ -24,18 +24,18 @@ const PlanInputsList = () => {
   const [isDirty, setIsDirty] = useState(false);
   const isPlan = useRef(false);
 
-  useEffect(() => {
-    isLoggedIn &&
-      dispatch(getPersonalPlan())
-        .then(({ payload }) => {
-          setInputs(payload.plan);
-          isPlan.current = true;
-        })
-        .catch(error => {
-          console.error(error);
-          isPlan.current = false;
-        });
-  }, [dispatch, isLoggedIn]);
+  // useEffect(() => {
+  //   isLoggedIn &&
+  //     dispatch(getPersonalPlan())
+  //       .then(({ payload }) => {
+  //         setInputs(payload.plan);
+  //         isPlan.current = true;
+  //       })
+  //       .catch(error => {
+  //         console.error(error);
+  //         isPlan.current = false;
+  //       });
+  // }, [dispatch, isLoggedIn]);
 
   const handleChange = e => {
     const { name, value } = e.target;
