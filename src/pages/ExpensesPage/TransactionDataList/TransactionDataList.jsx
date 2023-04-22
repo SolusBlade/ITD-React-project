@@ -1,4 +1,4 @@
-import { Formik, Form } from 'formik';
+import { Formik, Form, ErrorMessage } from 'formik';
 import s from './TransactionDataList.module.scss';
 import Input from '../Input';
 import ExpensesLimits from '../ExpensesLimits/ExpensesLimits';
@@ -9,6 +9,7 @@ import { selectorBalance } from 'redux/auth/authSelectors';
 import { categorySelect } from 'redux/Expenses/expensesSelectors';
 import { postTransaction } from 'redux/Expenses/expensesOperations';
 import TransactionSelect from '../TransactionSelect/TransactionSelect';
+import * as yup from 'yup';
 
 const TransactionDataList = () => {
   const [currentCategory, setCurrentCategory] = useState('other');
@@ -21,6 +22,15 @@ const TransactionDataList = () => {
     value,
     label,
   }));
+
+  const schema = yup.object().shape({
+    comment: yup.string().max(80),
+    sum: yup
+      .number()
+      .positive('enter only a positive number')
+      .required('This field is required'),
+    category: yup.string(),
+  });
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -59,29 +69,47 @@ const TransactionDataList = () => {
 
   return (
     <section className={s.transaction}>
-      <Formik onSubmit={handleSubmit} initialValues={initialValues}>
+      <Formik
+        onSubmit={handleSubmit}
+        validationSchema={schema}
+        initialValues={initialValues}
+      >
         <Form autoComplete="off">
           <div className={s.form}>
-            <Input
-              name="balance"
-              title="From account"
-              placeholder={`Account balance: UAH ${balance}`}
-              disabled={true}
-            />
+            <div className={s.inputWrapper}>
+              <Input
+                name="balance"
+                title="From account"
+                placeholder={`Account balance: ₴ ${Math.round(balance)} `}
+                disabled={true}
+              />
+            </div>
 
-            <TransactionSelect
-              onChange={onChange}
-              value={getValue()}
-              transformCategory={transformCategory}
-            />
+            <div className={s.inputWrapper}>
+              <TransactionSelect
+                onChange={onChange}
+                value={getValue()}
+                transformCategory={transformCategory}
+              />
+            </div>
 
-            <Input
-              name="comment"
-              title="Expense comment"
-              placeholder="Enter comment"
-            />
+            <div className={s.inputWrapper}>
+              <Input
+                name="comment"
+                title="Expense comment"
+                placeholder="Enter comment"
+              />
+              <ErrorMessage name="comment">
+                {msg => <span className={s.errorSpan}>{msg}</span>}
+              </ErrorMessage>
+            </div>
 
-            <Input name="sum" title="Sum" placeholder="00.00" />
+            <div className={s.inputWrapper}>
+              <Input name="sum" title="Sum" placeholder="00.00" />
+              <ErrorMessage name="sum">
+                {msg => <span className={s.errorSpan}>{msg}</span>}
+              </ErrorMessage>
+            </div>
           </div>
 
           <ExpensesLimits openModal={openModal} />
