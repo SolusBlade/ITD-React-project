@@ -7,7 +7,6 @@ const DynamicsPage = () => {
   return <section className={style.section}>
     <Chart/>
     <Info/>
-    <Outlet/>
   </section>;
 };
 
