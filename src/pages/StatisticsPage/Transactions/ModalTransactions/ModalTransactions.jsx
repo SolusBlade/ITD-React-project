@@ -63,7 +63,6 @@ const ModalTransaction = ({ closeModal, onChange, value }) => {
 
           <div>
             <button className={s.buttonEdit} type="submit">
-              {' '}
               Edit
             </button>
           </div>

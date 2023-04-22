@@ -11,7 +11,7 @@ const StatisticsPage = () => {
         <Container>
           <div className={s.navWrapper}>
             <nav>
-              <div className={s.navThumb}>
+              <ul className={s.navThumb}>
                 <li>
                   <NavLink
                     to="transactions"
@@ -29,7 +29,7 @@ const StatisticsPage = () => {
                     Categories
                   </NavLink>
                 </li>
-              </div>
+              </ul>
             </nav>
             <div className={s.calendarWrapper}>
               <DateComp />
