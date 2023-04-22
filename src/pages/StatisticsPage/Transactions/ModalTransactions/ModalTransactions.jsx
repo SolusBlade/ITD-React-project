@@ -3,7 +3,7 @@ import s from '../Transactions.module.scss';
 import Icon from 'components/Icon/Icon';
 import Select, { components } from 'react-select';
 import { useSelector } from 'react-redux';
-import { categorySelect } from 'redux/Expenses/expensesSelectors';
+import { categorySelect } from 'redux/expenses/expensesSelectors';
 const modalRoot = document.querySelector('#modal-root');
 
 const ModalTransaction = ({ closeModal, onChange, value }) => {
