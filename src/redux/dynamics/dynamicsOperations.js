@@ -22,7 +22,7 @@ import { getDynamicsApi, getDynamicsByMonthApi } from "services/connectoinsApi";
 //     // }).join('')
 //     // console.log(filterTest);
 //     // axios.defaults.headers.common.Authorization = ``;
-//      axios.defaults.headers.common['Authorization'] = `Bearer ${filteredToken}`;
+//     axios.defaults.headers.common['Authorization'] = `Bearer ${filteredToken}`;
 //     // return storage.token;
 // }
 

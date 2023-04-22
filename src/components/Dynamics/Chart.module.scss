@@ -41,6 +41,11 @@
         margin-top: 50px;
         margin-bottom: 50px;
     }
+
+    @include tablet {
+        margin-top: 65px;
+        margin-bottom: 50px;
+    }
 }
 
 .list{
@@ -48,19 +53,38 @@
     padding-left: 20px;
     display: flex;
     flex-direction: column;
+    margin-bottom: 50px;
+    // @include tablet-max {
+    //     margin-bottom: 50px;
+    // }
 
-    @include tablet-max {
-        margin-bottom: 50px;
+    @include tablet {
+        flex-direction: row;
     }
 }
 
 .listItem{
     position: relative;
-    
+    // float: left;
     @include font (400, 12px, 14.4px);
+
+    // @include tablet {
+    //     margin: 0;
+    //     // float: left;
+    // }
 
     &:not(:last-child){
         margin-bottom: 4px;
+    }
+
+    @include tablet {
+        margin: 0;
+        // margin-left: 40px;
+        
+        &:not(:last-child){
+            margin: 0px;
+            margin-right: 70px;
+        }
     }
 
     &:before{
@@ -96,6 +120,14 @@
 .barContainer{
     width: 200px;
     height: 430px;
+    
+    @include tablet {
+        width: 422px;
+        height: 219px;   
+
+        margin-bottom: 50px;
+    }
+
 }
 
 // .statContainer{
@@ -103,7 +135,7 @@
 // }
 
 .select{
-    // width: 343px;
+    width: 343px;
     height: 62px;
     
     text-align: center;
@@ -115,6 +147,12 @@
     @include tablet-max {
         margin-bottom: 28px;
     }
+
+    @include tablet {
+        width: 223px;
+        height: 52px;
+        margin-bottom: 24px;
+    }
 }
 
 .statList{
@@ -123,6 +161,10 @@
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
+
+    @include tablet {
+        margin-bottom: 72px;
+    }
 }
 
 @media screen and (max-width: 374px) {
@@ -143,7 +185,10 @@
     border-radius: 16px;
     background-color: rgba(31, 37, 52, 0.5);
     /* text-align: center; */
-    
+    @include tablet {
+        width: 78px;
+        height: 52px;
+    }
 }
 
 .itemTitle{
@@ -154,6 +199,10 @@
 
     color: rgba(243, 243, 243, 0.6);
 
+    @include tablet {
+        @include font (400, 8px, 18px)
+    }
+
 }
 
 .itemNum{
@@ -163,4 +212,8 @@
     letter-spacing: 0.16px;
 
     color: $white;
+
+    @include tablet {
+        @include font (500, 12px, 16px)
+    }
 }
