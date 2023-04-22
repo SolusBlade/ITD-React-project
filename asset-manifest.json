@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/ITD-React-project/static/css/main.f795a7fb.css",
-    "main.js": "/ITD-React-project/static/js/main.1a87c8d9.js",
+    "main.css": "/ITD-React-project/static/css/main.f8567af2.css",
+    "main.js": "/ITD-React-project/static/js/main.899afcff.js",
     "static/media/Lato-Semibold.ttf": "/ITD-React-project/static/media/Lato-Semibold.dab63590f439194ec956.ttf",
     "static/media/Lato-Bold.ttf": "/ITD-React-project/static/media/Lato-Bold.9cfae71062337c38b44f.ttf",
     "static/media/Lato-Regular.ttf": "/ITD-React-project/static/media/Lato-Regular.cbcf73593dd54516d4b3.ttf",
@@ -26,13 +26,15 @@
     "static/media/vector-tablet-2x.png": "/ITD-React-project/static/media/vector-tablet-2x.ff4ce0156ba0229e43a1.png",
     "static/media/vector-desktop.png": "/ITD-React-project/static/media/vector-desktop.e1e259a6a82e821f7164.png",
     "static/media/vector-tablet.png": "/ITD-React-project/static/media/vector-tablet.3fc6c1c515420d40ec4b.png",
+    "static/media/dynamics-planer-2x.png": "/ITD-React-project/static/media/dynamics-planer-2x.e0e6c170e03ef7c7011d.png",
     "static/media/icons.svg": "/ITD-React-project/static/media/icons.a4fc8e2b51b79c066bc4e8f03bd6b2e0.svg",
+    "static/media/dynamics-planer.png": "/ITD-React-project/static/media/dynamics-planer.4f40508966748d7a90b6.png",
     "index.html": "/ITD-React-project/index.html",
-    "main.f795a7fb.css.map": "/ITD-React-project/static/css/main.f795a7fb.css.map",
-    "main.1a87c8d9.js.map": "/ITD-React-project/static/js/main.1a87c8d9.js.map"
+    "main.f8567af2.css.map": "/ITD-React-project/static/css/main.f8567af2.css.map",
+    "main.899afcff.js.map": "/ITD-React-project/static/js/main.899afcff.js.map"
   },
   "entrypoints": [
-    "static/css/main.f795a7fb.css",
-    "static/js/main.1a87c8d9.js"
+    "static/css/main.f8567af2.css",
+    "static/js/main.899afcff.js"
   ]
 }
