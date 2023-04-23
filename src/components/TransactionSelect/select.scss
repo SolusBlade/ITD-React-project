@@ -3,6 +3,13 @@
 .labelForSelector {
   background-color: rgba(37, 44, 65, 0.5);
   border-radius: 16px;
+  &:focus-within {
+    outline: 1px solid $blue;
+    border-radius: 16px;
+    & .labelText {
+      color: $blue;
+    }
+  }
   @include tablet {
     width: 336px;
   }
