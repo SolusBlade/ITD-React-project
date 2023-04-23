@@ -33,9 +33,6 @@ const transactionsSlice = createSlice({
       .addCase(removeTransaction.fulfilled, (state, action) => {
         state.isLoading = false;
       })
-      .addCase(removeTransaction.pending, (state, action) => {
-        state.isLoading = false;
-      })
       .addCase(updateTransaction.fulfilled, (state, action) => {
         state.isLoading = false;
       })
@@ -53,7 +50,8 @@ const transactionsSlice = createSlice({
       .addMatcher(
         action =>
           action.type.startsWith('statistic') &&
-          action.type.endsWith('/pending'),
+          action.type.endsWith('/pending')&&
+          !action.type.endsWith('/removeTransaction/pending'),
         state => {
           state.isLoading = true;
           state.error = null;

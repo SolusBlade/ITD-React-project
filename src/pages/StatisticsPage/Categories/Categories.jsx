@@ -1,57 +1,12 @@
-import { useEffect, useState } from 'react';
-import d from './Categories.module.scss';
-import { getCategoriesStat } from 'redux/transactions/transactionsOperations';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectedCategoriesStat } from 'redux/transactions/transactionsSelector';
 
-import { selectorIsLoggedIn } from 'redux/auth/authSelectors';
+import d from './Categories.module.scss';
+import {  useSelector } from 'react-redux';
+import { selectedChengedCategoriesStat } from 'redux/transactions/transactionsSelector';
+
+
 
 const Categories = () => {
-  const categories = useSelector(selectedCategoriesStat);
-  const dispatch = useDispatch();
-  const isLoggedIn = useSelector(selectorIsLoggedIn);
-
-  // useEffect(() => {
-  //   const date = {
-  //     year: new Date().getFullYear(),
-  //     month: new Date().getMonth() + 1,
-  //   };
-  //   console.log('lsplfkcps');
-  //   isLoggedIn && dispatch(getCategoriesStat(date));
-  // }, [isLoggedIn, dispatch]);
-
-  // const categories = [
-  //     {
-  //       category: 'products',
-  //       amount: 1000,
-  //       percentage: '25%',
-  //     },
-  //     {
-  //       category: 'product',
-  //       amount: 1000,
-  //       percentage: '25%',
-  //     },
-  //     {
-  //       category: 'produc',
-  //       amount: 1000,
-  //       percentage: '25%',
-  //     },
-  //     {
-  //       category: 'produ',
-  //       amount: 1000,
-  //       percentage: '25%',
-  //     },
-  //     {
-  //       category: 'prod',
-  //       amount: 1000,
-  //       percentage: '25%',
-  //     },
-  //     {
-  //       category: 'pro',
-  //       amount: 1000,
-  //       percentage: '25%',
-  //     },
-  //   ];
+  const categories = useSelector(selectedChengedCategoriesStat);
 
   return (
     <>
