@@ -2,9 +2,9 @@ import Container from 'components/Container/Container';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCategory, getPresaving } from 'redux/Expenses/expensesOperations';
-import s from './ExpensesPage.module.scss';
 import { selectorIsLoggedIn } from 'redux/auth/authSelectors';
 import TransactionDataList from 'components/TransactionDataList/TransactionDataList';
+import Section from 'components/Section/Section';
 
 const ExpensesPage = () => {
   const dispatch = useDispatch();
@@ -15,11 +15,11 @@ const ExpensesPage = () => {
   }, [dispatch, isLoggedIn]);
 
   return (
-    <section className={s.vectorImg}>
+    <Section>
       <Container>
         <TransactionDataList />
       </Container>
-    </section>
+    </Section>
   );
 };
 
