@@ -46,7 +46,7 @@ const MoadlAddIncome = ({ closeModal, text }) => {
             name="icon-close"
             width={24}
             height={24}
-            className={s.iconClose}
+            secondaryClassName={s.iconClose}
           />
         </button>
       </div>
