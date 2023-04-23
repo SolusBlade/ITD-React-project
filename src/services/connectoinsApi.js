@@ -94,10 +94,7 @@ export const getCashflowCategoriesPercentageApi = ({year, month}) => {
 // Запросы для статистики
 
 export const getDynamicsApi = () => {
-  // console.log('token', localStorage.getItem("persist:auth"))
   return axios.get('/api/dynamics/').then(r => r.data);
-  // const data = axios.get(`/api/dynamics/,${JSON.parse(localStorage.getItem("persist:auth"))}`);
-  // console.log(data)
 };
 
 export const getDynamicsByMonthApi = (year, month) => {
