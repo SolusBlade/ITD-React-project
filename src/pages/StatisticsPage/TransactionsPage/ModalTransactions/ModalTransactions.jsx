@@ -5,10 +5,10 @@ import Select from 'react-select';
 import { useDispatch, useSelector } from 'react-redux';
 import c from '../../../../components/ModalAddIncome/MoadlAddIncome.module.scss';
 import { useEffect, useState } from 'react';
-import { categorySelect } from 'redux/expenses/expensesSelectors';
+import { categorySelect } from 'redux/Expenses/expensesSelectors';
 import { updateTransaction } from 'redux/transactions/transactionsOperations';
 import { IconOption } from 'components/TransactionSelect/iconsForSelectCategory';
-import { getCategory } from 'redux/expenses/expensesOperations';
+import { getCategory } from 'redux/Expenses/expensesOperations';
 
 const modalRoot = document.querySelector('#modal-root');
 
