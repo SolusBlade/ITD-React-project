@@ -27,7 +27,8 @@ const PlanInputsList = () => {
   const isLoading = useSelector(selectorPlanIsLoading);
   const [inputs, setInputs] = useState(formData);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isDirty, setIsDirty] = useState(false);
+  const [isBlurDirty, setIsBlurDirty] = useState(false);
+  const [isFitsDirty, setIsFitsDirty] = useState(false);
   const [error, setError] = useState([]);
   const isPlan = useRef(false);
 
@@ -48,17 +49,24 @@ const PlanInputsList = () => {
     const { name, value } = e.target;
     setInputs(values => {
       const newInputs = { ...values, [name]: value };
-      setIsDirty(true);
+      setIsBlurDirty(true);
+      setIsFitsDirty(true);
       return newInputs;
     });
   };
 
+  const isValidObjFunc = () => {
+    const { isValid, errors } = validateObject(inputs);
+    return { isValid, errors };
+  };
+
   const handlerBlur = () => {
     const isComplete = Object.values(inputs).every(value => value !== '');
-    const { isValid, errors } = validateObject(inputs);
+
+    const { isValid, errors } = isValidObjFunc();
     isComplete && setError(errors);
 
-    if (isComplete && isValid && isDirty) {
+    if (isComplete && isValid && isBlurDirty) {
       for (let key in inputs) {
         if (typeof inputs[key] === 'string') {
           inputs[key] = Number(inputs[key]);
@@ -66,7 +74,7 @@ const PlanInputsList = () => {
       }
 
       dispatch(preCalcPersonalPlan(inputs));
-      setIsDirty(false);
+      setIsBlurDirty(false);
     }
   };
 
@@ -76,12 +84,14 @@ const PlanInputsList = () => {
   };
 
   const handleFits = () => {
-    if (!isPlan.current) {
+    const { isValid } = isValidObjFunc();
+    if (isValid && !isPlan.current) {
       dispatch(calcPersonalPlan(inputs)).then(() => {
         isPlan.current = true;
       });
-    } else if (!isDirty) {
+    } else if (isValid && isFitsDirty) {
       dispatch(updatePersonalPlan(inputs));
+      setIsFitsDirty(false);
     }
   };
 
