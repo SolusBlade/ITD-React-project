@@ -1,12 +1,13 @@
 // eslint-disable-next-line
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './DateComp.scss';
 import Icon from 'components/Icon/Icon';
-import { useDispatch } from 'react-redux';
-import { getTransaction } from 'redux/transactions/transactionsOperations';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCategoriesStat, getTransaction } from 'redux/transactions/transactionsOperations';
 import { useLocation } from 'react-router-dom';
+import { selectorIsLoggedIn } from 'redux/auth/authSelectors';
 
 const months = [
   'January',
@@ -26,7 +27,18 @@ const months = [
 const DateComp = () => {
   const dispatch = useDispatch();
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const isLoggedIn = useSelector(selectorIsLoggedIn);
   const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname.endsWith('transactions')) {
+      isLoggedIn && dispatch(getTransaction(changedDateForApi(selectedDate)));
+    }
+    if (location.pathname.endsWith('categories')) {
+      isLoggedIn &&
+        dispatch(getCategoriesStat(changedDateForApi(selectedDate)));
+    }
+  }, [isLoggedIn, dispatch, location.pathname]);
 
   const changedDateForPicker = newDate => {
     const month = newDate.getMonth();
@@ -37,7 +49,6 @@ const DateComp = () => {
   const changedDateForApi = newDate => {
     const month = newDate.getMonth();
     const year = newDate.getFullYear();
-
     return { year, month: month + 1 };
   };
 
@@ -46,7 +57,7 @@ const DateComp = () => {
       dispatch(getTransaction(changedDateForApi(date)));
     }
     if (location.pathname.endsWith('categories')) {
-      console.log('handleCloseCalendar  categories:', changedDateForApi(date));
+      dispatch(getCategoriesStat(changedDateForApi(date)));
     }
   };
 

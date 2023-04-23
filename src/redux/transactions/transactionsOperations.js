@@ -40,12 +40,12 @@ export const removeTransaction = createAsyncThunk(
     try {
       await removeCashflowTransactionApi(transactionId);
 
-      const data = await getCashflowTransactionsApi(period);
+      // const data = await getCashflowTransactionsApi();
 
       // const data = await getCashflowTransactionsApi(period);
       // return data; 
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return rejectWithValue(error.message);
     }
   }
 );

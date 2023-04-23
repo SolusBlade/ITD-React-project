@@ -3,10 +3,15 @@ import DateComp from 'components/DateComp/DateComp';
 
 import s from './StatisticsPage.module.scss';
 import { NavLink, Outlet } from 'react-router-dom';
+import Loader from 'components/Loader/Loader';
+import { useSelector } from 'react-redux';
+import { selectedIsLoading } from 'redux/transactions/transactionsSelector';
 
 const StatisticsPage = () => {
+  const isLoading = useSelector(selectedIsLoading);
   return (
     <>
+      {isLoading && <Loader />}
       <section className={s.vectorImg}>
         <Container>
           <div className={s.statWrapp}>

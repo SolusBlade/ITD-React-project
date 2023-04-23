@@ -9,21 +9,85 @@ import { selectedTransactions } from 'redux/transactions/transactionsSelector';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { selectorIsLoggedIn } from 'redux/auth/authSelectors';
+
+// const Transactions = () => {
+//   const leter = useSelector(selectedTransactions);
+//   const [transaction, setTrans] = useState([]);
+//   const isLoggedIn = useSelector(selectorIsLoggedIn);
+//   const [isModalOpen, setIsModalOpen] = useState(false);
+//   const dispatch = useDispatch();
+
+//   useEffect(() => {
+//     setTrans(leter);
+//     const date = {
+//       year: new Date().getFullYear(),
+//       month: new Date().getMonth() + 1,
+//     };
+//     isLoggedIn && dispatch(getTransaction(date));
+//   }, [dispatch, isLoggedIn]);
+
+//   const openModal = () => {
+//     setIsModalOpen(true);
+//   };
+
+//   const closeModal = () => setIsModalOpen(false);
+
+//   const filterIt = id => {
+//     const best = transaction.filter(el => el._id !== id);
+//     setTrans(best);
+//     dispatch(removeTransaction(id));
+//   };
+
+//   return (
+//     <>
+//       {transaction?.length === 0 && (
+//         <div className={css.noTransactionWrapper}>
+//           <p className={css.noTransactionText}>You have no transactions</p>
+//         </div>
+//       )}
+//       <ul className={css.transactionList}>
+//         {transaction &&
+//           transaction.map(({ _id: id, sum, comment, category, date }) => (
+//             <TransactionsItem
+//               openModal={openModal}
+//               key={id}
+//               id={id}
+//               sum={sum}
+//               comment={comment}
+//               category={category}
+//               date={date}
+//               filterIt={filterIt}
+//             />
+//           ))}
+//       </ul>
+//       {isModalOpen &&
+//         transaction.map(({ _id: id }) => (
+//           <ModalTransaction closeModal={closeModal} id={id} />
+//         ))}
+//     </>
+//   );
+// };
+
+// export default Transactions;
+
 const Transactions = () => {
   const leter = useSelector(selectedTransactions);
-  const [transaction, setTrans] = useState([]);
+  const [transaction, setTransaction] = useState([]);
   const isLoggedIn = useSelector(selectorIsLoggedIn);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
 
+  // useEffect(() => {
+  //   const date = {
+  //     year: new Date().getFullYear(),
+  //     month: new Date().getMonth() + 1,
+  //   };
+  //   isLoggedIn && dispatch(getTransaction(date));
+  // }, [dispatch, isLoggedIn]);
+
   useEffect(() => {
-    setTrans(leter);
-    const date = {
-      year: new Date().getFullYear(),
-      month: new Date().getMonth() + 1,
-    };
-    isLoggedIn && dispatch(getTransaction(date));
-  }, [dispatch, isLoggedIn]);
+    setTransaction(leter);
+  }, [leter]);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -32,8 +96,8 @@ const Transactions = () => {
   const closeModal = () => setIsModalOpen(false);
 
   const filterIt = id => {
-    const best = transaction.filter(el => el._id !== id);
-    setTrans(best);
+    const filteredTransaction = transaction.filter(el => el._id !== id);
+    setTransaction(filteredTransaction);
     dispatch(removeTransaction(id));
   };
 

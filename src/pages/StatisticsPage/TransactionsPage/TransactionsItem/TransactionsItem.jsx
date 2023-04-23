@@ -1,7 +1,7 @@
 import moment from 'moment';
 import Icon from '../../../../components/Icon/Icon';
 import s from './TransactionsItem.module.scss';
-import { removeTransaction } from 'redux/transactions/transactionsOperations';
+// import { removeTransaction } from 'redux/transactions/transactionsOperations';
 import { useDispatch } from 'react-redux';
 
 const TransactionsItem = ({
@@ -13,7 +13,8 @@ const TransactionsItem = ({
   comment,
   filterIt,
 }) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
+
   return (
     <li className={s.transactionItem} key={id}>
       <div className={s.transactionThumb}>
@@ -25,7 +26,7 @@ const TransactionsItem = ({
         </div>
 
         <div>
-          <p className={s.transactionSum}>{sum} UAH</p>
+          <p className={s.transactionSum}>{sum} ₴</p>
         </div>
       </div>
       <div className={s.thumb}>
