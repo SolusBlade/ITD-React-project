@@ -9,7 +9,7 @@
 .categoriesItem {
     background-color: $dark-blue-tabl;
 
-    @media screen and (min-width: 360px) {
+    @media screen and (max-width: 767px) {
         padding: 18px 16px;
     }
 
