@@ -1,38 +1,31 @@
 import { createPortal } from 'react-dom';
 import s from '../Transactions/Transactions.module.scss';
 import Icon from 'components/Icon/Icon';
-import Select, { components } from 'react-select';
+import Select from 'react-select';
 import { useDispatch, useSelector } from 'react-redux';
 import c from '../../../../components/ModalAddIncome/MoadlAddIncome.module.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { categorySelect } from 'redux/Expenses/expensesSelectors';
 import { updateTransaction } from 'redux/transactions/transactionsOperations';
+import { IconOption } from 'components/TransactionSelect/iconsForSelectCategory';
+import { getCategory } from 'redux/Expenses/expensesOperations';
 
 const modalRoot = document.querySelector('#modal-root');
 
 const ModalTransaction = ({ closeModal, value, id }) => {
+  const [currentCategory, setCurrentCategory] = useState('Other');
+  const category = useSelector(categorySelect);
   const dispatch = useDispatch();
 
-  const [currentCategory, setCurrentCategory] = useState('Other');
-  const { Option } = components;
+  useEffect(() => {
+    dispatch(getCategory());
+  }, [dispatch]);
 
-  const IconOption = props => (
-    <Option {...props}>
-      <Icon
-        name={props.data.value}
-        width={18}
-        height={18}
-        secondaryClassName={c.categoryIcon}
-      />
-      {props.data.label}
-    </Option>
-  );
-
-  const category = useSelector(categorySelect);
   const transformCategory = category.map(({ name: value, title: label }) => ({
     value,
     label,
   }));
+
   const onChange = newValue => {
     setCurrentCategory(newValue.value);
   };
