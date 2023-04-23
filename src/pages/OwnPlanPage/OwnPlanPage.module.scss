@@ -2,25 +2,17 @@
 @import '../../sass/utils/variables';
 
 .vectorImg {
-// position: absolute;
-  //   left: 0;
-  //   bottom: 0;
-  //   z-index: -1;
   padding-top: 50px;
   padding-bottom: 66px;
-  height: calc(100vh - 70px);
+  height: calc(100vh - 71px);
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: contain;
   @include tablet {
-    // width: 100%;
-      // height: 469px;
     background-image: url(../../assets/images/vector-tablet.png);
   }
 
-        @include desktop {
-    // width: 100%;
-      // height: 289px;
+  @include desktop {
     background-image: url(../../assets/images/vector-desktop.png);
   }
 }

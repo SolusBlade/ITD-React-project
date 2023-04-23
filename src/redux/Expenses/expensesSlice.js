@@ -16,6 +16,7 @@ const initialState = {
     date: null,
   },
   error: null,
+  isLoading: true,
 };
 
 const expensesSlice = createSlice({
@@ -25,9 +26,7 @@ const expensesSlice = createSlice({
     builder
       .addCase(getCategory.fulfilled, (state, { payload }) => {
         state.category = payload;
-      })
-      .addCase(getCategory.rejected, (state, { payload }) => {
-        state.error = payload;
+        state.isLoading = false;
       })
       .addCase(getPresaving.fulfilled, (state, { payload }) => {
         state.presaving = {
@@ -35,17 +34,36 @@ const expensesSlice = createSlice({
           totalByDay: +payload.totalByDay,
           totalByMounth: +payload.totalByMounth,
         };
-      })
-      .addCase(getPresaving.rejected, (state, { payload }) => {
-        state.error = payload;
+        state.isLoading = false;
       })
       .addCase(postTransaction.fulfilled, (state, { payload }) => {
-        state.presaving.totalByDay += payload.sum;
-        state.presaving.totalByMounth += payload.sum;
+        if (payload.type === 'expense') {
+          state.presaving.totalByDay += payload.sum;
+          state.presaving.totalByMounth += payload.sum;
+        } else {
+          state.presaving.totalByDay -= payload.sum;
+          state.presaving.totalByMounth -= payload.sum;
+        }
+        state.isLoading = false;
       })
-      .addCase(postTransaction.rejected, (state, { payload }) => {
-        state.error = payload;
-      });
+      .addMatcher(
+        action =>
+          action.type.startsWith('cashFlow') &&
+          action.type.endsWith('/pending'),
+        state => {
+          state.isLoading = true;
+          state.error = null;
+        }
+      )
+      .addMatcher(
+        action =>
+          action.type.startsWith('cashFlow') &&
+          action.type.endsWith('/rejected'),
+        (state, { payload }) => {
+          state.isLoading = false;
+          state.error = payload;
+        }
+      );
   },
 });
 

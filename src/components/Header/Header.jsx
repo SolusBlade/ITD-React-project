@@ -23,15 +23,18 @@ const Header = () => {
 
   return (
     <header className={d.header}>
-      <Container>
+      {!isAuth ?<></> :<Container>
         <div className={clsx(d.headerWrap, isAuth && d.isAuth)}>
           <div className={clsx(d.headerNavWrap, isAuth && d.isAuth)}>
             <Logo />
-            <Navigation isOpen={isOpen} handleToggleMenu={handleToggleMenu}/>
+            <Navigation isOpen={isOpen} handleToggleMenu={handleToggleMenu} />
           </div>
-          {isAuth && name && <UserBar handleToggleMenu={handleToggleMenu} isOpen={isOpen} />}
+          {isAuth && name && (
+            <UserBar handleToggleMenu={handleToggleMenu} isOpen={isOpen} />
+          )}
         </div>
-      </Container>
+      </Container>}
+      
     </header>
   );
 };

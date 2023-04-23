@@ -18,6 +18,7 @@ import { addUserBalance } from 'redux/auth/authOperations';
 import { selectorIsLoggedIn } from 'redux/auth/authSelectors';
 import validateObject from 'services/validateObject';
 import s from './PlanInputsList.module.scss';
+import Loader from 'components/Loader/Loader';
 
 const PlanInputsList = () => {
   const dispatch = useDispatch();
@@ -89,37 +90,31 @@ const PlanInputsList = () => {
 
   return (
     <>
-      {isLoading ? (
-        <h2>Loading...</h2>
-      ) : (
-        <>
-          <form className={s.form}>
-            <InputForm
-              onChange={handleChange}
-              options={optionsDefault}
-              values={inputs}
-              onBlur={handlerBlur}
-              isPlan={isPlan.current}
-              errors={error}
-            />
-          </form>
+      {isLoading && <Loader />}
+      <form className={s.form}>
+        <InputForm
+          onChange={handleChange}
+          options={optionsDefault}
+          values={inputs}
+          onBlur={handlerBlur}
+          isPlan={isPlan.current}
+          errors={error}
+        />
+      </form>
 
-          <p className={s.p}>
-            Specify the percentage that you would like to accumulate per month
-            from the total amount of income and you will see when you reach the
-            goal
-          </p>
+      <p className={s.p}>
+        Specify the percentage that you would like to accumulate per month from
+        the total amount of income and you will see when you reach the goal
+      </p>
 
-          <ResultForm openModal={openModal} onClick={handleFits} />
+      <ResultForm openModal={openModal} onClick={handleFits} />
 
-          {isModalOpen && (
-            <ModalAddBalance
-              text="Enter balance"
-              closeModal={closeModal}
-              onSubmit={handleAddBalance}
-            />
-          )}
-        </>
+      {isModalOpen && (
+        <ModalAddBalance
+          text="Enter balance"
+          closeModal={closeModal}
+          onSubmit={handleAddBalance}
+        />
       )}
     </>
   );

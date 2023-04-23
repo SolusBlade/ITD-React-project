@@ -1,3 +1,5 @@
+@import './variables';
+
 ul{
     list-style: none;
     padding: 0;
@@ -24,4 +26,17 @@ img {
     display: block;
     max-width: 100%;
     height: auto;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $blue;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
 }

@@ -5,11 +5,11 @@
     position: absolute;
     display: flex;
     justify-content: center;
-    top: 73px;
+    top: 71px;
     left: 0;
     z-index: 10;
     width: 100%;
-    height: calc(100% - 71px);
+    height: calc(100vh - 71px);
     background-color: $dark-blue;
     @media screen and (min-width: 768px) and (max-width: 1279px) {
         background-image: url(../../../assets/images/vector-tablet.png);
