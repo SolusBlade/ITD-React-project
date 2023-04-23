@@ -4,7 +4,7 @@ import {
   removeCashflowTransactionApi,
   updateCashflowTransactionApi,
 } from '../../services/connectoinsApi';
-const period = JSON.parse(localStorage.getItem('selectedPeriod'));
+const period = [];
 
 export const getTransaction = createAsyncThunk(
   'statistic/getTransaction',
@@ -22,12 +22,9 @@ export const getTransaction = createAsyncThunk(
 
 export const updateTransaction = createAsyncThunk(
   'statistic/updateTransaction',
-  async (credention, thunkAPI) => {
+  async (idTransaction, thunkAPI) => {
     try {
-      const response = await updateCashflowTransactionApi(
-        credention.idTransaction,
-        credention.data
-      );
+      const response = await updateCashflowTransactionApi(idTransaction);
       thunkAPI.dispatch(getCashflowTransactionsApi(period));
       return response.data;
     } catch (error) {
