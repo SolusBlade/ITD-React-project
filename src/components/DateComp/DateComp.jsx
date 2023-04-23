@@ -6,6 +6,7 @@ import './DateComp.scss';
 import Icon from 'components/Icon/Icon';
 import { useDispatch } from 'react-redux';
 import { getTransaction } from 'redux/transactions/transactionsOperations';
+import { useLocation } from 'react-router-dom';
 
 const months = [
   'January',
@@ -24,24 +25,38 @@ const months = [
 
 const DateComp = () => {
   const dispatch = useDispatch();
-  const startDate = useRef(new Date());
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const location = useLocation();
 
-  const changedDate = newDate => {
+  const changedDateForPicker = newDate => {
     const month = newDate.getMonth();
     const year = newDate.getFullYear();
     return `${months[month]}, ${year}`;
   };
 
-  console.log(changedDate(startDate.current));
+  const changedDateForApi = newDate => {
+    const month = newDate.getMonth();
+    const year = newDate.getFullYear();
+
+    return { year, month: month + 1 };
+  };
+
+  const handleCloseCalendar = date => {
+    if (location.pathname.endsWith('transactions')) {
+      dispatch(getTransaction(changedDateForApi(date)));
+    }
+    if (location.pathname.endsWith('categories')) {
+      console.log('handleCloseCalendar  categories:', changedDateForApi(date));
+    }
+  };
+
   return (
     <div className={'calendarWrap'}>
       <DatePicker
-        selected={startDate.current}
-        onChange={date => (startDate.current = date)}
-        value={changedDate(startDate.current)}
-        onCalendarClose={() =>
-          dispatch(getTransaction(changedDate(startDate.current)))
-        } // сюда нужно передать хендлер который должен отрабатывать на закрытие календаря
+        selected={selectedDate}
+        onChange={date => setSelectedDate(date)} // используем setSelectedDate, чтобы обновлять значение выбранной даты
+        value={changedDateForPicker(selectedDate)}
+        onCalendarClose={() => handleCloseCalendar(selectedDate)}
         maxDate={new Date()}
         dateFormat="MM/yyyy"
         showMonthYearPicker

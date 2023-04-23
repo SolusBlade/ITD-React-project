@@ -13,8 +13,9 @@ const Transactions = () => {
   const leter = useSelector(selectedTransactions);
   const [transaction, setTrans] = useState([]);
   const isLoggedIn = useSelector(selectorIsLoggedIn);
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
+
   useEffect(() => {
     setTrans(leter);
     const date = {
@@ -24,13 +25,12 @@ const Transactions = () => {
     isLoggedIn && dispatch(getTransaction(date));
   }, [dispatch, isLoggedIn]);
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => {
     setIsModalOpen(true);
   };
+
   const closeModal = () => setIsModalOpen(false);
 
-  console.log(transaction);
   const filterIt = id => {
     const best = transaction.filter(el => el._id !== id);
     setTrans(best);

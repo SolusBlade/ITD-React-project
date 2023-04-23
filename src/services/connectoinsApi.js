@@ -80,7 +80,7 @@ export const updateCashflowTransactionApi = (id, newTransaction) => {
   return axios.put(`/api/cashflow/${id}`, newTransaction).then(r => r.data);
 };
 
-export const getCashflowCategoriesPercentageApi = (year, month) => {
+export const getCashflowCategoriesPercentageApi = ({year, month}) => {
   return axios
     .get('/api/cashflow/stat', {
       params: {

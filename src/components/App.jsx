@@ -35,6 +35,7 @@ const App = () => {
   useEffect(() => {
     if (token) {
       dispatch(getCurrentUserInfo(token));
+      
     }
   }, [token, dispatch]);
 

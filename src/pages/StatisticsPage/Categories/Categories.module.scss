@@ -19,6 +19,15 @@
         align-items: center;
         width: 100%;
         padding: 24px 32px;
+        padding-right: 150px;
+    }
+
+    @media screen and (min-width: 1280px) {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 24px 32px;
         padding-right: 215px;
     }
 }
