@@ -10,36 +10,38 @@ import {
 
 export const getTransaction = createAsyncThunk(
   'statistic/getTransaction',
-  async (period, thunkAPI) => {
+  async (period, { rejectWithValue }) => {
     try {
       // console.log(period);
       const data = await getCashflowTransactionsApi(period);
       // console.log('data:', data);
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return rejectWithValue(error.message);
     }
   }
 );
 
 export const updateTransaction = createAsyncThunk(
   'statistic/updateTransaction',
-  async (idTransaction, thunkAPI) => {
+  async (idTransaction, { rejectWithValue, dispatch }) => {
     try {
       const response = await updateCashflowTransactionApi(idTransaction);
-      // thunkAPI.dispatch(getCashflowTransactionsApi(period));
-      return response.data;
+      return response;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return rejectWithValue(error.message);
     }
   }
 );
 
 export const removeTransaction = createAsyncThunk(
   'statistic/deleteTransaction',
-  async (transactionId, thunkAPI) => {
+  async (transactionId, { rejectWithValue }) => {
     try {
       await removeCashflowTransactionApi(transactionId);
+
+      const data = await getCashflowTransactionsApi(period);
+
       // const data = await getCashflowTransactionsApi(period);
       // return data; 
     } catch (error) {
@@ -50,13 +52,12 @@ export const removeTransaction = createAsyncThunk(
 
 export const getCategoriesStat = createAsyncThunk(
   'statistic/getCategoriesStat',
-  async (period, thunkAPI) => {
+  async (period, { rejectWithValue }) => {
     try {
       const data = await getCashflowCategoriesPercentageApi(period);
-
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return rejectWithValue(error.message);
     }
   }
 );
