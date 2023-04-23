@@ -1,29 +1,35 @@
+import { useEffect, lazy, Suspense } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
-// eslint-disable-next-line
+import { toast, ToastContainer } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
-import { ToastContainer } from 'react-toastify';
-import HomePage from 'pages/HomePage/HomePage';
+// eslint-disable-next-line
 import Header from './Header/Header';
+import ModalRegister from './ModalRegister/ModalRegister';
+import ModalLogin from './ModalLogin/ModalLogin';
+import { getCurrentUserInfo } from 'redux/auth/authOperations';
+import { getPersonalPlan } from 'redux/plan/planOperations';
+import { selectorIsPlan } from 'redux/plan/planSelectors';
+import Loader from './Loader/Loader';
 import {
   selectorIsAuthLoading,
   selectorIsLoggedIn,
   selectorToken,
 } from 'redux/auth/authSelectors';
-import DynamicsPage from 'pages/DynamicsPage/DynamicsPage';
-import OwnPlanPage from 'pages/OwnPlanPage/OwnPlanPage';
-import StatisticsPage from 'pages/StatisticsPage/StatisticsPage';
-import ExpensesPage from 'pages/ExpensesPage/ExpensesPage';
-import ModalRegister from './ModalRegister/ModalRegister';
-import ModalLogin from './ModalLogin/ModalLogin';
-import { getCurrentUserInfo } from 'redux/auth/authOperations';
-import { useEffect } from 'react';
 
-import Transactions from 'pages/StatisticsPage/TransactionsPage/Transactions/Transactions';
-import Categories from 'pages/StatisticsPage/Categories/Categories';
-import { getPersonalPlan } from 'redux/plan/planOperations';
-import { selectorIsPlan } from 'redux/plan/planSelectors';
-import Loader from './Loader/Loader';
-import { toast } from 'react-toastify';
+const HomePage = lazy(() => import('pages/HomePage/HomePage'));
+const DynamicsPage = lazy(() => import('pages/DynamicsPage/DynamicsPage'));
+const OwnPlanPage = lazy(() => import('pages/OwnPlanPage/OwnPlanPage'));
+const StatisticsPage = lazy(() =>
+  import('pages/StatisticsPage/StatisticsPage')
+);
+const ExpensesPage = lazy(() => import('pages/ExpensesPage/ExpensesPage'));
+const Transactions = lazy(() =>
+  import('pages/StatisticsPage/TransactionsPage/Transactions/Transactions')
+);
+const Categories = lazy(() =>
+  import('pages/StatisticsPage/Categories/Categories')
+);
+
 // eslint-disable-next-line
 const PrivateRoute = ({ component, redirectTo = '/login' }) => {
   const isLoggedIn = useSelector(selectorIsLoggedIn);
@@ -35,7 +41,7 @@ const PrivateRoute = ({ component, redirectTo = '/login' }) => {
   }
 
   if (!isPlan && location.pathname !== '/plan') {
-    toast.error("Please choose a plan", {
+    toast.error('Please choose a plan', {
       position: 'top-center',
       autoClose: 3000,
       hideProgressBar: false,
@@ -76,48 +82,53 @@ const App = () => {
       {isLoading ? (
         <Loader />
       ) : (
-        <Routes>
-          <Route path="/" element={<PublicRoute restricted component={<HomePage />} />}>
+        <Suspense fallback={<Loader />}>
+          <Routes>
             <Route
-              path="/login"
-              element={<PublicRoute component={<ModalLogin />} />}
-            />
-            <Route
-              path="/register"
-              element={<PublicRoute component={<ModalRegister />} />}
-            />
-          </Route>
+              path="/"
+              element={<PublicRoute restricted component={<HomePage />} />}
+            >
+              <Route
+                path="/login"
+                element={<PublicRoute component={<ModalLogin />} />}
+              />
+              <Route
+                path="/register"
+                element={<PublicRoute component={<ModalRegister />} />}
+              />
+            </Route>
 
-          <Route
-            path="/plan"
-            element={<PrivateRoute component={<OwnPlanPage />} />}
-          />
-          <Route
-            path="/cash-flow"
-            element={<PrivateRoute component={<ExpensesPage />} />}
-          />
-          <Route
-            path="/dynamics"
-            element={<PrivateRoute component={<DynamicsPage />} />}
-          />
-          <Route
-            path="/statistics"
-            element={<PrivateRoute component={<StatisticsPage />} />}
-          >
             <Route
-              path="transactions"
-              exact
-              element={<PrivateRoute component={<Transactions />} />}
+              path="/plan"
+              element={<PrivateRoute component={<OwnPlanPage />} />}
             />
             <Route
-              path="categories"
-              exact
-              element={<PrivateRoute component={<Categories />} />}
+              path="/cash-flow"
+              element={<PrivateRoute component={<ExpensesPage />} />}
             />
-          </Route>
+            <Route
+              path="/dynamics"
+              element={<PrivateRoute component={<DynamicsPage />} />}
+            />
+            <Route
+              path="/statistics"
+              element={<PrivateRoute component={<StatisticsPage />} />}
+            >
+              <Route
+                path="transactions"
+                exact
+                element={<PrivateRoute component={<Transactions />} />}
+              />
+              <Route
+                path="categories"
+                exact
+                element={<PrivateRoute component={<Categories />} />}
+              />
+            </Route>
 
-          <Route path="*" element={<Navigate to="/" />} />
-        </Routes>
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
+        </Suspense>
       )}
       <ToastContainer
         position="center"
