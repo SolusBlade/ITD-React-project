@@ -18,13 +18,15 @@ import { ownPlanReducer } from './plan/planSlice';
 import expensesReducer from './Expenses/expensesSlice';
 import { transactionsReducer } from './transactions/transactionsSlice';
 
-const persistContactsConfig = {
+const persistAuthConfig = {
   key: 'auth',
   storage,
   whitelist: [`token`],
 };
 
-const persistedAuthReducer = persistReducer(persistContactsConfig, authReducer);
+
+
+const persistedAuthReducer = persistReducer(persistAuthConfig, authReducer);
 
 export const store = configureStore({
   reducer: {

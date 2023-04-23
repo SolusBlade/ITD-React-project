@@ -24,7 +24,7 @@ const InputForm = ({ onChange, options, values, onBlur, errors = [] }) => {
             onChange={onChange}
             onBlur={onBlur}
             placeholder={el.placeholder}
-            disabled={el.name === 'savings' && !isPlan ? true : false}
+            disabled={el.name === 'savings' && isPlan ? true : false}
           />
           {errors.includes(el.name) && (
             <span className={s.error}> invalid value </span>
