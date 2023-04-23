@@ -17,7 +17,7 @@ export const dynamicsSlice = createSlice({
       month: null,
       accumulatedProc: null,
       accumulatedUah: null,
-      squareMeters: null,
+      squareМeters: null,
       accumToOneMoreMeters: null
     },
     extraReducers:{
@@ -26,10 +26,11 @@ export const dynamicsSlice = createSlice({
         console.log('pending')
       },
       [getDynamics.fulfilled](state, action) {
-        state.isLoading = false;
-        state.error = null;
-        state.statByYear = action.payload;
-        console.log('fulfilled', action.payload);
+        // state.isLoading = false;
+        // state.error = null;
+        // state.statByYear = action.payload;
+        console.log('fulfilled', action);
+        return {...state, ...action.payload, isLoading: false, error: null}
       },
       [getDynamics.rejected](state, action) {
         state.isLoading = false;

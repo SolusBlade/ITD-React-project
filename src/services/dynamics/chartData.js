@@ -3,7 +3,7 @@ import { selectDynamics } from 'redux/dynamics/dynamicsVariables';
 // eslint-disable-next-line
 import { useSelector } from 'react-redux';
 
-const labels = [
+export const labels = [
   'Oct',
   'Nov',
   'Dec',

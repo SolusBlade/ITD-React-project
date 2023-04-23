@@ -12,12 +12,13 @@ import { Bar } from "react-chartjs-2";
 import { useRef, useEffect } from "react";
 import style from "./Chart.module.scss";
 import { optionsPhone, optionsTablet } from "services/dynamics/chartOptions";
-import { data } from 'services/dynamics/chartData';
+// import { data } from 'services/dynamics/chartData';
 import { useSelector, useDispatch } from "react-redux";
 import { getDynamics } from "redux/dynamics/dynamicsOperations";
-import { selectDynamics } from "redux/dynamics/dynamicsVariables";
+import { selectDynamics, selectStatByYear,  } from "redux/dynamics/dynamicsVariables";
 import { selectorIsLoggedIn } from "redux/auth/authSelectors";
 import { useMediaQuery } from "react-responsive";
+import { labels } from "services/dynamics/chartData";
 
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale,
   LinearScale,
@@ -34,24 +35,46 @@ export const Chart = () => {
   const dynamics = useSelector(selectDynamics);
   const chartRef = useRef(null);
   const isLoggedIn = useSelector(selectorIsLoggedIn);
+  const statByYear = useSelector(selectStatByYear);
 
-  console.log(matchesTablet)
+  // console.log(matchesTablet)
   // console.log('isLoggedIn ', isLoggedIn)
 
   useEffect(() => {
-    // const chart = chartRef.current;
-    // console.log('useEffect isLoggedIn ', isLoggedIn)
-    // console.log('localStorage', localStorage)
     if (isLoggedIn) {
       //add isLogedIn check
-      // setToken();
-      // console.log('ChartJS', chart);
-      // console.log('useEffect', setToken())
       dispatch(getDynamics());
     }
     // console.log()
   }, [dispatch, isLoggedIn]);
 
+  const data = {
+    labels,
+    datasets: [
+      {
+        //   label: 'accumulated',
+        // data: labels.map((_, i) => console.log(statByYear), 300),
+        data: labels.map((_, i) => statByYear[i]?.income - statByYear[i]?.expense),
+        // borderColor: 'rgb(255, 99, 132)',
+        backgroundColor: '#6359E9',
+      },
+      {
+        //   label: 'expenses',
+        data: labels.map((_, i) => statByYear[i]?.expense),
+        // data: labels.map((_, i) => 400),
+        // borderColor: 'rgb(53, 162, 235)',
+        backgroundColor: '#3A6AF5',
+      },
+      {
+        //   label: 'label3',
+        data: labels.map((_, i) => statByYear[i]?.income),
+        // data: labels.map((_, i) => 500),
+        // borderColor: 'rgb(150, 162, 150)',
+        backgroundColor: '#F3F3F3',
+      },
+    ],
+  };
+  
   return (
     <div className={style.dynamicsChartContainer}>
       <h1 className={style.title}>Dynamics of expenses and savings</h1>
@@ -70,7 +93,7 @@ export const Chart = () => {
         <>
           <p>false</p>
           <div className={style.chartContainer}>
-          <Bar ref={chartRef} options={optionsPhone} data={data} height={'100%'} width={'100%'} />
+            <Bar ref={chartRef} options={optionsPhone} data={data} height={'100%'} width={'100%'} />
           </div>
         </>
       )}

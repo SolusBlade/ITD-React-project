@@ -1,9 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Info.module.scss";
-import {useDropzone} from "react-dropzone";
+import { useDropzone } from "react-dropzone";
 import { postImage } from "redux/dynamics/dynamicsOperations";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useMemo } from "react";
+import { selectorStatePlan } from "redux/plan/planSelectors";
+import { 
+    // selectDynamics,
+    // selectStatByYear, 
+    // selectAccumToOneMoreMeters,
+    selectAccumulatedProc,
+    selectAccumulatedUah,
+    // selectFlatImage, 
+    selectMonth,
+    selectSquareMeters,
+    selectYear, 
+ } from "redux/dynamics/dynamicsVariables";
+ import { OutsideClicker } from "./OutsideKlicker";
 
 const baseStyle = {
     width: '100%',
@@ -24,6 +37,15 @@ const baseStyle = {
 };
 
 export const Info = (props) => {
+    // const dynamics = useSelector(selectDynamics);
+    // const accumToOneMoreMeters  = useSelector(selectAccumToOneMoreMeters);
+    const accumulatedProc = useSelector(selectAccumulatedProc);
+    const accumulatedUah = useSelector(selectAccumulatedUah);
+    // const flatImage = useSelector(selectFlatImage);
+    const month = useSelector(selectMonth);
+    const squareMeters = useSelector(selectSquareMeters);
+    const year = useSelector(selectYear);
+    const plan = useSelector(selectorStatePlan);
     const {
         acceptedFiles,
         getRootProps,
@@ -36,68 +58,82 @@ export const Info = (props) => {
         // getFilesFromEvent: event => myCustomFileGetter(event)
         // getFilesFromEvent: event => testFiles(event)
     });
+    let [trigger, setTrigger] = useState(true);
     const dispatch = useDispatch();
     const file = acceptedFiles;
 
-    console.log('localStorage', localStorage)
-
     useEffect(()=>{
+    // console.log('dynamics', dynamics);
+
+        // console.log('useEffect acceptedFile', acceptedFiles)
         if(file.length > 0) {
-            console.log('useEffect', acceptedFiles)
+            console.log('useEffect', acceptedFiles);
             // postImage()
+            // console.log('useEffect acceptedFile', acceptedFiles)
             const formData = new FormData();
             formData.append('image', acceptedFiles[0]);
-            
+
             console.log('form data',formData);
             dispatch(postImage(formData));
         }
-    },[acceptedFiles, file.length, dispatch])  
+    },[acceptedFiles, file.length, dispatch, trigger]);  
 
     const style = useMemo(() => ({
         ...baseStyle,
     //   ...(isFocused ? focusedStyle : {}),
     //   ...(isDragAccept ? acceptStyle : {}),
     //   ...(isDragReject ? rejectStyle : {})
-    }),[])
+    }),[]);
     //  [
     //   isFocused,
     //   isDragAccept,
     //   isDragReject
     // ]);
 
+    function percentage(){
+        return `${(squareMeters / plan.footage * 100)}%`;
+    }
+
     return (
         <>
         <div className={styles.infoContainer}>
             <div className={styles.accumulated}>
-                <p className={styles.title}>After 4 years 1 month</p>
+                <p className={styles.title}>After {year} years {month} month</p>
                 <ul className={styles.list}>
                     <li className={styles.item}>
                         <p className={styles.text}>Accumulated, %:</p>
-                        <p className={styles.num}>28%</p>
+                        <p className={styles.num}>{accumulatedProc}</p>
                     </li>
                     <li className={styles.item}>
                         <p className={styles.text}>Accumulated, UAH:</p>
-                        <p className={styles.num}>60 000 &#8372;</p>
+                        <p className={styles.num}>{accumulatedUah} &#8372;</p>
                     </li>
                     <li className={styles.item}>
-                        <p className={styles.text}>Add This:</p>
-                        <p className={styles.num}>22 sq.m</p>
+                        <p className={styles.text}>And This:</p>
+                        <p className={styles.num}>{squareMeters} sq.m</p>
                     </li>
                 </ul>
 
-                <p className={styles.barTitle}>22 out of 60 sq.m accumulated</p>
+                <p className={styles.barTitle}>{squareMeters} out of {plan.footage} sq.m accumulated</p>
                 <div className={styles.bar}>
-                    <div className={styles.barFill}></div>
+                    <div className={styles.barFill} style={{width: percentage()}}></div>
                 </div>
             </div>
-
-            <div className={styles.imageContainer}>
-                <div {...getRootProps({style})}>
-                    <input {...getInputProps()} />
-                    <p>Drag 'n' drop some files here, or click to select files</p>
-                    <em>(Only *.jpeg and *.png images will be accepted)</em>
-                </div>
-            </div>
+            <OutsideClicker trigger={trigger} setTrigger={setTrigger}>
+                {trigger ? (
+                    <div className={styles.imageContainer} onClick={()=> setTrigger(false)}>
+                        <p>Photo</p>
+                    </div>
+                ) : (
+                    <div className={styles.imageContainer}>
+                        <div {...getRootProps({style})}>
+                            <input {...getInputProps()} />
+                            <p>Drag 'n' drop some files here, or click to select files</p>
+                            <em>(Only *.jpeg and *.png images will be accepted)</em>
+                        </div>
+                    </div>
+                )}
+            </OutsideClicker>
 
         </div>
         <div className={styles.accRemain}>
@@ -106,9 +142,6 @@ export const Info = (props) => {
                 <p className={styles.accNum}>14 000 &#8372;</p>
             </div>
             <div className={styles.svgContainer}>
-                {/* <svg className={style.svg} >
-                    <use xlinkHref={`${icon}`}/>
-                </svg> */}
             </div>
         </div>
     </>

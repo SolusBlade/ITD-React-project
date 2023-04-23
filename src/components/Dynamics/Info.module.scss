@@ -113,7 +113,7 @@
 
 .barFill{
     height: 8px;
-    width: 28%;
+    // width: 28%;
     border-radius: 4px;
 
     background-color: $blue;
@@ -146,6 +146,7 @@
     @include tablet {
         padding: 15px;
         width: 225px;
+        height: 166px;
     }
     
     @include desktop {
