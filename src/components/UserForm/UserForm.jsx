@@ -18,8 +18,6 @@ const UserForm = ({ onSubmit, btnSubmit }) => {
         email: '',
         password: '',
         toggle: true,
-        eye: true,
-        type: 'password',
       }}
       validationSchema={Yup.object({
         name: Yup.string()
@@ -32,6 +30,7 @@ const UserForm = ({ onSubmit, btnSubmit }) => {
           .minLowercase(1, 'Must contain at least 1 lower case letter')
           .minUppercase(1, 'Must contain at least 1 UPPER case letter')
           .minNumbers(1, 'Must contain at least 1 number'),
+          toggle: Yup.bool(),
       })}
       onSubmit={(values, { setSubmitting }) => {
         console.log(values);

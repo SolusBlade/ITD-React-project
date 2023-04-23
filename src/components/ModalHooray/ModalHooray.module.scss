@@ -1,0 +1,103 @@
+@import '../../sass/utils/variables';
+@import '../../sass/utils/mixin';
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modalWrap {
+  position: relative;
+  padding: 50px 30px 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  width: 315px;
+  height: 184px;
+
+  background-color: $dark-blue;
+  box-shadow: 0px 24px 38px rgba(0, 0, 0, 0.14),
+    0px 9px 46px rgba(0, 0, 0, 0.12), 0px 11px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+
+  @include tablet {
+    padding: 67px 40px 0;
+    width: 370px;
+    height: 227px;
+  }
+}
+
+.title {
+  @include font(700, 20px, 1);
+
+  color: $blue;
+}
+
+.text {
+  margin-top: 20px;
+  text-align: center;
+  @include font(400, 12px, 1.16);
+
+  @include tablet {
+    @include font(400, 14px, 1.21);
+
+  }
+}
+
+.bcgLeft {
+  position: absolute;
+  width: 192px;
+  height: 133px;
+  left: 0;
+  top: 0;
+  background-image: url('../../assets/images/bcgHoorayLeft-mob.png');
+  @include tablet {
+    width: 246px;
+    height: 180px;
+  
+    background-image: url('../../assets/images/bcgHoorayLeft-tab-desk.png');
+  }
+}
+
+.bcgRight {
+  position: absolute;
+  width: 113px;
+  height: 159px;
+  right: 0;
+  top: 0;
+
+  background-image: url('../../assets/images/bcgHooraylRight-mob.png');
+  
+  @include tablet {
+    width: 111px;
+    height: 211px;
+  
+    background-image: url('../../assets/images/bcgHooraylRight-tab-desk.png');
+  }
+}
+
+.btnClose {
+  display: flex;
+  top: 19px;
+  right: 19px;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  background-color: $dark-blue;
+  border: none;
+  cursor: pointer;
+  fill: $white;
+
+  &:hover,
+  &:focus {
+    fill: $blue;
+  }
+}
