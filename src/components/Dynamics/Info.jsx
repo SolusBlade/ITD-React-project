@@ -14,7 +14,8 @@ import {
     // selectFlatImage, 
     selectMonth,
     selectSquareMeters,
-    selectYear, 
+    selectYear,
+    selectorOneMoreMeterCost, 
  } from "redux/dynamics/dynamicsVariables";
  import { OutsideClicker } from "./OutsideKlicker";
 
@@ -46,6 +47,7 @@ export const Info = (props) => {
     const squareMeters = useSelector(selectSquareMeters);
     const year = useSelector(selectYear);
     const plan = useSelector(selectorStatePlan);
+    const oneMoreMeterCost = useSelector(selectorOneMoreMeterCost);
     const {
         acceptedFiles,
         getRootProps,
@@ -95,55 +97,68 @@ export const Info = (props) => {
     }
 
     return (
-        <>
+      <>
         <div className={styles.infoContainer}>
-            <div className={styles.accumulated}>
-                <p className={styles.title}>After {year} years {month} month</p>
-                <ul className={styles.list}>
-                    <li className={styles.item}>
-                        <p className={styles.text}>Accumulated, %:</p>
-                        <p className={styles.num}>{accumulatedProc}</p>
-                    </li>
-                    <li className={styles.item}>
-                        <p className={styles.text}>Accumulated, UAH:</p>
-                        <p className={styles.num}>{accumulatedUah} &#8372;</p>
-                    </li>
-                    <li className={styles.item}>
-                        <p className={styles.text}>And This:</p>
-                        <p className={styles.num}>{squareMeters} sq.m</p>
-                    </li>
-                </ul>
+          <div className={styles.accumulated}>
+            <p className={styles.title}>
+              After {year} years {month} month
+            </p>
+            <ul className={styles.list}>
+              <li className={styles.item}>
+                <p className={styles.text}>Accumulated, %:</p>
+                <p className={styles.num}>{accumulatedProc}</p>
+              </li>
+              <li className={styles.item}>
+                <p className={styles.text}>Accumulated, UAH:</p>
+                <p className={styles.num}>{accumulatedUah} &#8372;</p>
+              </li>
+              <li className={styles.item}>
+                <p className={styles.text}>And This:</p>
+                <p className={styles.num}>{squareMeters} sq.m</p>
+              </li>
+            </ul>
 
-                <p className={styles.barTitle}>{squareMeters} out of {plan.footage} sq.m accumulated</p>
-                <div className={styles.bar}>
-                    <div className={styles.barFill} style={{width: percentage()}}></div>
-                </div>
+            <p className={styles.barTitle}>
+              {squareMeters} out of {plan.footage} sq.m accumulated
+            </p>
+            <div className={styles.bar}>
+              <div
+                className={styles.barFill}
+                style={{ width: percentage() }}
+              ></div>
             </div>
-            <OutsideClicker trigger={trigger} setTrigger={setTrigger}>
-                {trigger ? (
-                    <div className={styles.imageContainer} onClick={()=> setTrigger(false)}>
-                        <p>Photo</p>
-                    </div>
-                ) : (
-                    <div className={styles.imageContainer}>
-                        <div {...getRootProps({style})}>
-                            <input {...getInputProps()} />
-                            <p>Drag 'n' drop some files here, or click to select files</p>
-                            <em>(Only *.jpeg and *.png images will be accepted)</em>
-                        </div>
-                    </div>
-                )}
-            </OutsideClicker>
-
+          </div>
+          <OutsideClicker trigger={trigger} setTrigger={setTrigger}>
+            {trigger ? (
+              <div
+                className={styles.imageContainer}
+                onClick={() => setTrigger(false)}
+              >
+                <p>Photo</p>
+              </div>
+            ) : (
+              <div className={styles.imageContainer}>
+                <div {...getRootProps({ style })}>
+                  <input {...getInputProps()} />
+                  <p>Drag 'n' drop some files here, or click to select files</p>
+                  <em>(Only *.jpeg and *.png images will be accepted)</em>
+                </div>
+              </div>
+            )}
+          </OutsideClicker>
         </div>
         <div className={styles.accRemain}>
-            <div className={styles.accTitleContainer}>
-                <p className={styles.accTitle}>To add more <span className={styles.accSpan}>1 sq.m</span> for planning, it remains to accumulate</p>
-                <p className={styles.accNum}>14 000 &#8372;</p>
-            </div>
-            <div className={styles.svgContainer}>
-            </div>
+          <div className={styles.accTitleContainer}>
+            <p className={styles.accTitle}>
+              To add more <span className={styles.accSpan}>1 sq.m</span> for
+              planning, it remains to accumulate
+            </p>
+            <p className={styles.accNum}>
+              {Math.round(oneMoreMeterCost)} &#8372;
+            </p>
+          </div>
+          <div className={styles.svgContainer}></div>
         </div>
-    </>
-    )
+      </>
+    );
 }  
