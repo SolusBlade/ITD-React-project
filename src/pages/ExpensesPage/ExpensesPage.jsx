@@ -15,11 +15,11 @@ const ExpensesPage = () => {
   }, [dispatch, isLoggedIn]);
 
   return (
-    <div className={s.vectorImg}>
+    <section className={s.vectorImg}>
       <Container>
         <TransactionDataList />
       </Container>
-    </div>
+    </section>
   );
 };
 
