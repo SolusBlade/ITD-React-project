@@ -34,6 +34,8 @@ const StatisticsPage = () => {
             <div className={s.calendarWrapper}>
               <DateComp />
             </div>
+
+            <Outlet />
           </div>
 
           <Outlet />
