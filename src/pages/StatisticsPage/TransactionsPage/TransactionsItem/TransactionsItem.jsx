@@ -1,13 +1,20 @@
 import moment from 'moment';
 import Icon from '../../../../components/Icon/Icon';
 import s from './TransactionsItem.module.scss';
-import { removeTransaction } from 'redux/transactions/transactionsOperations';
+// import { removeTransaction } from 'redux/transactions/transactionsOperations';
 import { useDispatch } from 'react-redux';
 
-const TransactionsItem = ({ openModal, id, sum, date, category, comment }) => {
-  const dispatch = useDispatch();
+const TransactionsItem = ({
+  openModal,
+  id,
+  sum,
+  date,
+  category,
+  comment,
+  filterIt,
+}) => {
+  // const dispatch = useDispatch();
 
-  console.log(id);
   return (
     <li className={s.transactionItem} key={id}>
       <div className={s.transactionThumb}>
@@ -19,7 +26,7 @@ const TransactionsItem = ({ openModal, id, sum, date, category, comment }) => {
         </div>
 
         <div>
-          <p className={s.transactionSum}>{sum} UAH</p>
+          <p className={s.transactionSum}>{sum} ₴</p>
         </div>
       </div>
       <div className={s.thumb}>
@@ -41,7 +48,8 @@ const TransactionsItem = ({ openModal, id, sum, date, category, comment }) => {
           <button
             className={s.buttonItem}
             type="button"
-            onClick={() => dispatch(removeTransaction(id))}
+            // onClick={() => dispatch(removeTransaction(id))}
+            onClick={() => filterIt(id)}
           >
             <Icon
               name={'icon-trash'}
