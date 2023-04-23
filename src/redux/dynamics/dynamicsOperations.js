@@ -38,18 +38,20 @@ export const postImage = createAsyncThunk(
         try{
 
             const response = await addDynamicsImageApi(data);
+            // const response = await axios.get('/api/dynamics/flatImage')
+            // console.log('image'response)
             // const response = await axios({
             //     method: 'patch',
             //     url: '/api/dynamics/flatImage',
             //     // headers: {},
             //     data: data
             // });
-            console.log('PostImage data', data)
+            // console.log('PostImage data', data)
             // const response = await axios.post('/api/dynamics/flatImage/', file)
 
             console.log('postImage response', response);
 
-            return response;
+            return response.data;
         } catch (error) {
             console.log('postImage error')
             return thunkAPI.rejectWithValue(error.message)

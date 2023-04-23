@@ -5,23 +5,25 @@ import { postImage } from "redux/dynamics/dynamicsOperations";
 import { useDispatch, useSelector } from "react-redux";
 import { useMemo } from "react";
 import { selectorStatePlan } from "redux/plan/planSelectors";
+// import { selectorStatePlan } from "../../assets/icons/icons.svg";
 import { 
     // selectDynamics,
     // selectStatByYear, 
     // selectAccumToOneMoreMeters,
     selectAccumulatedProc,
     selectAccumulatedUah,
-    // selectFlatImage, 
+    selectFlatImage, 
     selectMonth,
     selectSquareMeters,
     selectYear,
     selectorOneMoreMeterCost, 
  } from "redux/dynamics/dynamicsVariables";
  import { OutsideClicker } from "./OutsideKlicker";
+import Icon from "components/Icon/Icon";
 
 const baseStyle = {
-    width: '100%',
-    height: '100%',
+    width: '87%',
+    height: '87%',
     // flex: 1,
     display: 'flex',
     flexDirection: 'column',
@@ -42,7 +44,7 @@ export const Info = (props) => {
     // const accumToOneMoreMeters  = useSelector(selectAccumToOneMoreMeters);
     const accumulatedProc = useSelector(selectAccumulatedProc);
     const accumulatedUah = useSelector(selectAccumulatedUah);
-    // const flatImage = useSelector(selectFlatImage);
+    const flatImage = useSelector(selectFlatImage);
     const month = useSelector(selectMonth);
     const squareMeters = useSelector(selectSquareMeters);
     const year = useSelector(selectYear);
@@ -57,16 +59,12 @@ export const Info = (props) => {
           'image/jpeg': [],
           'image/png': []
         },
-        // getFilesFromEvent: event => myCustomFileGetter(event)
-        // getFilesFromEvent: event => testFiles(event)
     });
     let [trigger, setTrigger] = useState(true);
     const dispatch = useDispatch();
     const file = acceptedFiles;
 
     useEffect(()=>{
-    // console.log('dynamics', dynamics);
-
         // console.log('useEffect acceptedFile', acceptedFiles)
         if(file.length > 0) {
             console.log('useEffect', acceptedFiles);
@@ -93,59 +91,67 @@ export const Info = (props) => {
     // ]);
 
     function percentage(){
-        return `${(squareMeters / plan.footage * 100)}%`;
+        const percentageCounted = (squareMeters / plan.footage * 100);
+        return percentageCounted >= 100 ? `${100}%` : `${percentageCounted}%`;
+    }
+
+    function imageHandler () {
+        if (!flatImage) setTrigger(false);
+        return;
+    }
+
+    function compareNumbers (a, b) {
+        return a > b ? b : a;
     }
 
     return (
       <>
         <div className={styles.infoContainer}>
-          <div className={styles.accumulated}>
-            <p className={styles.title}>
-              After {year} years {month} month
-            </p>
-            <ul className={styles.list}>
-              <li className={styles.item}>
-                <p className={styles.text}>Accumulated, %:</p>
-                <p className={styles.num}>{accumulatedProc}</p>
-              </li>
-              <li className={styles.item}>
-                <p className={styles.text}>Accumulated, UAH:</p>
-                <p className={styles.num}>{accumulatedUah} &#8372;</p>
-              </li>
-              <li className={styles.item}>
-                <p className={styles.text}>And This:</p>
-                <p className={styles.num}>{squareMeters} sq.m</p>
-              </li>
-            </ul>
+            <div className={styles.accumulated}>
+                <p className={styles.title}>After {year? 0 : year} years {month? 0 : month} month</p>
+                <ul className={styles.list}>
+                    <li className={styles.item}>
+                        <p className={styles.text}>Accumulated, %:</p>
+                        <p className={styles.num}>{compareNumbers(accumulatedProc, 100)}</p>
+                    </li>
+                    <li className={styles.item}>
+                        <p className={styles.text}>Accumulated, UAH:</p>
+                        <p className={styles.num}>{compareNumbers(accumulatedUah, plan.cost)} &#8372;</p>
+                    </li>
+                    <li className={styles.item}>
+                        <p className={styles.text}>And This:</p>
+                        <p className={styles.num}>{squareMeters >= plan.footage && 0} sq.m</p>
+                    </li>
+                </ul>
 
-            <p className={styles.barTitle}>
-              {squareMeters} out of {plan.footage} sq.m accumulated
-            </p>
-            <div className={styles.bar}>
-              <div
-                className={styles.barFill}
-                style={{ width: percentage() }}
-              ></div>
-            </div>
-          </div>
-          <OutsideClicker trigger={trigger} setTrigger={setTrigger}>
-            {trigger ? (
-              <div
-                className={styles.imageContainer}
-                onClick={() => setTrigger(false)}
-              >
-                <p>Photo</p>
-              </div>
-            ) : (
-              <div className={styles.imageContainer}>
-                <div {...getRootProps({ style })}>
-                  <input {...getInputProps()} />
-                  <p>Drag 'n' drop some files here, or click to select files</p>
-                  <em>(Only *.jpeg and *.png images will be accepted)</em>
+                <p className={styles.barTitle}>{compareNumbers(squareMeters, plan.footage)} out of {plan.footage} sq.m accumulated</p>
+                <div className={styles.bar}>
+                    <div className={styles.barFill} style={{width: percentage()}}></div>
                 </div>
-              </div>
-            )}
-          </OutsideClicker>
+            </div>
+            <OutsideClicker trigger={trigger} setTrigger={setTrigger}>
+                {trigger ? (
+                    <div className={styles.imageContainer} onClick={imageHandler}>
+                        {flatImage ? (
+                            <>
+                                <img className={styles.image} src={flatImage} alt='flat plan'>
+                                </img>
+                                <p className={styles.imageBtn} onClick={()=> setTrigger(false)}>Change image</p>
+                            </>
+                        ) : (
+                            <Icon name={'icon-photo-camera'} width={100} height={100}/>
+                        )}
+                    </div>
+                ) : (
+                    <div className={styles.imageContainer}>
+                        <div {...getRootProps({style})}>
+                            <input {...getInputProps()} />
+                            <p>Drag 'n' drop some files here, or click to select files</p>
+                            <em>(Only *.jpeg and *.png images will be accepted)</em>
+                        </div>
+                    </div>
+                )}
+            </OutsideClicker>
         </div>
         <div className={styles.accRemain}>
           <div className={styles.accTitleContainer}>
