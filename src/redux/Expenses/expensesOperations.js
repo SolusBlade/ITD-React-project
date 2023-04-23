@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 export const getCategory = createAsyncThunk(
-  'get/category',
+  'cashFlow/getCategory',
   async (_, thunkAPI) => {
     try {
       const { data } = await axios.get('/api/cashflow/category');
@@ -14,7 +14,7 @@ export const getCategory = createAsyncThunk(
 );
 
 export const getPresaving = createAsyncThunk(
-  'get/presaving',
+  'cashFlow/getPresaving',
   async (_, thunkAPI) => {
     try {
       const { data } = await axios.get('/api/cashflow/presaving');
@@ -26,7 +26,7 @@ export const getPresaving = createAsyncThunk(
 );
 
 export const postTransaction = createAsyncThunk(
-  'post/transaction',
+  'cashFlow/postTransaction',
   async (transactionData, thunkAPI) => {
     try {
       const { data } = await axios.post('/api/cashflow', transactionData);

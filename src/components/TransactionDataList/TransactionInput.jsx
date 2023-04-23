@@ -1,5 +1,5 @@
 import { Field } from 'formik';
-import s from './TransactionDataList/TransactionDataList.module.scss';
+import s from './TransactionDataList.module.scss';
 
 const Input = ({ name, title, placeholder, disabled }) => {
   return (

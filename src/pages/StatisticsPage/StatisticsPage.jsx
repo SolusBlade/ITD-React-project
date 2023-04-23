@@ -9,6 +9,7 @@ const StatisticsPage = () => {
     <>
       <section className={s.vectorImg}>
         <Container>
+        <div className={s.statWrapp}>
           <div className={s.navWrapper}>
             <nav>
               <ul className={s.navThumb}>

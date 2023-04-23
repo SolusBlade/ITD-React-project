@@ -1,19 +1,37 @@
-import { Formik, Form, ErrorMessage } from 'formik';
-import s from './TransactionDataList.module.scss';
-import Input from '../Input';
-import ExpensesLimits from '../ExpensesLimits/ExpensesLimits';
 import { useState } from 'react';
-import ModalAddIncome from '../ModalAddIncome/ModalAddIncome';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectorBalance } from 'redux/auth/authSelectors';
-import { categorySelect } from 'redux/Expenses/expensesSelectors';
-import { postTransaction } from 'redux/Expenses/expensesOperations';
-import TransactionSelect from '../TransactionSelect/TransactionSelect';
+import { Formik, Form, ErrorMessage } from 'formik';
 import * as yup from 'yup';
+
+import Input from './TransactionInput';
+import ExpensesLimits from '../ExpensesLimits/ExpensesLimits';
+import ModalAddIncome from '../ModalAddIncome/ModalAddIncome';
+import { selectorBalance } from 'redux/auth/authSelectors';
+import { categorySelect, selectorIsCashflowLoading } from 'redux/expenses/expensesSelectors';
+import { postTransaction } from 'redux/expenses/expensesOperations';
+import TransactionSelect from '../TransactionSelect/TransactionSelect';
+import s from './TransactionDataList.module.scss';
+import Loader from 'components/Loader/Loader';
+
+const initialValues = {
+  comment: '',
+  sum: '',
+  category: '',
+};
+
+const schema = yup.object().shape({
+  comment: yup.string().max(80),
+  sum: yup
+    .number()
+    .positive('enter only a positive number')
+    .required('This field is required'),
+  category: yup.string(),
+});
 
 const TransactionDataList = () => {
   const [currentCategory, setCurrentCategory] = useState('other');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const isLoading = useSelector(selectorIsCashflowLoading);
   const category = useSelector(categorySelect);
   const balance = useSelector(selectorBalance);
   const dispatch = useDispatch();
@@ -23,23 +41,8 @@ const TransactionDataList = () => {
     label,
   }));
 
-  const schema = yup.object().shape({
-    comment: yup.string().max(80),
-    sum: yup
-      .number()
-      .positive('enter only a positive number')
-      .required('This field is required'),
-    category: yup.string(),
-  });
-
   const openModal = () => {
     setIsModalOpen(true);
-  };
-
-  const initialValues = {
-    comment: '',
-    sum: '',
-    category: '',
   };
 
   const closeModal = () => setIsModalOpen(false);
@@ -70,6 +73,7 @@ const TransactionDataList = () => {
 
   return (
     <section className={s.transaction}>
+      {isLoading && <Loader />}
       <Formik
         onSubmit={handleSubmit}
         validationSchema={schema}
