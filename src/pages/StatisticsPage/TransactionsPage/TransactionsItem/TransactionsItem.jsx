@@ -1,8 +1,6 @@
 import moment from 'moment';
 import Icon from '../../../../components/Icon/Icon';
 import s from './TransactionsItem.module.scss';
-// import { removeTransaction } from 'redux/transactions/transactionsOperations';
-import { useDispatch } from 'react-redux';
 
 const TransactionsItem = ({
   openModal,
@@ -13,7 +11,6 @@ const TransactionsItem = ({
   comment,
   filterIt,
 }) => {
-  // const dispatch = useDispatch();
 
   return (
     <li className={s.transactionItem} key={id}>

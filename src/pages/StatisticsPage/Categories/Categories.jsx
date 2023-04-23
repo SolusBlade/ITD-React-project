@@ -1,12 +1,12 @@
-
 import d from './Categories.module.scss';
+
 import {  useSelector } from 'react-redux';
 import { selectedChengedCategoriesStat } from 'redux/transactions/transactionsSelector';
 
 
-
 const Categories = () => {
   const categories = useSelector(selectedChengedCategoriesStat);
+
 
   return (
     <>
