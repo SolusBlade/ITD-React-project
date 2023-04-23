@@ -6,9 +6,6 @@ import { useDispatch } from 'react-redux';
 
 const TransactionsItem = ({ openModal, id, sum, date, category, comment }) => {
   const dispatch = useDispatch();
-  const removeTrans = id => {
-    dispatch(removeTransaction(id));
-  };
 
   console.log(id);
   return (
@@ -44,7 +41,7 @@ const TransactionsItem = ({ openModal, id, sum, date, category, comment }) => {
           <button
             className={s.buttonItem}
             type="button"
-            onClick={removeTrans(id)}
+            onClick={() => dispatch(removeTransaction(id))}
           >
             <Icon
               name={'icon-trash'}

@@ -11,7 +11,7 @@ import { updateTransaction } from 'redux/transactions/transactionsOperations';
 const modalRoot = document.querySelector('#modal-root');
 
 const ModalTransaction = ({ closeModal, value, id }) => {
-  console.log(id);
+  const dispatch = useDispatch();
   const [currentCategory, setCurrentCategory] = useState('Other');
   const { Option } = components;
   const IconOption = props => (
@@ -74,7 +74,7 @@ const ModalTransaction = ({ closeModal, value, id }) => {
             <button
               className={s.buttonEdit}
               type="submit"
-              onClick={useDispatch(updateTransaction(id))}
+              onClick={() => dispatch(updateTransaction(id))}
             >
               Edit
             </button>

@@ -1,4 +1,5 @@
-import { useState } from 'react';
+// eslint-disable-next-line
+import { useRef, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './DateComp.scss';
@@ -22,21 +23,25 @@ const months = [
 ];
 
 const DateComp = () => {
-  const [startDate, setStartDate] = useState(new Date());
+  const dispatch = useDispatch();
+  const startDate = useRef(new Date());
 
-  const changedDate = () => {
-    const month = startDate.getMonth();
-    const year = startDate.getFullYear();
+  const changedDate = newDate => {
+    const month = newDate.getMonth();
+    const year = newDate.getFullYear();
     return `${months[month]}, ${year}`;
   };
-  const dispatch = useDispatch();
+
+  console.log(changedDate(startDate.current));
   return (
     <div className={'calendarWrap'}>
       <DatePicker
-        selected={startDate}
-        onChange={date => setStartDate(date)}
-        value={changedDate()}
-        onCalendarClose={() => dispatch(getTransaction(startDate))} // сюда нужно передать хендлер который должен отрабатывать на закрытие календаря
+        selected={startDate.current}
+        onChange={date => (startDate.current = date)}
+        value={changedDate(startDate.current)}
+        onCalendarClose={() =>
+          dispatch(getTransaction(changedDate(startDate.current)))
+        } // сюда нужно передать хендлер который должен отрабатывать на закрытие календаря
         maxDate={new Date()}
         dateFormat="MM/yyyy"
         showMonthYearPicker

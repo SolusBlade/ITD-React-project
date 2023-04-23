@@ -1,17 +1,17 @@
 @import '../../sass/utils/variables';
 @import '../../sass/utils/mixin';
 
-.transaction {
-  @include tablet_max {
-    padding-top: 50px;
-  }
-  @include tablet {
-    padding-top: 100px;
-  }
-  @include desktop {
-    padding-top: 66px;
-  }
-}
+// .transaction {
+//   @include tablet_max {
+//     padding-top: 50px;
+//   }
+//   @include tablet {
+//     padding-top: 100px;
+//   }
+//   @include desktop {
+//     padding-top: 66px;
+//   }
+// }
 
 .form {
   display: flex;
