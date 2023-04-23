@@ -42,6 +42,7 @@
   background-color: $dark-blue;
   border: 1px solid rgba(108, 108, 108, 0.4);
   border-radius: 28px;
+  outline: none;
 
   &[placeholder] {
     font-weight: 400;
@@ -51,9 +52,9 @@
     padding: 11px 7px 11px 24px;
   }
 
-  &:invalid {
-    color: red;
-  }
+  //   &:invalid {
+  // 	border-color: red;
+  // }
 }
 
 .btnContainer {

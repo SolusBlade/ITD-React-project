@@ -28,6 +28,7 @@
   line-height: 24px;
   letter-spacing: 0.15px;
   color: #f3f3f3;
+  cursor: default;
 
   @media screen and (min-width: 768px) {
     display: inline-block;
@@ -74,6 +75,7 @@
   font-size: 14px;
   line-height: 18px;
   color: rgba(243, 243, 243, 0.4);
+  cursor: default;
 }
 
 .res {
@@ -87,6 +89,7 @@
   height: 46px;
   border: 1px solid rgba(243, 243, 243, 0.4);
   border-radius: 28px;
+  cursor: default;
 }
 
 .buttonFits {
@@ -135,5 +138,10 @@
   &:hover,
   &:focus {
     color: #242424;
+  }
+
+  &:disabled {
+    color: rgba(243, 243, 243, 0.4);
+    cursor: default;
   }
 }
