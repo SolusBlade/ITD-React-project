@@ -1,8 +1,8 @@
 import Container from 'components/Container/Container';
 import DateComp from 'components/DateComp/DateComp';
-
-import s from './StatisticsPage.module.scss';
 import { NavLink, Outlet } from 'react-router-dom';
+import s from './StatisticsPage.module.scss';
+import Section from 'components/Section/Section';
 import Loader from 'components/Loader/Loader';
 import { useSelector } from 'react-redux';
 import { selectedIsLoading } from 'redux/transactions/transactionsSelector';
@@ -12,7 +12,7 @@ const StatisticsPage = () => {
   return (
     <>
       {isLoading && <Loader />}
-      <section className={s.vectorImg}>
+      <Section>
         <Container>
           <div className={s.statWrapp}>
             <div className={s.navWrapper}>
@@ -44,11 +44,14 @@ const StatisticsPage = () => {
               <div className={s.calendarWrapper}>
                 <DateComp />
               </div>
+
+              <Outlet />
             </div>
+
             <Outlet />
           </div>
         </Container>
-      </section>
+      </Section>
     </>
   );
 };
