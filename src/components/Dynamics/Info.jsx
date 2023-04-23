@@ -1,9 +1,30 @@
 import React, { useEffect } from "react";
 import styles from "./Info.module.scss";
-import {useDropzone} from "react-dropzone";
+import { useDropzone } from "react-dropzone";
 import { postImage } from "redux/dynamics/dynamicsOperations";
 import { useDispatch } from "react-redux";
 import { useMemo } from "react";
+import { 
+    selectDynamics,
+    selectStatByYear, 
+    selectAccumToOneMoreMeters,
+    selectAccumulatedProc,
+    selectAccumulatedUah,
+    selectFlatImage, 
+    selectMonth,
+    selectSquareMeters,
+    selectYear, 
+ } from "redux/dynamics/dynamicsVariables";
+
+// selectDynamics
+// selectStatByYear 
+// selectAccumToOneMoreMeters 
+// selectAccumulatedProc
+// selectAccumulatedUah 
+// selectFlatImage 
+// selectMonth
+// selectSquareMeters 
+// selectYear 
 
 const baseStyle = {
     width: '100%',
@@ -39,7 +60,6 @@ export const Info = (props) => {
     const dispatch = useDispatch();
     const file = acceptedFiles;
 
-    console.log('localStorage', localStorage)
 
     useEffect(()=>{
         if(file.length > 0) {

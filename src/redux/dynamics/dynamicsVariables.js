@@ -1,1 +1,9 @@
 export const selectDynamics = state => state.dynamics.statByYear;
+export const selectStatByYear = state => state.dynamics.statByYear;
+export const selectAccumToOneMoreMeters = state => state.dynamics.accumToOneMoreMeters;
+export const selectAccumulatedProc = state => state.dynamics.accumulatedProc;
+export const selectAccumulatedUah = state => state.dynamics.accumulatedUah;
+export const selectFlatImage = state => state.dynamics.flatImage;
+export const selectMonth = state => state.dynamics.month;
+export const selectSquareMeters = state => state.dynamics.squareMeters;
+export const selectYear = state => state.dynamics.year;

@@ -2,21 +2,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { addDynamicsImageApi, getDynamicsApi, getDynamicsByMonthApi } from "services/connectoinsApi";
 
-// export const setToken = () => {
-//     const storage = JSON.parse(localStorage.getItem("persist:auth"));
-
-//     console.log(storage.token);
-//     const filteredToken = storage.token.replace(/"/g, '');
-//     // console.log('test', filteredToken);
-//     // const filterTest = test.split('').map(elem => {
-//     //     return elem === '"' ? '' : elem;
-//     // }).join('')
-//     // console.log(filterTest);
-//     // axios.defaults.headers.common.Authorization = ``;
-//     axios.defaults.headers.common['Authorization'] = `Bearer ${filteredToken}`;
-//     // return storage.token;
-// }
-
 export const getDynamics = createAsyncThunk(
     'dynamics/getDynamics',
 
@@ -24,7 +9,7 @@ export const getDynamics = createAsyncThunk(
         try{
             const response = await getDynamicsApi();
 
-           return response.data;
+           return response;
         } catch (error) {
             console.log('getDynamics error')
             return thunkAPI.rejectWithValue(error.message);
