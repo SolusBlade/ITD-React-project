@@ -39,7 +39,7 @@ const App = () => {
       dispatch(getCurrentUserInfo(token));
     }
     isLoggedIn && dispatch(getPersonalPlan());
-  }, [token, dispatch]);
+  }, [token, dispatch, isLoggedIn]);
 
   return (
     <>
