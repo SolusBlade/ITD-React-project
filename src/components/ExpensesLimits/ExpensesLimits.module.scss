@@ -7,12 +7,10 @@
     padding-bottom: 66px;
   }
   @include tablet {
-    padding-top: 250px;
-    padding-bottom: 220px;
+    padding-top: 130px;
   }
   @include desktop {
     padding-top: 90px;
-    padding-bottom: 148px;
   }
 }
 
@@ -89,7 +87,7 @@
   display: block;
   cursor: pointer;
   @include font(700, 14px, 20px);
-  color: $blue;
+  color: $btn-black;
   background-color: $white;
   border-radius: 60px;
   border: none;
@@ -97,6 +95,10 @@
   padding: 14px 86px;
   margin-left: auto;
   margin-right: auto;
+  &:hover,
+  &:focus {
+    color: $blue;
+  }
 }
 .btnModal {
   display: block;
@@ -111,4 +113,8 @@
   margin-left: auto;
   margin-right: auto;
   padding-top: 14px;
+  &:hover,
+  &:focus {
+    color: $btn-black;
+  }
 }

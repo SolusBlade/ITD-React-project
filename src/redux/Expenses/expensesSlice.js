@@ -8,13 +8,6 @@ import {
 const initialState = {
   category: [],
   presaving: { monthLimit: 0, dailyLimit: 0, totalByDay: 0, totalByMounth: 0 },
-  transaction: {
-    type: null,
-    category: null,
-    comment: null,
-    sum: 0,
-    date: null,
-  },
   error: null,
   isLoading: true,
 };

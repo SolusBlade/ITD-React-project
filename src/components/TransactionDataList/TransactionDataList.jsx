@@ -77,7 +77,7 @@ const TransactionDataList = () => {
   };
 
   return (
-    <section className={s.transaction}>
+    <div>
       {isLoading && <Loader />}
       <Formik
         onSubmit={handleSubmit}
@@ -128,7 +128,7 @@ const TransactionDataList = () => {
       {isModalOpen && (
         <ModalAddIncome text="Enter income" closeModal={closeModal} />
       )}
-    </section>
+    </div>
   );
 };
 

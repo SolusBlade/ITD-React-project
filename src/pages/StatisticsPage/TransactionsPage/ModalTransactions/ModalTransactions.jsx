@@ -3,7 +3,7 @@ import s from '../Transactions/Transactions.module.scss';
 import Icon from 'components/Icon/Icon';
 import Select, { components } from 'react-select';
 import { useDispatch, useSelector } from 'react-redux';
-
+import c from '../../../../components/ModalAddIncome/MoadlAddIncome.module.scss';
 import { useState } from 'react';
 import { categorySelect } from 'redux/expenses/expensesSelectors';
 import { updateTransaction } from 'redux/transactions/transactionsOperations';
@@ -12,19 +12,22 @@ const modalRoot = document.querySelector('#modal-root');
 
 const ModalTransaction = ({ closeModal, value, id }) => {
   const dispatch = useDispatch();
+
   const [currentCategory, setCurrentCategory] = useState('Other');
   const { Option } = components;
+
   const IconOption = props => (
     <Option {...props}>
       <Icon
         name={props.data.value}
         width={18}
         height={18}
-        secondaryClassName={s.categoryIcon}
+        secondaryClassName={c.categoryIcon}
       />
       {props.data.label}
     </Option>
   );
+
   const category = useSelector(categorySelect);
   const transformCategory = category.map(({ name: value, title: label }) => ({
     value,
@@ -88,7 +91,7 @@ const ModalTransaction = ({ closeModal, value, id }) => {
               name="icon-close"
               width={24}
               height={24}
-              className={'icon-close'}
+              secondaryClassName={c.iconClose}
             />
           </button>
         </form>
