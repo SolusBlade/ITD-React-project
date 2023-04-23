@@ -23,14 +23,16 @@ const ResultForm = ({ openModal, onClick }) => {
           <button className={s.buttonFits} type="button" onClick={onClick}>
             Fits
           </button>
-          <button
-            disabled={isBalance}
-            className={s.buttonBalance}
-            type="button"
-            onClick={openModal}
-          >
-            Add Balance
-          </button>
+          {!isBalance && (
+            <button
+              // disabled={isBalance}
+              className={s.buttonBalance}
+              type="button"
+              onClick={openModal}
+            >
+              Add Balance
+            </button>
+          )}
         </li>
       </ul>
     </div>
