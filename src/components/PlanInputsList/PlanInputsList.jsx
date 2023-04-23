@@ -80,7 +80,7 @@ const PlanInputsList = () => {
       dispatch(calcPersonalPlan(inputs)).then(() => {
         isPlan.current = true;
       });
-    } else {
+    } else if (!isDirty) {
       dispatch(updatePersonalPlan(inputs));
     }
   };
