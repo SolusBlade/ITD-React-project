@@ -1,21 +1,7 @@
-import Icon from 'components/Icon/Icon';
-import Select, { components } from 'react-select';
-import s from '../ModalAddIncome/MoadlAddIncome.module.scss';
+import Select from 'react-select';
+import { IconOption } from './iconsForSelectCategory';
 
 const TransactionSelect = ({ transformCategory, onChange, value }) => {
-  const { Option } = components;
-  const IconOption = props => (
-    <Option {...props}>
-      <Icon
-        name={props.data.value}
-        width={18}
-        height={18}
-        secondaryClassName={s.categoryIcon}
-      />
-      {props.data.label}
-    </Option>
-  );
-
   return (
     <label className="labelForSelector">
       <p className="labelText">Per category</p>
