@@ -4,6 +4,7 @@ import s from './TransactionsItem.module.scss';
 
 const TransactionsItem = ({
   openModal,
+  updateTransaction,
   id,
   sum,
   date,
@@ -12,12 +13,14 @@ const TransactionsItem = ({
   filterIt,
 }) => {
   return (
-    <li className={s.transactionItem} key={id}>
+    <li
+      className={s.transactionItem}
+      key={id}
+      onClick={() => updateTransaction(id, date)}
+    >
       <div className={s.transactionThumb}>
         <div className={s.commentWrapper}>
-          <p className={s.transactionDate}>
-            {moment(date).format('DD.MM.YYYY')}
-          </p>
+          <p className={s.transactionDate}>{moment(date).format('MM.YYYY')}</p>
           <p className={s.transactionComment}>{comment}</p>
         </div>
 
@@ -28,12 +31,7 @@ const TransactionsItem = ({
       <div className={s.thumb}>
         <p className={s.transactionCategory}>{category}</p>
         <div className={s.buttonThumb}>
-          <button
-            className={s.buttonItem}
-            type="button"
-            onClick={openModal}
-            id={id}
-          >
+          <button className={s.buttonItem} type="button" onClick={openModal}>
             <Icon
               name={'icon-pencil'}
               width={'22'}
@@ -44,7 +42,6 @@ const TransactionsItem = ({
           <button
             className={s.buttonItem}
             type="button"
-            // onClick={() => dispatch(removeTransaction(id))}
             onClick={() => filterIt(id)}
           >
             <Icon

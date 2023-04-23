@@ -8,14 +8,14 @@ import ExpensesLimits from '../ExpensesLimits/ExpensesLimits';
 import ModalAddIncome from '../ModalAddIncome/ModalAddIncome';
 import { selectorBalance } from 'redux/auth/authSelectors';
 
-import { postTransaction } from 'redux/Expenses/expensesOperations';
+import { postTransaction } from 'redux/expenses/expensesOperations';
 import TransactionSelect from '../TransactionSelect/TransactionSelect';
 import s from './TransactionDataList.module.scss';
 
 import {
   categorySelect,
   selectorIsCashflowLoading,
-} from 'redux/Expenses/expensesSelectors';
+} from 'redux/expenses/expensesSelectors';
 import Loader from 'components/Loader/Loader';
 
 const initialValues = {

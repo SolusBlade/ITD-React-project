@@ -4,21 +4,25 @@ import {
   getCashflowCategoriesPercentage,
 } from 'redux/transactions/transactionsOperations';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectIsLoading } from 'redux/transactions/transactionsSelector';
+import {
+  selectIsLoading,
+  selectedChengedCategoriesStat,
+} from 'redux/transactions/transactionsSelector';
 import { getCashflowCategoriesPercentageApi } from 'services/connectoinsApi';
 import { selectorIsLoggedIn } from 'redux/auth/authSelectors';
+import { useEffect } from 'react';
 
 const Categories = () => {
   const categories = useSelector(selectedChengedCategoriesStat);
-
-  useEffect(() => {
-    const date = {
-      year: new Date().getFullYear(),
-      month: new Date().getMonth() + 1,
-    };
-    console.log('lsplfkcps');
-    isLoggedIn && getCashflowCategoriesPercentageApi(date);
-  }, [isLoggedIn, dispatch]);
+  const dispatch = useDispatch();
+  // useEffect(() => {
+  //   const date = {
+  //     year: new Date().getFullYear(),
+  //     month: new Date().getMonth() + 1,
+  //   };
+  //   console.log('lsplfkcps');
+  //   isLoggedIn && getCashflowCategoriesPercentageApi(date);
+  // }, [isLoggedIn, dispatch]);
 
   // const categories = [
   //     {

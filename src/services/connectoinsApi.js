@@ -80,7 +80,7 @@ export const updateCashflowTransactionApi = (id, newTransaction) => {
   return axios.put(`/api/cashflow/${id}`, newTransaction).then(r => r.data);
 };
 
-export const getCashflowCategoriesPercentageApi = ({year, month}) => {
+export const getCashflowCategoriesPercentageApi = ({ year, month }) => {
   return axios
     .get('/api/cashflow/stat', {
       params: {
@@ -112,12 +112,12 @@ export const getDynamicsByMonthApi = (year, month) => {
 };
 
 // Тут нужно будет подумать, пока не готово
-export const addDynamicsImageApi = (data) => {
+export const addDynamicsImageApi = data => {
   return axios({
     method: 'patch',
     url: '/api/dynamics/flatImage',
     // headers: {},
-    data: data
+    data: data,
   });
   // return axios.patch('/api/dynamics/flatImage').then(r => r.data);
 };

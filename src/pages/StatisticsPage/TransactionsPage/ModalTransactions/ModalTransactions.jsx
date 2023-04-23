@@ -5,18 +5,20 @@ import Select from 'react-select';
 import { useDispatch, useSelector } from 'react-redux';
 import c from '../../../../components/ModalAddIncome/MoadlAddIncome.module.scss';
 import { useEffect, useState } from 'react';
-import { categorySelect } from 'redux/Expenses/expensesSelectors';
+import { categorySelect } from 'redux/expenses/expensesSelectors';
 import { updateTransaction } from 'redux/transactions/transactionsOperations';
 import { IconOption } from 'components/TransactionSelect/iconsForSelectCategory';
-import { getCategory } from 'redux/Expenses/expensesOperations';
+import { getCategory } from 'redux/expenses/expensesOperations';
+import moment from 'moment';
 
 const modalRoot = document.querySelector('#modal-root');
 
-const ModalTransaction = ({ closeModal, value, id }) => {
+const ModalTransaction = ({ closeModal, value, id, date }) => {
   const [currentCategory, setCurrentCategory] = useState('Other');
+  const [currentSum, setCurrentSum] = useState(0);
+  const [currentComent, setCurrentComent] = useState('');
   const category = useSelector(categorySelect);
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(getCategory());
   }, [dispatch]);
@@ -28,6 +30,26 @@ const ModalTransaction = ({ closeModal, value, id }) => {
 
   const onChange = newValue => {
     setCurrentCategory(newValue.value);
+  };
+  const changeSum = e => {
+    setCurrentSum(e.currentTarget.value);
+  };
+  const changeComent = e => {
+    setCurrentComent(e.currentTarget.value);
+  };
+
+  const onSubmit = e => {
+    e.preventDefault();
+    const data = {
+      type: 'expense',
+      category: currentCategory,
+      comment: currentComent,
+      sum: Number(currentSum),
+      date: '04.2023',
+    };
+    console.log(id);
+    console.log(data);
+    dispatch(updateTransaction(id, data));
   };
 
   return createPortal(
@@ -58,20 +80,23 @@ const ModalTransaction = ({ closeModal, value, id }) => {
                 type="text"
                 name="comment"
                 maxLength="80"
+                value={value}
+                onChange={changeComent}
               />
             </label>
 
             <label className={s.formLabel}>
               Sum
-              <input className={s.formInput} type="text" name="sum" />
+              <input
+                className={s.formInput}
+                type="number"
+                name="sum"
+                onChange={changeSum}
+              />
             </label>
 
             <div>
-              <button
-                className={s.buttonEdit}
-                type="submit"
-                onClick={() => dispatch(updateTransaction(id))}
-              >
+              <button className={s.buttonEdit} type="submit" onClick={onSubmit}>
                 Edit
               </button>
             </div>
