@@ -16,6 +16,7 @@ import { useEffect } from 'react';
 
 import Transactions from 'pages/StatisticsPage/TransactionsPage/Transactions/Transactions';
 import Categories from 'pages/StatisticsPage/Categories/Categories';
+import { getPersonalPlan } from 'redux/plan/planOperations';
 // eslint-disable-next-line
 const PrivateRoute = ({ component, redirectTo = '/login' }) => {
   const isLoggedIn = useSelector(selectorIsLoggedIn);
@@ -35,8 +36,8 @@ const App = () => {
   useEffect(() => {
     if (token) {
       dispatch(getCurrentUserInfo(token));
-      
     }
+    dispatch(getPersonalPlan());
   }, [token, dispatch]);
 
   return (

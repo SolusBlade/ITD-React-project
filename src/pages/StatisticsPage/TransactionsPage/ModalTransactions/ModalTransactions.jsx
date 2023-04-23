@@ -1,38 +1,31 @@
 import { createPortal } from 'react-dom';
 import s from '../Transactions/Transactions.module.scss';
 import Icon from 'components/Icon/Icon';
-import Select, { components } from 'react-select';
+import Select from 'react-select';
 import { useDispatch, useSelector } from 'react-redux';
 import c from '../../../../components/ModalAddIncome/MoadlAddIncome.module.scss';
-import { useState } from 'react';
-import { categorySelect } from 'redux/expenses/expensesSelectors';
+import { useEffect, useState } from 'react';
+import { categorySelect } from 'redux/Expenses/expensesSelectors';
 import { updateTransaction } from 'redux/transactions/transactionsOperations';
+import { IconOption } from 'components/TransactionSelect/iconsForSelectCategory';
+import { getCategory } from 'redux/Expenses/expensesOperations';
 
 const modalRoot = document.querySelector('#modal-root');
 
 const ModalTransaction = ({ closeModal, value, id }) => {
+  const [currentCategory, setCurrentCategory] = useState('Other');
+  const category = useSelector(categorySelect);
   const dispatch = useDispatch();
 
-  const [currentCategory, setCurrentCategory] = useState('Other');
-  const { Option } = components;
+  useEffect(() => {
+    dispatch(getCategory());
+  }, [dispatch]);
 
-  const IconOption = props => (
-    <Option {...props}>
-      <Icon
-        name={props.data.value}
-        width={18}
-        height={18}
-        secondaryClassName={c.categoryIcon}
-      />
-      {props.data.label}
-    </Option>
-  );
-
-  const category = useSelector(categorySelect);
   const transformCategory = category.map(({ name: value, title: label }) => ({
     value,
     label,
   }));
+
   const onChange = newValue => {
     setCurrentCategory(newValue.value);
   };
@@ -57,43 +50,44 @@ const ModalTransaction = ({ closeModal, value, id }) => {
 
             <div className={s.options}></div>
           </label>
+          <div className={s.flex}>
+            <label className={s.formLabel}>
+              Expense comment
+              <input
+                className={s.formInput}
+                type="text"
+                name="comment"
+                maxLength="80"
+              />
+            </label>
 
-          <label className={s.formLabel}>
-            Expense comment
-            <input
-              className={s.formInput}
-              type="text"
-              name="comment"
-              maxLength="80"
-            />
-          </label>
+            <label className={s.formLabel}>
+              Sum
+              <input className={s.formInput} type="text" name="sum" />
+            </label>
 
-          <label className={s.formLabel}>
-            Sum
-            <input className={s.formInput} type="text" name="sum" />
-          </label>
-
-          <div>
+            <div>
+              <button
+                className={s.buttonEdit}
+                type="submit"
+                onClick={() => dispatch(updateTransaction(id))}
+              >
+                Edit
+              </button>
+            </div>
             <button
-              className={s.buttonEdit}
-              type="submit"
-              onClick={() => dispatch(updateTransaction(id))}
+              className={s.buttonCloseModal}
+              type="button"
+              onClick={closeModal}
             >
-              Edit
+              <Icon
+                name="icon-close"
+                width={24}
+                height={24}
+                secondaryClassName={c.iconClose}
+              />
             </button>
           </div>
-          <button
-            className={s.buttonCloseModal}
-            type="button"
-            onClick={closeModal}
-          >
-            <Icon
-              name="icon-close"
-              width={24}
-              height={24}
-              secondaryClassName={c.iconClose}
-            />
-          </button>
         </form>
       </div>
     </div>,

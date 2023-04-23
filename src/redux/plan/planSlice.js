@@ -22,6 +22,7 @@ const ownPlanInitialState = {
   },
   isLoading: true,
   error: null,
+  isPlan: false,
 };
 
 const ownPlanSlice = createSlice({
@@ -46,6 +47,7 @@ const ownPlanSlice = createSlice({
         state.error = null;
         state.plan = payload.plan;
         state.result = payload.result;
+        state.isPlan = true;
       })
       .addCase(updatePersonalPlan.fulfilled, (state, { payload }) => {
         state.isLoading = false;
