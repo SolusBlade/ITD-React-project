@@ -14,7 +14,7 @@ import ModalLogin from './ModalLogin/ModalLogin';
 import { getCurrentUserInfo } from 'redux/auth/authOperations';
 import { useEffect } from 'react';
 
-import Transactions from 'pages/StatisticsPage/Transactions/Transactions';
+import Transactions from 'pages/StatisticsPage/TransactionsPage/Transactions/Transactions';
 import Categories from 'pages/StatisticsPage/Categories/Categories';
 // eslint-disable-next-line
 const PrivateRoute = ({ component, redirectTo = '/login' }) => {

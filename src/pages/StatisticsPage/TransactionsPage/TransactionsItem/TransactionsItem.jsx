@@ -1,16 +1,16 @@
 import moment from 'moment';
 import Icon from '../../../../components/Icon/Icon';
 import s from './TransactionsItem.module.scss';
+import { removeTransaction } from 'redux/transactions/transactionsOperations';
+import { useDispatch } from 'react-redux';
 
-const TransactionsItem = ({
-  openModal,
-  id,
-  sum,
-  date,
-  category,
-  comment,
-  removeTransaction,
-}) => {
+const TransactionsItem = ({ openModal, id, sum, date, category, comment }) => {
+  const dispatch = useDispatch();
+  const removeTrans = id => {
+    dispatch(removeTransaction(id));
+  };
+
+  console.log(id);
   return (
     <li className={s.transactionItem} key={id}>
       <div className={s.transactionThumb}>
@@ -28,7 +28,12 @@ const TransactionsItem = ({
       <div className={s.thumb}>
         <p className={s.transactionCategory}>{category}</p>
         <div className={s.buttonThumb}>
-          <button className={s.buttonItem} type="button" onClick={openModal}>
+          <button
+            className={s.buttonItem}
+            type="button"
+            onClick={openModal}
+            id={id}
+          >
             <Icon
               name={'icon-pencil'}
               width={'22'}
@@ -39,7 +44,7 @@ const TransactionsItem = ({
           <button
             className={s.buttonItem}
             type="button"
-            onClick={() => removeTransaction(id)}
+            onClick={removeTrans(id)}
           >
             <Icon
               name={'icon-trash'}

@@ -1,11 +1,7 @@
-import TransactionsItem from './TransactionsItem/TransactionsItem';
+import TransactionsItem from '../TransactionsItem/TransactionsItem';
 import css from './Transactions.module.scss';
-import ModalTransaction from './ModalTransactions/ModalTransactions';
-import {
-  getTransaction,
-  updateTransaction,
-  removeTransaction,
-} from 'redux/transactions/transactionsOperations';
+import ModalTransaction from '../ModalTransactions/ModalTransactions';
+import { getTransaction } from 'redux/transactions/transactionsOperations';
 import { selectedTransactions } from 'redux/transactions/transactionsSelector';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
@@ -23,12 +19,6 @@ const Transactions = () => {
     isLoggedIn && dispatch(getTransaction(date));
   }, [dispatch, isLoggedIn]);
 
-  const removeTrans = id => {
-    dispatch(removeTransaction(id));
-  };
-  const updateTrans = id => {
-    dispatch(updateTransaction(id));
-  };
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => {
     setIsModalOpen(true);
@@ -37,29 +27,29 @@ const Transactions = () => {
   console.log(transaction);
   return (
     <>
-      {/* {transaction?.length === 0 && (
+      {transaction?.length === 0 && (
         <div className={css.noTransactionWrapper}>
           <p className={css.noTransactionText}>You have no transactions</p>
-        </div> */}
-      {/* )}  */}
+        </div>
+      )}
       <ul className={css.transactionList}>
-        {/* {transaction &&
-          transaction.map(({ _id: id, sum, comment, category, date }) => ( */}
-        <TransactionsItem
-          openModal={openModal}
-          // key={id}
-          // id={id}
-          // sum={sum}
-          // comment={comment}
-          // category={category}
-          // date={date}
-          // removeTrans={removeTrans}
-          // updateTrans={updateTrans}
-        />
-        {/* // ))} */}
+        {transaction &&
+          transaction.map(({ _id: id, sum, comment, category, date }) => (
+            <TransactionsItem
+              openModal={openModal}
+              key={id}
+              id={id}
+              sum={sum}
+              comment={comment}
+              category={category}
+              date={date}
+            />
+          ))}
       </ul>
-
-      {isModalOpen && <ModalTransaction closeModal={closeModal} />}
+      {isModalOpen &&
+        transaction.map(({ _id: id }) => (
+          <ModalTransaction closeModal={closeModal} id={id} />
+        ))}
     </>
   );
 };

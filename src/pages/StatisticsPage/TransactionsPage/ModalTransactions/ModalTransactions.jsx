@@ -1,15 +1,18 @@
 import { createPortal } from 'react-dom';
-import s from '../Transactions.module.scss';
+import s from '../Transactions/Transactions.module.scss';
 import Icon from 'components/Icon/Icon';
 import Select, { components } from 'react-select';
-import { useSelector } from 'react-redux';
-import { categorySelect } from 'redux/expenses/expensesSelectors';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { useState } from 'react';
+import { categorySelect } from 'redux/expenses/expensesSelectors';
+import { updateTransaction } from 'redux/transactions/transactionsOperations';
 
 const modalRoot = document.querySelector('#modal-root');
 
-const ModalTransaction = ({ closeModal, value }) => {
-  const [currentCategory, setCurrentCategory] = useState('other');
+const ModalTransaction = ({ closeModal, value, id }) => {
+  console.log(id);
+  const [currentCategory, setCurrentCategory] = useState('Other');
   const { Option } = components;
   const IconOption = props => (
     <Option {...props}>
@@ -41,7 +44,7 @@ const ModalTransaction = ({ closeModal, value }) => {
               onChange={onChange}
               value={value}
               isSearchable={false}
-              placeholder="Other"
+              placeholder={currentCategory}
               className="select-container"
               classNamePrefix="select"
               options={transformCategory}
@@ -53,7 +56,7 @@ const ModalTransaction = ({ closeModal, value }) => {
           </label>
 
           <label className={s.formLabel}>
-            expenses
+            Expense comment
             <input
               className={s.formInput}
               type="text"
@@ -63,12 +66,16 @@ const ModalTransaction = ({ closeModal, value }) => {
           </label>
 
           <label className={s.formLabel}>
-            sum
+            Sum
             <input className={s.formInput} type="text" name="sum" />
           </label>
 
           <div>
-            <button className={s.buttonEdit} type="submit">
+            <button
+              className={s.buttonEdit}
+              type="submit"
+              onClick={useDispatch(updateTransaction(id))}
+            >
               Edit
             </button>
           </div>

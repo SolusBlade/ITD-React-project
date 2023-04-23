@@ -7,10 +7,15 @@ import Input from './TransactionInput';
 import ExpensesLimits from '../ExpensesLimits/ExpensesLimits';
 import ModalAddIncome from '../ModalAddIncome/ModalAddIncome';
 import { selectorBalance } from 'redux/auth/authSelectors';
-import { categorySelect, selectorIsCashflowLoading } from 'redux/expenses/expensesSelectors';
+
 import { postTransaction } from 'redux/expenses/expensesOperations';
 import TransactionSelect from '../TransactionSelect/TransactionSelect';
 import s from './TransactionDataList.module.scss';
+
+import {
+  categorySelect,
+  selectorIsCashflowLoading,
+} from 'redux/expenses/expensesSelectors';
 import Loader from 'components/Loader/Loader';
 
 const initialValues = {
