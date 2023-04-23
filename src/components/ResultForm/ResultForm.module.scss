@@ -58,7 +58,7 @@
     bottom: 44px;
     display: flex;
     flex-direction: column-reverse;
-    justify-content: flex-end;
+    justify-content: flex-start;
     height: 90px;
   }
   @media screen and (min-width: 1280px) {
@@ -94,7 +94,7 @@
 
 .buttonFits {
   cursor: pointer;
-  width: 247px;
+  width: 100%;
   height: 46px;
   font-weight: 700;
   font-size: 14px;
@@ -117,7 +117,7 @@
 }
 
 .buttonBalance {
-  width: 247px;
+  width: 100%;
   height: 46px;
   font-weight: 700;
   font-size: 14px;
@@ -140,8 +140,8 @@
     color: #242424;
   }
 
-  &:disabled {
-    color: rgba(243, 243, 243, 0.4);
-    cursor: default;
-  }
+  // &:disabled {
+  //   color: rgba(243, 243, 243, 0.4);
+  //   cursor: default;
+  // }
 }
