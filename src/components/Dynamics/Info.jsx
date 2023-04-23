@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Info.module.scss";
 import { useDropzone } from "react-dropzone";
 import { postImage } from "redux/dynamics/dynamicsOperations";
@@ -15,7 +15,7 @@ import {
     selectSquareMeters,
     selectYear, 
  } from "redux/dynamics/dynamicsVariables";
-
+ import { OutsideClicker } from "./OutsideKlicker";
 // selectDynamics
 // selectStatByYear 
 // selectAccumToOneMoreMeters 
@@ -57,21 +57,24 @@ export const Info = (props) => {
         // getFilesFromEvent: event => myCustomFileGetter(event)
         // getFilesFromEvent: event => testFiles(event)
     });
+    let [trigger, setTrigger] = useState(true);
     const dispatch = useDispatch();
     const file = acceptedFiles;
 
 
     useEffect(()=>{
+        console.log('useEffect acceptedFile', acceptedFiles)
         if(file.length > 0) {
             console.log('useEffect', acceptedFiles)
             // postImage()
+            console.log('useEffect acceptedFile', acceptedFiles)
             const formData = new FormData();
             formData.append('image', acceptedFiles[0]);
-            
+
             console.log('form data',formData);
             dispatch(postImage(formData));
         }
-    },[acceptedFiles, file.length, dispatch])  
+    },[acceptedFiles, file.length, dispatch, trigger])  
 
     const style = useMemo(() => ({
         ...baseStyle,
@@ -110,14 +113,28 @@ export const Info = (props) => {
                     <div className={styles.barFill}></div>
                 </div>
             </div>
-
-            <div className={styles.imageContainer}>
+            <OutsideClicker trigger={trigger} setTrigger={setTrigger}>
+                {trigger ? (
+                    <div className={styles.imageContainer} onClick={()=> setTrigger(false)}>
+                        <p>Photo</p>
+                    </div>
+                ) : (
+                    <div className={styles.imageContainer}>
+                        <div {...getRootProps({style})}>
+                            <input {...getInputProps()} />
+                            <p>Drag 'n' drop some files here, or click to select files</p>
+                            <em>(Only *.jpeg and *.png images will be accepted)</em>
+                        </div>
+                    </div>
+                )}
+            </OutsideClicker>
+            {/* <div className={styles.imageContainer}>
                 <div {...getRootProps({style})}>
                     <input {...getInputProps()} />
                     <p>Drag 'n' drop some files here, or click to select files</p>
                     <em>(Only *.jpeg and *.png images will be accepted)</em>
                 </div>
-            </div>
+            </div> */}
 
         </div>
         <div className={styles.accRemain}>

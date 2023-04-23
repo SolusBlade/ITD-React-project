@@ -37,7 +37,7 @@ export const Chart = () => {
   const isLoggedIn = useSelector(selectorIsLoggedIn);
   const statByYear = useSelector(selectStatByYear);
 
-  console.log(matchesTablet)
+  // console.log(matchesTablet)
   // console.log('isLoggedIn ', isLoggedIn)
 
   useEffect(() => {
@@ -93,7 +93,7 @@ export const Chart = () => {
         <>
           <p>false</p>
           <div className={style.chartContainer}>
-          <Bar ref={chartRef} options={optionsPhone} data={data} height={'100%'} width={'100%'} />
+            <Bar ref={chartRef} options={optionsPhone} data={data} height={'100%'} width={'100%'} />
           </div>
         </>
       )}

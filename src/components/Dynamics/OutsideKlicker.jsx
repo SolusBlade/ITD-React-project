@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 
-export function OutsideAlerter(props) {
+export function OutsideClicker(props) {
     const wrapperRef = useRef(null);
     let {trigger, setTrigger} = props;
 
@@ -8,8 +8,7 @@ export function OutsideAlerter(props) {
         useEffect(() => {
           function handleClickOutside(event) {
             if (ref.current && !ref.current.contains(event.target)) {
-
-                setTrigger(trigger = false);
+                setTrigger(trigger = true);
             }
           }
           document.addEventListener("mousedown", handleClickOutside);
@@ -22,7 +21,7 @@ export function OutsideAlerter(props) {
     useOutsideAlerter(wrapperRef);
     
     useEffect(()=>{
-        console.log('outsideAlerter', trigger)
+        // console.log('outsideAlerter', trigger)
     },[trigger]);
 
     return <div ref={wrapperRef}>{props.children}</div>;
