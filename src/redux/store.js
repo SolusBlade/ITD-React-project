@@ -24,6 +24,16 @@ const persistContactsConfig = {
   whitelist: [`token`],
 };
 
+const persistDynamicsConfig = {
+  key: 'image',
+  storage,
+  whitelist: [`flatImage`],
+};
+const persistedDynamicsReducer = persistReducer(
+  persistDynamicsConfig,
+  dynamicsReducer
+);
+
 const persistedAuthReducer = persistReducer(persistContactsConfig, authReducer);
 
 export const store = configureStore({
@@ -31,7 +41,8 @@ export const store = configureStore({
     auth: persistedAuthReducer,
     ownPlan: ownPlanReducer,
     expenses: expensesReducer,
-    dynamics: dynamicsReducer,
+    // dynamics: dynamicsReducer,
+    dynamics: persistedDynamicsReducer,
     statistics: transactionsReducer,
   },
   middleware: getDefaultMiddleware =>
@@ -43,3 +54,14 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
+
+// const persistDynamicsConfig = {
+//   key: 'image',
+//   storage,
+//   whitelist: [`image`],
+// };
+// const persistedDynamicsReducer = persistReducer(
+//   persistDynamicsConfig,
+//   dynamicsReducer
+// );
+// dynamics: persistedDynamicsReducer,
