@@ -76,7 +76,8 @@ const PlanInputsList = () => {
 
   const handleFits = () => {
     const { isValid } = isValidObjFunc();
-    if (isValid && isPlan) {
+    
+    if (isValid && !isPlan) {
       dispatch(calcPersonalPlan(inputs));
     } else if (isValid && isFitsDirty) {
       dispatch(updatePersonalPlan(inputs));

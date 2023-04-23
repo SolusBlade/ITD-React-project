@@ -15,7 +15,8 @@ import {
     selectFlatImage, 
     selectMonth,
     selectSquareMeters,
-    selectYear, 
+    selectYear,
+    selectorOneMoreMeterCost, 
  } from "redux/dynamics/dynamicsVariables";
  import { OutsideClicker } from "./OutsideKlicker";
 import Icon from "components/Icon/Icon";
@@ -48,6 +49,7 @@ export const Info = (props) => {
     const squareMeters = useSelector(selectSquareMeters);
     const year = useSelector(selectYear);
     const plan = useSelector(selectorStatePlan);
+    const oneMoreMeterCost = useSelector(selectorOneMoreMeterCost);
     const {
         acceptedFiles,
         getRootProps,
@@ -103,7 +105,7 @@ export const Info = (props) => {
     }
 
     return (
-        <>
+      <>
         <div className={styles.infoContainer}>
             <div className={styles.accumulated}>
                 <p className={styles.title}>After {year? 0 : year} years {month? 0 : month} month</p>
@@ -150,16 +152,19 @@ export const Info = (props) => {
                     </div>
                 )}
             </OutsideClicker>
-
         </div>
         <div className={styles.accRemain}>
-            <div className={styles.accTitleContainer}>
-                <p className={styles.accTitle}>To add more <span className={styles.accSpan}>1 sq.m</span> for planning, it remains to accumulate</p>
-                <p className={styles.accNum}>14 000 &#8372;</p>
-            </div>
-            <div className={styles.svgContainer}>
-            </div>
+          <div className={styles.accTitleContainer}>
+            <p className={styles.accTitle}>
+              To add more <span className={styles.accSpan}>1 sq.m</span> for
+              planning, it remains to accumulate
+            </p>
+            <p className={styles.accNum}>
+              {Math.round(oneMoreMeterCost)} &#8372;
+            </p>
+          </div>
+          <div className={styles.svgContainer}></div>
         </div>
-    </>
-    )
+      </>
+    );
 }  

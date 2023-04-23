@@ -1,3 +1,4 @@
+import { addUserBalance } from 'redux/auth/authOperations';
 import {
   calcPersonalPlan,
   getPersonalPlan,
@@ -39,6 +40,7 @@ const ownPlanSlice = createSlice({
       .addCase(calcPersonalPlan.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
+        state.isPlan = true;
         state.plan = payload.plan;
         state.result = payload.result;
       })
@@ -48,6 +50,9 @@ const ownPlanSlice = createSlice({
         state.plan = payload.plan;
         state.result = payload.result;
         state.isPlan = true;
+      })
+      .addCase(addUserBalance.fulfilled, (state, _) => {
+        state.isLoading = false;
       })
       .addCase(updatePersonalPlan.fulfilled, (state, { payload }) => {
         state.isLoading = false;
