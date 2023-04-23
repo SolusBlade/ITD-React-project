@@ -22,7 +22,7 @@ const TransactionsItem = ({
         </div>
 
         <div>
-          <p className={s.transactionSum}>{sum} UAH</p>
+          <p className={s.transactionSum}>{sum} ₴</p>
         </div>
       </div>
       <div className={s.thumb}>

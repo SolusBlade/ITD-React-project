@@ -1,9 +1,15 @@
 @import '../../sass/utils/mixin';
-@import '../../sass/utils/variables';
-
 .vectorImg {
-  padding-top: 50px;
-  padding-bottom: 66px;
+  @include tablet_max {
+    padding-top: 50px;
+  }
+  @include tablet {
+    padding-top: 100px;
+  }
+  @include desktop {
+    padding-top: 66px;
+  }
+
   height: calc(100vh - 71px);
   background-repeat: no-repeat;
   background-position: bottom;

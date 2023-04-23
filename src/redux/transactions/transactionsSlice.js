@@ -3,10 +3,12 @@ import {
   getTransaction,
   updateTransaction,
   removeTransaction,
+  getCategoriesStat,
 } from './transactionsOperations';
 
 const initialState = {
   transactions: [],
+  categoriesStat: [],
   isLoading: false,
   error: null,
 };
@@ -31,10 +33,23 @@ const transactionsSlice = createSlice({
       .addCase(removeTransaction.fulfilled, (state, action) => {
         state.isLoading = false;
       })
+      .addCase(removeTransaction.pending, (state, action) => {
+        state.isLoading = false;
+      })
       .addCase(updateTransaction.fulfilled, (state, action) => {
         state.isLoading = false;
       })
-
+      .addCase(getCategoriesStat.fulfilled, (state, { payload }) => {
+        console.log(payload === 'no transactions for this period');
+        if (payload === 'no transactions for this period') {
+          state.categoriesStat = [];
+          state.isLoading = false;
+          state.error = payload;
+          return;
+        }
+        state.categoriesStat = payload;
+        state.isLoading = false;
+      })
       .addMatcher(
         action =>
           action.type.startsWith('statistic') &&

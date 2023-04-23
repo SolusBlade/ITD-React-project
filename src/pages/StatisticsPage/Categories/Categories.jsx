@@ -63,9 +63,9 @@ const Categories = () => {
           <li key={category} className={d.categoriesItem}>
             <span className={d.categoriesItemEl}>
               <p className={d.categoriesDes}>{category}</p>
-              <p className={d.categoriesAmount}>-{amount} UAH</p>
+              <p className={d.categoriesAmount}>-{amount} ₴</p>
             </span>
-            <p className={d.categoriesPerc}>{percentage}</p>
+            <p className={d.categoriesPerc}>{parseFloat(percentage)}%</p>
           </li>
         ))}
       </ul>

@@ -57,43 +57,44 @@ const ModalTransaction = ({ closeModal, value, id }) => {
 
             <div className={s.options}></div>
           </label>
+          <div className={s.flex}>
+            <label className={s.formLabel}>
+              Expense comment
+              <input
+                className={s.formInput}
+                type="text"
+                name="comment"
+                maxLength="80"
+              />
+            </label>
 
-          <label className={s.formLabel}>
-            Expense comment
-            <input
-              className={s.formInput}
-              type="text"
-              name="comment"
-              maxLength="80"
-            />
-          </label>
+            <label className={s.formLabel}>
+              Sum
+              <input className={s.formInput} type="text" name="sum" />
+            </label>
 
-          <label className={s.formLabel}>
-            Sum
-            <input className={s.formInput} type="text" name="sum" />
-          </label>
-
-          <div>
+            <div>
+              <button
+                className={s.buttonEdit}
+                type="submit"
+                onClick={() => dispatch(updateTransaction(id))}
+              >
+                Edit
+              </button>
+            </div>
             <button
-              className={s.buttonEdit}
-              type="submit"
-              onClick={() => dispatch(updateTransaction(id))}
+              className={s.buttonCloseModal}
+              type="button"
+              onClick={closeModal}
             >
-              Edit
+              <Icon
+                name="icon-close"
+                width={24}
+                height={24}
+                secondaryClassName={c.iconClose}
+              />
             </button>
           </div>
-          <button
-            className={s.buttonCloseModal}
-            type="button"
-            onClick={closeModal}
-          >
-            <Icon
-              name="icon-close"
-              width={24}
-              height={24}
-              secondaryClassName={c.iconClose}
-            />
-          </button>
         </form>
       </div>
     </div>,

@@ -1,13 +1,10 @@
+import { useSelector } from 'react-redux';
 import s from './InputForm.module.scss';
+import { selectorIsPlan } from 'redux/plan/planSelectors';
 
-const InputForm = ({
-  onChange,
-  options,
-  values,
-  onBlur,
-  isPlan,
-  errors = [],
-}) => {
+const InputForm = ({ onChange, options, values, onBlur, errors = [] }) => {
+  const isPlan = useSelector(selectorIsPlan);
+
   return (
     <>
       {options.map((el, index) => (
@@ -27,7 +24,7 @@ const InputForm = ({
             onChange={onChange}
             onBlur={onBlur}
             placeholder={el.placeholder}
-            disabled={el.name === 'savings' && isPlan ? true : false}
+            disabled={el.name === 'savings' && !isPlan ? true : false}
           />
           {errors.includes(el.name) && (
             <span className={s.error}> invalid value </span>

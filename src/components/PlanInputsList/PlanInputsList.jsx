@@ -1,12 +1,12 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+  selectorIsPlan,
   selectorPlanIsLoading,
   selectorStatePlan,
 } from 'redux/plan/planSelectors';
 import {
   calcPersonalPlan,
-  getPersonalPlan,
   preCalcPersonalPlan,
   updatePersonalPlan,
 } from 'redux/plan/planOperations';
@@ -30,20 +30,11 @@ const PlanInputsList = () => {
   const [isBlurDirty, setIsBlurDirty] = useState(false);
   const [isFitsDirty, setIsFitsDirty] = useState(false);
   const [error, setError] = useState([]);
-  const isPlan = useRef(false);
+  const isPlan = useSelector(selectorIsPlan);
 
   useEffect(() => {
-    isLoggedIn &&
-      dispatch(getPersonalPlan())
-        .then(({ payload }) => {
-          setInputs(payload.plan);
-          isPlan.current = true;
-        })
-        .catch(error => {
-          console.error(error);
-          isPlan.current = false;
-        });
-  }, [dispatch, isLoggedIn]);
+    isLoggedIn && setInputs(formData);
+  }, [formData, isLoggedIn]);
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -85,10 +76,8 @@ const PlanInputsList = () => {
 
   const handleFits = () => {
     const { isValid } = isValidObjFunc();
-    if (isValid && !isPlan.current) {
-      dispatch(calcPersonalPlan(inputs)).then(() => {
-        isPlan.current = true;
-      });
+    if (isValid && isPlan) {
+      dispatch(calcPersonalPlan(inputs));
     } else if (isValid && isFitsDirty) {
       dispatch(updatePersonalPlan(inputs));
       setIsFitsDirty(false);
@@ -107,7 +96,6 @@ const PlanInputsList = () => {
           options={optionsDefault}
           values={inputs}
           onBlur={handlerBlur}
-          isPlan={isPlan.current}
           errors={error}
         />
       </form>
