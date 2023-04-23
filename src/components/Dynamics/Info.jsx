@@ -6,12 +6,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useMemo } from "react";
 import { selectorStatePlan } from "redux/plan/planSelectors";
 import { 
-    selectDynamics,
-    selectStatByYear, 
-    selectAccumToOneMoreMeters,
+    // selectDynamics,
+    // selectStatByYear, 
+    // selectAccumToOneMoreMeters,
     selectAccumulatedProc,
     selectAccumulatedUah,
-    selectFlatImage, 
+    // selectFlatImage, 
     selectMonth,
     selectSquareMeters,
     selectYear, 
@@ -134,13 +134,6 @@ export const Info = (props) => {
                     </div>
                 )}
             </OutsideClicker>
-            {/* <div className={styles.imageContainer}>
-                <div {...getRootProps({style})}>
-                    <input {...getInputProps()} />
-                    <p>Drag 'n' drop some files here, or click to select files</p>
-                    <em>(Only *.jpeg and *.png images will be accepted)</em>
-                </div>
-            </div> */}
 
         </div>
         <div className={styles.accRemain}>
@@ -149,9 +142,6 @@ export const Info = (props) => {
                 <p className={styles.accNum}>14 000 &#8372;</p>
             </div>
             <div className={styles.svgContainer}>
-                {/* <svg className={style.svg} >
-                    <use xlinkHref={`${icon}`}/>
-                </svg> */}
             </div>
         </div>
     </>
