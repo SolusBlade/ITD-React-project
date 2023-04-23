@@ -34,7 +34,7 @@ const persistedDynamicsReducer = persistReducer(
   dynamicsReducer
 );
 
-const persistedAuthReducer = persistReducer(persistContactsConfig, authReducer);
+const persistedAuthReducer = persistReducer(persistAuthConfig, authReducer);
 
 export const store = configureStore({
   reducer: {

@@ -20,151 +20,185 @@ import {
  } from "redux/dynamics/dynamicsVariables";
  import { OutsideClicker } from "./OutsideKlicker";
 import Icon from "components/Icon/Icon";
+import ModalHooray from 'components/ModalHooray/ModalHooray';
+import { selectorIsLoggedIn } from 'redux/auth/authSelectors';
 
 const baseStyle = {
-    width: '87%',
-    height: '87%',
-    // flex: 1,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: '20px',
-    borderWidth: 2,
-    borderRadius: 10,
-    borderColor: 'rgba(255, 255, 255, 0.2)',
-    borderStyle: 'dashed',
-    backgroundColor: 'rgba(110, 110, 110, 0.2)',
-    color: '#bdbdbd',
-    outline: 'none',
-    transition: 'border .24s ease-in-out'
+  width: '87%',
+  height: '87%',
+  // flex: 1,
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  padding: '20px',
+  borderWidth: 2,
+  borderRadius: 10,
+  borderColor: 'rgba(255, 255, 255, 0.2)',
+  borderStyle: 'dashed',
+  backgroundColor: 'rgba(110, 110, 110, 0.2)',
+  color: '#bdbdbd',
+  outline: 'none',
+  transition: 'border .24s ease-in-out',
 };
 
-export const Info = (props) => {
-    // const dynamics = useSelector(selectDynamics);
-    // const accumToOneMoreMeters  = useSelector(selectAccumToOneMoreMeters);
-    const accumulatedProc = useSelector(selectAccumulatedProc);
-    const accumulatedUah = useSelector(selectAccumulatedUah);
-    const flatImage = useSelector(selectFlatImage);
-    const month = useSelector(selectMonth);
-    const squareMeters = useSelector(selectSquareMeters);
-    const year = useSelector(selectYear);
-    const plan = useSelector(selectorStatePlan);
-    const oneMoreMeterCost = useSelector(selectorOneMoreMeterCost);
-    const {
-        acceptedFiles,
-        getRootProps,
-        getInputProps
-    } = useDropzone({
-        accept: {
-          'image/jpeg': [],
-          'image/png': []
-        },
-    });
-    let [trigger, setTrigger] = useState(true);
-    const dispatch = useDispatch();
-    const file = acceptedFiles;
+export const Info = props => {
+  // const dynamics = useSelector(selectDynamics);
+  // const accumToOneMoreMeters  = useSelector(selectAccumToOneMoreMeters);
+  const accumulatedProc = useSelector(selectAccumulatedProc);
+  const isLoggedIn = useSelector(selectorIsLoggedIn);
+  const accumulatedUah = useSelector(selectAccumulatedUah);
+  const flatImage = useSelector(selectFlatImage);
+  const month = useSelector(selectMonth);
+  const squareMeters = useSelector(selectSquareMeters);
+  const year = useSelector(selectYear);
+  const plan = useSelector(selectorStatePlan);
+  const oneMoreMeterCost = useSelector(selectorOneMoreMeterCost);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-    useEffect(()=>{
-        // console.log('useEffect acceptedFile', acceptedFiles)
-        if(file.length > 0) {
-            console.log('useEffect', acceptedFiles);
-            // postImage()
-            // console.log('useEffect acceptedFile', acceptedFiles)
-            const formData = new FormData();
-            formData.append('image', acceptedFiles[0]);
+  const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
+    accept: {
+      'image/jpeg': [],
+      'image/png': [],
+    },
+  });
+  let [trigger, setTrigger] = useState(true);
+  const dispatch = useDispatch();
+  const file = acceptedFiles;
 
-            console.log('form data',formData);
-            dispatch(postImage(formData));
-        }
-    },[acceptedFiles, file.length, dispatch, trigger]);  
-
-    const style = useMemo(() => ({
-        ...baseStyle,
-    //   ...(isFocused ? focusedStyle : {}),
-    //   ...(isDragAccept ? acceptStyle : {}),
-    //   ...(isDragReject ? rejectStyle : {})
-    }),[]);
-    //  [
-    //   isFocused,
-    //   isDragAccept,
-    //   isDragReject
-    // ]);
-
-    function percentage(){
-        const percentageCounted = (squareMeters / plan.footage * 100);
-        return percentageCounted >= 100 ? `${100}%` : `${percentageCounted}%`;
+  useEffect(() => {
+    if (file.length > 0) {
+      console.log('useEffect', acceptedFiles);
+      const formData = new FormData();
+      formData.append('image', acceptedFiles[0]);
+      dispatch(postImage(formData));
     }
+  }, [acceptedFiles, file.length, dispatch, trigger]);
 
-    function imageHandler () {
-        if (!flatImage) setTrigger(false);
-        return;
-    }
+  useEffect(() => {
+    isLoggedIn && squareMeters >= plan.footage && setIsModalOpen(true);
+  }, [plan.footage, squareMeters, isLoggedIn]);
 
-    function compareNumbers (a, b) {
-        return a > b ? b : a;
-    }
+  const style = useMemo(
+    () => ({
+      ...baseStyle,
+      //   ...(isFocused ? focusedStyle : {}),
+      //   ...(isDragAccept ? acceptStyle : {}),
+      //   ...(isDragReject ? rejectStyle : {})
+    }),
+    []
+  );
+  //  [
+  //   isFocused,
+  //   isDragAccept,
+  //   isDragReject
+  // ]);
 
-    return (
-      <>
-        <div className={styles.infoContainer}>
-            <div className={styles.accumulated}>
-                <p className={styles.title}>After {year? 0 : year} years {month? 0 : month} month</p>
-                <ul className={styles.list}>
-                    <li className={styles.item}>
-                        <p className={styles.text}>Accumulated, %:</p>
-                        <p className={styles.num}>{compareNumbers(accumulatedProc, 100)}</p>
-                    </li>
-                    <li className={styles.item}>
-                        <p className={styles.text}>Accumulated, UAH:</p>
-                        <p className={styles.num}>{compareNumbers(accumulatedUah, plan.cost)} &#8372;</p>
-                    </li>
-                    <li className={styles.item}>
-                        <p className={styles.text}>And This:</p>
-                        <p className={styles.num}>{squareMeters >= plan.footage && 0} sq.m</p>
-                    </li>
-                </ul>
+  function percentage() {
+    const percentageCounted = (squareMeters / plan.footage) * 100;
+    return percentageCounted >= 100 ? `${100}%` : `${percentageCounted}%`;
+  }
 
-                <p className={styles.barTitle}>{compareNumbers(squareMeters, plan.footage)} out of {plan.footage} sq.m accumulated</p>
-                <div className={styles.bar}>
-                    <div className={styles.barFill} style={{width: percentage()}}></div>
-                </div>
-            </div>
-            <OutsideClicker trigger={trigger} setTrigger={setTrigger}>
-                {trigger ? (
-                    <div className={styles.imageContainer} onClick={imageHandler}>
-                        {flatImage ? (
-                            <>
-                                <img className={styles.image} src={flatImage} alt='flat plan'>
-                                </img>
-                                <p className={styles.imageBtn} onClick={()=> setTrigger(false)}>Change image</p>
-                            </>
-                        ) : (
-                            <Icon name={'icon-photo-camera'} width={100} height={100}/>
-                        )}
-                    </div>
-                ) : (
-                    <div className={styles.imageContainer}>
-                        <div {...getRootProps({style})}>
-                            <input {...getInputProps()} />
-                            <p>Drag 'n' drop some files here, or click to select files</p>
-                            <em>(Only *.jpeg and *.png images will be accepted)</em>
-                        </div>
-                    </div>
-                )}
-            </OutsideClicker>
-        </div>
-        <div className={styles.accRemain}>
-          <div className={styles.accTitleContainer}>
-            <p className={styles.accTitle}>
-              To add more <span className={styles.accSpan}>1 sq.m</span> for
-              planning, it remains to accumulate
-            </p>
-            <p className={styles.accNum}>
-              {Math.round(oneMoreMeterCost)} &#8372;
-            </p>
+  function imageHandler() {
+    if (!flatImage) setTrigger(false);
+    return;
+  }
+
+  function compareNumbers(a, b) {
+    return a > b ? b : a;
+  }
+
+  const closeModal = () => {
+    console.log('closeModal  closeModal:');
+
+    setIsModalOpen(false);
+  };
+
+  return (
+    <>
+      {isModalOpen && <ModalHooray closeModal={closeModal} />}
+      <div className={styles.infoContainer}>
+        <div className={styles.accumulated}>
+          <p className={styles.title}>
+            After {year ? 0 : year} years {month ? 0 : month} month
+          </p>
+          <ul className={styles.list}>
+            <li className={styles.item}>
+              <p className={styles.text}>Accumulated, %:</p>
+              <p className={styles.num}>
+                {compareNumbers(accumulatedProc, 100)}%
+              </p>
+            </li>
+            <li className={styles.item}>
+              <p className={styles.text}>Accumulated, UAH:</p>
+              <p className={styles.num}>
+                {compareNumbers(accumulatedUah, plan.cost)} &#8372;
+              </p>
+            </li>
+            <li className={styles.item}>
+              <p className={styles.text}>And This:</p>
+              <p className={styles.num}>
+                {squareMeters >= plan.footage ? plan.footage : squareMeters}{' '}
+                sq.m
+              </p>
+            </li>
+          </ul>
+
+          <p className={styles.barTitle}>
+            {compareNumbers(squareMeters, plan.footage)} out of {plan.footage}{' '}
+            sq.m accumulated
+          </p>
+          <div className={styles.bar}>
+            <div
+              className={styles.barFill}
+              style={{ width: percentage() }}
+            ></div>
           </div>
-          <div className={styles.svgContainer}></div>
         </div>
-      </>
-    );
-}  
+        <OutsideClicker trigger={trigger} setTrigger={setTrigger}>
+          {trigger ? (
+            <div className={styles.imageContainer} onClick={imageHandler}>
+              {flatImage ? (
+                <>
+                  <img
+                    className={styles.image}
+                    src={flatImage}
+                    alt="flat plan"
+                  ></img>
+                  <p
+                    className={styles.imageBtn}
+                    onClick={() => setTrigger(false)}
+                  >
+                    Change image
+                  </p>
+                </>
+              ) : (
+                <Icon name={'icon-photo-camera'} width={100} height={100} />
+              )}
+            </div>
+          ) : (
+            <div className={styles.imageContainer}>
+              <div {...getRootProps({ style })}>
+                <input {...getInputProps()} />
+                <p>Drag 'n' drop some files here, or click to select files</p>
+                <em>(Only *.jpeg and *.png images will be accepted)</em>
+              </div>
+            </div>
+          )}
+        </OutsideClicker>
+      </div>
+      <div className={styles.accRemain}>
+        <div className={styles.accTitleContainer}>
+          <p className={styles.accTitle}>
+            To add more <span className={styles.accSpan}>1 sq.m</span> for
+            planning, it remains to accumulate
+          </p>
+          <p className={styles.accNum}>
+            {squareMeters >= plan.footage ? 0 : Math.round(oneMoreMeterCost)}{' '}
+            &#8372;
+          </p>
+        </div>
+        <div className={styles.svgContainer}></div>
+      </div>
+    </>
+  );
+};  
