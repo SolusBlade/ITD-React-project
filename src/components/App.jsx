@@ -1,32 +1,33 @@
+import { useEffect, lazy, Suspense } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-// eslint-disable-next-line
 import { useDispatch, useSelector } from 'react-redux';
 
-import HomePage from 'pages/HomePage/HomePage';
 import Header from './Header/Header';
-import { selectorIsLoggedIn, selectorToken } from 'redux/auth/authSelectors';
-import DynamicsPage from 'pages/DynamicsPage/DynamicsPage';
-import OwnPlanPage from 'pages/OwnPlanPage/OwnPlanPage';
-import StatisticsPage from 'pages/StatisticsPage/StatisticsPage';
-import ExpensesPage from 'pages/ExpensesPage/ExpensesPage';
 import ModalRegister from './ModalRegister/ModalRegister';
 import ModalLogin from './ModalLogin/ModalLogin';
+import Loader from './Loader/Loader';
 import { getCurrentUserInfo } from 'redux/auth/authOperations';
-import { useEffect } from 'react';
-
-import Transactions from 'pages/StatisticsPage/TransactionsPage/Transactions/Transactions';
-import Categories from 'pages/StatisticsPage/Categories/Categories';
+import { selectorIsLoggedIn, selectorToken } from 'redux/auth/authSelectors';
 import { getPersonalPlan } from 'redux/plan/planOperations';
+
+const HomePage = lazy(() => import('pages/HomePage/HomePage'));
+const DynamicsPage = lazy(() => import('pages/DynamicsPage/DynamicsPage'));
+const OwnPlanPage = lazy(() => import('pages/OwnPlanPage/OwnPlanPage'));
+const StatisticsPage = lazy(() =>
+  import('pages/StatisticsPage/StatisticsPage')
+);
+const ExpensesPage = lazy(() => import('pages/ExpensesPage/ExpensesPage'));
+const Transactions = lazy(() =>
+  import('pages/StatisticsPage/TransactionsPage/Transactions/Transactions')
+);
+const Categories = lazy(() =>
+  import('pages/StatisticsPage/Categories/Categories')
+);
+
 // eslint-disable-next-line
 const PrivateRoute = ({ component, redirectTo = '/login' }) => {
   const isLoggedIn = useSelector(selectorIsLoggedIn);
   return isLoggedIn ? component : <Navigate to={redirectTo} />;
-};
-
-// eslint-disable-next-line
-const PublicRoute = ({ component, redirectTo = '/contacts' }) => {
-  const isLoggedIn = useSelector(selectorIsLoggedIn);
-  return !isLoggedIn ? component : <Navigate to={redirectTo} />;
 };
 
 const App = () => {
@@ -44,12 +45,13 @@ const App = () => {
   return (
     <>
       <Header />
-      <Routes>
-        <Route path="/" element={<HomePage />}>
-          <Route path="/register" element={<ModalRegister />} />
-          <Route path="/login" element={<ModalLogin />} />
+      <Suspense fallback={<Loader />}>
+        <Routes>
+          <Route path="/" element={<HomePage />}>
+            <Route path="/register" element={<ModalRegister />} />
+            <Route path="/login" element={<ModalLogin />} />
 
-          {/* <Route
+            {/* <Route
             path="/login"
             element={<PublicRoute component={<ModalLogin />} />}
           />
@@ -57,34 +59,35 @@ const App = () => {
             path="/register"
             element={<PublicRoute component={<ModalRegister />} />}
           /> */}
-        </Route>
+          </Route>
 
-        <Route
-          path="/plan"
-          element={<OwnPlanPage />}
-          // element={<PrivateRoute component={<OwnPlanPage />} />}
-        />
-        <Route
-          path="/cash-flow"
-          // element={<PrivateRoute component={<ExpensesPage />} />}
-          element={<ExpensesPage />}
-        />
-        <Route
-          path="/dynamics"
-          element={<DynamicsPage />}
-          // element={<PublicRoute component={<DynamicsPage />} />}
-        />
-        <Route path="/statistics" element={<StatisticsPage />}>
-          <Route path="transactions" element={<Transactions />} />
           <Route
-            path="categories"
-            element={<Categories />}
-            // element={<PublicRoute component={<ModalRegister />} />}
+            path="/plan"
+            element={<OwnPlanPage />}
+            // element={<PrivateRoute component={<OwnPlanPage />} />}
           />
-        </Route>
+          <Route
+            path="/cash-flow"
+            // element={<PrivateRoute component={<ExpensesPage />} />}
+            element={<ExpensesPage />}
+          />
+          <Route
+            path="/dynamics"
+            element={<DynamicsPage />}
+            // element={<PublicRoute component={<DynamicsPage />} />}
+          />
+          <Route path="/statistics" element={<StatisticsPage />}>
+            <Route path="transactions" element={<Transactions />} />
+            <Route
+              path="categories"
+              element={<Categories />}
+              // element={<PublicRoute component={<ModalRegister />} />}
+            />
+          </Route>
 
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </Suspense>
     </>
   );
 };
