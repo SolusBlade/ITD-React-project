@@ -38,7 +38,7 @@ const DateComp = () => {
       isLoggedIn &&
         dispatch(getCategoriesStat(changedDateForApi(selectedDate)));
     }
-  }, [isLoggedIn, dispatch, location.pathname]);
+  }, [isLoggedIn, dispatch, location.pathname, selectedDate]);
 
   const changedDateForPicker = newDate => {
     const month = newDate.getMonth();

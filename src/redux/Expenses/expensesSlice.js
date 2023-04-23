@@ -60,4 +60,4 @@ const expensesSlice = createSlice({
   },
 });
 
-export const expensesReducer = expensesSlice.reducer;
+export default expensesSlice.reducer;

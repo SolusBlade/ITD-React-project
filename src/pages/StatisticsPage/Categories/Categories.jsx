@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import d from './Categories.module.scss';
 import {
   categoryStatistic,
@@ -10,9 +9,7 @@ import { getCashflowCategoriesPercentageApi } from 'services/connectoinsApi';
 import { selectorIsLoggedIn } from 'redux/auth/authSelectors';
 
 const Categories = () => {
-  const [categories, setCategories] = useState([]);
-  const dispatch = useDispatch();
-  const isLoggedIn = useSelector(selectorIsLoggedIn);
+  const categories = useSelector(selectedChengedCategoriesStat);
 
   useEffect(() => {
     const date = {

@@ -13,9 +13,9 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { ownPlanReducer } from './plan/planSlice';
 
-import { expensesReducer } from './expenses/expensesSlice';
+import { ownPlanReducer } from './plan/planSlice';
+import expensesReducer from './Expenses/expensesSlice';
 import { transactionsReducer } from './transactions/transactionsSlice';
 
 const persistContactsConfig = {

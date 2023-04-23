@@ -35,7 +35,7 @@ export const updateTransaction = createAsyncThunk(
 );
 
 export const removeTransaction = createAsyncThunk(
-  'statistic/deleteTransaction',
+  'statistic/removeTransaction',
   async (transactionId, { rejectWithValue }) => {
     try {
       await removeCashflowTransactionApi(transactionId);
@@ -43,7 +43,7 @@ export const removeTransaction = createAsyncThunk(
       // const data = await getCashflowTransactionsApi();
 
       // const data = await getCashflowTransactionsApi(period);
-      // return data; 
+      // return data;
     } catch (error) {
       return rejectWithValue(error.message);
     }

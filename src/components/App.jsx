@@ -32,13 +32,14 @@ const PublicRoute = ({ component, redirectTo = '/contacts' }) => {
 const App = () => {
   const dispatch = useDispatch();
   const token = useSelector(selectorToken);
+  const isLoggedIn = useSelector(selectorIsLoggedIn);
 
   useEffect(() => {
     if (token) {
       dispatch(getCurrentUserInfo(token));
     }
-    dispatch(getPersonalPlan());
-  }, [token, dispatch]);
+    isLoggedIn && dispatch(getPersonalPlan());
+  }, [token, dispatch, isLoggedIn]);
 
   return (
     <>
