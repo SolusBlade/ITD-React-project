@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/ITD-React-project/static/css/main.e894cf6b.css",
-    "main.js": "/ITD-React-project/static/js/main.bbc35817.js",
+    "main.js": "/ITD-React-project/static/js/main.cd2af64d.js",
     "static/css/119.556f5417.chunk.css": "/ITD-React-project/static/css/119.556f5417.chunk.css",
     "static/js/119.8f9d160f.chunk.js": "/ITD-React-project/static/js/119.8f9d160f.chunk.js",
-    "static/css/734.f8449a91.chunk.css": "/ITD-React-project/static/css/734.f8449a91.chunk.css",
-    "static/js/734.822f07c9.chunk.js": "/ITD-React-project/static/js/734.822f07c9.chunk.js",
+    "static/css/267.90caf3db.chunk.css": "/ITD-React-project/static/css/267.90caf3db.chunk.css",
+    "static/js/267.06dfd147.chunk.js": "/ITD-React-project/static/js/267.06dfd147.chunk.js",
     "static/css/189.e8ae144b.chunk.css": "/ITD-React-project/static/css/189.e8ae144b.chunk.css",
     "static/js/189.c594dac2.chunk.js": "/ITD-React-project/static/js/189.c594dac2.chunk.js",
     "static/css/495.27dcfe5e.chunk.css": "/ITD-React-project/static/css/495.27dcfe5e.chunk.css",
@@ -44,15 +44,15 @@
     "static/media/vector-desktop.png": "/ITD-React-project/static/media/vector-desktop.e1e259a6a82e821f7164.png",
     "static/media/vector-tablet.png": "/ITD-React-project/static/media/vector-tablet.3fc6c1c515420d40ec4b.png",
     "static/media/dynamics-planer-2x.png": "/ITD-React-project/static/media/dynamics-planer-2x.e0e6c170e03ef7c7011d.png",
-    "static/media/icons.svg": "/ITD-React-project/static/media/icons.a4fc8e2b51b79c066bc4e8f03bd6b2e0.svg",
+    "static/media/icons.svg": "/ITD-React-project/static/media/icons.329011d5321c5ba5a06463259ca76140.svg",
     "static/media/dynamics-planer.png": "/ITD-React-project/static/media/dynamics-planer.4f40508966748d7a90b6.png",
     "index.html": "/ITD-React-project/index.html",
     "main.e894cf6b.css.map": "/ITD-React-project/static/css/main.e894cf6b.css.map",
-    "main.bbc35817.js.map": "/ITD-React-project/static/js/main.bbc35817.js.map",
+    "main.cd2af64d.js.map": "/ITD-React-project/static/js/main.cd2af64d.js.map",
     "119.556f5417.chunk.css.map": "/ITD-React-project/static/css/119.556f5417.chunk.css.map",
     "119.8f9d160f.chunk.js.map": "/ITD-React-project/static/js/119.8f9d160f.chunk.js.map",
-    "734.f8449a91.chunk.css.map": "/ITD-React-project/static/css/734.f8449a91.chunk.css.map",
-    "734.822f07c9.chunk.js.map": "/ITD-React-project/static/js/734.822f07c9.chunk.js.map",
+    "267.90caf3db.chunk.css.map": "/ITD-React-project/static/css/267.90caf3db.chunk.css.map",
+    "267.06dfd147.chunk.js.map": "/ITD-React-project/static/js/267.06dfd147.chunk.js.map",
     "189.e8ae144b.chunk.css.map": "/ITD-React-project/static/css/189.e8ae144b.chunk.css.map",
     "189.c594dac2.chunk.js.map": "/ITD-React-project/static/js/189.c594dac2.chunk.js.map",
     "495.27dcfe5e.chunk.css.map": "/ITD-React-project/static/css/495.27dcfe5e.chunk.css.map",
@@ -69,6 +69,6 @@
   },
   "entrypoints": [
     "static/css/main.e894cf6b.css",
-    "static/js/main.bbc35817.js"
+    "static/js/main.cd2af64d.js"
   ]
 }
