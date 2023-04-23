@@ -1,17 +1,22 @@
 import TransactionsItem from '../TransactionsItem/TransactionsItem';
 import css from './Transactions.module.scss';
 import ModalTransaction from '../ModalTransactions/ModalTransactions';
-import { getTransaction } from 'redux/transactions/transactionsOperations';
+import {
+  getTransaction,
+  removeTransaction,
+} from 'redux/transactions/transactionsOperations';
 import { selectedTransactions } from 'redux/transactions/transactionsSelector';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { selectorIsLoggedIn } from 'redux/auth/authSelectors';
 const Transactions = () => {
-  const transaction = useSelector(selectedTransactions);
+  const leter = useSelector(selectedTransactions);
+  const [transaction, setTrans] = useState([]);
   const isLoggedIn = useSelector(selectorIsLoggedIn);
 
   const dispatch = useDispatch();
   useEffect(() => {
+    setTrans(leter);
     const date = {
       year: new Date().getFullYear(),
       month: new Date().getMonth() + 1,
@@ -24,7 +29,14 @@ const Transactions = () => {
     setIsModalOpen(true);
   };
   const closeModal = () => setIsModalOpen(false);
+
   console.log(transaction);
+  const filterIt = id => {
+    const best = transaction.filter(el => el._id !== id);
+    setTrans(best);
+    dispatch(removeTransaction(id));
+  };
+
   return (
     <>
       {transaction?.length === 0 && (
@@ -43,6 +55,7 @@ const Transactions = () => {
               comment={comment}
               category={category}
               date={date}
+              filterIt={filterIt}
             />
           ))}
       </ul>

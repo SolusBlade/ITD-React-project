@@ -39,7 +39,8 @@ export const removeTransaction = createAsyncThunk(
     try {
       await removeCashflowTransactionApi(transactionId);
       const data = await getCashflowTransactionsApi(period);
-      return data; 
+      console.log('data:', data);
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

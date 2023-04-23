@@ -4,10 +4,16 @@ import s from './TransactionsItem.module.scss';
 import { removeTransaction } from 'redux/transactions/transactionsOperations';
 import { useDispatch } from 'react-redux';
 
-const TransactionsItem = ({ openModal, id, sum, date, category, comment }) => {
+const TransactionsItem = ({
+  openModal,
+  id,
+  sum,
+  date,
+  category,
+  comment,
+  filterIt,
+}) => {
   const dispatch = useDispatch();
-
-  console.log(id);
   return (
     <li className={s.transactionItem} key={id}>
       <div className={s.transactionThumb}>
@@ -41,7 +47,8 @@ const TransactionsItem = ({ openModal, id, sum, date, category, comment }) => {
           <button
             className={s.buttonItem}
             type="button"
-            onClick={() => dispatch(removeTransaction(id))}
+            // onClick={() => dispatch(removeTransaction(id))}
+            onClick={() => filterIt(id)}
           >
             <Icon
               name={'icon-trash'}
