@@ -38,24 +38,25 @@ const ModalTransaction = ({ closeModal, value, id, date }) => {
     setCurrentComent(e.currentTarget.value);
   };
 
-  const onSubmit = e => {
+  const onSubmitForm = e => {
     e.preventDefault();
     const data = {
       type: 'expense',
       category: currentCategory,
       comment: currentComent,
       sum: Number(currentSum),
-      date: '04.2023',
     };
     console.log(id);
     console.log(data);
+    console.log(currentCategory);
+    console.log(currentComent);
     dispatch(updateTransaction(id, data));
   };
 
   return createPortal(
     <div className={s.overlayAddIncome}>
       <div className={s.modalWrapper}>
-        <form className={s.formWrapper}>
+        <form className={s.formWrapper} onSubmit={onSubmitForm}>
           <label className={s.labelForSelector}>
             <p className={s.labelText}>Per category</p>
             <Select
@@ -89,14 +90,14 @@ const ModalTransaction = ({ closeModal, value, id, date }) => {
               Sum
               <input
                 className={s.formInput}
-                type="number"
+                type="text"
                 name="sum"
                 onChange={changeSum}
               />
             </label>
 
             <div>
-              <button className={s.buttonEdit} type="submit" onClick={onSubmit}>
+              <button className={s.buttonEdit} type="submit">
                 Edit
               </button>
             </div>
