@@ -9,8 +9,9 @@ import { selectorIsLoggedIn } from 'redux/auth/authSelectors';
 const Transactions = () => {
   const transaction = useSelector(selectedTransactions);
   const isLoggedIn = useSelector(selectorIsLoggedIn);
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
+
   useEffect(() => {
     const date = {
       year: new Date().getFullYear(),
@@ -19,12 +20,13 @@ const Transactions = () => {
     isLoggedIn && dispatch(getTransaction(date));
   }, [dispatch, isLoggedIn]);
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => {
     setIsModalOpen(true);
   };
+
   const closeModal = () => setIsModalOpen(false);
-  console.log(transaction);
+
+  // console.log(transaction);
   return (
     <>
       {transaction?.length === 0 && (
