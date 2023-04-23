@@ -5,6 +5,7 @@ import s from './StatisticsPage.module.scss';
 import { NavLink, Outlet } from 'react-router-dom';
 
 const StatisticsPage = () => {
+  
   return (
     <>
       <section className={s.vectorImg}>
