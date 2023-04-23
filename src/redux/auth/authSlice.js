@@ -7,7 +7,7 @@ import {
   loginUser,
   registerUser,
 } from './authOperations';
-import { postTransaction } from 'redux/expenses/expensesOperations';
+import { postTransaction } from 'redux/Expenses/expensesOperations';
 
 const fulfilledOperation = state => {
   state.isLoading = false;

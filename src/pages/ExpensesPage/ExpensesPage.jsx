@@ -1,7 +1,7 @@
 import Container from 'components/Container/Container';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCategory, getPresaving } from 'redux/expenses/expensesOperations';
+import { getCategory, getPresaving } from 'redux/Expenses/expensesOperations';
 import s from './ExpensesPage.module.scss';
 import { selectorIsLoggedIn } from 'redux/auth/authSelectors';
 import TransactionDataList from 'components/TransactionDataList/TransactionDataList';

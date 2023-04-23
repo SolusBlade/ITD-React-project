@@ -5,7 +5,7 @@ import Select, { components } from 'react-select';
 import { useDispatch, useSelector } from 'react-redux';
 import c from '../../../../components/ModalAddIncome/MoadlAddIncome.module.scss';
 import { useState } from 'react';
-import { categorySelect } from 'redux/expenses/expensesSelectors';
+import { categorySelect } from 'redux/Expenses/expensesSelectors';
 import { updateTransaction } from 'redux/transactions/transactionsOperations';
 
 const modalRoot = document.querySelector('#modal-root');
