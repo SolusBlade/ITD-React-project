@@ -3,11 +3,11 @@
 .statWrapp {
   filter: drop-shadow(0px 11px 20px rgba(0, 0, 0, 0.5));
 
-  @media screen and (min-width: 768px) {
+  @include tablet {
     width: 704px;
   }
 
-  @media screen and (min-width: 1280px) {
+  @include desktop {
     width: 769px;
   }
   margin: auto;
@@ -49,27 +49,23 @@
   display: block;
   padding: 18px 19px 18px 20px;
   font-family: 'Lato', sans-serif;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 1.19;
+  @include font(600, 16px, 1.19);
   border-top-right-radius: 16px;
   border-top-left-radius: 16px;
   background-color: rgba(31, 37, 52, 0.4);
-  color: rgba(243, 243, 243, 0.4);
+  color: $light-gray-tabl;
 }
 
 .active {
   display: block;
   padding: 18px 19px 18px 20px;
   font-family: 'Lato', sans-serif;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 1.19;
+  @include font(600, 16px, 1.19);
   border-top-right-radius: 16px;
   border-top-left-radius: 16px;
-  border-top: 1px solid rgb(58, 106, 245);
-  background-color: rgba(37, 44, 65, 1);
-  color: rgba(243, 243, 243, 1);
+  border-top: 1px solid $blue;
+  background-color: $dark-blue-tabl;
+  color: $white;
 }
 
 @include tablet_max {

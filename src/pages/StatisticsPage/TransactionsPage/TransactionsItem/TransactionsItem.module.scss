@@ -7,46 +7,40 @@
   justify-content: space-between;
   align-items: center;
   padding: 15px 32px;
-  color: rgba(255, 255, 255, 1);
-  border-bottom: 1px solid rgba(243, 243, 243, 0.06);
+  color: $white;
+  border-bottom: 1px solid $light-gray-tabl;
+
+  @include tablet_max {
+    flex-direction: column;
+  }
+
+  @include tablet {
+    flex-direction: row;
+  }
 }
 
 .transactionItem:last-child {
   border-bottom: none;
 }
 
-@media screen and (min-width: 375px) {
-  .transactionItem {
-    flex-direction: column;
-  }
+.commentWrapper {
+  width: 210px;
 }
 
-@media screen and (min-width: 768px) {
-  .transactionItem {
-    flex-direction: row;
-  }
-  .commentWrapper {
-    width: 210px;
-  }
-}
 .transactionThumb {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   border-right: 1px solid rgba(243, 243, 243, 0.06);
-}
 
-@media screen and (min-width: 375px) {
-  .transactionThumb {
+  @include tablet_max {
     padding-left: 16px;
     padding-right: 16px;
     width: 343px;
   }
-}
 
-@media screen and (min-width: 768px) {
-  .transactionThumb {
+  @include tablet {
     padding-left: 0;
     padding-right: 24px;
     width: 403px;
@@ -59,69 +53,52 @@
   align-items: center;
   justify-content: center;
   width: 343px;
-}
 
-@media screen and (min-width: 375px) {
-  .thumb {
+  @include tablet_max {
     padding-left: 16px;
     padding-right: 16px;
     padding-top: 8px;
   }
-}
 
-@media screen and (min-width: 768px) {
-  .thumb {
+  @include tablet {
     padding-left: 0;
     padding-right: 0;
   }
 }
-
 .commentWrapper {
   display: flex;
   flex-direction: column;
-}
 
-@media screen and (min-width: 375px) {
-  .commentWrapper {
+  @include tablet_max {
     width: 200px;
   }
-}
 
-@media screen and (min-width: 768px) {
-  .commentWrapper {
+  @include tablet_max {
     width: 230px;
   }
 }
 
 .transactionDate {
   font-family: 'Lato', sans-serif;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 1.2;
-  color: rgba(243, 243, 243, 0.3);
+  @include font(400, 12px, 1.2);
+  color: $light-gray-tabl;
 }
 
 .transactionComment {
   font-family: 'Lato', sans-serif;
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 1.2;
+  @include font(500, 18px, 1.2);
 }
 
 .transactionSum {
   font-family: 'Lato', sans-serif;
   font-weight: 600;
   line-height: 1.2;
-}
 
-@media screen and (min-width: 375px) {
-  .transactionSum {
+  @include tablet_max {
     font-size: 18px;
   }
-}
 
-@media screen and (min-width: 768px) {
-  .transactionSum {
+  @include tablet {
     font-size: 20px;
   }
 }
@@ -131,17 +108,13 @@
   font-family: 'Lato', sans-serif;
   font-weight: 400;
   line-height: 1.2;
-}
 
-@media screen and (min-width: 375px) {
-  .transactionCategory {
+  @include tablet_max {
     padding-left: 0;
     font-size: 14px;
   }
-}
 
-@media screen and (min-width: 768px) {
-  .transactionCategory {
+  @include tablet {
     padding-left: 24px;
     font-size: 18px;
   }
