@@ -47,13 +47,8 @@
 
 .thumb {
   display: flex;
-  // flex-direction: row;
   align-items: center;
-<<<<<<< Updated upstream
   justify-content: space-between;
-=======
-  justify-content: center;
->>>>>>> Stashed changes
 
   @include tablet_max {
     max-width: 343px;
