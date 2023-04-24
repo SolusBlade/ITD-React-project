@@ -123,9 +123,41 @@
     }
 }
 
+.imageElement{
+    position: relative;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    // overflow: hidden;
+    flex-wrap: wrap;
+
+    // text-align: center;
+    border-radius: 16px;
+
+    @include tablet-max {
+        margin-bottom: 36px;
+        // padding: 15px;
+        // height: 260px;
+        min-width: 250px;
+        max-width: 343px;
+
+    }
+
+    @include tablet {
+        // padding: 15px;
+        width: 225px;
+        // height: 166px;
+    }
+    
+    @include desktop {
+        margin-bottom: 22px;
+        width: 254px;
+        // height: 209px;
+    }
+}
+
 .imageContainer{
     position: relative;
-    margin-bottom: 64px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -135,7 +167,7 @@
 
     object-fit: contain;
 
-    text-align: center;
+    // text-align: center;
     border-radius: 16px;
     @include tablet-max {
         // padding: 15px;
@@ -161,17 +193,30 @@
 }
 
 .imageBtn{
-    position: absolute;
-    transform: translate(79%, 490%);
-
+    // visibility:visible;
+    margin-top: 8px;
+    // position: absolute;
+    // transform: translate(79%, 490%);
+    text-align: center;
     text-decoration: underline;
     text-underline-offset: 4px;
     cursor: pointer;
-
     @include font (700, 14px, 20px);
 
     &:hover{
         color: #6786ce;
+    }
+
+    @include tablet-max {
+        // transform: translate(109%, 700%);
+    }
+
+    @include tablet {
+
+    }
+
+    @include desktop {
+
     }
 }
 
@@ -212,7 +257,7 @@
         height: 257px;
         order: 3;
         position: absolute;
-        transform: translate(104.5%, 130%);
+        transform: translate(105.5%, 130%);
         // flex-basis:content;
     }
 }

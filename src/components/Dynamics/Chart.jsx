@@ -9,34 +9,54 @@ import {
     Title
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
+// import { useRef, useEffect, useState } from "react";
 import { useRef, useEffect } from "react";
 import style from "./Chart.module.scss";
 import { optionsPhone, optionsTablet } from "services/dynamics/chartOptions";
 // import { data } from 'services/dynamics/chartData';
 import { useSelector, useDispatch } from "react-redux";
 import { getDynamics } from "redux/dynamics/dynamicsOperations";
-import { selectDynamics, selectStatByYear,  } from "redux/dynamics/dynamicsVariables";
+// import { selectDynamics, selectStatByYear} from "redux/dynamics/dynamicsVariables";
+import { selectStatByYear} from "redux/dynamics/dynamicsVariables";
 import { selectorIsLoggedIn } from "redux/auth/authSelectors";
 import { useMediaQuery } from "react-responsive";
-import { labels } from "services/dynamics/chartData";
+// import { labels } from "services/dynamics/chartData";
 
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale,
   LinearScale,
   BarElement,
   Title);
 
-// const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'];
-
 export const Chart = () => {
   // const matches = useMediaQuery('(min-width: 768px)');
   const matchesTablet = useMediaQuery({ query: '(min-width: 768px)' });
   const dispatch = useDispatch();
   // eslint-disable-next-line
-  const dynamics = useSelector(selectDynamics);
+  // const dynamics = useSelector(selectDynamics);
   const chartRef = useRef(null);
   const isLoggedIn = useSelector(selectorIsLoggedIn);
   const statByYear = useSelector(selectStatByYear);
-
+  // let [statistics, setStatistics] = useState({
+  //   "income": 0,
+  //   "expense": 0,
+  //   "accumulated": 0,
+  //   "plan": 0,
+  //   "planInProcent": "0%"
+  // })
+  const labels = [
+    'Jan', 
+    'Feb', 
+    'Mar', 
+    'Apr', 
+    'May', 
+    'Jun', 
+    'Jul', 
+    'Aug', 
+    'Sep', 
+    'Oct', 
+    'Nov', 
+    'Dec'
+  ];
   // console.log(matchesTablet)
   // console.log('isLoggedIn ', isLoggedIn)
 
@@ -48,26 +68,49 @@ export const Chart = () => {
     // console.log()
   }, [dispatch, isLoggedIn]);
 
+  // console.log('statByYear', +statByYear[0].month)
   const data = {
     labels,
     datasets: [
       {
         //   label: 'accumulated',
         // data: labels.map((_, i) => console.log(statByYear), 300),
-        data: labels.map((_, i) => statByYear[i]?.income - statByYear[i]?.expense),
+        data: labels.map((_, i) => {
+          for(let elem of statByYear){
+            let accumulated = elem.income - elem.expense;
+            // (i + 1 === +elem.month) ? console.log('for in month', i + 1, +elem.month) : 0
+            if (i + 1 === +elem.month){
+              return (accumulated >= 0) ? accumulated : 0; 
+            }
+          } 
+          return 0;         
+        }),
         // borderColor: 'rgb(255, 99, 132)',
         backgroundColor: '#6359E9',
       },
       {
         //   label: 'expenses',
-        data: labels.map((_, i) => statByYear[i]?.expense),
-        // data: labels.map((_, i) => 400),
-        // borderColor: 'rgb(53, 162, 235)',
+        data: labels.map((_, i) => {
+          // statByYear[i]?.expense
+          for(let elem of statByYear){
+            if (i + 1 === +elem.month){
+              return elem.expense; 
+            }
+          }
+          return 0;
+        }),
         backgroundColor: '#3A6AF5',
       },
       {
-        //   label: 'label3',
-        data: labels.map((_, i) => statByYear[i]?.income),
+        //   label: 'income',
+        data: labels.map((_, i) => {
+          for(let elem of statByYear){
+            if (i + 1 === +elem.month){
+              return elem.income; 
+            }
+          }
+          return 0; 
+        }),
         // data: labels.map((_, i) => 500),
         // borderColor: 'rgb(150, 162, 150)',
         backgroundColor: '#F3F3F3',
