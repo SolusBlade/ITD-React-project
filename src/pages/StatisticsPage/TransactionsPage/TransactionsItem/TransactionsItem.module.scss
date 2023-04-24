@@ -4,18 +4,17 @@
 .transactionItem {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 0;
   color: $white;
   border-bottom: 1px solid $light-gray-tabl;
 
   @include tablet_max {
     flex-direction: column;
+    padding: 0 16px;
+    padding-top: 16px;
+    padding-bottom: 18px;
   }
 
   @include tablet {
-    flex-direction: row;
     padding: 15px 32px;
   }
 }
@@ -33,38 +32,33 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  border-right: 1px solid rgba(243, 243, 243, 0.06);
 
   @include tablet_max {
-    padding-left: 16px;
-    padding-right: 16px;
-    width: 100%;
+    max-width: 343px;
   }
 
   @include tablet {
     padding-left: 0;
     padding-right: 24px;
     width: 403px;
+    border-right: 1px solid rgba(243, 243, 243, 0.06);
   }
 }
 
 .thumb {
   display: flex;
-  flex-direction: row;
+  // flex-direction: row;
   align-items: center;
-  justify-content: center;
-  // width: 100%;
+  justify-content: space-between;
 
   @include tablet_max {
-    padding-left: 16px;
-    padding-right: 16px;
+    max-width: 343px;
     padding-top: 8px;
     width: 100%;
   }
 
   @include tablet {
-    padding-left: 0;
-    padding-right: 0;
+    width: 343px;
   }
 }
 .commentWrapper {
@@ -72,7 +66,7 @@
   flex-direction: column;
 
   @include tablet_max {
-    width: auto;
+    max-width: 200px;
   }
 
   @include tablet {
