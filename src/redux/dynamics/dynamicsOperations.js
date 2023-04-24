@@ -21,6 +21,7 @@ export const getDynamicsByMonth = createAsyncThunk(
     'dynamics/getDynamicsByMonth',
 
     async (data, thunkAPI) => {
+        // const
         try {
             const response = await getDynamicsByMonthApi(data.year, data.month);
             return response.data;
