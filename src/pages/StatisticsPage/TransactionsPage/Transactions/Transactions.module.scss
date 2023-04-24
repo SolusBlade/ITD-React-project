@@ -9,7 +9,7 @@
   margin: 0 auto;
 
   @include tablet_max {
-    width: 343px;
+    max-width: 343px;
   }
 
   @include tablet {
@@ -32,7 +32,7 @@
 
   @include tablet_max {
     padding: 50px 20px;
-    width: 315px;
+    max-width: 315px;
   }
 
   @include tablet {
@@ -121,7 +121,7 @@
   color: $white;
 
   @include tablet_max {
-    width: 343px;
+    max-width: 343px;
   }
 
   @include tablet {

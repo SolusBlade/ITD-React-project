@@ -22,12 +22,12 @@ export const getTransaction = createAsyncThunk(
 
 export const updateTransaction = createAsyncThunk(
   'statistic/updateTransaction',
-  async (idTransaction, data, { rejectWithValue }) => {
+  async ({ id, data }, thunkAPI) => {
     try {
-      const response = await updateCashflowTransactionApi(idTransaction, data);
+      const response = await updateCashflowTransactionApi(id, data);
       return response;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );

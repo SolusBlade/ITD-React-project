@@ -9,11 +9,11 @@ import { categorySelect } from 'redux/expenses/expensesSelectors';
 import { updateTransaction } from 'redux/transactions/transactionsOperations';
 import { IconOption } from 'components/TransactionSelect/iconsForSelectCategory';
 import { getCategory } from 'redux/expenses/expensesOperations';
-import moment from 'moment';
+import moment, { invalid } from 'moment';
 
 const modalRoot = document.querySelector('#modal-root');
 
-const ModalTransaction = ({ closeModal, value, id, date }) => {
+const ModalTransaction = ({ closeModal, value, id }) => {
   const [currentCategory, setCurrentCategory] = useState('Other');
   const [currentSum, setCurrentSum] = useState(0);
   const [currentComent, setCurrentComent] = useState('');
@@ -43,14 +43,12 @@ const ModalTransaction = ({ closeModal, value, id, date }) => {
     const data = {
       type: 'expense',
       category: currentCategory,
-      comment: currentComent,
+      comment: !currentComent ? 'no comment' : currentComent,
       sum: Number(currentSum),
     };
-    console.log(id);
-    console.log(data);
-    console.log(currentCategory);
-    console.log(currentComent);
-    dispatch(updateTransaction(id, data));
+
+    dispatch(updateTransaction({ id, data }));
+    closeModal();
   };
 
   return createPortal(
@@ -80,7 +78,9 @@ const ModalTransaction = ({ closeModal, value, id, date }) => {
                 className={s.formInput}
                 type="text"
                 name="comment"
+                required
                 maxLength="80"
+                placeholder="Enter comment"
                 value={value}
                 onChange={changeComent}
               />
@@ -93,6 +93,8 @@ const ModalTransaction = ({ closeModal, value, id, date }) => {
                 type="text"
                 name="sum"
                 onChange={changeSum}
+                placeholder="00.00"
+                required
               />
             </label>
 

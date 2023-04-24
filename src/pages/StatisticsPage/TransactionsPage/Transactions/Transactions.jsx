@@ -25,11 +25,8 @@ const Transactions = () => {
     setIdTransaction(id);
     setIdDate(date);
   };
-  console.log(idTransaction);
   const closeModal = () => setIsModalOpen(false);
-  const ooCl = (id, date) => {
-    return id, date;
-  };
+
   const filterIt = id => {
     const filteredTransaction = transaction.filter(el => el._id !== id);
     setTransaction(filteredTransaction);
