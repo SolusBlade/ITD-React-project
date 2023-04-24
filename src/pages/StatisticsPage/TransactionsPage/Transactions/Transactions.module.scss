@@ -1,11 +1,14 @@
 @import '../../../../sass/utils/variables';
 @import '../../../../sass/utils/mixin';
+
 .transactionList {
   display: flex;
   flex-direction: column;
   border-radius: 0px 16px 16px 16px;
   background-color: rgb(37, 44, 65);
   margin: 0 auto;
+  height: 476px;
+  overflow: auto;
 
   @include tablet_max {
     max-width: 343px;
@@ -16,6 +19,20 @@
   }
   @include desktop {
     width: 769px;
+  }
+  &::-webkit-scrollbar {
+    width: 4px;
+    border-radius: 4px;
+    display: block;
+    margin: 10px 0;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $blue;
+    border-radius: 4px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
   }
 }
 

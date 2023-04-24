@@ -20,9 +20,9 @@ export const getTransaction = createAsyncThunk(
 
 export const updateTransaction = createAsyncThunk(
   'statistic/updateTransaction',
-  async ({ id, data }, thunkAPI) => {
+  async ({ id, values }, thunkAPI) => {
     try {
-      const response = await updateCashflowTransactionApi(id, data);
+      const response = await updateCashflowTransactionApi(id, values);
       return response;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

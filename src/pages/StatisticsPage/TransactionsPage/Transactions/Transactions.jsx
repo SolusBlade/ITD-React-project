@@ -35,32 +35,34 @@ const Transactions = () => {
 
   return (
     <>
-      {transaction?.length === 0 && (
+      {transaction?.length === 0 ? (
         <div className={css.noTransactionWrapper}>
           <p className={css.noTransactionText}>You have no transactions</p>
         </div>
+      ) : (
+        <ul className={css.transactionList}>
+          {transaction &&
+            transaction.map(({ _id: id, sum, comment, category, date }) => (
+              <TransactionsItem
+                key={id}
+                openModal={openModal}
+                updateTransaction={() => updateTransaction(id)}
+                id={id}
+                sum={sum}
+                comment={comment}
+                category={category}
+                date={date}
+                filterIt={filterIt}
+              />
+            ))}
+        </ul>
       )}
-      <ul className={css.transactionList}>
-        {transaction &&
-          transaction.map(({ _id: id, sum, comment, category, date }) => (
-            <TransactionsItem
-              key={id}
-              openModal={openModal}
-              updateTransaction={() => updateTransaction(id)}
-              id={id}
-              sum={sum}
-              comment={comment}
-              category={category}
-              date={date}
-              filterIt={filterIt}
-            />
-          ))}
-      </ul>
       {isModalOpen && (
         <ModalTransaction
           closeModal={closeModal}
           id={idTransaction}
           date={idDate}
+          period={new Date().getTime}
         />
       )}
     </>

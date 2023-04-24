@@ -9,7 +9,7 @@ import {
     Title
 } from "chart.js";
 import { Bar } from 'react-chartjs-2';
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useMemo } from 'react';
 import style from './Chart.module.scss';
 import { optionsPhone, optionsTablet } from 'services/dynamics/chartOptions';
 import { useSelector, useDispatch } from 'react-redux';
@@ -41,20 +41,22 @@ export const Chart = () => {
   const statByMonth = useSelector(selectStatByMonth);
   const { income, expense, accumulated, plan, planInProcent } = statByMonth;
 
-  const labels = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ];
+  const labels = useMemo(() => {
+    return [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ];
+  }, []);
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -62,45 +64,47 @@ export const Chart = () => {
     }
   }, [dispatch, isLoggedIn]);
 
-  const data = {
-    labels,
-    datasets: [
-      {
-        data: labels.map((_, i) => {
-          for (let elem of statByYear) {
-            let accumulated = elem.income - elem.expense;
-            if (i + 1 === +elem.month) {
-              return accumulated >= 0 ? accumulated : 1;
+  const data = useMemo(() => {
+    return {
+      labels,
+      datasets: [
+        {
+          data: labels.map((_, i) => {
+            for (let elem of statByYear) {
+              let accumulated = elem.income - elem.expense;
+              if (i + 1 === +elem.month) {
+                return accumulated >= 0 ? accumulated : 1;
+              }
             }
-          }
-          return 0;
-        }),
-        backgroundColor: '#6359E9',
-      },
-      {
-        data: labels.map((_, i) => {
-          for (let elem of statByYear) {
-            if (i + 1 === +elem.month) {
-              return elem.expense;
+            return 0;
+          }),
+          backgroundColor: '#6359E9',
+        },
+        {
+          data: labels.map((_, i) => {
+            for (let elem of statByYear) {
+              if (i + 1 === +elem.month) {
+                return elem.expense;
+              }
             }
-          }
-          return 0;
-        }),
-        backgroundColor: '#3A6AF5',
-      },
-      {
-        data: labels.map((_, i) => {
-          for (let elem of statByYear) {
-            if (i + 1 === +elem.month) {
-              return elem.income;
+            return 0;
+          }),
+          backgroundColor: '#3A6AF5',
+        },
+        {
+          data: labels.map((_, i) => {
+            for (let elem of statByYear) {
+              if (i + 1 === +elem.month) {
+                return elem.income;
+              }
             }
-          }
-          return 0;
-        }),
-        backgroundColor: '#F3F3F3',
-      },
-    ],
-  };
+            return 0;
+          }),
+          backgroundColor: '#F3F3F3',
+        },
+      ],
+    };
+  }, [labels, statByYear]);
 
   return (
     <div className={style.dynamicsChartContainer}>

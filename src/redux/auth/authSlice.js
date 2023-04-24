@@ -61,7 +61,9 @@ const authSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(postTransaction.fulfilled, (state, { payload }) => {
-        state.balance += -payload.sum;
+        payload.type === 'expense'
+          ? (state.balance += -payload.sum)
+          : (state.balance += payload.sum);
         state.isLoading = false;
       })
       .addMatcher(

@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import c from '../../../../components/ModalAddIncome/MoadlAddIncome.module.scss';
 import { useEffect, useState } from 'react';
 import { categorySelect } from 'redux/Expenses/expensesSelectors';
-import { updateTransaction } from 'redux/transactions/transactionsOperations';
+import { getTransaction, updateTransaction } from 'redux/transactions/transactionsOperations';
 import { IconOption } from 'components/TransactionSelect/iconsForSelectCategory';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
@@ -15,7 +15,7 @@ import { getCategory } from 'redux/Expenses/expensesOperations';
 
 const modalRoot = document.querySelector('#modal-root');
 
-const ModalTransaction = ({ closeModal, value, id }) => {
+const ModalTransaction = ({ closeModal, value, id, period }) => {
   const [currentCategory, setCurrentCategory] = useState('Other');
   const [currentSum] = useState(0);
   const [currentComent] = useState('');
@@ -55,6 +55,7 @@ const ModalTransaction = ({ closeModal, value, id }) => {
           })}
           onSubmit={(values, { setSubmitting }) => {
             dispatch(updateTransaction({ id, values }));
+            dispatch(getTransaction(period));
             closeModal();
             setSubmitting(false);
           }}
@@ -103,9 +104,7 @@ const ModalTransaction = ({ closeModal, value, id }) => {
                   className={s.formLabel}
                   style={{
                     outline: `${
-                      touched.sum && errors.sum
-                        ? '1px solid red'
-                        : 'none'
+                      touched.sum && errors.sum ? '1px solid red' : 'none'
                     }`,
                   }}
                 >

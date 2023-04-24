@@ -90,7 +90,6 @@ const App = () => {
               <Route path="/login" element={<ModalLogin />} />
               <Route path="/register" element={<ModalRegister />} />
             </Route>
-
             <Route
               path="/plan"
               element={<PrivateRoute component={<OwnPlanPage />} />}
