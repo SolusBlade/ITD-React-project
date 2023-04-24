@@ -1,24 +1,11 @@
 import UserForm from 'components/UserForm/UserForm';
 import Modal from 'components/Modal/Modal';
 import { registerUser } from 'redux/auth/authOperations';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { useSelector } from 'react-redux';
 import { selectorError} from 'redux/auth/authSelectors';
-import { toast } from 'react-toastify';
 import { useEffect, useRef } from 'react';
-
-const notifyError = message =>
-  toast.error(message, {
-    position: 'top-center',
-    autoClose: 3000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: 'light',
-  });
+import { notifyError } from 'components/Toast/Toast';
+import  Toast  from 'components/Toast/Toast';
 
 const ModalRegister = () => {
   const error = useSelector(selectorError);
@@ -50,24 +37,7 @@ const ModalRegister = () => {
   return (
     <Modal>
       <UserForm onSubmit={registerUser} btnSubmit="Register" />
-      <ToastContainer
-        position="top-center"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-        style={{
-          width: '700px',
-          height: '200px',
-          fontSize: '24px',
-          lineHeight: '36px',
-        }}
-      />
+      <Toast/>
     </Modal>
   );
 };

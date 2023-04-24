@@ -1,61 +1,10 @@
 import d from './Categories.module.scss';
-import {
-  categoryStatistic,
-  getCashflowCategoriesPercentage,
-} from 'redux/transactions/transactionsOperations';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  selectIsLoading,
-  selectedChengedCategoriesStat,
-} from 'redux/transactions/transactionsSelector';
-import { getCashflowCategoriesPercentageApi } from 'services/connectoinsApi';
-import { selectorIsLoggedIn } from 'redux/auth/authSelectors';
-import { useEffect } from 'react';
+
+import { useSelector } from 'react-redux';
+import { selectedChengedCategoriesStat } from 'redux/transactions/transactionsSelector';
 
 const Categories = () => {
   const categories = useSelector(selectedChengedCategoriesStat);
-  const dispatch = useDispatch();
-  // useEffect(() => {
-  //   const date = {
-  //     year: new Date().getFullYear(),
-  //     month: new Date().getMonth() + 1,
-  //   };
-  //   console.log('lsplfkcps');
-  //   isLoggedIn && getCashflowCategoriesPercentageApi(date);
-  // }, [isLoggedIn, dispatch]);
-
-  // const categories = [
-  //     {
-  //       category: 'products',
-  //       amount: 1000,
-  //       percentage: '25%',
-  //     },
-  //     {
-  //       category: 'product',
-  //       amount: 1000,
-  //       percentage: '25%',
-  //     },
-  //     {
-  //       category: 'produc',
-  //       amount: 1000,
-  //       percentage: '25%',
-  //     },
-  //     {
-  //       category: 'produ',
-  //       amount: 1000,
-  //       percentage: '25%',
-  //     },
-  //     {
-  //       category: 'prod',
-  //       amount: 1000,
-  //       percentage: '25%',
-  //     },
-  //     {
-  //       category: 'pro',
-  //       amount: 1000,
-  //       percentage: '25%',
-  //     },
-  //   ];
 
   return (
     <>

@@ -95,7 +95,7 @@
   border: none;
   cursor: pointer;
   fill: $white;
-
+  z-index: 1300;
   &:hover,
   &:focus {
     fill: $blue;

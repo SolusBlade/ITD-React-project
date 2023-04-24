@@ -49,14 +49,25 @@ export const loginUser = createAsyncThunk(
 
 export const getCurrentUserInfo = createAsyncThunk(
   'auth/getCurrentUserInfo',
-  async (userToken, thunkApi) => {
+  async (_, { rejectWithValue, getState }) => {
     try {
-      token.set(userToken);
+      const {
+        auth: { token: newToken },
+      } = getState();
+      token.set(newToken);
       const user = await getCurrentUserInfoApi();
       return user;
     } catch (error) {
-      return thunkApi.rejectWithValue(error.message);
+      return rejectWithValue(error.message);
     }
+  },
+  {
+    condition: (_, { getState }) => {
+      const {
+        auth: { token },
+      } = getState();
+      return Boolean(token);
+    },
   }
 );
 

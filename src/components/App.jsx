@@ -1,90 +1,153 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
-// eslint-disable-next-line
+import { useEffect, lazy, Suspense } from 'react';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
-
-import HomePage from 'pages/HomePage/HomePage';
+// eslint-disable-next-line
 import Header from './Header/Header';
-import { selectorIsLoggedIn, selectorToken } from 'redux/auth/authSelectors';
-import DynamicsPage from 'pages/DynamicsPage/DynamicsPage';
-import OwnPlanPage from 'pages/OwnPlanPage/OwnPlanPage';
-import StatisticsPage from 'pages/StatisticsPage/StatisticsPage';
-import ExpensesPage from 'pages/ExpensesPage/ExpensesPage';
 import ModalRegister from './ModalRegister/ModalRegister';
 import ModalLogin from './ModalLogin/ModalLogin';
 import { getCurrentUserInfo } from 'redux/auth/authOperations';
-import { useEffect } from 'react';
-
-import Transactions from 'pages/StatisticsPage/TransactionsPage/Transactions/Transactions';
-import Categories from 'pages/StatisticsPage/Categories/Categories';
 import { getPersonalPlan } from 'redux/plan/planOperations';
+import { selectorIsPlan, selectorPlanIsLoading } from 'redux/plan/planSelectors';
+import Loader from './Loader/Loader';
+import {
+  selectorIsAuthLoading,
+  selectorIsLoggedIn,
+  selectorIsRefreshing,
+  selectorIsUserExist,
+  selectorToken,
+} from 'redux/auth/authSelectors';
+
+const HomePage = lazy(() => import('pages/HomePage/HomePage'));
+const DynamicsPage = lazy(() => import('pages/DynamicsPage/DynamicsPage'));
+const OwnPlanPage = lazy(() => import('pages/OwnPlanPage/OwnPlanPage'));
+const StatisticsPage = lazy(() =>
+  import('pages/StatisticsPage/StatisticsPage')
+);
+const ExpensesPage = lazy(() => import('pages/ExpensesPage/ExpensesPage'));
+const Transactions = lazy(() =>
+  import('pages/StatisticsPage/TransactionsPage/Transactions/Transactions')
+);
+const Categories = lazy(() =>
+  import('pages/StatisticsPage/Categories/Categories')
+);
+
 // eslint-disable-next-line
 const PrivateRoute = ({ component, redirectTo = '/login' }) => {
   const isLoggedIn = useSelector(selectorIsLoggedIn);
-  return isLoggedIn ? component : <Navigate to={redirectTo} />;
+  const isPlanLoading = useSelector(selectorPlanIsLoading);
+  const isPlan = useSelector(selectorIsPlan);
+  const location = useLocation();
+  if (!isLoggedIn) {
+    return <Navigate to="/login" />;
+  }
+
+  if (!isPlan && !isPlanLoading && location.pathname !== '/plan') {
+    console.log('isPlan', isPlan);
+
+    toast.error('Please choose a plan', {
+      position: 'top-center',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+    });
+    return <Navigate to="/plan" />;
+  }
+
+
+  return component;
 };
 
 // eslint-disable-next-line
-const PublicRoute = ({ component, redirectTo = '/contacts' }) => {
+const PublicRoute = ({ component, redirectTo = '/plan' }) => {
   const isLoggedIn = useSelector(selectorIsLoggedIn);
   return !isLoggedIn ? component : <Navigate to={redirectTo} />;
 };
 
 const App = () => {
   const dispatch = useDispatch();
-  const token = useSelector(selectorToken);
+  const isLoading = useSelector(selectorIsAuthLoading);
   const isLoggedIn = useSelector(selectorIsLoggedIn);
+  const isUserExist = useSelector(selectorIsUserExist);
+  const isPlan = useSelector(selectorIsPlan);
 
   useEffect(() => {
-    if (token) {
-      dispatch(getCurrentUserInfo(token));
-    }
-    isLoggedIn && dispatch(getPersonalPlan());
-  }, [token, dispatch, isLoggedIn]);
+    dispatch(getCurrentUserInfo());
+  }, [dispatch, isLoggedIn]);
+
+  useEffect(() => {
+    isUserExist && dispatch(getPersonalPlan());
+  }, [dispatch, isUserExist]);
+
+  // useEffect(() => {
+  //   if (token) {
+  //     !isLoggedIn && dispatch(getCurrentUserInfo(token));
+  //     isLoggedIn && dispatch(getPersonalPlan());
+  //   }
+  // }, [token, dispatch, isLoggedIn]);
 
   return (
     <>
       <Header />
-      <Routes>
-        <Route path="/" element={<HomePage />}>
-          <Route path="/register" element={<ModalRegister />} />
-          <Route path="/login" element={<ModalLogin />} />
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <Suspense fallback={<Loader />}>
+          <Routes>
+            <Route
+              path="/"
+              element={<PublicRoute restricted component={<HomePage />} />}
+            >
+              <Route path="/login" element={<ModalLogin />} />
+              <Route path="/register" element={<ModalRegister />} />
+            </Route>
 
-          {/* <Route
-            path="/login"
-            element={<PublicRoute component={<ModalLogin />} />}
-          />
-          <Route
-            path="/register"
-            element={<PublicRoute component={<ModalRegister />} />}
-          /> */}
-        </Route>
+            <Route
+              path="/plan"
+              element={<PrivateRoute component={<OwnPlanPage />} />}
+            />
+            <Route
+              path="/cash-flow"
+              element={<PrivateRoute component={<ExpensesPage />} />}
+            />
+            <Route
+              path="/dynamics"
+              element={<PrivateRoute component={<DynamicsPage />} />}
+            />
+            <Route
+              path="/statistics"
+              element={<PrivateRoute component={<StatisticsPage />} />}
+            >
+              <Route path="transactions" exact element={<Transactions />} />
+              <Route path="categories" exact element={<Categories />} />
+            </Route>
 
-        <Route
-          path="/plan"
-          element={<OwnPlanPage />}
-          // element={<PrivateRoute component={<OwnPlanPage />} />}
-        />
-        <Route
-          path="/cash-flow"
-          // element={<PrivateRoute component={<ExpensesPage />} />}
-          element={<ExpensesPage />}
-        />
-        <Route
-          path="/dynamics"
-          element={<DynamicsPage />}
-          // element={<PublicRoute component={<DynamicsPage />} />}
-        />
-        <Route path="/statistics" element={<StatisticsPage />}>
-          <Route path="transactions" element={<Transactions />} />
-          <Route
-            path="categories"
-            element={<Categories />}
-            // element={<PublicRoute component={<ModalRegister />} />}
-          />
-        </Route>
-
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
+        </Suspense>
+      )}
+      <ToastContainer
+        position="center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        style={{
+          width: '700px',
+          height: '200px',
+          fontSize: '24px',
+          lineHeight: '36px',
+        }}
+      />
     </>
   );
 };

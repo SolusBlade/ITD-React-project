@@ -18,20 +18,30 @@ import { ownPlanReducer } from './plan/planSlice';
 import expensesReducer from './expenses/expensesSlice';
 import { transactionsReducer } from './transactions/transactionsSlice';
 
-const persistContactsConfig = {
+const persistAuthConfig = {
   key: 'auth',
   storage,
   whitelist: [`token`],
 };
 
-const persistedAuthReducer = persistReducer(persistContactsConfig, authReducer);
+const persistDynamicsConfig = {
+  key: 'image',
+  storage,
+  whitelist: [`flatImage`],
+};
+const persistedDynamicsReducer = persistReducer(
+  persistDynamicsConfig,
+  dynamicsReducer
+);
+
+const persistedAuthReducer = persistReducer(persistAuthConfig, authReducer);
 
 export const store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
     ownPlan: ownPlanReducer,
     expenses: expensesReducer,
-    dynamics: dynamicsReducer,
+    dynamics: persistedDynamicsReducer,
     statistics: transactionsReducer,
   },
   middleware: getDefaultMiddleware =>
@@ -43,3 +53,4 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
+
