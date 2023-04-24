@@ -18,18 +18,18 @@ export const getDynamics = createAsyncThunk(
 )
 
 export const getDynamicsByMonth = createAsyncThunk(
-    'dynamics/getDynamicsByMonth',
+  'dynamics/getDynamicsByMonth',
 
-    async (data, thunkAPI) => {
-        // const
-        try {
-            const response = await getDynamicsByMonthApi(data.year, data.month);
-            return response.data;
-        } catch (error) {
-            return thunkAPI.rejectWithValue(error.message);
-        }
+  async ({ year, month }, thunkAPI) => {
+    // const
+    try {
+      const response = await getDynamicsByMonthApi(year, month);
+      return response;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
     }
-)
+  }
+);
 
 export const postImage = createAsyncThunk(
     'dynamics/postImage',
