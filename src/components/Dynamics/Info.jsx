@@ -4,7 +4,7 @@ import { useDropzone } from "react-dropzone";
 import { postImage } from "redux/dynamics/dynamicsOperations";
 import { useDispatch, useSelector } from "react-redux";
 import { useMemo } from "react";
-import { selectorStatePlan } from "redux/plan/planSelectors";
+import { selectorIsPlanFootage, selectorStatePlan } from "redux/plan/planSelectors";
 // import { selectorStatePlan } from "../../assets/icons/icons.svg";
 import { 
     // selectDynamics,
@@ -52,6 +52,7 @@ export const Info = props => {
   const squareMeters = useSelector(selectSquareMeters);
   const year = useSelector(selectYear);
   const plan = useSelector(selectorStatePlan);
+  const isPlan = useSelector(selectorIsPlanFootage);
   const oneMoreMeterCost = useSelector(selectorOneMoreMeterCost);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -75,8 +76,10 @@ export const Info = props => {
   }, [acceptedFiles, file.length, dispatch, trigger]);
 
   useEffect(() => {
-    isLoggedIn && squareMeters >= plan.footage && setIsModalOpen(true);
-  }, [plan.footage, squareMeters, isLoggedIn]);
+    if (isPlan && isLoggedIn && Number(squareMeters) >= plan.footage) {
+      setIsModalOpen(true);
+    }
+  }, [plan.footage, squareMeters, isLoggedIn, isPlan]);
 
   const style = useMemo(
     () => ({
