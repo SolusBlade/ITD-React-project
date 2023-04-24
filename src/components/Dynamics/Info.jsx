@@ -114,7 +114,8 @@ export const Info = props => {
   };
 
   function hideImgButton () {
-    return 
+    console.log('visible')
+    return trigger ? 'visible' : 'hidden';
   }
 
   return (
@@ -164,46 +165,26 @@ export const Info = props => {
         <div className={styles.imageElement}>
             <OutsideClicker trigger={trigger} setTrigger={setTrigger}>
             {trigger ? (
-                    <div className={styles.imageContainer} onClick={imageHandler}>
-                        {flatImage ? (
-                            <>
-                            <img
-                                className={styles.image}
-                                src={flatImage}
-                                alt="flat plan"
-                            ></img>
-                            {/* <p
-                                className={styles.imageBtn}
-                                onClick={() => setTrigger(false)}
-                            >
-                                Change image
-                            </p> */}
-                            {/* <p className={styles.imageBtn}>Change image</p> */}
-                            </>
-                        ) : (
-                            <Icon name={'icon-photo-camera'} width={100} height={100} />
-                        )}
-                    </div>
-                // <div className={styles.imageContainer} onClick={imageHandler}>
-                //   {flatImage ? (
-                //     <>
-                //       <img
-                //         className={styles.image}
-                //         src={flatImage}
-                //         alt="flat plan"
-                //       ></img>
-                //       {/* <p
-                //         className={styles.imageBtn}
-                //         onClick={() => setTrigger(false)}
-                //       >
-                //         Change image
-                //       </p> */}
-                //       <p className={styles.imageBtn}>Change image</p>
-                //     </>
-                //   ) : (
-                //     <Icon name={'icon-photo-camera'} width={100} height={100} />
-                //   )}
-                // </div>
+                <div className={styles.imageContainer} onClick={imageHandler}>
+                    {flatImage ? (
+                        <>
+                        <img
+                            className={styles.image}
+                            src={flatImage}
+                            alt="flat plan"
+                        ></img>
+                        {/* <p
+                            className={styles.imageBtn}
+                            onClick={() => setTrigger(false)}
+                        >
+                            Change image
+                        </p> */}
+                        {/* <p className={styles.imageBtn}>Change image</p> */}
+                        </>
+                    ) : (
+                        <Icon name={'icon-photo-camera'} width={100} height={100} />
+                    )}
+                </div>
             ) : (
                 <div className={styles.imageContainer}>
                 <div {...getRootProps({ style })}>
@@ -214,7 +195,7 @@ export const Info = props => {
                 </div>
             )}
             </OutsideClicker>
-            <p className={styles.imageBtn}>Change image</p>
+            <p className={styles.imageBtn} style={{visibility: hideImgButton()}} onClick={()=> setTrigger(false)}>Change image</p>
         </div>
 
       </div>
