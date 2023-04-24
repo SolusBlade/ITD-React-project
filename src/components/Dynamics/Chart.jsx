@@ -87,8 +87,8 @@ export const Chart = () => {
           for (let elem of statByYear) {
             let accumulated = elem.income - elem.expense;
             // (i + 1 === +elem.month) ? console.log('for in month', i + 1, +elem.month) : 0
-            if (i + 1 === +elem.month) {
-              return accumulated >= 0 ? accumulated : 0;
+            if (i + 1 === +elem.month){
+              return (accumulated >= 0) ? accumulated : 1; 
             }
           }
           return 0;
