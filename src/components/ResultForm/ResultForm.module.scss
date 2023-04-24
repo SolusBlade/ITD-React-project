@@ -50,6 +50,7 @@
 }
 
 .item {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   width: 100%;
@@ -63,17 +64,18 @@
 
 .item:last-child {
   @media screen and (min-width: 768px) {
-    position: absolute;
-    right: 33px;
-    bottom: 44px;
+    // position: absolute;
+    // right: 33px;
+    // bottom: 44px;
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column-reverse;
     justify-content: flex-start;
-    height: 90px;
+    // height: 90px;
   }
   @media screen and (min-width: 1280px) {
-    right: 63px;
-    bottom: 24px;
+    // right: 63px;
+    // bottom: 24px;
   }
 }
 
@@ -131,6 +133,9 @@
 }
 
 .buttonBalance {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 46px;
   font-weight: 700;
@@ -146,6 +151,9 @@
   cursor: pointer;
 
   @media screen and (min-width: 768px) {
+    position: absolute;
+    top: -20px;
+    left: 0;
     width: 200px;
   }
 
