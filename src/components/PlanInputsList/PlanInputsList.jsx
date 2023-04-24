@@ -76,7 +76,7 @@ const PlanInputsList = () => {
 
   const handleFits = () => {
     const { isValid } = isValidObjFunc();
-    
+
     if (isValid && !isPlan) {
       dispatch(calcPersonalPlan(inputs));
     } else if (isValid && isFitsDirty) {
@@ -91,30 +91,30 @@ const PlanInputsList = () => {
   return (
     <>
       {isLoading && <Loader />}
-        <form className={s.form}>
-          <InputForm
-            onChange={handleChange}
-            options={optionsDefault}
-            values={inputs}
-            onBlur={handlerBlur}
-            errors={error}
-          />
-        </form>
+      <form className={s.form}>
+        <InputForm
+          onChange={handleChange}
+          options={optionsDefault}
+          values={inputs}
+          onBlur={handlerBlur}
+          errors={error}
+        />
+      </form>
 
-        <p className={s.p}>
-          Specify the percentage that you would like to accumulate per month from
-          the total amount of income and you will see when you reach the goal
-        </p>
+      <p className={s.p}>
+        Specify the percentage that you would like to accumulate per month from
+        the total amount of income and you will see when you reach the goal
+      </p>
 
-        <ResultForm openModal={openModal} onClick={handleFits} />
+      <ResultForm openModal={openModal} onClick={handleFits} />
 
-        {isModalOpen && (
-          <ModalAddBalance
-            text="Enter balance"
-            closeModal={closeModal}
-            onSubmit={handleAddBalance}
-          />
-        )}
+      {isModalOpen && (
+        <ModalAddBalance
+          text="Enter balance"
+          closeModal={closeModal}
+          onSubmit={handleAddBalance}
+        />
+      )}
     </>
   );
 };
