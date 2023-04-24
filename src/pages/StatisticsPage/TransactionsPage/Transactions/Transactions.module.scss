@@ -117,14 +117,20 @@
 }
 
 .noTransactionWrapper {
-  padding: 12px;
+  padding: 16px;
   color: $white;
+  background-color: $dark-blue-tabl;
+  border-radius: 0px 16px 16px 16px;
 
   @include tablet_max {
     max-width: 343px;
   }
 
   @include tablet {
+    width: 704px;
+  }
+
+  @include desktop {
     width: 769px;
   }
 }

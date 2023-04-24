@@ -11,29 +11,27 @@
     width: 769px;
   }
   margin: auto;
-  margin-top: 66px; // прибрати, коли буде секція
-  margin-bottom: 106px; // прибрати, коли буде секція
 }
 .navWrapper {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 769px;
+  max-width: 769px;
   margin: 0 auto;
 
   @include tablet_max {
     flex-direction: column-reverse;
-    width: 343px;
+    max-width: 343px;
   }
 
   @include tablet {
     flex-direction: row;
-    width: 704px;
+    max-width: 704px;
     align-items: flex-end;
   }
 
   @include desktop {
-    width: 769px;
+    max-width: 769px;
     padding-top: 20px;
   }
 }
@@ -47,23 +45,25 @@
 
 .link {
   display: block;
-  padding: 18px 19px 18px 20px;
+  padding: 20px 19px 18px 20px;
   font-family: 'Lato', sans-serif;
   @include font(600, 16px, 1.19);
   border-top-right-radius: 16px;
   border-top-left-radius: 16px;
   background-color: rgba(31, 37, 52, 0.4);
   color: $light-gray-tabl;
+  box-sizing: border-box;
 }
 
 .active {
   display: block;
-  padding: 18px 19px 18px 20px;
+  padding: 19px 19px 18px 20px;
   font-family: 'Lato', sans-serif;
   @include font(600, 16px, 1.19);
   border-top-right-radius: 16px;
   border-top-left-radius: 16px;
   border-top: 1px solid $blue;
+  box-sizing: border-box;
   background-color: $dark-blue-tabl;
   color: $white;
 }

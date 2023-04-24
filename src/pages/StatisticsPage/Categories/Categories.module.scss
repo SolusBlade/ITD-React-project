@@ -86,3 +86,30 @@
         font-size: 18px; 
     }
 }
+
+.noTransactionWrapper {
+    padding: 16px;
+    color: $white;
+    background-color: $dark-blue-tabl;
+    border-radius: 0px 16px 16px 16px;
+  
+    @media screen and (max-width: 767px) {
+        max-width: 343px;
+    }
+
+    @media screen and (min-width: 768px) {
+        width: 704px;
+    }
+  
+    @media screen and (min-width: 1280px) {
+      width: 769px;
+    }
+}
+
+.noTransactionText {
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.4;
+    text-align: center;
+}

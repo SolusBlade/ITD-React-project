@@ -8,6 +8,11 @@ const Categories = () => {
 
   return (
     <>
+      {categories?.length === 0 && (
+        <div className={d.noTransactionWrapper}>
+          <p className={d.noTransactionText}>You have no transactions</p>
+        </div>
+      )}
       <ul className={d.categoriesList}>
         {categories.map(({ category, amount, percentage }) => (
           <li key={category} className={d.categoriesItem}>
