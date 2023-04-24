@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import s from './ExpensesLimits.module.scss';
-import { presavingSelect } from 'redux/Expenses/expensesSelectors';
+import { presavingSelect } from 'redux/expenses/expensesSelectors';
 
 const ExpensesLimits = ({ openModal }) => {
   const { dailyLimit, monthLimit, totalByDay, totalByMounth } =

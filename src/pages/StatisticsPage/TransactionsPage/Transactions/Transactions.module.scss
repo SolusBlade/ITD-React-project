@@ -9,7 +9,7 @@
   margin: 0 auto;
 
   @include tablet_max {
-    width: 343px;
+    max-width: 343px;
   }
 
   @include tablet {
@@ -32,7 +32,7 @@
 
   @include tablet_max {
     padding: 50px 20px;
-    width: 315px;
+    max-width: 315px;
   }
 
   @include tablet {
@@ -95,14 +95,8 @@
   border-radius: 60px;
   border: none;
   cursor: pointer;
-  
-  &:hover,
-  &:focus {
-    background-color: $white;
-    color: $btn-black;
-  }
-  @media screen and (min-width: 375px) {
 
+  @include tablet_max {
     padding: 8px 56px;
     margin-left: auto;
     margin-right: auto;
@@ -127,7 +121,7 @@
   color: $white;
 
   @include tablet_max {
-    width: 343px;
+    max-width: 343px;
   }
 
   @include tablet {

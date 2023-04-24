@@ -6,8 +6,6 @@ import {
   updateCashflowTransactionApi,
 } from '../../services/connectoinsApi';
 
-// const period = [];
-
 export const getTransaction = createAsyncThunk(
   'statistic/getTransaction',
   async (period, { rejectWithValue }) => {
@@ -24,12 +22,12 @@ export const getTransaction = createAsyncThunk(
 
 export const updateTransaction = createAsyncThunk(
   'statistic/updateTransaction',
-  async (idTransaction, { rejectWithValue, dispatch }) => {
+  async ({ id, data }, thunkAPI) => {
     try {
-      const response = await updateCashflowTransactionApi(idTransaction);
+      const response = await updateCashflowTransactionApi(id, data);
       return response;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );

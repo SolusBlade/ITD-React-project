@@ -20,7 +20,7 @@ const transactionsSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(getTransaction.fulfilled, (state, { payload }) => {
-        console.log(payload === 'no transactions for this period');
+        // console.log(payload === 'no transactions for this period');
         if (payload === 'no transactions for this period') {
           state.transactions = [];
           state.isLoading = false;
@@ -50,7 +50,7 @@ const transactionsSlice = createSlice({
       .addMatcher(
         action =>
           action.type.startsWith('statistic') &&
-          action.type.endsWith('/pending')&&
+          action.type.endsWith('/pending') &&
           !action.type.endsWith('/removeTransaction/pending'),
         state => {
           state.isLoading = true;

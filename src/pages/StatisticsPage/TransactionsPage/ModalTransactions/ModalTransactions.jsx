@@ -5,18 +5,20 @@ import Select from 'react-select';
 import { useDispatch, useSelector } from 'react-redux';
 import c from '../../../../components/ModalAddIncome/MoadlAddIncome.module.scss';
 import { useEffect, useState } from 'react';
-import { categorySelect } from 'redux/Expenses/expensesSelectors';
+import { categorySelect } from 'redux/expenses/expensesSelectors';
 import { updateTransaction } from 'redux/transactions/transactionsOperations';
 import { IconOption } from 'components/TransactionSelect/iconsForSelectCategory';
-import { getCategory } from 'redux/Expenses/expensesOperations';
+import { getCategory } from 'redux/expenses/expensesOperations';
+import moment, { invalid } from 'moment';
 
 const modalRoot = document.querySelector('#modal-root');
 
 const ModalTransaction = ({ closeModal, value, id }) => {
   const [currentCategory, setCurrentCategory] = useState('Other');
+  const [currentSum, setCurrentSum] = useState(0);
+  const [currentComent, setCurrentComent] = useState('');
   const category = useSelector(categorySelect);
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(getCategory());
   }, [dispatch]);
@@ -29,11 +31,30 @@ const ModalTransaction = ({ closeModal, value, id }) => {
   const onChange = newValue => {
     setCurrentCategory(newValue.value);
   };
+  const changeSum = e => {
+    setCurrentSum(e.currentTarget.value);
+  };
+  const changeComent = e => {
+    setCurrentComent(e.currentTarget.value);
+  };
+
+  const onSubmitForm = e => {
+    e.preventDefault();
+    const data = {
+      type: 'expense',
+      category: currentCategory,
+      comment: !currentComent ? 'no comment' : currentComent,
+      sum: Number(currentSum),
+    };
+
+    dispatch(updateTransaction({ id, data }));
+    closeModal();
+  };
 
   return createPortal(
     <div className={s.overlayAddIncome}>
       <div className={s.modalWrapper}>
-        <form className={s.formWrapper}>
+        <form className={s.formWrapper} onSubmit={onSubmitForm}>
           <label className={s.labelForSelector}>
             <p className={s.labelText}>Per category</p>
             <Select
@@ -57,21 +78,28 @@ const ModalTransaction = ({ closeModal, value, id }) => {
                 className={s.formInput}
                 type="text"
                 name="comment"
+                required
                 maxLength="80"
+                placeholder="Enter comment"
+                value={value}
+                onChange={changeComent}
               />
             </label>
 
             <label className={s.formLabel}>
               Sum
-              <input className={s.formInput} type="text" name="sum" />
+              <input
+                className={s.formInput}
+                type="text"
+                name="sum"
+                onChange={changeSum}
+                placeholder="00.00"
+                required
+              />
             </label>
 
             <div>
-              <button
-                className={s.buttonEdit}
-                type="submit"
-                onClick={() => dispatch(updateTransaction(id))}
-              >
+              <button className={s.buttonEdit} type="submit">
                 Edit
               </button>
             </div>
