@@ -1,4 +1,4 @@
-import { addUserBalance } from 'redux/auth/authOperations';
+import { addUserBalance, logOutUser } from 'redux/auth/authOperations';
 import {
   calcPersonalPlan,
   getPersonalPlan,
@@ -59,6 +59,25 @@ const ownPlanSlice = createSlice({
         state.error = null;
         state.plan = payload.plan;
         state.result = payload.result;
+      })
+      .addCase(logOutUser.fulfilled, (state, _) => {
+        return {
+          plan: {
+            salary: '',
+            passiveIncome: '',
+            savings: '',
+            cost: '',
+            footage: '',
+            procent: '',
+          },
+          result: {
+            year: 0,
+            month: 0,
+          },
+          isLoading: true,
+          error: null,
+          isPlan: false,
+        };
       })
       .addMatcher(
         action =>

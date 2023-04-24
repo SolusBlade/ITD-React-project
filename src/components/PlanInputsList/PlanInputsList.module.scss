@@ -14,9 +14,9 @@
 }
 
 .p {
+  display: flex;
   margin-left: auto;
   margin-bottom: 64px;
-  width: 329px;
   height: 42px;
   font-weight: 400;
   font-size: 12px;
@@ -25,6 +25,7 @@
 
   @media screen and (min-width: 768px) {
     margin-bottom: 100px;
+    width: 329px;
   }
 
   @media screen and (min-width: 1280px) {

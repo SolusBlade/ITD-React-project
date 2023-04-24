@@ -5,13 +5,13 @@ import Select from 'react-select';
 import { useDispatch, useSelector } from 'react-redux';
 import c from '../../../../components/ModalAddIncome/MoadlAddIncome.module.scss';
 import { useEffect, useState } from 'react';
-import { categorySelect } from 'redux/expenses/expensesSelectors';
+import { categorySelect } from 'redux/Expenses/expensesSelectors';
 import { updateTransaction } from 'redux/transactions/transactionsOperations';
 import { IconOption } from 'components/TransactionSelect/iconsForSelectCategory';
-import { getCategory } from 'redux/expenses/expensesOperations';
-// import moment, { invalid } from 'moment';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
+import { getCategory } from 'redux/Expenses/expensesOperations';
+
 
 const modalRoot = document.querySelector('#modal-root');
 
@@ -34,25 +34,6 @@ const ModalTransaction = ({ closeModal, value, id }) => {
   const onChange = newValue => {
     setCurrentCategory(newValue.value);
   };
-  // const changeSum = e => {
-  //   setCurrentSum(e.currentTarget.value);
-  // };
-  // const changeComent = e => {
-  //   setCurrentComent(e.currentTarget.value);
-  // };
-
-  // const onSubmitForm = e => {
-  //   e.preventDefault();
-  //   const data = {
-  //     type: 'expense',
-  //     category: currentCategory,
-  //     comment: !currentComent ? 'no comment' : currentComent,
-  //     sum: Number(currentSum),
-  //   };
-
-  //   dispatch(updateTransaction({ id, data }));
-  //   closeModal();
-  // };
 
   return createPortal(
     <div className={s.overlayAddIncome}>
@@ -74,14 +55,6 @@ const ModalTransaction = ({ closeModal, value, id }) => {
           })}
           onSubmit={(values, { setSubmitting }) => {
             console.log(values);
-
-            // const data = {
-            //   type: 'expense',
-            //   category: currentCategory,
-            //   comment: !currentComent ? 'no comment' : currentComent,
-            //   sum: Number(currentSum),
-            // };
-
             dispatch(updateTransaction({ id, values }));
             closeModal();
             setSubmitting(false);
@@ -89,7 +62,6 @@ const ModalTransaction = ({ closeModal, value, id }) => {
         >
           {({ errors, touched, values }) => (
             <Form className={s.formWrapper}>
-              {/* <form className={s.formWrapper} onSubmit={onSubmitForm}> */}
               <label className={s.labelForSelector}>
                 <p className={s.labelText}>Per category</p>
                 <Select
@@ -121,11 +93,7 @@ const ModalTransaction = ({ closeModal, value, id }) => {
                     className={s.formInput}
                     type="text"
                     name="comment"
-                    // required
-                    // maxLength="80"
                     placeholder="Enter comment"
-                    // value={value}
-                    // onChange={changeComent}
                   />
                   {touched.comment && errors.comment && (
                     <div className={s.error}>{errors.comment}</div>
@@ -147,9 +115,7 @@ const ModalTransaction = ({ closeModal, value, id }) => {
                     className={s.formInput}
                     type="text"
                     name="sum"
-                    // onChange={changeSum}
                     placeholder="00.00"
-                    // required
                   />
                   {touched.sum && errors.sum && (
                     <div className={s.error}>{errors.sum}</div>

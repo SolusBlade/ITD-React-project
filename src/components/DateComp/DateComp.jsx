@@ -11,6 +11,8 @@ import {
 } from 'redux/transactions/transactionsOperations';
 import { useLocation } from 'react-router-dom';
 import { selectorIsLoggedIn } from 'redux/auth/authSelectors';
+import clsx from 'clsx';
+import { getDynamicsByMonth } from 'redux/dynamics/dynamicsOperations';
 
 const months = [
   'January',
@@ -33,6 +35,8 @@ const DateComp = () => {
   const isLoggedIn = useSelector(selectorIsLoggedIn);
   const location = useLocation();
 
+  const isDynamicsPage = location.pathname.endsWith('dynamics');
+
   useEffect(() => {
     if (location.pathname.endsWith('transactions')) {
       isLoggedIn && dispatch(getTransaction(changedDateForApi(selectedDate)));
@@ -40,6 +44,10 @@ const DateComp = () => {
     if (location.pathname.endsWith('categories')) {
       isLoggedIn &&
         dispatch(getCategoriesStat(changedDateForApi(selectedDate)));
+    }
+    if (location.pathname.endsWith('dynamics')) {
+      isLoggedIn &&
+        dispatch(getDynamicsByMonth(changedDateForApi(selectedDate)));
     }
   }, [isLoggedIn, dispatch, location.pathname, selectedDate]);
 
@@ -62,10 +70,15 @@ const DateComp = () => {
     if (location.pathname.endsWith('categories')) {
       dispatch(getCategoriesStat(changedDateForApi(date)));
     }
+    if (isDynamicsPage) {
+      dispatch(getDynamicsByMonth(changedDateForApi(date)));
+    }
   };
 
   return (
-    <div className={'calendarWrap'}>
+    <div
+      className={clsx('calendarWrap', isDynamicsPage && 'calendarDynamicsWrap')}
+    >
       <DatePicker
         selected={selectedDate}
         onChange={date => setSelectedDate(date)} // используем setSelectedDate, чтобы обновлять значение выбранной даты
@@ -76,10 +89,11 @@ const DateComp = () => {
         showMonthYearPicker
       />
       <Icon
-        name={'icon-calendar'}
+        name={!isDynamicsPage ? 'icon-calendar' : 'icon-vector-down'}
         width={'24'}
         height={'24'}
         className={'icon-calendar'}
+        secondaryClassName={'icon-claendar-dynamics'}
       />
     </div>
   );

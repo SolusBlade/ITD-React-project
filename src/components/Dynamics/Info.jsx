@@ -4,7 +4,7 @@ import { useDropzone } from "react-dropzone";
 import { postImage } from "redux/dynamics/dynamicsOperations";
 import { useDispatch, useSelector } from "react-redux";
 import { useMemo } from "react";
-import { selectorStatePlan } from "redux/plan/planSelectors";
+import { selectorIsPlanFootage, selectorStatePlan } from "redux/plan/planSelectors";
 // import { selectorStatePlan } from "../../assets/icons/icons.svg";
 import { 
     // selectDynamics,
@@ -52,6 +52,7 @@ export const Info = props => {
   const squareMeters = useSelector(selectSquareMeters);
   const year = useSelector(selectYear);
   const plan = useSelector(selectorStatePlan);
+  const isPlan = useSelector(selectorIsPlanFootage);
   const oneMoreMeterCost = useSelector(selectorOneMoreMeterCost);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -75,8 +76,10 @@ export const Info = props => {
   }, [acceptedFiles, file.length, dispatch, trigger]);
 
   useEffect(() => {
-    isLoggedIn && squareMeters >= plan.footage && setIsModalOpen(true);
-  }, [plan.footage, squareMeters, isLoggedIn]);
+    if (isPlan && isLoggedIn && Number(squareMeters) >= plan.footage) {
+      setIsModalOpen(true);
+    }
+  }, [plan.footage, squareMeters, isLoggedIn, isPlan]);
 
   const style = useMemo(
     () => ({
@@ -113,13 +116,20 @@ export const Info = props => {
     setIsModalOpen(false);
   };
 
+  function hideImgButton () {
+    console.log('visible')
+    return trigger ? 'visible' : 'hidden';
+  }
+
   return (
     <>
       {isModalOpen && <ModalHooray closeModal={closeModal} />}
       <div className={styles.infoContainer}>
         <div className={styles.accumulated}>
           <p className={styles.title}>
-            After {year ? 0 : year} years {month ? 0 : month} month
+            {/* After {year ? 0 : year} years {month ? 0 : month} month */}
+            After {(accumulatedUah >= plan.cost) ? 0 : year} {`${' '}`}
+             years {(accumulatedUah >= plan.cost) ? 0 : month} month
           </p>
           <ul className={styles.list}>
             <li className={styles.item}>
@@ -154,37 +164,43 @@ export const Info = props => {
             ></div>
           </div>
         </div>
-        <OutsideClicker trigger={trigger} setTrigger={setTrigger}>
-          {trigger ? (
-            <div className={styles.imageContainer} onClick={imageHandler}>
-              {flatImage ? (
-                <>
-                  <img
-                    className={styles.image}
-                    src={flatImage}
-                    alt="flat plan"
-                  ></img>
-                  <p
-                    className={styles.imageBtn}
-                    onClick={() => setTrigger(false)}
-                  >
-                    Change image
-                  </p>
-                </>
-              ) : (
-                <Icon name={'icon-photo-camera'} width={100} height={100} />
-              )}
-            </div>
-          ) : (
-            <div className={styles.imageContainer}>
-              <div {...getRootProps({ style })}>
-                <input {...getInputProps()} />
-                <p>Drag 'n' drop some files here, or click to select files</p>
-                <em>(Only *.jpeg and *.png images will be accepted)</em>
-              </div>
-            </div>
-          )}
-        </OutsideClicker>
+
+        <div className={styles.imageElement}>
+            <OutsideClicker trigger={trigger} setTrigger={setTrigger}>
+            {trigger ? (
+                <div className={styles.imageContainer} onClick={imageHandler}>
+                    {flatImage ? (
+                        <>
+                        <img
+                            className={styles.image}
+                            src={flatImage}
+                            alt="flat plan"
+                        ></img>
+                        {/* <p
+                            className={styles.imageBtn}
+                            onClick={() => setTrigger(false)}
+                        >
+                            Change image
+                        </p> */}
+                        {/* <p className={styles.imageBtn}>Change image</p> */}
+                        </>
+                    ) : (
+                        <Icon name={'icon-photo-camera'} width={100} height={100} />
+                    )}
+                </div>
+            ) : (
+                <div className={styles.imageContainer}>
+                <div {...getRootProps({ style })}>
+                    <input {...getInputProps()} />
+                    <p>Drag 'n' drop some files here, or click to select files</p>
+                    <em>(Only *.jpeg and *.png images will be accepted)</em>
+                </div>
+                </div>
+            )}
+            </OutsideClicker>
+            <p className={styles.imageBtn} style={{visibility: hideImgButton()}} onClick={()=> setTrigger(false)}>Change image</p>
+        </div>
+
       </div>
       <div className={styles.accRemain}>
         <div className={styles.accTitleContainer}>

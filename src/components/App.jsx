@@ -2,7 +2,6 @@ import { useEffect, lazy, Suspense } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
-// eslint-disable-next-line
 import Header from './Header/Header';
 import ModalRegister from './ModalRegister/ModalRegister';
 import ModalLogin from './ModalLogin/ModalLogin';
@@ -13,9 +12,7 @@ import Loader from './Loader/Loader';
 import {
   selectorIsAuthLoading,
   selectorIsLoggedIn,
-  selectorIsRefreshing,
   selectorIsUserExist,
-  selectorToken,
 } from 'redux/auth/authSelectors';
 
 const HomePage = lazy(() => import('pages/HomePage/HomePage'));
@@ -39,12 +36,10 @@ const PrivateRoute = ({ component, redirectTo = '/login' }) => {
   const isPlan = useSelector(selectorIsPlan);
   const location = useLocation();
   if (!isLoggedIn) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/" />;
   }
 
   if (!isPlan && !isPlanLoading && location.pathname !== '/plan') {
-    console.log('isPlan', isPlan);
-
     toast.error('Please choose a plan', {
       position: 'top-center',
       autoClose: 3000,
@@ -53,7 +48,7 @@ const PrivateRoute = ({ component, redirectTo = '/login' }) => {
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      theme: 'light',
+      theme: 'dark',
     });
     return <Navigate to="/plan" />;
   }
@@ -73,7 +68,6 @@ const App = () => {
   const isLoading = useSelector(selectorIsAuthLoading);
   const isLoggedIn = useSelector(selectorIsLoggedIn);
   const isUserExist = useSelector(selectorIsUserExist);
-  const isPlan = useSelector(selectorIsPlan);
 
   useEffect(() => {
     dispatch(getCurrentUserInfo());
@@ -82,13 +76,6 @@ const App = () => {
   useEffect(() => {
     isUserExist && dispatch(getPersonalPlan());
   }, [dispatch, isUserExist]);
-
-  // useEffect(() => {
-  //   if (token) {
-  //     !isLoggedIn && dispatch(getCurrentUserInfo(token));
-  //     isLoggedIn && dispatch(getPersonalPlan());
-  //   }
-  // }, [token, dispatch, isLoggedIn]);
 
   return (
     <>

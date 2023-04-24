@@ -151,7 +151,7 @@
 
 .chartContainer{
     // margin-bottom: 50px;
-    width: 200px;
+    width: 100%;
     height: 430px;
     margin-bottom: 50px;
 
@@ -287,5 +287,29 @@
 
     @include desktop {
         @include font (500, 14px, 18px);
+    }
+}
+
+.errorItem{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 16px;
+    text-align: center;
+    background-color: rgba(31, 37, 52, 0.5);
+    
+    @include font (400, 14px, 20px);
+
+    color: rgba(243, 243, 243, 0.6);
+
+    @include tablet {
+        margin-bottom: 72px;
+        @include font (400, 16px, 24px);
+    }
+
+    @include desktop {
+        @include font (400, 20px, 30px);
     }
 }

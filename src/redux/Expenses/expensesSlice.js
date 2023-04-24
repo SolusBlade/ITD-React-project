@@ -4,6 +4,7 @@ import {
   getPresaving,
   postTransaction,
 } from './expensesOperations';
+import { logOutUser } from 'redux/auth/authOperations';
 
 const initialState = {
   category: [],
@@ -38,6 +39,9 @@ const expensesSlice = createSlice({
           state.presaving.totalByMounth -= payload.sum;
         }
         state.isLoading = false;
+      })
+      .addCase(logOutUser.fulfilled, (state, {_}) => {
+        return initialState;
       })
       .addMatcher(
         action =>
