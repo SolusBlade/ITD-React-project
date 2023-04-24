@@ -5,7 +5,10 @@ import 'react-datepicker/dist/react-datepicker.css';
 import './DateComp.scss';
 import Icon from 'components/Icon/Icon';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCategoriesStat, getTransaction } from 'redux/transactions/transactionsOperations';
+import {
+  getCategoriesStat,
+  getTransaction,
+} from 'redux/transactions/transactionsOperations';
 import { useLocation } from 'react-router-dom';
 import { selectorIsLoggedIn } from 'redux/auth/authSelectors';
 
