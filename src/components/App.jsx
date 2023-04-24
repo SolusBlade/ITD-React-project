@@ -29,7 +29,6 @@ const Categories = lazy(() =>
   import('pages/StatisticsPage/Categories/Categories')
 );
 
-// eslint-disable-next-line
 const PrivateRoute = ({ component, redirectTo = '/login' }) => {
   const isLoggedIn = useSelector(selectorIsLoggedIn);
   const isPlanLoading = useSelector(selectorPlanIsLoading);
@@ -57,7 +56,6 @@ const PrivateRoute = ({ component, redirectTo = '/login' }) => {
   return component;
 };
 
-// eslint-disable-next-line
 const PublicRoute = ({ component, redirectTo = '/plan' }) => {
   const isLoggedIn = useSelector(selectorIsLoggedIn);
   return !isLoggedIn ? component : <Navigate to={redirectTo} />;

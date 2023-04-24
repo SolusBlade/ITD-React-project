@@ -1,17 +1,13 @@
 import Container from 'components/Container/Container';
 import s from './HomePageElt.module.scss';
 import { useMediaQuery } from 'react-responsive';
-// import { NavLink, useLocation } from 'react-router-dom';
+
 
 const HomePageElt = () => {
   const isTablet = useMediaQuery({ query: '(min-width: 768px)' });
-  // const location = useLocation();
 
   return (
     <Container style={{position: "relative",}}>
-      {/* <div className={s.section}> */}
-      {/* <NavLink to='/register'state={location}>REGISTER</NavLink>
-        <NavLink to='/login' state={location}>LOGIN</NavLink> */}
 
       {!isTablet && (
         <h1 className={s.homeTitle}>

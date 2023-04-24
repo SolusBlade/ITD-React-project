@@ -20,7 +20,6 @@ const transactionsSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(getTransaction.fulfilled, (state, { payload }) => {
-        // console.log(payload === 'no transactions for this period');
         if (payload === 'no transactions for this period') {
           state.transactions = [];
           state.isLoading = false;
@@ -37,7 +36,6 @@ const transactionsSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(getCategoriesStat.fulfilled, (state, { payload }) => {
-        console.log(payload === 'no transactions for this period');
         if (payload === 'no transactions for this period') {
           state.categoriesStat = [];
           state.isLoading = false;

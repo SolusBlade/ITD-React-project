@@ -14,7 +14,6 @@ const MoadlAddIncome = ({ closeModal, text }) => {
   };
   const handleSubmit = (values, actions) => {
     dispatch(postTransaction({ sum: values.sum, type: 'income' }));
-    console.log(values);
     actions.resetForm();
     closeModal();
   };

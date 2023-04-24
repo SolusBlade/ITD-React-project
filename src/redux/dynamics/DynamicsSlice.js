@@ -34,32 +34,25 @@ export const dynamicsSlice = createSlice({
   extraReducers: {
     [getDynamics.pending](state, action) {
       state.isLoading = true;
-      console.log('pending');
+
     },
     [getDynamics.fulfilled](state, { payload }) {
-      // state.isLoading = false;
-      // state.error = null;
-      // state.statByYear = action.payload;
-      console.log('fulfilled', payload);
+
       return {
         ...state,
         ...payload,
         isLoading: false,
         error: null,
       };
-      // return {...state, ...payload, isLoading: false, error: null, flatImage: payload.flatImage = null}
     },
     [getDynamics.rejected](state, action) {
       state.isLoading = false;
       state.error = action.payload;
-      console.log('rejected', action.payload);
     },
     [postImage.fulfilled](state, action) {
-      console.log('image fulfilled', action);
       state.flatImage = action.payload.image;
     },
     [getDynamicsByMonth.fulfilled](state, { payload }) {
-      console.log('payload:', payload);
       state.statByMonth = payload;
     },
     [logOutUser.fulfilled](state, action) {
@@ -70,6 +63,3 @@ export const dynamicsSlice = createSlice({
 
 export const dynamicsReducer = dynamicsSlice.reducer;
 
-// export const imageSlice = createSlice({
-
-// })

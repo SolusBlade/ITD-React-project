@@ -25,7 +25,6 @@ const ResultForm = ({ openModal, onClick }) => {
           </button>
           {!isBalance && (
             <button
-              // disabled={isBalance}
               className={s.buttonBalance}
               type="button"
               onClick={openModal}

@@ -4,14 +4,12 @@
     margin: auto;
     padding-left: 15px;
     padding-right: 15px;
-    // width: 100vw;
     @include tablet-max {
         min-width: 280px;
         max-width: 375px;
     }
 
     @include tablet {
-        // width: 100vw;
         width: 768px;
         padding-left: 32px;
         padding-right: 32px;
@@ -25,10 +23,6 @@
         padding-left: 55px;
         padding-right: 55px;
         width: 1280px;
-        // flex-wrap: nowrap;
-        // justify-content: center;
-        // flex-direction: row;
-        // flex-flow: row wrap;
         gap: 0;
     }
 }

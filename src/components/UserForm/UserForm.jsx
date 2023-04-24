@@ -33,7 +33,6 @@ const UserForm = ({ onSubmit, btnSubmit }) => {
           toggle: Yup.bool(),
       })}
       onSubmit={(values, { setSubmitting }) => {
-        console.log(values);
         dispatch(onSubmit(values));
         setSubmitting(false);
       }}

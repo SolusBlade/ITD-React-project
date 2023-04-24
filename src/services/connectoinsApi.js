@@ -42,7 +42,6 @@ export const updatePersonalPlanApi = planData => {
   return axios.put('/api/personal-plan', planData).then(r => r.data);
 };
 
-// *Хз нужно или нет
 export const getPersonalPlanLimitsApi = data => {
   return axios.get('/api/personal-plan/daily-limit', data).then(r => r.data);
 };
@@ -108,13 +107,11 @@ export const getDynamicsByMonthApi = (year, month) => {
     .then(r => r.data);
 };
 
-// Тут нужно будет подумать, пока не готово
+
 export const addDynamicsImageApi = data => {
   return axios({
     method: 'patch',
     url: '/api/dynamics/flatImage',
-    // headers: {},
     data: data,
   });
-  // return axios.patch('/api/dynamics/flatImage').then(r => r.data);
 };

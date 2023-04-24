@@ -9,8 +9,6 @@ import d from './Header.module.scss';
 import clsx from 'clsx';
 import { useState } from 'react';
 
-// const getActiveClass = ({ isActive }) => clsx(d.link, isActive && d.active);
-
 const Header = () => {
   const isAuth = useSelector(selectorIsLoggedIn);
   const name = useSelector(selectorName);

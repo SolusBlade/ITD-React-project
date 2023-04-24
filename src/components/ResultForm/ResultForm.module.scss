@@ -64,18 +64,10 @@
 
 .item:last-child {
   @media screen and (min-width: 768px) {
-    // position: absolute;
-    // right: 33px;
-    // bottom: 44px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column-reverse;
     justify-content: flex-start;
-    // height: 90px;
-  }
-  @media screen and (min-width: 1280px) {
-    // right: 63px;
-    // bottom: 24px;
   }
 }
 
@@ -161,9 +153,4 @@
   &:focus {
     color: #242424;
   }
-
-  // &:disabled {
-  //   color: rgba(243, 243, 243, 0.4);
-  //   cursor: default;
-  // }
 }

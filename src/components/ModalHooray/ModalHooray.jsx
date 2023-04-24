@@ -5,7 +5,6 @@ import { createPortal } from 'react-dom';
 const modalRoot = document.querySelector('#modal-root');
 
 const ModalHooray = ({ closeModal }) => {
-  console.log(closeModal)
   return createPortal(
     <div className={s.overlay}>
       <div className={s.modalWrap}>

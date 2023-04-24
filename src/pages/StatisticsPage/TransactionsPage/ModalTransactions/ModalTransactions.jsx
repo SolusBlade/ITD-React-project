@@ -54,7 +54,6 @@ const ModalTransaction = ({ closeModal, value, id }) => {
             sum: Yup.number().required('Required'),
           })}
           onSubmit={(values, { setSubmitting }) => {
-            console.log(values);
             dispatch(updateTransaction({ id, values }));
             closeModal();
             setSubmitting(false);

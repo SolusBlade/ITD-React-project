@@ -30,10 +30,10 @@ const handleGoBackBtnClick = () => {
 useEffect (()=>{
   window.addEventListener('keydown', closeModalByEscape);
 
-  return ()=>{
+  return () => {
     window.removeEventListener('keydown', closeModalByEscape);
-  }
-// eslint-disable-next-line react-hooks/exhaustive-deps
+  };
+  // eslint-disable-next-line
 }, [])
   
     return createPortal(

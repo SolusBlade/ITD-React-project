@@ -1,12 +1,6 @@
 @import "../../sass/utils/mixin";
 @import "../../sass/utils/variables";
-// $dark-blue: #191D28;
-// $blue: #3A6AF5;
-// $purple: #6359E9;
-// $white: #F3F3F3;
-// $transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-// $dark-gray: #242424;
-// $light-gray: rgba(255, 255, 255, 0.2);
+
 
 .dynamicsChartContainer{
     @include tablet-max {
@@ -21,48 +15,13 @@
     }
 }
 
-// .chartContainer{
-//     // margin-bottom: 50px;
-//     width: 250px;
-//     height: 420px;
-
-//     @include tablet-max {
-//         width: 422px;
-//         height: 219px;  
-//         margin-bottom: 50px;
-//     }
-
-//     @include desktop {
-//         width: 440px;
-//         height: 208px;
-//     }
-// }
 
 
-// .barContainer{
-//     width: 200px;
-//     height: 430px;
-    
-//     @include tablet {
-//         width: 422px;
-//         height: 219px;   
 
-//         margin-bottom: 50px;
-//     }
 
-// }
-
-// @media screen and (max-width: 768px) {
-//     .barContainer{
-//         margin-bottom: 50px;
-//     }
-// }
 
 .title{
-    // font-size: 24px;
     @include font(600, 20px, 20px);
-    
-    // text-align: center;
     color: $white;
     
     @include tablet-max {
@@ -81,14 +40,11 @@
 }
 
 .list{
-    // list-style: none;
     padding-left: 20px;
     display: flex;
     flex-direction: column;
     margin-bottom: 50px;
-    // @include tablet-max {
-    //     margin-bottom: 50px;
-    // }
+
 
     @include tablet {
         flex-direction: row;
@@ -97,13 +53,7 @@
 
 .listItem{
     position: relative;
-    // float: left;
     @include font (400, 12px, 14.4px);
-
-    // @include tablet {
-    //     margin: 0;
-    //     // float: left;
-    // }
 
     &:not(:last-child){
         margin-bottom: 4px;
@@ -111,7 +61,6 @@
 
     @include tablet {
         margin: 0;
-        // margin-left: 40px;
         
         &:not(:last-child){
             margin: 0px;
@@ -124,21 +73,15 @@
         height: 11px;
         width: 11px;
         position: absolute;
-        // outline: 1px solid red;
         border-radius: 50%;
-        // vertical-align:middle;
         transform: translate(-170%, 20%);
     }
 
     &:nth-child(1):before{
-    
-        // background-color: #6359E9;
         background-color: $purple;
 
     }
     &:nth-child(2):before{
-        
-        // background-color: #3A6AF5;
         background-color: $blue;
 
     }
@@ -150,18 +93,9 @@
 }
 
 .chartContainer{
-    // margin-bottom: 50px;
     width: 100%;
     height: 430px;
     margin-bottom: 50px;
-
-    // @include tablet-max {
-    //     width: 422px;
-    //     height: 219px; 
-    //     // width: 422px;
-    //     // height: 219px; 
-    //     // margin-bottom: 50px;
-    // }
 
     @include tablet {
         width: 422px;
@@ -175,9 +109,6 @@
     }
 }
 
-// .statContainer{
-//     margin-bottom: 50px;
-// }
 
 .select{
     max-width: 343px;
@@ -233,7 +164,6 @@
     
     border-radius: 16px;
     background-color: rgba(31, 37, 52, 0.5);
-    /* text-align: center; */
     @include tablet {
         width: 78px;
         height: 52px;
@@ -243,15 +173,12 @@
 
         &:nth-of-type(1n+4){
             width: 76px;
-            // background-color: aliceblue;
         }
         &:nth-of-type(3){
             width: 101px;
-            // background-color: green;
         }
         &:nth-of-type(-1n+2){
             width: 88px;
-            // background-color: green;
         }
     }
 }

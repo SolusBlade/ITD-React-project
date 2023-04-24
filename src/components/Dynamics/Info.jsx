@@ -5,11 +5,7 @@ import { postImage } from "redux/dynamics/dynamicsOperations";
 import { useDispatch, useSelector } from "react-redux";
 import { useMemo } from "react";
 import { selectorIsPlanFootage, selectorStatePlan } from "redux/plan/planSelectors";
-// import { selectorStatePlan } from "../../assets/icons/icons.svg";
 import { 
-    // selectDynamics,
-    // selectStatByYear, 
-    // selectAccumToOneMoreMeters,
     selectAccumulatedProc,
     selectAccumulatedUah,
     selectFlatImage, 
@@ -26,7 +22,6 @@ import { selectorIsLoggedIn } from 'redux/auth/authSelectors';
 const baseStyle = {
   width: '87%',
   height: '87%',
-  // flex: 1,
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -42,8 +37,6 @@ const baseStyle = {
 };
 
 export const Info = props => {
-  // const dynamics = useSelector(selectDynamics);
-  // const accumToOneMoreMeters  = useSelector(selectAccumToOneMoreMeters);
   const accumulatedProc = useSelector(selectAccumulatedProc);
   const isLoggedIn = useSelector(selectorIsLoggedIn);
   const accumulatedUah = useSelector(selectAccumulatedUah);
@@ -68,7 +61,6 @@ export const Info = props => {
 
   useEffect(() => {
     if (file.length > 0) {
-      console.log('useEffect', acceptedFiles);
       const formData = new FormData();
       formData.append('image', acceptedFiles[0]);
       dispatch(postImage(formData));
@@ -84,17 +76,9 @@ export const Info = props => {
   const style = useMemo(
     () => ({
       ...baseStyle,
-      //   ...(isFocused ? focusedStyle : {}),
-      //   ...(isDragAccept ? acceptStyle : {}),
-      //   ...(isDragReject ? rejectStyle : {})
     }),
     []
   );
-  //  [
-  //   isFocused,
-  //   isDragAccept,
-  //   isDragReject
-  // ]);
 
   function percentage() {
     const percentageCounted = (squareMeters / plan.footage) * 100;
@@ -111,13 +95,10 @@ export const Info = props => {
   }
 
   const closeModal = () => {
-    console.log('closeModal  closeModal:');
-
     setIsModalOpen(false);
   };
 
   function hideImgButton () {
-    console.log('visible')
     return trigger ? 'visible' : 'hidden';
   }
 
