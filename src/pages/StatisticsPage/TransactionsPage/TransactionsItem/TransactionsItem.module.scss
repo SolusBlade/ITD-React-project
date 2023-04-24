@@ -4,8 +4,6 @@
 .transactionItem {
   display: flex;
   flex-direction: row;
-  // justify-content: space-between;
-  // align-items: center;
   color: $white;
   border-bottom: 1px solid $light-gray-tabl;
 
@@ -17,7 +15,6 @@
   }
 
   @include tablet {
-    // flex-direction: row;
     padding: 15px 32px;
   }
 }
@@ -37,8 +34,6 @@
   align-items: center;
 
   @include tablet_max {
-    // padding-left: 16px;
-    // padding-right: 16px;
     max-width: 343px;
   }
 
@@ -55,19 +50,15 @@
   // flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  // width: 343px;
 
   @include tablet_max {
     max-width: 343px;
-    // padding-left: 16px;
-    // padding-right: 16px;
     padding-top: 8px;
+    width: 100%;
   }
 
   @include tablet {
     width: 343px;
-    // padding-left: 0;
-    // padding-right: 0;
   }
 }
 .commentWrapper {
@@ -78,8 +69,8 @@
     max-width: 200px;
   }
 
-  @include tablet_max {
-    max-width: 230px;
+  @include tablet {
+    width: 230px;
   }
 }
 
