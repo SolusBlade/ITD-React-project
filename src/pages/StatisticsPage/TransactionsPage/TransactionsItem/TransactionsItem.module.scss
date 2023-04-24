@@ -6,7 +6,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 32px;
+  padding: 15px 0;
   color: $white;
   border-bottom: 1px solid $light-gray-tabl;
 
@@ -16,6 +16,7 @@
 
   @include tablet {
     flex-direction: row;
+    padding: 15px 32px;
   }
 }
 
@@ -37,7 +38,7 @@
   @include tablet_max {
     padding-left: 16px;
     padding-right: 16px;
-    width: 343px;
+    width: 100%;
   }
 
   @include tablet {
@@ -52,12 +53,13 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  width: 343px;
+  // width: 100%;
 
   @include tablet_max {
     padding-left: 16px;
     padding-right: 16px;
     padding-top: 8px;
+    width: 100%;
   }
 
   @include tablet {
@@ -70,10 +72,10 @@
   flex-direction: column;
 
   @include tablet_max {
-    width: 200px;
+    width: auto;
   }
 
-  @include tablet_max {
+  @include tablet {
     width: 230px;
   }
 }
