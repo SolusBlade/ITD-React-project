@@ -18,14 +18,27 @@ import { getDynamics } from "redux/dynamics/dynamicsOperations";
 import { selectDynamics, selectStatByYear,  } from "redux/dynamics/dynamicsVariables";
 import { selectorIsLoggedIn } from "redux/auth/authSelectors";
 import { useMediaQuery } from "react-responsive";
-import { labels } from "services/dynamics/chartData";
+// import { labels } from "services/dynamics/chartData";
 
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale,
   LinearScale,
   BarElement,
   Title);
 
-// const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'];
+// const labels = [
+//   'Jan', 
+//   'Feb', 
+//   'Mar', 
+//   'Apr', 
+//   'May', 
+//   'Jun', 
+//   'Jul', 
+//   'Aug', 
+//   'Sep', 
+//   'Oct', 
+//   'Nov', 
+//   'Dec'
+// ];
 
 export const Chart = () => {
   // const matches = useMediaQuery('(min-width: 768px)');
@@ -36,7 +49,20 @@ export const Chart = () => {
   const chartRef = useRef(null);
   const isLoggedIn = useSelector(selectorIsLoggedIn);
   const statByYear = useSelector(selectStatByYear);
-
+  const labels = [
+    'Jan', 
+    'Feb', 
+    'Mar', 
+    'Apr', 
+    'May', 
+    'Jun', 
+    'Jul', 
+    'Aug', 
+    'Sep', 
+    'Oct', 
+    'Nov', 
+    'Dec'
+  ];
   // console.log(matchesTablet)
   // console.log('isLoggedIn ', isLoggedIn)
 
