@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "/ITD-React-project/static/css/main.e894cf6b.css",
-    "main.js": "/ITD-React-project/static/js/main.781cd84b.js",
+    "main.js": "/ITD-React-project/static/js/main.bd59de8e.js",
     "static/css/119.556f5417.chunk.css": "/ITD-React-project/static/css/119.556f5417.chunk.css",
     "static/js/119.8f9d160f.chunk.js": "/ITD-React-project/static/js/119.8f9d160f.chunk.js",
     "static/css/267.90caf3db.chunk.css": "/ITD-React-project/static/css/267.90caf3db.chunk.css",
     "static/js/267.3d8cf17b.chunk.js": "/ITD-React-project/static/js/267.3d8cf17b.chunk.js",
-    "static/css/189.e8ae144b.chunk.css": "/ITD-React-project/static/css/189.e8ae144b.chunk.css",
+    "static/css/189.a445eb71.chunk.css": "/ITD-React-project/static/css/189.a445eb71.chunk.css",
     "static/js/189.c594dac2.chunk.js": "/ITD-React-project/static/js/189.c594dac2.chunk.js",
     "static/css/495.27dcfe5e.chunk.css": "/ITD-React-project/static/css/495.27dcfe5e.chunk.css",
     "static/js/495.080161f6.chunk.js": "/ITD-React-project/static/js/495.080161f6.chunk.js",
@@ -48,12 +48,12 @@
     "static/media/dynamics-planer.png": "/ITD-React-project/static/media/dynamics-planer.4f40508966748d7a90b6.png",
     "index.html": "/ITD-React-project/index.html",
     "main.e894cf6b.css.map": "/ITD-React-project/static/css/main.e894cf6b.css.map",
-    "main.781cd84b.js.map": "/ITD-React-project/static/js/main.781cd84b.js.map",
+    "main.bd59de8e.js.map": "/ITD-React-project/static/js/main.bd59de8e.js.map",
     "119.556f5417.chunk.css.map": "/ITD-React-project/static/css/119.556f5417.chunk.css.map",
     "119.8f9d160f.chunk.js.map": "/ITD-React-project/static/js/119.8f9d160f.chunk.js.map",
     "267.90caf3db.chunk.css.map": "/ITD-React-project/static/css/267.90caf3db.chunk.css.map",
     "267.3d8cf17b.chunk.js.map": "/ITD-React-project/static/js/267.3d8cf17b.chunk.js.map",
-    "189.e8ae144b.chunk.css.map": "/ITD-React-project/static/css/189.e8ae144b.chunk.css.map",
+    "189.a445eb71.chunk.css.map": "/ITD-React-project/static/css/189.a445eb71.chunk.css.map",
     "189.c594dac2.chunk.js.map": "/ITD-React-project/static/js/189.c594dac2.chunk.js.map",
     "495.27dcfe5e.chunk.css.map": "/ITD-React-project/static/css/495.27dcfe5e.chunk.css.map",
     "495.080161f6.chunk.js.map": "/ITD-React-project/static/js/495.080161f6.chunk.js.map",
@@ -69,6 +69,6 @@
   },
   "entrypoints": [
     "static/css/main.e894cf6b.css",
-    "static/js/main.781cd84b.js"
+    "static/js/main.bd59de8e.js"
   ]
 }
