@@ -5,10 +5,11 @@ import { createPortal } from 'react-dom';
 const modalRoot = document.querySelector('#modal-root');
 
 const ModalHooray = ({ closeModal }) => {
+  console.log(closeModal)
   return createPortal(
     <div className={s.overlay}>
       <div className={s.modalWrap}>
-        <button className={s.btnClose} onClick={closeModal}>
+        <button className={s.btnClose} onClick={() => closeModal()}>
           <Icon
             name="icon-close"
             width={24}

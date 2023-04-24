@@ -36,16 +36,19 @@ const authSlice = createSlice({
         state.token = payload.token;
         state.user.name = payload.newUser.name;
         state.user.email = payload.newUser.email;
+        state.isLoading = false;
       })
       .addCase(loginUser.fulfilled, (state, { payload }) => {
         fulfilledOperation(state);
         state.token = payload.token;
+        state.isLoading = false;
       })
       .addCase(getCurrentUserInfo.fulfilled, (state, { payload }) => {
         fulfilledOperation(state);
         if (payload.user?.balance) {
           state.balance = payload.user?.balance;
         }
+        state.isLoading = false;
         state.user.name = payload.user.name;
         state.user.email = payload.user.email;
       })
@@ -54,9 +57,11 @@ const authSlice = createSlice({
       })
       .addCase(addUserBalance.fulfilled, (state, { payload }) => {
         state.balance = payload;
+        state.isLoading = false;
       })
       .addCase(postTransaction.fulfilled, (state, { payload }) => {
         state.balance += -payload.sum;
+        state.isLoading = false;
       })
       .addMatcher(
         action =>

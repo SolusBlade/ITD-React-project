@@ -76,6 +76,10 @@ const TransactionDataList = () => {
     setCurrentCategory(newValue.value);
   };
 
+  const numberWithSpaces = x => {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  };
+
   return (
     <div>
       {isLoading && <Loader />}
@@ -90,7 +94,9 @@ const TransactionDataList = () => {
               <Input
                 name="balance"
                 title="From account"
-                placeholder={`Account balance: ₴ ${Math.round(balance)} `}
+                placeholder={`Account balance: ₴ ${numberWithSpaces(
+                  Math.round(balance)
+                )} `}
                 disabled={true}
               />
             </div>

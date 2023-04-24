@@ -238,6 +238,22 @@
         width: 78px;
         height: 52px;
     }
+
+    @include desktop{
+
+        &:nth-of-type(1n+4){
+            width: 76px;
+            // background-color: aliceblue;
+        }
+        &:nth-of-type(3){
+            width: 101px;
+            // background-color: green;
+        }
+        &:nth-of-type(-1n+2){
+            width: 88px;
+            // background-color: green;
+        }
+    }
 }
 
 .itemTitle{
@@ -252,6 +268,9 @@
         @include font (400, 8px, 18px)
     }
 
+    @include desktop {
+        @include font (400, 12px, 18px)
+    }
 }
 
 .itemNum{
