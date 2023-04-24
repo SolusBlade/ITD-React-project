@@ -52,6 +52,7 @@ const authSlice = createSlice({
         state.user.name = payload.user.name;
         state.user.email = payload.user.email;
       })
+      .addCase(getCurrentUserInfo.pending, (state, { payload }) => {})
       .addCase(logOutUser.fulfilled, (state, _) => {
         return initialState;
       })

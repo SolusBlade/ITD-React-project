@@ -8,11 +8,13 @@ import ModalRegister from './ModalRegister/ModalRegister';
 import ModalLogin from './ModalLogin/ModalLogin';
 import { getCurrentUserInfo } from 'redux/auth/authOperations';
 import { getPersonalPlan } from 'redux/plan/planOperations';
-import { selectorIsPlan } from 'redux/plan/planSelectors';
+import { selectorIsPlan, selectorPlanIsLoading } from 'redux/plan/planSelectors';
 import Loader from './Loader/Loader';
 import {
   selectorIsAuthLoading,
   selectorIsLoggedIn,
+  selectorIsRefreshing,
+  selectorIsUserExist,
   selectorToken,
 } from 'redux/auth/authSelectors';
 
@@ -33,14 +35,16 @@ const Categories = lazy(() =>
 // eslint-disable-next-line
 const PrivateRoute = ({ component, redirectTo = '/login' }) => {
   const isLoggedIn = useSelector(selectorIsLoggedIn);
+  const isPlanLoading = useSelector(selectorPlanIsLoading);
   const isPlan = useSelector(selectorIsPlan);
   const location = useLocation();
-
   if (!isLoggedIn) {
     return <Navigate to="/login" />;
   }
 
-  if (!isPlan && location.pathname !== '/plan') {
+  if (!isPlan && !isPlanLoading && location.pathname !== '/plan') {
+    console.log('isPlan', isPlan);
+
     toast.error('Please choose a plan', {
       position: 'top-center',
       autoClose: 3000,
@@ -51,8 +55,9 @@ const PrivateRoute = ({ component, redirectTo = '/login' }) => {
       progress: undefined,
       theme: 'light',
     });
-    return <Navigate to={redirectTo} />;
+    return <Navigate to="/plan" />;
   }
+
 
   return component;
 };
@@ -65,16 +70,25 @@ const PublicRoute = ({ component, redirectTo = '/plan' }) => {
 
 const App = () => {
   const dispatch = useDispatch();
-  const token = useSelector(selectorToken);
   const isLoading = useSelector(selectorIsAuthLoading);
   const isLoggedIn = useSelector(selectorIsLoggedIn);
+  const isUserExist = useSelector(selectorIsUserExist);
+  const isPlan = useSelector(selectorIsPlan);
 
   useEffect(() => {
-    if (token) {
-      !isLoggedIn && dispatch(getCurrentUserInfo(token));
-      isLoggedIn && dispatch(getPersonalPlan());
-    }
-  }, [token, dispatch, isLoggedIn]);
+    dispatch(getCurrentUserInfo());
+  }, [dispatch, isLoggedIn]);
+
+  useEffect(() => {
+    isUserExist && dispatch(getPersonalPlan());
+  }, [dispatch, isUserExist]);
+
+  // useEffect(() => {
+  //   if (token) {
+  //     !isLoggedIn && dispatch(getCurrentUserInfo(token));
+  //     isLoggedIn && dispatch(getPersonalPlan());
+  //   }
+  // }, [token, dispatch, isLoggedIn]);
 
   return (
     <>
@@ -88,14 +102,8 @@ const App = () => {
               path="/"
               element={<PublicRoute restricted component={<HomePage />} />}
             >
-              <Route
-                path="/login"
-                element={<PublicRoute component={<ModalLogin />} />}
-              />
-              <Route
-                path="/register"
-                element={<PublicRoute component={<ModalRegister />} />}
-              />
+              <Route path="/login" element={<ModalLogin />} />
+              <Route path="/register" element={<ModalRegister />} />
             </Route>
 
             <Route
@@ -114,16 +122,8 @@ const App = () => {
               path="/statistics"
               element={<PrivateRoute component={<StatisticsPage />} />}
             >
-              <Route
-                path="transactions"
-                exact
-                element={<PrivateRoute component={<Transactions />} />}
-              />
-              <Route
-                path="categories"
-                exact
-                element={<PrivateRoute component={<Categories />} />}
-              />
+              <Route path="transactions" exact element={<Transactions />} />
+              <Route path="categories" exact element={<Categories />} />
             </Route>
 
             <Route path="*" element={<Navigate to="/" />} />

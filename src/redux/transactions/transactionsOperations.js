@@ -38,12 +38,12 @@ export const removeTransaction = createAsyncThunk(
   'statistic/removeTransaction',
   async (transactionId, { rejectWithValue }) => {
     try {
-      await removeCashflowTransactionApi(transactionId);
+      const data = await removeCashflowTransactionApi(transactionId);
 
       // const data = await getCashflowTransactionsApi();
 
       // const data = await getCashflowTransactionsApi(period);
-      // return data;
+      return data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
