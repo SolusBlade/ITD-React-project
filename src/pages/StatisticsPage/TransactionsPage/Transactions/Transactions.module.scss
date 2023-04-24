@@ -42,9 +42,10 @@
 }
 
 .formLabel {
+  position: relative;
   display: flex;
   flex-direction: column;
-  margin-bottom: 18px;
+  margin-bottom: 24px;
   padding: 14px 18px;
   font-family: 'Lato', sans-serif;
   font-weight: 400;
@@ -239,4 +240,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.error {
+  position: absolute;
+  left: 20px;
+  top: 72px;
+  color: #ff2e00;
 }

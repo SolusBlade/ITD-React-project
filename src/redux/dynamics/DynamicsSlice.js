@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getDynamics, postImage } from "./dynamicsOperations";
+import { getDynamics, getDynamicsByMonth, postImage } from "./dynamicsOperations";
 import { logOutUser } from 'redux/auth/authOperations';
 
 const initialState = {
@@ -12,6 +12,13 @@ const initialState = {
       month: '0',
     },
   ],
+  statByMonth: {
+    income: null,
+    expense: null,
+    accumulated: null,
+    plan: null,
+    planInProcent: null,
+  },
   year: null,
   month: null,
   accumulatedProc: null,
@@ -39,7 +46,6 @@ export const dynamicsSlice = createSlice({
         ...payload,
         isLoading: false,
         error: null,
-        flatImage: state.flatImage,
       };
       // return {...state, ...payload, isLoading: false, error: null, flatImage: payload.flatImage = null}
     },
@@ -51,6 +57,10 @@ export const dynamicsSlice = createSlice({
     [postImage.fulfilled](state, action) {
       console.log('image fulfilled', action);
       state.flatImage = action.payload.image;
+    },
+    [getDynamicsByMonth.fulfilled](state, { payload }) {
+      console.log('payload:', payload);
+      state.statByMonth = payload;
     },
     [logOutUser.fulfilled](state, action) {
       return initialState;

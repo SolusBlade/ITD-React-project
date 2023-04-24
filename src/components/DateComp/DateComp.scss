@@ -117,3 +117,48 @@
     bottom: 18px;
   }
 }
+.calendarDynamicsWrap {
+  width: 223px;
+  @media screen and (max-width: 767px) {
+    width: 100%;
+  }
+  input {
+    font-family: 'Lato';
+    width: 223px;
+    padding: 12px 18px;
+    padding-top: 27px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: calc(19 / 16);
+    border: none;
+    border-radius: 16px;
+    outline: none;
+    color: $white;
+    background: $blue;
+    @media screen and (max-width: 767px) {
+      width: 100%;
+    }
+  }
+  .icon-claendar-dynamics {
+    position: absolute;
+    top: 18px;
+    right: 24px;
+    fill: $white;
+  }
+  .react-datepicker-wrapper::before {
+    content: 'Month';
+    display: block;
+    position: absolute;
+    top: 8px;
+    left: 18px;
+    z-index: 1;
+    position: absolute;
+
+    font-size: 12px;
+    line-height: calc(14 / 12);
+    display: flex;
+    align-items: center;
+
+    color: rgba(243, 243, 243, 0.4);
+  }
+}
