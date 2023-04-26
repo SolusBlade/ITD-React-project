@@ -77,11 +77,14 @@
     border-radius: 60px;
     color: $dark-gray;
     background-color: $white;
+    padding: 8px 18px;
+    line-height: 1.16;
 
-    @media screen and (max-width: 767px) {
-        padding: 8px 18px;
+
+    font-size: 10px;
+
+    @media screen and (min-width: 315px) {
         font-size: 12px;
-        line-height: 1.16;
     }
 
     @media screen and (min-width: 768px) {

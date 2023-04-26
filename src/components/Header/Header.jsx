@@ -7,7 +7,7 @@ import { selectorIsLoggedIn, selectorName } from '../../redux/auth/authSelectors
 
 import d from './Header.module.scss';
 import clsx from 'clsx';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 const Header = () => {
   const isAuth = useSelector(selectorIsLoggedIn);
@@ -15,9 +15,13 @@ const Header = () => {
 
   const [isOpen, setIsOpen]  = useState(false);
   
-  const handleToggleMenu = () => {
-    setIsOpen((p) => !p)
-  }
+  const handleToggleMenu = useCallback(newIsOpen => {
+    setIsOpen(p => !newIsOpen ? newIsOpen : !p);
+  }, []);
+
+  const handleCloseMenu = useCallback(() => {
+    setIsOpen(p => false);
+  }, []);
 
   return (
     <header className={d.header}>
@@ -25,14 +29,13 @@ const Header = () => {
         <div className={clsx(d.headerWrap, isAuth && d.isAuth)}>
           <div className={clsx(d.headerNavWrap, isAuth && d.isAuth)}>
             <Logo />
-            <Navigation isOpen={isOpen} handleToggleMenu={handleToggleMenu} />
+            <Navigation isOpen={isOpen} handleToggleMenu={handleCloseMenu} />
           </div>
           {isAuth && name && (
             <UserBar handleToggleMenu={handleToggleMenu} isOpen={isOpen} />
           )}
         </div>
       </Container>
-      
     </header>
   );
 };

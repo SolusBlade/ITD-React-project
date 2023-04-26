@@ -4,6 +4,7 @@ import { createPortal } from 'react-dom';
 import { Field, Form, Formik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { postTransaction } from 'redux/Expenses/expensesOperations';
+import { useCallback, useEffect } from 'react';
 
 const modalRoot = document.querySelector('#modal-root');
 
@@ -18,8 +19,31 @@ const MoadlAddIncome = ({ closeModal, text }) => {
     closeModal();
   };
 
+  const closeModalByEscape = useCallback(
+    e => {
+      if (e.code === 'Escape') {
+        closeModal();
+      }
+    },
+    [closeModal]
+  );
+
+  const closeModalOnBackdrop = e => {
+    if (e.target === e.currentTarget) {
+      closeModal();
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('keydown', closeModalByEscape);
+
+    return () => {
+      window.removeEventListener('keydown', closeModalByEscape);
+    };
+  }, [closeModalByEscape]);
+
   return createPortal(
-    <div className={s.overlayAddIncome}>
+    <div className={s.overlayAddIncome} onClick={closeModalOnBackdrop}>
       <div className={s.modalWrapper}>
         <Formik onSubmit={handleSubmit} initialValues={initialValue}>
           <Form className={s.modalAddIncome}>

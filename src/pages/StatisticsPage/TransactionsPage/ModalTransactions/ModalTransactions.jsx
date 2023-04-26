@@ -4,7 +4,7 @@ import Icon from 'components/Icon/Icon';
 import Select from 'react-select';
 import { useDispatch, useSelector } from 'react-redux';
 import c from '../../../../components/ModalAddIncome/MoadlAddIncome.module.scss';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { categorySelect } from 'redux/Expenses/expensesSelectors';
 import { updateTransaction } from 'redux/transactions/transactionsOperations';
 import { IconOption } from 'components/TransactionSelect/iconsForSelectCategory';
@@ -24,6 +24,30 @@ const ModalTransaction = ({ closeModal, transactionData }) => {
 
   const category = useSelector(categorySelect);
   const dispatch = useDispatch();
+
+
+  const closeModalByEscape = useCallback(
+    e => {
+      if (e.code === 'Escape') {
+        closeModal();
+      }
+    },
+    [closeModal]
+  );
+
+  const closeModalOnBackdrop = e => {
+    if (e.target === e.currentTarget) {
+      closeModal();
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('keydown', closeModalByEscape);
+
+    return () => {
+      window.removeEventListener('keydown', closeModalByEscape);
+    };
+  }, [closeModalByEscape]);
 
   useEffect(() => {
     dispatch(getCategory());
@@ -45,7 +69,7 @@ const ModalTransaction = ({ closeModal, transactionData }) => {
   };
 
   return createPortal(
-    <div className={s.overlayAddIncome}>
+    <div className={s.overlayAddIncome} onClick={closeModalOnBackdrop}>
       <div className={s.modalWrapper}>
         <Formik
           initialValues={{
@@ -70,10 +94,10 @@ const ModalTransaction = ({ closeModal, transactionData }) => {
               updateTransaction({
                 id,
                 values: { ...values, category: currentCategory },
-                date: {year, month}
+                date: { year, month },
               })
             );
-            
+
             closeModal();
             setSubmitting(false);
           }}

@@ -5,12 +5,18 @@ import { useSelector } from 'react-redux';
 import { selectorIsLoggedIn } from 'redux/auth/authSelectors';
 import d from './Navigation.module.scss';
 import { useMediaQuery } from 'react-responsive';
+import { useEffect } from 'react';
 
 export const Navigation = ({ isOpen, handleToggleMenu }) => {
   const isAuth = useSelector(selectorIsLoggedIn);
   const location = useLocation();
 
   const isTablMob = useMediaQuery({ query: '(max-width: 1279px)' });
+  const isDesktop = useMediaQuery({ query: '(min-width: 1280px)' });
+
+  useEffect(() => {
+    isDesktop && handleToggleMenu(false);
+  }, [isDesktop, handleToggleMenu]);
 
   const getActiveClass = ({ isActive }) =>
     clsx(

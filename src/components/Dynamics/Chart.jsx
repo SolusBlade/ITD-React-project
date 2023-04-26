@@ -163,7 +163,9 @@ export const Chart = () => {
             <li className={style.statListItem}>
               <p className={style.itemTitle}>Plan, %</p>
               <p className={style.itemNum}>
-                {planInProcent ? parseInt(planInProcent) : 0}
+                {isNaN(parseInt(planInProcent)) || planInProcent === null
+                  ? '0'
+                  : parseInt(planInProcent)}
               </p>
             </li>
           </ul>

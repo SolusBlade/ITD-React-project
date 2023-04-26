@@ -10,6 +10,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 10;
   background-color: rgba(0, 0, 0, 0.8);
 }
 
@@ -17,6 +18,7 @@
   position: relative;
   padding: 50px 30px 0;
   display: flex;
+  z-index: 15;
   align-items: center;
   flex-direction: column;
 

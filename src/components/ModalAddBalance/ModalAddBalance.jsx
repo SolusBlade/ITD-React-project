@@ -1,7 +1,7 @@
 import Icon from 'components/Icon/Icon';
 import s from './ModalAddBalance.module.scss';
 import { createPortal } from 'react-dom';
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 const modalRoot = document.querySelector('#modal-root');
 
@@ -21,8 +21,31 @@ const ModalAddBalance = ({ closeModal, text, onSubmit }) => {
     closeModal();
   };
 
+   const closeModalByEscape = useCallback(
+     e => {
+       if (e.code === 'Escape') {
+         closeModal();
+       }
+     },
+     [closeModal]
+   );
+
+   const closeModalOnBackdrop = e => {
+     if (e.target === e.currentTarget) {
+       closeModal();
+     }
+   };
+
+   useEffect(() => {
+     window.addEventListener('keydown', closeModalByEscape);
+
+     return () => {
+       window.removeEventListener('keydown', closeModalByEscape);
+     };
+   }, [closeModalByEscape]);
+
   return createPortal(
-    <div className={s.overlayAddIncome}>
+    <div className={s.overlayAddIncome} onClick={closeModalOnBackdrop}>
       <div className={s.modalWrapper}>
         <form className={s.modalAddIncome} onSubmit={handleSubmit}>
           <input
