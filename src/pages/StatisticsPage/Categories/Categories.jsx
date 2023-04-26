@@ -14,15 +14,17 @@ const Categories = () => {
         </div>
       )}
       <ul className={d.categoriesList}>
-        {categories.map(({ category, amount, percentage }) => (
-          <li key={category} className={d.categoriesItem}>
-            <span className={d.categoriesItemEl}>
-              <p className={d.categoriesDes}>{category}</p>
-              <p className={d.categoriesAmount}>-{amount} ₴</p>
-            </span>
-            <p className={d.categoriesPerc}>{parseFloat(percentage)}%</p>
-          </li>
-        ))}
+        {categories
+          .sort((a, b) => a.category.localeCompare(b.category))
+          .map(({ category, amount, percentage }) => (
+            <li key={category} className={d.categoriesItem}>
+              <span className={d.categoriesItemEl}>
+                <p className={d.categoriesDes}>{category}</p>
+                <p className={d.categoriesAmount}>-{amount} ₴</p>
+              </span>
+              <p className={d.categoriesPerc}>{parseFloat(percentage)}%</p>
+            </li>
+          ))}
       </ul>
     </>
   );

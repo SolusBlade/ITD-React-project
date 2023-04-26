@@ -7,11 +7,12 @@
   border-radius: 0px 16px 16px 16px;
   background-color: rgb(37, 44, 65);
   margin: 0 auto;
-  height: 476px;
+  max-height: 419px;
   overflow: auto;
 
   @include tablet_max {
     max-width: 343px;
+    max-height: 498px;
   }
 
   @include tablet {
@@ -126,8 +127,9 @@
 
 .buttonCloseModal {
   position: absolute;
-  top: 10px;
+  top: 18px;
   right: 18px;
+  padding: 0;
   border: none;
   background-color: transparent;
   cursor: pointer;

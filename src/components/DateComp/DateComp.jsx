@@ -34,6 +34,7 @@ const DateComp = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const isLoggedIn = useSelector(selectorIsLoggedIn);
   const location = useLocation();
+  const [isDirty, setIsDirty] = useState(false);
 
   const isDynamicsPage = location.pathname.endsWith('dynamics');
 
@@ -64,6 +65,9 @@ const DateComp = () => {
   };
 
   const handleCloseCalendar = date => {
+    if (isDirty) {
+      return;
+    }
     if (location.pathname.endsWith('transactions')) {
       dispatch(getTransaction(changedDateForApi(date)));
     }
@@ -73,7 +77,13 @@ const DateComp = () => {
     if (isDynamicsPage) {
       dispatch(getDynamicsByMonth(changedDateForApi(date)));
     }
+    setIsDirty(true);
   };
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+    setIsDirty(true);
+  }
 
   return (
     <div
@@ -81,7 +91,7 @@ const DateComp = () => {
     >
       <DatePicker
         selected={selectedDate}
-        onChange={date => setSelectedDate(date)} // используем setSelectedDate, чтобы обновлять значение выбранной даты
+        onChange={date => handleDateChange(date)} // используем setSelectedDate, чтобы обновлять значение выбранной даты
         value={changedDateForPicker(selectedDate)}
         onCalendarClose={() => handleCloseCalendar(selectedDate)}
         maxDate={new Date()}

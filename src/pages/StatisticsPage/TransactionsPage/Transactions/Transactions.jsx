@@ -4,65 +4,53 @@ import ModalTransaction from '../ModalTransactions/ModalTransactions';
 import { removeTransaction } from 'redux/transactions/transactionsOperations';
 import { selectedTransactions } from 'redux/transactions/transactionsSelector';
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const Transactions = () => {
-  const leter = useSelector(selectedTransactions);
-  const [transaction, setTransaction] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [idTransaction, setIdTransaction] = useState('');
-  const [idDate, setIdDate] = useState('');
+  const transactions = useSelector(selectedTransactions);
+  const [transactionData, setTransactionData] = useState(null);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    setTransaction(leter);
-  }, [leter]);
-
-  const openModal = () => {
-    setIsModalOpen(true);
+  const openModal = (data) => {
+    setTransactionData(data);
   };
-  const updateTransaction = (id, date) => {
-    setIdTransaction(id);
-    setIdDate(date);
-  };
-  const closeModal = () => setIsModalOpen(false);
 
-  const filterIt = id => {
-    const filteredTransaction = transaction.filter(el => el._id !== id);
-    setTransaction(filteredTransaction);
-    dispatch(removeTransaction(id));
+  const closeModal = () => setTransactionData(null);
+
+  const handleRemoveTransaction = (id, newDate) => {
+    const date = new Date(newDate);
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    dispatch(removeTransaction({id, date: { year, month }}));
   };
 
   return (
     <>
-      {transaction?.length === 0 ? (
+      {transactions?.length === 0 ? (
         <div className={css.noTransactionWrapper}>
           <p className={css.noTransactionText}>You have no transactions</p>
         </div>
       ) : (
         <ul className={css.transactionList}>
-          {transaction &&
-            transaction.map(({ _id: id, sum, comment, category, date }) => (
+          {transactions &&
+            transactions.map(({ _id: id, sum, comment, category, date }) => (
               <TransactionsItem
                 key={id}
                 openModal={openModal}
-                updateTransaction={() => updateTransaction(id)}
                 id={id}
                 sum={sum}
                 comment={comment}
                 category={category}
                 date={date}
-                filterIt={filterIt}
+                handleRemoveTransaction={handleRemoveTransaction}
               />
             ))}
         </ul>
       )}
-      {isModalOpen && (
+      {transactionData && (
         <ModalTransaction
           closeModal={closeModal}
-          id={idTransaction}
-          date={idDate}
-          period={new Date().getTime}
+          transactionData={transactionData}
         />
       )}
     </>

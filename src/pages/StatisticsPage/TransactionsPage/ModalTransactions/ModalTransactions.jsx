@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import c from '../../../../components/ModalAddIncome/MoadlAddIncome.module.scss';
 import { useEffect, useState } from 'react';
 import { categorySelect } from 'redux/Expenses/expensesSelectors';
-import { getTransaction, updateTransaction } from 'redux/transactions/transactionsOperations';
+import { updateTransaction } from 'redux/transactions/transactionsOperations';
 import { IconOption } from 'components/TransactionSelect/iconsForSelectCategory';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
@@ -15,10 +15,13 @@ import { getCategory } from 'redux/Expenses/expensesOperations';
 
 const modalRoot = document.querySelector('#modal-root');
 
-const ModalTransaction = ({ closeModal, value, id, period }) => {
-  const [currentCategory, setCurrentCategory] = useState('Other');
-  const [currentSum] = useState(0);
-  const [currentComent] = useState('');
+const ModalTransaction = ({ closeModal, transactionData }) => {
+  const { id, sum, comment, category: newCategory, date: newDate } = transactionData;
+
+  const [currentCategory, setCurrentCategory] = useState(newCategory);
+  const [currentSum] = useState(sum);
+  const [currentComent] = useState(comment);
+
   const category = useSelector(categorySelect);
   const dispatch = useDispatch();
 
@@ -30,6 +33,12 @@ const ModalTransaction = ({ closeModal, value, id, period }) => {
     value,
     label,
   }));
+
+  const getValue = () => {
+    return currentCategory
+      ? transformCategory.find(c => c.value === currentCategory)
+      : '';
+  };
 
   const onChange = newValue => {
     setCurrentCategory(newValue.value);
@@ -54,8 +63,17 @@ const ModalTransaction = ({ closeModal, value, id, period }) => {
             sum: Yup.number().required('Required'),
           })}
           onSubmit={(values, { setSubmitting }) => {
-            dispatch(updateTransaction({ id, values }));
-            dispatch(getTransaction(period));
+            const date = new Date(newDate);
+            const year = date.getFullYear();
+            const month = date.getMonth() + 1;
+            dispatch(
+              updateTransaction({
+                id,
+                values: { ...values, category: currentCategory },
+                date: {year, month}
+              })
+            );
+            
             closeModal();
             setSubmitting(false);
           }}
@@ -66,7 +84,7 @@ const ModalTransaction = ({ closeModal, value, id, period }) => {
                 <p className={s.labelText}>Per category</p>
                 <Select
                   onChange={onChange}
-                  value={value}
+                  value={getValue()}
                   isSearchable={false}
                   placeholder={currentCategory}
                   className="select-container"
@@ -128,7 +146,7 @@ const ModalTransaction = ({ closeModal, value, id, period }) => {
                 <button
                   className={s.buttonCloseModal}
                   type="button"
-                  onClick={closeModal}
+                  onClick={() => closeModal()}
                 >
                   <Icon
                     name="icon-close"

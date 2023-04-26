@@ -6,6 +6,17 @@ import {
   getCategoriesStat,
 } from './transactionsOperations';
 
+const fulfilledOperation = (state, payload, stateField) => {
+   if (payload === 'no transactions for this period') {
+     state[stateField] = [];
+     state.isLoading = false;
+     state.error = payload;
+     return;
+   }
+   state[stateField] = payload;
+   state.isLoading = false;
+};
+
 const initialState = {
   transactions: [],
   categoriesStat: [],
@@ -20,36 +31,21 @@ const transactionsSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(getTransaction.fulfilled, (state, { payload }) => {
-        if (payload === 'no transactions for this period') {
-          state.transactions = [];
-          state.isLoading = false;
-          state.error = payload;
-          return;
-        }
-        state.transactions = payload;
-        state.isLoading = false;
+        fulfilledOperation(state, payload, 'transactions');
       })
-      .addCase(removeTransaction.fulfilled, (state, action) => {
-        state.isLoading = false;
+      .addCase(removeTransaction.fulfilled, (state, { payload }) => {
+        fulfilledOperation(state, payload, 'transactions');
       })
-      .addCase(updateTransaction.fulfilled, (state, action) => {
-        state.isLoading = false;
+      .addCase(updateTransaction.fulfilled, (state, {payload}) => {
+        fulfilledOperation(state, payload, 'transactions');
       })
       .addCase(getCategoriesStat.fulfilled, (state, { payload }) => {
-        if (payload === 'no transactions for this period') {
-          state.categoriesStat = [];
-          state.isLoading = false;
-          state.error = payload;
-          return;
-        }
-        state.categoriesStat = payload;
-        state.isLoading = false;
+        fulfilledOperation(state, payload, 'categoriesStat');
       })
       .addMatcher(
         action =>
           action.type.startsWith('statistic') &&
-          action.type.endsWith('/pending') &&
-          !action.type.endsWith('/removeTransaction/pending'),
+          action.type.endsWith('/pending'),
         state => {
           state.isLoading = true;
           state.error = null;

@@ -4,13 +4,14 @@
     padding-top: 50px;
   }
   @include tablet {
+    height: calc(100vh - 71px);
     padding-top: 100px;
   }
   @include desktop {
     padding-top: 66px;
   }
 
-  height: calc(100vh - 71px);
+  
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: contain;

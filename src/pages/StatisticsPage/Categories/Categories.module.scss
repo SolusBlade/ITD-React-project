@@ -1,12 +1,31 @@
 @import '../../../sass/utils/variables';
 
 .categoriesList {
-    overflow: hidden;
+    overflow: auto;
     border-radius: 0px 16px 16px 16px;
+    max-height: 419px;
+    &::-webkit-scrollbar {
+    width: 4px;
+    border-radius: 4px;
+    display: block;
+    margin: 10px 0;
+  }
+  @media screen and (max-width: 767px) {
+        max-height: 498px;
+    }
+  &::-webkit-scrollbar-thumb {
+    background: $blue;
+    border-radius: 4px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
 }
 
 .categoriesItem {
     background-color: $dark-blue-tabl;
+    line-height: calc(22/18);
+    
 
     @media screen and (max-width: 767px) {
         padding: 18px 16px;
@@ -19,6 +38,7 @@
         width: 100%;
         padding: 24px 32px;
         padding-right: 150px;
+        height: 70px;
     }
 
     @media screen and (min-width: 1280px) {
@@ -26,7 +46,7 @@
         justify-content: space-between;
         align-items: center;
         width: 100%;
-        padding: 24px 32px;
+        padding: 22px 32px;
         padding-right: 215px;
     }
 }

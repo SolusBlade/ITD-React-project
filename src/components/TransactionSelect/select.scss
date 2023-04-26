@@ -65,11 +65,15 @@
       border-radius: 10px;
       border: none;
       color: $dark-gray !important;
+      display: flex;
+      align-items: center;
+      
       &--is-focused {
-        background-color: $white !important;
+        background-color: #7d9dff !important;
+        color: $white !important;
       }
       &--is-selected {
-        background-color: rgba(17, 52, 156, 0.5) !important;
+        background-color: #7d9dff !important;
         color: $white !important;
       }
       @include font(400, 16px, 16px);
